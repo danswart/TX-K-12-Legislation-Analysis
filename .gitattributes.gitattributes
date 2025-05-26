@@ -1,0 +1,5 @@
+*.qmd linguist-language=R
+*.Rmd linguist-language=R
+*.html linguist-generated=true
+*.js linguist-generated=true
+*.css linguist-language=CSS
