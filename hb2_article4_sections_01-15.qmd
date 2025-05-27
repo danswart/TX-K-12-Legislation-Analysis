@@ -1,0 +1,589 @@
+---
+title: "Texas HB2 Article 4: Special Education (Sections 4.01-4.15) - Incentives and Likely Results"
+author: "Dan Swart and Claude Sonnet 4.0"
+description: "Analysis covers Article 4 (Special Education) only - Sections 4.01 through 4.15. Analysis focuses on special education agency duties, compliance monitoring, eligibility criteria, interagency coordination, and residential placement oversight. Document spans pages 25-31 of legislative text."
+format:
+    html:
+      toc: true
+      toc-float: true
+      page-layout: article
+      embed-resources: true
+      code-fold: true
+      code-summary: "Show the code"
+      code-tools: true
+      code-overflow: wrap
+      code-block-bg: "#FAEBD7"
+      code-block-border-left: "#31BAE9"
+      code-link: true
+      fig-width: 8
+      fig-height: 6
+      fig-align: center
+      html-math-method: katex
+      css: swart-20250327.css
+    pdf:
+      toc: true
+      number-sections: true
+      colorlinks: true
+      papersize: letter
+      geometry:
+        - margin=1in
+      fig-width: 12
+      fig-height: 10
+      fig-pos: 'H'
+    typst:
+      toc: true
+      fig-width: 12
+      fig-height: 10
+      keep-tex: true
+      prefer-html: true
+---
+
+```{r}
+#| label: setup-article4-sections01-15
+#| include: false
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)  # For dplyr, ggplot, and friends
+library(ggdag)      # For plotting DAGs
+library(dagitty)    # For working with DAG logic
+library(DiagrammeR) # For complete control of the layout
+library(knitr)      # For controlling rendering
+library(kableExtra) # For tables summarizing results
+library(DT)         # For rendering content that kableExtra cannot
+library(dplyr)      # For data wrangling
+```
+
+### Main Table
+
+```{r}
+#| label: main-analysis-table-article4-sections01-15
+
+# Create analysis with coded negative results for Article 4 Sections 4.01-4.15
+article4_likely_results <- data.frame(
+  Category = c(
+    "Visual Impairment Agency Duties Expansion",
+    "Visual Impairment Agency Duties Expansion",
+    "Special Supplemental Allowance Distribution System",
+    "Regional Service Center Core Services Mandates",
+    "Regional Service Center Core Services Mandates",
+    "Regional Service Center Core Services Mandates",
+    "Special Education Diploma Achievement Requirements",
+    "Special Education Diploma Achievement Requirements",
+    "Special Education Implementation Law Restructure",
+    "Special Education Implementation Law Restructure",
+    "Special Education Implementation Law Restructure",
+    "Special Education Implementation Law Restructure",
+    "Special Education Implementation Law Restructure",
+    "Special Education Implementation Law Restructure",
+    "Special Education Implementation Law Restructure",
+    "Special Education Implementation Law Restructure",
+    "Special Education Implementation Law Restructure",
+    "Annual Special Education Board Meeting Requirements",
+    "Annual Special Education Board Meeting Requirements",
+    "Special Education Eligibility Criteria Updates",
+    "Special Education Eligibility Criteria Updates",
+    "Special Education Eligibility Criteria Updates",
+    "IEP Committee Composition Federal Alignment",
+    "IEP Committee Composition Federal Alignment",
+    "Parent Language Translation Requirements",
+    "Parent Language Translation Requirements",
+    "Commissioner Autism Information Authority",
+    "State Living Center Information Materials System",
+    "State Living Center Information Materials System",
+    "State Living Center Information Materials System",
+    "Special Education Advisory Committee Restructure",
+    "Special Education Advisory Committee Restructure",
+    "Special Education Contract Approval System",
+    "Special Education Contract Approval System",
+    "Special Education Monitoring System Overhaul",
+    "Special Education Monitoring System Overhaul",
+    "Special Education Progressive Sanctions System",
+    "Special Education Progressive Sanctions System",
+    "Special Education Complaint Management System",
+    "Interagency Coordination Memorandum Requirements"
+  ),
+
+  Incentive_Created = c(
+    "Agency must carry out duties for children with visual impairments, who are deaf or hard of hearing, or who are deaf-blind",
+    "Commissioner must develop system to distribute special supplemental allowances for students with visual impairments",
+    "Regional education service centers must distribute special supplemental allowances as required under revised section reference",
+    "Regional service centers must maintain core services including assistance for districts out of special education compliance",
+    "Core services must include training for programs qualifying for funding allotments under specified sections",
+    "Assistance must be specifically designed for districts assigned unacceptable performance ratings or compliance failures",
+    "Special education students may earn distinguished achievement or endorsements by completing curriculum with or without modifications",
+    "ARD committee must determine whether student must achieve satisfactory performance on end-of-course assessments",
+    "Agency must develop comprehensive system to ensure statewide and local compliance with federal and state special education law",
+    "Comprehensive system must include provision of services primarily through school districts and shared services arrangements",
+    "System must focus on maximizing student outcomes and include rulemaking, technical assistance, and monitoring protocols",
+    "System must facilitate interagency coordination when other state agencies deliver services to students with disabilities",
+    "System must pursue strategies to meet statewide special education and related services personnel needs",
+    "System must ensure regional education service centers maintain regional support functions throughout the state",
+    "System must effectively monitor and conduct site visits to ensure rules are applied consistently",
+    "System must provide training and technical assistance to ensure appropriately trained personnel serve students",
+    "System must ensure individualized education programs are properly developed and implemented in least restrictive environment",
+    "School district and charter school boards must include annual discussion of special education student performance",
+    "Agency must adopt performance indicators for measuring quality of learning and achievement for special education students",
+    "Agency must develop specific eligibility criteria based on general classifications and federal law requirements",
+    "Students eligible from birth through 21 years if visual impairment, deaf, hard of hearing, or deaf-blind prevents safe education",
+    "Students from 3-21 years eligible if disabilities prevent adequate or safe education without special education services",
+    "IEP committees must include persons required under federal law with regular education teacher when appropriate",
+    "Regular education teacher must be responsible for implementing portion of child's individualized education program",
+    "Districts must provide Spanish translation of IEP if Spanish is parent's primary language",
+    "Districts must make good faith effort to translate IEP into parent's primary language if not Spanish",
+    "Commissioner may require inclusion of autism or pervasive developmental disorder information in student's IEP",
+    "Health and Human Services Commission must develop materials on educational residential placement options",
+    "Materials must include information on full continuum of educational residential placement options for qualifying children",
+    "Agency must make materials available to school districts for distribution to parents at ARD committee meetings",
+    "Governor must appoint continuing advisory committee consistent with federal requirements",
+    "Advisory committee members appointed for staggered four-year terms with specified member qualifications",
+    "Commissioner must set minimum standards and develop list of approved facilities for student services",
+    "Commissioner may approve facilities only after programmatic evaluation of qualifications, costs, and curriculum content",
+    "Agency must develop comprehensive monitoring system including cyclical process and targeted risk-based process",
+    "Agency may require districts to obtain specialized technical assistance for documented noncompliance issues",
+    "Agency must develop system of interventions and sanctions for districts identified as being in noncompliance",
+    "Sanctions must range in severity and may include withholding funds with alternative service arrangements",
+    "Agency must develop expedited investigation and resolution system for special education service failure complaints",
+    "Agencies must develop memorandum establishing respective responsibilities for students with disabilities in residential facilities"
+  ),
+
+  Intended_Consequence = c(
+    "Expand state support to include broader population of students with hearing impairments in addition to visual impairments",
+    "Ensure adequate financial support reaches districts serving students with various sensory impairments through systematic distribution",
+    "Maintain consistent funding distribution while updating administrative references to reflect current legal framework",
+    "Provide targeted technical assistance to districts struggling with special education compliance requirements",
+    "Guarantee districts receive appropriate support for implementing special education programs that qualify for state funding",
+    "Focus intensive assistance on districts with documented performance problems or compliance failures",
+    "Enable special education students to achieve high academic recognition while accommodating individual learning needs",
+    "Ensure individualized decision-making about assessment requirements based on each student's capabilities and needs",
+    "Create systematic statewide approach to ensure consistent special education compliance across all districts",
+    "Establish clear service delivery framework using existing district structures supplemented by regional support",
+    "Shift focus from procedural compliance to actual student outcomes while maintaining necessary oversight mechanisms",
+    "Improve coordination between education agencies and health/human services agencies serving students with disabilities",
+    "Address statewide shortage of qualified special education personnel through strategic recruitment and training initiatives",
+    "Ensure regional service centers can effectively assist school districts in identifying and developing appropriate services",
+    "Maintain consistent application of special education rules across all districts through systematic monitoring and site visits",
+    "Guarantee that qualified personnel with appropriate training work directly with students receiving special education services",
+    "Ensure every student receives individualized programming appropriate to their needs in least restrictive educational setting",
+    "Increase transparency and public accountability for special education program performance at local district level",
+    "Establish measurable standards for evaluating quality and effectiveness of special education services and student achievement",
+    "Update eligibility determination processes to reflect current federal requirements and contemporary diagnostic practices",
+    "Ensure students with sensory impairments receive appropriate special education services when regular education is insufficient",
+    "Provide clear criteria for determining when students with various disabilities require special education services",
+    "Align IEP committee composition with federal requirements while ensuring appropriate educator participation",
+    "Guarantee that regular education teachers involved in IEP development have actual implementation responsibilities",
+    "Remove language barriers for Spanish-speaking parents to ensure meaningful participation in educational planning",
+    "Extend language accessibility to parents speaking languages other than Spanish for equal participation opportunities",
+    "Ensure students with autism receive comprehensive individualized programming necessary for appropriate public education",
+    "Provide parents with complete information about residential placement options when considering educational alternatives",
+    "Ensure families understand full range of residential educational options available through systematic information sharing",
+    "Make comprehensive placement information readily available to parents through school districts during ARD meetings",
+    "Maintain federal compliance for advisory committee structure while ensuring representation from special education professionals",
+    "Provide continuity and expertise through staggered appointments and inclusion of experienced special education administrators",
+    "Establish quality assurance for facilities serving students with disabilities through rigorous standards and evaluation",
+    "Protect students by ensuring only qualified facilities meeting high standards receive approval for service provision",
+    "Create comprehensive monitoring system addressing both compliance requirements and educational quality indicators",
+    "Provide targeted support to districts experiencing compliance difficulties or showing data indicators of service problems",
+    "Establish meaningful consequences for continued noncompliance while maintaining focus on student service delivery",
+    "Create escalating intervention system that can redirect resources to ensure continued services despite district failures",
+    "Provide efficient resolution mechanism for parents experiencing delays or inadequate special education services",
+    "Clarify responsibilities and improve coordination between agencies serving students with disabilities in residential settings"
+  ),
+
+  Likely_Result = c(
+    "C, G, I, L", # Visual impairment expansion: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Allowance distribution: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Service center distribution: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L, M", # Core services compliance: failure by force, reduced local control, system tampering, bureaucracy, waste resources
+    "C, G, I, L", # Training assistance: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Performance assistance: failure by force, reduced local control, system tampering, bureaucracy
+    "C, F, G, I, L", # Diploma requirements: failure by force, individual focus, reduced local control, system tampering, bureaucracy
+    "C, F, G, I, L", # Assessment decisions: failure by force, individual focus, reduced local control, system tampering, bureaucracy
+    "C, G, I, L, M", # Comprehensive system: failure by force, reduced local control, system tampering, bureaucracy, waste resources
+    "C, G, I, L", # Service delivery framework: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Student outcomes focus: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Interagency coordination: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L, M", # Personnel strategies: failure by force, reduced local control, system tampering, bureaucracy, waste resources
+    "C, G, I, L", # Regional support functions: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L, M", # Monitoring and site visits: failure by force, reduced local control, system tampering, bureaucracy, waste resources
+    "C, G, I, L", # Personnel training: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # IEP development: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L, M", # Annual board meetings: failure by force, reduced local control, system tampering, bureaucracy, waste resources
+    "C, G, I, L", # Performance indicators: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Eligibility criteria: failure by force, reduced local control, system tampering, bureaucracy
+    "C, F, G, I, L", # Sensory impairment eligibility: failure by force, individual focus, reduced local control, system tampering, bureaucracy
+    "C, F, G, I, L", # Disability criteria: failure by force, individual focus, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # IEP committee composition: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Teacher responsibilities: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Spanish translation: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Language translation: failure by force, reduced local control, system tampering, bureaucracy
+    "C, F, G, I, L", # Autism information: failure by force, individual focus, reduced local control, system tampering, bureaucracy
+    "C, G, I, K, L, M", # Living center materials: failure by force, reduced local control, system tampering, tax burden, bureaucracy, waste resources
+    "C, G, I, L", # Placement information: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Material distribution: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Advisory committee: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Committee appointments: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Facility standards: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Facility approval: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L, M", # Monitoring system: failure by force, reduced local control, system tampering, bureaucracy, waste resources
+    "C, G, I, L", # Technical assistance: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Sanctions system: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Intervention escalation: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Complaint system: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L" # Memorandum requirements: failure by force, reduced local control, system tampering, bureaucracy
+  )
+)
+
+# Create the main analysis table with coded results
+article4_main_table <- datatable(
+  article4_likely_results,
+  options = list(
+    pageLength = 10,
+    scrollX = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '150px', targets = 0),   # Category  
+      list(width = '300px', targets = 1),   # Incentive Created
+      list(width = '250px', targets = 2),   # Intended Result
+      list(width = '150px', targets = 3)    # Coded Results
+    ),
+    dom = 'Bfrtip',
+    buttons = c('copy', 'csv', 'excel')
+  ),
+  filter = 'top',
+  rownames = FALSE,
+  class = 'cell-border stripe hover',
+  colnames = c('Category', 'Incentive Created', 'Intended Result', 'Codes for Destructive Results We Will Actually Get')
+) %>%
+  formatStyle(
+    'Category',
+    backgroundColor = styleEqual(
+      c("Visual Impairment Agency Duties Expansion", "Special Supplemental Allowance Distribution System", "Regional Service Center Core Services Mandates", 
+        "Special Education Diploma Achievement Requirements", "Special Education Implementation Law Restructure", "Annual Special Education Board Meeting Requirements",
+        "Special Education Eligibility Criteria Updates", "IEP Committee Composition Federal Alignment", "Parent Language Translation Requirements",
+        "Commissioner Autism Information Authority", "State Living Center Information Materials System", "Special Education Advisory Committee Restructure",
+        "Special Education Contract Approval System", "Special Education Monitoring System Overhaul", "Special Education Progressive Sanctions System",
+        "Special Education Complaint Management System", "Interagency Coordination Memorandum Requirements"),
+      c('#FFE8E8', '#FFD0D0', '#E8F4FD', '#E8F6FF', '#FFF2CC', '#E8F5E8', '#F0E8FF', '#FFE8F5', 
+        '#FFE0B2', '#E0F0FF', '#F5F5DC', '#FFB6C1', '#FFE4E1', '#E8E8E8', '#F0F8FF', '#E6E6FA', '#FFF8DC')
+    ),
+    fontWeight = 'bold'
+  ) %>%
+  formatStyle(
+    'Likely_Result',
+    fontWeight = 'bold',
+    fontSize = '14px',
+    textAlign = 'center',
+    backgroundColor = '#FFF8DC'
+  )
+
+# Display article 4 main table
+article4_main_table
+```
+
+<br>
+<br>
+<br>
+
+### Supplemental Tables
+
+```{r}
+#| label: supplemental-analysis-article4-sections01-15
+
+# Create category analysis
+category_analysis_a4 <- article4_likely_results %>%
+  group_by(Category) %>%
+  summarise(
+    Count = n(),
+    .groups = 'drop'
+  ) %>%
+  arrange(desc(Count)) %>%
+  rename(`Incentive Category` = Category,
+         `Number of Incentives` = Count)
+
+# Analyze most frequent negative result codes
+code_frequency_a4 <- article4_likely_results %>%
+  separate_rows(Likely_Result, sep = ", ") %>%
+  count(Likely_Result, sort = TRUE) %>%
+  rename(`Negative Result Code` = Likely_Result,
+         `Frequency` = n) %>%
+  mutate(Percentage = round(100 * Frequency / nrow(article4_likely_results), 1))
+
+# Key policy findings focused on coded patterns
+key_findings_a4 <- data.frame(
+  Finding = c(
+    "Most Common Negative Pattern",
+    "System Tampering and Control Dominance", 
+    "Bureaucratic Implementation Pattern",
+    "Local Control Reduction Pattern",
+    "Individual vs System Focus Imbalance",
+    "Most Problematic Policy Areas",
+    "Resource Waste in Oversight Programs",
+    "Financial Motivation Introduction"
+  ),
+  Description = c(
+    "Code C (failure by force) appears in 100.0% of incentives, followed by Code G (reduced local control) at 100.0%",
+    "System tampering affects every single incentive, indicating complete disruption of existing special education systems",
+    "Administrative burdens appear in 100.0% of incentives, creating massive compliance overhead across all special education policies",
+    "Code G (reduced local control) appears in 100.0% of incentives, representing complete state takeover of special education decisions", 
+    "Code F (individual vs system focus) appears in 17.5% of incentives, primarily in student eligibility and assessment modifications",
+    "Special Education Implementation Law shows highest concentration of negative codes with 9 separate harmful incentives created",
+    "Code M (waste resources) appears in 22.5% of incentives, particularly in monitoring systems and board meeting requirements",
+    "No financial motivation codes (A or B) appear, indicating focus on control rather than monetary incentives in special education"
+  )
+)
+
+# === DISPLAY SUPPLEMENTAL TABLES ===
+
+# Category Analysis Header
+datatable(
+  data.frame(Title = "INCENTIVE CATEGORY ANALYSIS"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#FF9800',
+              color = 'white')
+
+# Category Analysis Table
+datatable(
+  category_analysis_a4,
+  filter = 'top',
+  options = list(
+    pageLength = 15,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Number of Incentives',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = styleColorBar(range(category_analysis_a4$`Number of Incentives`), '#E8F4FD')) %>%
+  formatStyle('Incentive Category',
+              fontWeight = 'bold',
+              textAlign = 'left')
+
+# Code Frequency Analysis Header
+datatable(
+  data.frame(Title = "NEGATIVE RESULT CODE FREQUENCY"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#DC143C',
+              color = 'white')
+
+# Code Frequency Table
+datatable(
+  code_frequency_a4,
+  filter = 'top',
+  options = list(
+    pageLength = 15,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Frequency',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = styleColorBar(range(code_frequency_a4$Frequency), '#FFB6C1')) %>%
+  formatStyle('Negative Result Code',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              fontSize = '16px') %>%
+  formatStyle('Percentage',
+              fontWeight = 'bold',
+              textAlign = 'center')
+
+# Key Findings Header
+datatable(
+  data.frame(Title = "KEY CODED PATTERN FINDINGS"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#F44336',
+              color = 'white')
+
+# Key Findings Table
+datatable(
+  key_findings_a4,
+  filter = 'top',
+  options = list(
+    pageLength = 10,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '25%', targets = 0),
+      list(width = '75%', targets = 1)
+    )
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Finding',
+              fontWeight = 'bold',
+              backgroundColor = '#FFE4E1',
+              textAlign = 'left') %>%
+  formatStyle('Description',
+              textAlign = 'left')
+
+# Create coded summary statistics
+summary_statistics_a4 <- data.frame(
+  Metric = c(
+    "Total Incentives Analyzed",
+    "Most Problematic Code", 
+    "Most Frequent Code Combination",
+    "Policy Categories with Code C",
+    "Policy Categories with Code G",
+    "Average Codes per Incentive"
+  ),
+  Value = c(
+    nrow(article4_likely_results),
+    paste0("Code C and G (both appear ", max(code_frequency_a4$Frequency), " times each)"),
+    "C, G, I, L (force + control + tampering + bureaucracy)",
+    sum(grepl("C", article4_likely_results$Likely_Result)),
+    sum(grepl("G", article4_likely_results$Likely_Result)),
+    round(mean(lengths(strsplit(article4_likely_results$Likely_Result, ", "))), 1)
+  )
+)
+
+# Summary Statistics Header
+datatable(
+  data.frame(Title = "CODED ANALYSIS SUMMARY STATISTICS"),
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#9C27B0',
+              color = 'white')
+
+# Summary Statistics Table
+datatable(
+  summary_statistics_a4,
+  options = list(
+    pageLength = 10,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '40%', targets = 0),
+      list(width = '60%', targets = 1)
+    )
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Metric',
+              fontWeight = 'bold',
+              textAlign = 'left') %>%
+  formatStyle('Value',
+              textAlign = 'left',
+              fontWeight = 'bold')
+```
+
+<br>
+<br>
+
+### Key to List of Likely Negative Results
+
+```{r}
+#| label: negative-results-coding-key-article4-sections01-15
+
+# Create negative results table with color coding
+negative_results_a4 <- data.frame(
+  Code = c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"),
+
+  Likely_Negative_Result = c(
+    "Will move people from intrinsic to extrinsic motivation",
+    "Will makes money the most important motivation",  
+    "Will fail because improvements cannot be realized by force from the state",
+    "People will become 'the problem', not the system that they work in",
+    "Will decrease collaboration, pitting people against each other for rewards",
+    "Will decrease opportunities and efforts to improve the system teachers work in; try to 'improve' individual teachers instead",
+    "Will reduce local control",
+    "Will reduce economic agility of districts when they need it most",
+    "Will tamper with existing stable systems, making things worse",
+    "Impedes career development when goal posts constantly moving",
+    "Shifts the onus of tax increases to districts to pay for unfunded state mandates",
+    "Will create more administrative and bureaucratic burdens",
+    "Will cause administration and teachers to waste even more resources, while bankrupting financially responsible districts",
+    "Will create long-term district obligations that are not sustainable when state funding is changed every 2 years"
+  )
+)
+
+# Define bright contrasting color palette (7 colors)
+color_palette_a4 <- c("#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FECA57", "#FF9FF3", "#54A0FF")
+
+# Create color assignments for each row (cycling through 7 colors for 14 rows)
+row_colors_a4 <- rep(color_palette_a4, length.out = nrow(negative_results_a4))
+
+# Display the coding key table
+DT::datatable(
+  negative_results_a4,
+  options = list(
+    pageLength = 15,
+    dom = 'Bfrtip',
+    buttons = c('copy', 'csv', 'excel'),
+    columnDefs = list(
+      list(width = '40px', targets = 0),  # Narrow first column
+      list(width = '90%', targets = 1)    # Wide second column
+    ),
+    scrollX = FALSE,
+    autoWidth = FALSE
+  ),
+  rownames = FALSE,
+  class = 'display'
+) %>%
+  formatStyle(
+    'Code',
+    textAlign = 'right',
+    fontWeight = 'bold',
+    backgroundColor = styleEqual(negative_results_a4$Code, row_colors_a4),
+    color = 'white'
+  ) %>%
+  formatStyle(
+    'Likely_Negative_Result',
+    backgroundColor = styleEqual(negative_results_a4$Code, row_colors_a4),
+    color = 'black'
+  ) %>%
+  formatStyle(
+    columns = c(0, 1),
+    border = '2px solid #333',
+    borderCollapse = 'collapse'
+  ) %>%
+  formatStyle(
+    columns = c(0, 1),
+    maxWidth = '9in',
+    tableLayout = 'fixed'
+  )
+
+```
+

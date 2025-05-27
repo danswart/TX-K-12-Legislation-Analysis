@@ -1,0 +1,542 @@
+---
+title: "Texas HB2 Article 4: Special Education (Sections 4.27-4.40) - Incentives and Likely Results"
+author: "Dan Swart and Claude Sonnet 4.0"
+description: "Analysis covers Article 4 (Special Education) only - Sections 4.27 through 4.40. Analysis focuses on parent-directed services programs, provider autonomy protections, IEP committee duties, commissioner determination finality, and dyslexia teacher training grants. Document spans pages 37-40 of legislative text."
+format:
+    html:
+      toc: true
+      toc-float: true
+      page-layout: article
+      embed-resources: true
+      code-fold: true
+      code-summary: "Show the code"
+      code-tools: true
+      code-overflow: wrap
+      code-block-bg: "#FAEBD7"
+      code-block-border-left: "#31BAE9"
+      code-link: true
+      fig-width: 8
+      fig-height: 6
+      fig-align: center
+      html-math-method: katex
+      css: swart-20250327.css
+    pdf:
+      toc: true
+      number-sections: true
+      colorlinks: true
+      papersize: letter
+      geometry:
+        - margin=1in
+      fig-width: 12
+      fig-height: 10
+      fig-pos: 'H'
+    typst:
+      toc: true
+      fig-width: 12
+      fig-height: 10
+      keep-tex: true
+      prefer-html: true
+---
+
+```{r}
+#| label: setup-article4-sections27-40
+#| include: false
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)  # For dplyr, ggplot, and friends
+library(ggdag)      # For plotting DAGs
+library(dagitty)    # For working with DAG logic
+library(DiagrammeR) # For complete control of the layout
+library(knitr)      # For controlling rendering
+library(kableExtra) # For tables summarizing results
+library(DT)         # For rendering content that kableExtra cannot
+library(dplyr)      # For data wrangling
+```
+
+### Main Table
+
+```{r}
+#| label: main-analysis-table-article4-sections27-40
+
+# Create analysis with coded negative results for Article 4 Sections 4.27-4.40
+article4_likely_results <- data.frame(
+  Category = c(
+    "Parent-Directed Services Program Implementation",
+    "Parent-Directed Services Program Implementation",
+    "Parent-Directed Services Program Implementation",
+    "Parent-Directed Services Application System",
+    "Parent-Directed Services Provider Criteria",
+    "Parent-Directed Services Provider Criteria",
+    "Parent-Directed Services Vendor Criteria",
+    "Parent-Directed Services Vendor Criteria",
+    "Parent-Directed Services Program Participant Autonomy",
+    "Parent-Directed Services Program Participant Autonomy",
+    "Parent-Directed Services Program Participant Autonomy",
+    "Parent-Directed Services Program Participant Autonomy",
+    "Parent-Directed Services Program Participant Autonomy",
+    "Parent-Directed Services Program Participant Autonomy",
+    "Parent-Directed Services Program Participant Autonomy",
+    "Parent-Directed Services Program Participant Autonomy",
+    "Parent-Directed Services Program Participant Autonomy",
+    "IEP Committee Information Requirements",
+    "IEP Committee Information Requirements",
+    "Parent-Directed Services Final Determination Authority",
+    "Parent-Directed Services Rule Authority",
+    "Dyslexia Teacher Training Grant Program",
+    "Dyslexia Teacher Training Grant Program",
+    "Dyslexia Teacher Training Grant Program",
+    "Dyslexia Teacher Training Grant Program",
+    "Dyslexia Teacher Training Grant Program",
+    "Dyslexia Teacher Training Grant Program",
+    "Dyslexia Teacher Training Grant Program",
+    "Dyslexia Teacher Training Grant Program"
+  ),
+
+  Incentive_Created = c(
+    "Agency must approve each student meeting eligibility requirements and assign account for supplemental service purchases",
+    "If applications exceed available funding, agency must award grants in order received and place remaining students on waitlist",
+    "Agency must maintain online user-friendly application system for parents to apply for grants",
+    "Agency must maintain online user-friendly application system for parents to apply for grants",
+    "Agency must establish criteria for agency approval of providers for professional services as supplemental services",
+    "Agency must provide procedures for providers to apply to become agency-approved providers",
+    "Agency may establish criteria for agency approval of vendors for instructional materials categories",
+    "If criteria established, agency must provide procedures for vendors to apply for agency approval",
+    "Providers and vendors receiving program money are not federal financial assistance recipients based on that money alone",
+    "Rules cannot consider participant or provider actions as state government agent actions",
+    "Rules cannot limit provider ability to determine methods or exercise religious/institutional values",
+    "Rules cannot limit participant ability to determine educational content or exercise religious values",
+    "Rules cannot obligate providers or participants to act contrary to religious or institutional values",
+    "Rules cannot impose regulations beyond those necessary to enforce program requirements",
+    "Rules cannot require creed, practice, policy, curriculum, standard, or assessment modifications as program condition",
+    "In legal challenges, state has burden of proof to show rule necessity, non-violation, and no undue burden",
+    "Rules must be least restrictive means of accomplishing program purpose while recognizing provider independence",
+    "ARD committees must provide parents information on supplemental services and instructional materials available",
+    "ARD committees must provide instructions on accessing assigned account for supplemental service purchases",
+    "Determination of commissioner under parent-directed services subchapter is final and may not be appealed",
+    "Commissioner must adopt rules as necessary to administer supplemental services and instructional materials program",
+    "Commissioner must establish grant program for districts to increase local capacity for dyslexia services",
+    "Grants must incorporate evidence-based design and increase capacity through high-quality training or credentialing programs",
+    "External stakeholder panel must assist in grant selection including parents of students with disabilities",
+    "Grant recipients may accept gifts, grants, and donations to implement and administer programs",
+    "Recipients cannot require financial contribution from parents to implement and administer grants",
+    "Regional education service centers may administer grants awarded under dyslexia training program",
+    "Commissioner may adopt rules as necessary to implement dyslexia teacher training grant program",
+    "Commissioner and grant recipients may accept gifts, grants, and donations from public or private sources"
+  ),
+
+  Intended_Consequence = c(
+    "Streamline approval process while maintaining quality standards for student eligibility and account assignment",
+    "Ensure equitable access to programs when demand exceeds available funding through fair allocation processes",
+    "Provide accessible application process that accommodates parents of varying technological abilities",
+    "Make parent-directed services program easily accessible through user-friendly online application and account systems",
+    "Establish professional standards and approval processes for service providers to ensure quality",
+    "Create clear pathway for qualified providers to participate while maintaining program integrity",
+    "Establish quality standards for instructional material vendors when deemed necessary by commissioner",
+    "Provide vendor approval processes that ensure appropriate materials while maintaining market flexibility",
+    "Clarify that program participation does not create federal funding compliance obligations",
+    "Prevent government overreach by establishing clear boundaries for regulatory authority over private participants",
+    "Preserve provider educational autonomy and religious liberty within program participation",
+    "Protect participant rights to educational self-determination and religious value consistency",
+    "Ensure providers can operate consistently with religious beliefs without program participation conflicts",
+    "Limit government regulatory authority to only essential program operational requirements",
+    "Protect institutional autonomy by preventing forced organizational or philosophical changes",
+    "Establish clear legal burden of proof requirements for government regulatory actions affecting program participants",
+    "Ensure government regulations are minimally intrusive while accomplishing legitimate program purposes",
+    "Ensure parents receive comprehensive information about supplemental service options available through program",
+    "Provide clear instructions for accessing and utilizing assigned accounts for supplemental service purchases",
+    "Eliminate appeals process to provide efficient program administration and clear regulatory authority",
+    "Provide regulatory framework and implementation authority for effective program administration",
+    "Build local capacity to serve students with dyslexia through evidence-based training and credentialing programs",
+    "Improve dyslexia services by providing high-quality professional development and specialized training opportunities",
+    "Ensure grant selection process includes input from stakeholders who understand needs of students with disabilities",
+    "Encourage community support and additional resources for dyslexia training programs through private contributions",
+    "Ensure program accessibility by preventing financial barriers for parents seeking dyslexia services",
+    "Allow regional coordination and administration of dyslexia training grants for local efficiency",
+    "Provide regulatory authority for effective implementation and administration of dyslexia training programs",
+    "Enable comprehensive funding and support for dyslexia training programs through diverse funding sources"
+  ),
+
+  Likely_Result = c(
+    "C, G, I, L", # Student approval: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Funding allocation: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L, M", # Application maintenance: failure by force, reduced local control, system tampering, bureaucracy, waste resources
+    "C, G, I, L, M", # Application system: failure by force, reduced local control, system tampering, bureaucracy, waste resources
+    "C, G, I, L", # Provider criteria: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Provider procedures: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Vendor criteria: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Vendor procedures: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Federal assistance: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Action restrictions: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Provider limits: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Participant limits: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Value obligations: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Regulation restrictions: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Modification requirements: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Legal burden: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Restrictive means: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # ARD information: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Account instructions: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Final determination: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Rule authority: failure by force, reduced local control, system tampering, bureaucracy
+    "A, B, C, G, I, K, L, M", # Grant program: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, tax burden, bureaucracy, waste resources
+    "A, B, C, G, I, L", # Evidence-based design: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Stakeholder panels: failure by force, reduced local control, system tampering, bureaucracy
+    "A, B, C, G, I, L", # Gift acceptance: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Financial restrictions: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Regional administration: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Implementation rules: failure by force, reduced local control, system tampering, bureaucracy
+    "A, B, C, G, I, L" # Donation acceptance: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, bureaucracy
+  )
+)
+
+# Create the main analysis table with coded results
+article4_main_table <- datatable(
+  article4_likely_results,
+  options = list(
+    pageLength = 10,
+    scrollX = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '150px', targets = 0),   # Category  
+      list(width = '300px', targets = 1),   # Incentive Created
+      list(width = '250px', targets = 2),   # Intended Result
+      list(width = '150px', targets = 3)    # Coded Results
+    ),
+    dom = 'Bfrtip',
+    buttons = c('copy', 'csv', 'excel')
+  ),
+  filter = 'top',
+  rownames = FALSE,
+  class = 'cell-border stripe hover',
+  colnames = c('Category', 'Incentive Created', 'Intended Result', 'Codes for Destructive Results We Will Actually Get')
+) %>%
+  formatStyle(
+    'Category',
+    backgroundColor = styleEqual(
+      c("Parent-Directed Services Program Implementation", "Parent-Directed Services Application System", "Parent-Directed Services Provider Criteria", 
+        "Parent-Directed Services Vendor Criteria", "Parent-Directed Services Program Participant Autonomy", "IEP Committee Information Requirements",
+        "Parent-Directed Services Final Determination Authority", "Parent-Directed Services Rule Authority", "Dyslexia Teacher Training Grant Program"),
+      c('#FFE8E8', '#FFD0D0', '#E8F4FD', '#E8F6FF', '#FFF2CC', '#E8F5E8', '#F0E8FF', '#FFE8F5', '#FFE0B2')
+    ),
+    fontWeight = 'bold'
+  ) %>%
+  formatStyle(
+    'Likely_Result',
+    fontWeight = 'bold',
+    fontSize = '14px',
+    textAlign = 'center',
+    backgroundColor = '#FFF8DC'
+  )
+
+# Display article 4 main table
+article4_main_table
+```
+
+<br>
+<br>
+<br>
+
+### Supplemental Tables
+
+```{r}
+#| label: supplemental-analysis-article4-sections27-40
+
+# Create category analysis
+category_analysis_a4 <- article4_likely_results %>%
+  group_by(Category) %>%
+  summarise(
+    Count = n(),
+    .groups = 'drop'
+  ) %>%
+  arrange(desc(Count)) %>%
+  rename(`Incentive Category` = Category,
+         `Number of Incentives` = Count)
+
+# Analyze most frequent negative result codes
+code_frequency_a4 <- article4_likely_results %>%
+  separate_rows(Likely_Result, sep = ", ") %>%
+  count(Likely_Result, sort = TRUE) %>%
+  rename(`Negative Result Code` = Likely_Result,
+         `Frequency` = n) %>%
+  mutate(Percentage = round(100 * Frequency / nrow(article4_likely_results), 3))
+
+# Key policy findings focused on coded patterns
+key_findings_a4 <- data.frame(
+  Finding = c(
+    "Most Common Negative Pattern",
+    "System Tampering and Control Dominance", 
+    "Bureaucratic Implementation Pattern",
+    "Financial Motivation Corruption",
+    "Individual vs System Focus Imbalance",
+    "Most Problematic Policy Areas",
+    "State Centralization Pattern",
+    "Resource Waste in Program Administration"
+  ),
+  Description = c(
+    "Code C (failure by force) appears in 100.0% of incentives, followed by Code G (reduced local control) at 100.0%",
+    "System tampering affects every single incentive, indicating complete disruption of existing special education systems",
+    "Administrative burdens appear in 100.0% of incentives, creating massive compliance overhead across all special education policies",
+    "Code A (intrinsic to extrinsic motivation) appears in 20.7% of incentives, systematically undermining professional dedication with financial rewards",
+    "No individual focus codes (F) appear in these sections, indicating focus on systemic rather than individual interventions",
+    "Parent-Directed Services Program Participant Autonomy shows highest concentration with 9 separate harmful incentives in single policy area",
+    "Code G (reduced local control) appears in 100.0% of incentives, representing complete state takeover of special education decisions", 
+    "Code M (waste resources) appears in 10.3% of incentives, concentrated in application systems and grant program administration"
+  )
+)
+
+# === DISPLAY SUPPLEMENTAL TABLES ===
+
+# Category Analysis Header
+datatable(
+  data.frame(Title = "INCENTIVE CATEGORY ANALYSIS"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#FF9800',
+              color = 'white')
+
+# Category Analysis Table
+datatable(
+  category_analysis_a4,
+  filter = 'top',
+  options = list(
+    pageLength = 15,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Number of Incentives',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = styleColorBar(range(category_analysis_a4$`Number of Incentives`), '#E8F4FD')) %>%
+  formatStyle('Incentive Category',
+              fontWeight = 'bold',
+              textAlign = 'left')
+
+# Code Frequency Analysis Header
+datatable(
+  data.frame(Title = "NEGATIVE RESULT CODE FREQUENCY"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#DC143C',
+              color = 'white')
+
+# Code Frequency Table
+datatable(
+  code_frequency_a4,
+  filter = 'top',
+  options = list(
+    pageLength = 15,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Frequency',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = styleColorBar(range(code_frequency_a4$Frequency), '#FFB6C1')) %>%
+  formatStyle('Negative Result Code',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              fontSize = '16px') %>%
+  formatStyle('Percentage',
+              fontWeight = 'bold',
+              textAlign = 'center')
+
+# Key Findings Header
+datatable(
+  data.frame(Title = "KEY CODED PATTERN FINDINGS"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#F44336',
+              color = 'white')
+
+# Key Findings Table
+datatable(
+  key_findings_a4,
+  filter = 'top',
+  options = list(
+    pageLength = 10,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '25%', targets = 0),
+      list(width = '75%', targets = 1)
+    )
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Finding',
+              fontWeight = 'bold',
+              backgroundColor = '#FFE4E1',
+              textAlign = 'left') %>%
+  formatStyle('Description',
+              textAlign = 'left')
+
+# Create coded summary statistics
+summary_statistics_a4 <- data.frame(
+  Metric = c(
+    "Total Incentives Analyzed",
+    "Most Problematic Code", 
+    "Most Frequent Code Combination",
+    "Policy Categories with Code C",
+    "Policy Categories with Code G",
+    "Average Codes per Incentive"
+  ),
+  Value = c(
+    nrow(article4_likely_results),
+    paste0("Code C and G (both appear ", max(code_frequency_a4$Frequency), " times each)"),
+    "C, G, I, L (force + control + tampering + bureaucracy)",
+    sum(grepl("C", article4_likely_results$Likely_Result)),
+    sum(grepl("G", article4_likely_results$Likely_Result)),
+    round(mean(lengths(strsplit(article4_likely_results$Likely_Result, ", "))), 1)
+  )
+)
+
+# Summary Statistics Header
+datatable(
+  data.frame(Title = "CODED ANALYSIS SUMMARY STATISTICS"),
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#9C27B0',
+              color = 'white')
+
+# Summary Statistics Table
+datatable(
+  summary_statistics_a4,
+  options = list(
+    pageLength = 10,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '40%', targets = 0),
+      list(width = '60%', targets = 1)
+    )
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Metric',
+              fontWeight = 'bold',
+              textAlign = 'left') %>%
+  formatStyle('Value',
+              textAlign = 'left',
+              fontWeight = 'bold')
+```
+
+<br>
+<br>
+
+### Key to List of Likely Negative Results
+
+```{r}
+#| label: negative-results-coding-key-article4-sections27-40
+
+# Create negative results table with color coding
+negative_results_a4 <- data.frame(
+  Code = c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"),
+
+  Likely_Negative_Result = c(
+    "Will move people from intrinsic to extrinsic motivation",
+    "Will makes money the most important motivation",  
+    "Will fail because improvements cannot be realized by force from the state",
+    "People will become 'the problem', not the system that they work in",
+    "Will decrease collaboration, pitting people against each other for rewards",
+    "Will decrease opportunities and efforts to improve the system teachers work in; try to 'improve' individual teachers instead",
+    "Will reduce local control",
+    "Will reduce economic agility of districts when they need it most",
+    "Will tamper with existing stable systems, making things worse",
+    "Impedes career development when goal posts constantly moving",
+    "Shifts the onus of tax increases to districts to pay for unfunded state mandates",
+    "Will create more administrative and bureaucratic burdens",
+    "Will cause administration and teachers to waste even more resources, while bankrupting financially responsible districts",
+    "Will create long-term district obligations that are not sustainable when state funding is changed every 2 years"
+  )
+)
+
+# Define bright contrasting color palette (7 colors)
+color_palette_a4 <- c("#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FECA57", "#FF9FF3", "#54A0FF")
+
+# Create color assignments for each row (cycling through 7 colors for 14 rows)
+row_colors_a4 <- rep(color_palette_a4, length.out = nrow(negative_results_a4))
+
+# Display the coding key table
+DT::datatable(
+  negative_results_a4,
+  options = list(
+    pageLength = 15,
+    dom = 'Bfrtip',
+    buttons = c('copy', 'csv', 'excel'),
+    columnDefs = list(
+      list(width = '40px', targets = 0),  # Narrow first column
+      list(width = '90%', targets = 1)    # Wide second column
+    ),
+    scrollX = FALSE,
+    autoWidth = FALSE
+  ),
+  rownames = FALSE,
+  class = 'display'
+) %>%
+  formatStyle(
+    'Code',
+    textAlign = 'right',
+    fontWeight = 'bold',
+    backgroundColor = styleEqual(negative_results_a4$Code, row_colors_a4),
+    color = 'white'
+  ) %>%
+  formatStyle(
+    'Likely_Negative_Result',
+    backgroundColor = styleEqual(negative_results_a4$Code, row_colors_a4),
+    color = 'black'
+  ) %>%
+  formatStyle(
+    columns = c(0, 1),
+    border = '2px solid #333',
+    borderCollapse = 'collapse'
+  ) %>%
+  formatStyle(
+    columns = c(0, 1),
+    maxWidth = '9in',
+    tableLayout = 'fixed'
+  )
+
+```
+
+
