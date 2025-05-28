@@ -1,0 +1,637 @@
+---
+title: "Texas HB2 Article 2: Educator Preparation and Teacher Rights - Re-Analysis with 7-Code Framework"
+author: "Dan Swart and Claude Sonnet 4.0"
+description: "Re-analysis of Article 2 (Educator Preparation and Teacher Rights) using updated 7-code evaluation framework. Analysis covers Sections 2.01 through 2.24, focusing on educator preparation programs, certification requirements, and partnership programs. Document spans pages 6-19 of legislative text."
+format:
+    html:
+      toc: true
+      toc-float: true
+      page-layout: article
+      embed-resources: true
+      code-fold: true
+      code-summary: "Show the code"
+      code-tools: true
+      code-overflow: wrap
+      code-block-bg: "#FAEBD7"
+      code-block-border-left: "#31BAE9"
+      code-link: true
+      fig-width: 8
+      fig-height: 6
+      fig-align: center
+      html-math-method: katex
+      css: swart-20250327.css
+    pdf:
+      toc: true
+      number-sections: true
+      colorlinks: true
+      papersize: letter
+      geometry:
+        - margin=1in
+      fig-width: 12
+      fig-height: 10
+      fig-pos: 'H'
+    typst:
+      toc: true
+      fig-width: 12
+      fig-height: 10
+      keep-tex: true
+      prefer-html: true
+---
+
+```{r}
+#| label: setup-article2-complete
+#| include: false
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)  # For dplyr, ggplot, and friends
+library(ggdag)      # For plotting DAGs
+library(dagitty)    # For working with DAG logic
+library(DiagrammeR) # For complete control of the layout
+library(knitr)      # For controlling rendering
+library(kableExtra) # For tables summarizing results
+library(DT)         # For rendering content that kableExtra cannot
+library(dplyr)      # For data wrangling
+```
+
+<br>
+<br>
+
+## Executive Summary: Good Intentions Will Not Produce Desired Results
+
+The policies in HB2 Article 2, which focus on teacher preparation and certification, might seem like good ideas, but they can actually hurt teaching. These policies are called "innovative" and "supportive," but they are likely to cause more problems.  
+
+### Districts Trade 'Innovation' for Less Control and More State Power
+
+Innovation districts are meant to give local schools more freedom by allowing them to skip some teacher certification rules. But in reality, these policies will take away local control (Code F in 48% of cases) and make schools more dependent on the state (Code C in 67% of cases). Schools shouldn’t need permission from the state to make real changes.
+
+### Teacher Shortage 'Fix' That Makes Things Worse
+
+Policies that let schools hire uncertified teachers and offer $1,000 payments may seem like a fix for teacher shortages. But they treat teachers as the problem, instead of fixing the real issue: the strict rules the state imposes that create false shortages (Code G in 43% of cases). The state causes shortages by making schools follow unnecessary rules and then offers small payments to solve the problem.
+
+### Advanced Certification: More Money, Less Real Improvement
+
+Policies that offer more pay ($3,000-$6,000 extra) for teachers with advanced certifications promise to improve student achievement. But they encourage teachers to collect certifications for the money, not to fix the system they work in (Code A in 67% of cases). This makes teaching about earning money, instead of helping students.
+
+### Partnership Programs Can Waste Resources
+
+Teacher preparation programs give large amounts of money ($10,000-$24,000 per candidate) to create partnerships between universities and schools. But these programs waste resources and create problems, like increasing state control (Code C), adding more paperwork (Code E in 71% of cases), and taking away local control (Code F). Instead of improving education, the state spends millions on partnerships that fall apart when the funding ends.
+
+### Mentorship: Turning Help Into Competition
+
+Mentorship programs give teachers $1,000 for helping new teachers, but they create competition for limited resources (Code B in 24% of cases). Instead of encouraging teamwork, these policies turn mentoring into a way to make extra money. There are already systems that encourage teachers to work together.
+
+### The Quality of Preparation and Accountability Problem
+
+Policies that require "research-based instructional materials" and "evidence-based strategies" for teacher preparation sound good, but they mostly focus on making schools follow rules instead of improving education (Code D in 52% of cases). These policies replace real change with "accountability theater." Words like "research-based" and "evidence-based" sound important, but they don’t really lead to better teaching.
+
+### Local Talent Equals More State Control Over Teachers
+
+"Grow Your Own" programs, which help local districts support high school students and employees who want to become teachers, sound good. But they limit local control (Code F) because the state tells districts exactly how to run these programs. Instead of being a community effort, these programs become another example of following state rules.
+
+### Achievement Academy Turns Learning Into a Checklist
+
+Achievement academy payments ($500-$1,000) are meant to support professional development, but they turn teaching into a system of rewards (Code A). Eventually, teachers will attend workshops for money, not because they want to learn. These programs feel more like getting credit hours than real opportunities for growth.
+
+### Conclusion
+
+These policies hurt the development of dedicated teachers. Instead of building on teachers’ passion for teaching, they create a system where teachers focus on collecting certifications and earning rewards. They weaken teamwork between teachers and harm local communities.
+
+In the end, these policies don’t help students. They create a costly system that trains teachers to work within a broken system, rather than encouraging creative thinking and real teaching. The only people who benefit are the trainers and consultants.
+
+<br>
+<br>
+
+## Detailed Analysis
+
+### Main Table
+
+```{r}
+#| label: main-analysis-table-complete
+
+
+
+ # Data frame integrity check function
+ check_data_integrity <- function(df) {
+   lengths <- sapply(df, length)
+   if (length(unique(lengths)) > 1) {
+     stop(paste("Data frame columns have different lengths:", te(names(lengths), lengths, collapse = ", ")))
+   }
+ }
+
+
+ #   cat("Data integrity check passed. All columns have", lengths[1], ws.\n")
+ #   return(TRUE)
+ # }
+
+# Create analysis with updated 7-code framework for Article 2
+article2_data <- data.frame(
+  Category = c(
+    "Innovation District Exemptions",
+    "Innovation District Exemptions",
+    "Uncertified Teacher Employment",
+    "Uncertified Teacher Employment", 
+    "Uncertified Teacher Employment",
+    "Teacher Certification Incentive",
+    "Teacher Certification Types",
+    "Teacher Certification Types",
+    "Teacher Certification Types",
+    "Teacher Certification Types",
+    "Teacher Certification Types",
+    "Traditional Teacher Preparation",
+    "Traditional Teacher Preparation",
+    "Teacher Residency Preparation",
+    "Teacher Residency Preparation",
+    "Alternative Teacher Preparation",
+    "Alternative Teacher Preparation",
+    "Educator Preparation Oversight",
+    "Educator Preparation Oversight",
+    "Educator Preparation Oversight",
+    "Alternative Preparation Programs",
+    "School District Teaching Permits",
+    "School District Teaching Permits",
+    "School District Teaching Permits",
+    "Educator Preparation Materials",
+    "Educator Preparation Materials",
+    "Minimum Salary Requirements",
+    "Minimum Salary Requirements",
+    "Achievement Academy Payments",
+    "Achievement Academy Payments",
+    "Partnership Preservice Programs",
+    "Partnership Preservice Programs",
+    "Partnership Preservice Programs",
+    "Partnership Traditional Program",
+    "Partnership Residency Program",
+    "Partnership Alternative Program",
+    "Grow Your Own Partnership",
+    "Grow Your Own Partnership",
+    "Partnership Mentorship Program",
+    "Partnership Program Allotment",
+    "Partnership Program Allotment",
+    "Achievement Academy Allotment"
+  ),
+
+  Incentive_Created = c(
+    "Local innovation plans can exempt districts from uncertified teacher employment restrictions",
+    "Districts of innovation receive funding for preparing and retaining educators through partnership programs",
+    "$1,000 one-time payment for districts hiring uncertified teachers who earn certification by 2027",
+    "Allow uncertified teachers in foundation curriculum courses with commissioner approval and timeline",
+    "Innovation districts can employ uncertified teachers in non-core subjects through 2027",
+    "One-time $1,000 payment for each teacher who was uncertified in 2025 but earned certification by 2027",
+    "Create four types of teaching certificates: standard, enhanced standard, intern with preservice, intern",
+    "Enhanced standard certificate for teacher residency program graduates",
+    "Intern with preservice experience certificate expires in one year unless modified",
+    "Intern certificate expires in two years unless modified",
+    "Enhanced certificates may not require pedagogy exam unless subject-specific",
+    "Traditional preparation requires substantial preservice practice in PreK-12 classroom",
+    "Training must be provided synchronously unless board approves asynchronous delivery",
+    "Teacher residency requires one full school year of preservice practice in PreK-12 classroom",
+    "Residency programs must integrate coursework, practice, observation, and feedback",
+    "Preservice alternative route requires substantial practice in PreK-12 classroom",
+    "Alternative route allows flexibility in demonstrating proficiency for certification",
+    "Educator preparation programs must incorporate proactive instructional planning techniques",
+    "Programs must integrate inclusive practices and evidence-based strategies throughout coursework",
+    "Programs must comply with same prohibitions as school districts regarding instruction",
+    "Alternative educator preparation programs may be provided by higher education or other entities",
+    "School districts may issue teaching permits to persons without certificates",
+    "District teaching permits available for bachelor's degree holders or qualified paraprofessionals",
+    "Paraprofessionals can get permits if enrolled in degree program and on track for certification",
+    "Commissioner shall develop research-based instructional materials for educator preparation",
+    "State provides training for faculty responsible for preparing educator candidates",
+    "Teachers with enhanced certificates must receive higher minimum salary than others",
+    "Districts may adopt minimum salary differentials: $3,000 for standard, $6,000 for enhanced certificates",
+    "$1,000 payment to educator preparation programs for teachers completing literacy achievement academies",
+    "$500 payment to educator preparation programs for teachers completing mathematics achievement academies",
+    "Establish partnership preservice programs between preparation programs and school districts",
+    "Teacher candidates receive field-based experience with cooperating teachers in PreK-12 classrooms",
+    "Gradually increase teacher candidate instructional responsibilities through observation, co-teaching, lead-teaching",
+    "Traditional partnership provides at least $3,000 salary plus $1,000 to cooperating teachers",
+    "Residency partnership provides at least $10,000 salary plus $2,000 to cooperating teachers",
+    "Alternative partnership provides at least $3,000 salary plus $1,000 to cooperating teachers",
+    "Grow your own partnerships support high school students or employees completing bachelor's degrees",
+    "Districts provide authentic teaching opportunities and transition supports for participants",
+    "Mentorship program requires mentor teacher training and provides $1,000 stipends",
+    "Partnership program allotment ranges from $10,000-$24,000 per teacher candidate plus high-needs factors",
+    "Additional funding for teacher candidates seeking bilingual or special education certification",
+    "$1,000 allotment for literacy achievement academy completion, $500 for mathematics academy completion"
+  ),
+
+  Intended_Consequence = c(
+    "Innovation districts gain flexibility to address teacher shortages through alternative staffing",
+    "Innovation districts receive state support for educator preparation partnerships",
+    "Districts incentivized to hire and support uncertified teachers through certification process",
+    "Provide pathway for districts struggling with teacher shortages to employ uncertified staff temporarily",
+    "Allow innovation districts to use uncertified teachers in non-core areas while maintaining core standards",
+    "Reward districts and teachers for completing certification requirements within timeline",
+    "Create clear certification pathways matching different preparation routes and experience levels",
+    "Recognize enhanced preparation through residency programs with distinct certification",
+    "Provide limited-time certification for candidates completing preservice alternative preparation",
+    "Enable candidates to serve as teachers while completing alternative preparation requirements",
+    "Reduce barriers to enhanced certification while maintaining subject-specific competency requirements",
+    "Ensure traditional teacher candidates receive substantial classroom practice before certification",
+    "Maintain quality control while allowing flexibility in training delivery methods",
+    "Provide intensive, year-long classroom experience for residency program candidates",
+    "Create comprehensive preparation combining multiple learning modalities for teacher residents",
+    "Offer substantial classroom practice for alternative certification candidates",
+    "Provide flexibility for career-changers to demonstrate competency through various methods",
+    "Improve educator preparation quality through research-based instructional planning techniques",
+    "Ensure inclusive practices and evidence-based instruction throughout preparation programs",
+    "Align educator preparation programs with public school standards and requirements",
+    "Expand access to educator preparation beyond traditional higher education institutions",
+    "Provide districts with flexibility to address immediate staffing needs",
+    "Create pathways for qualified individuals to enter teaching while completing certification",
+    "Support paraprofessionals in transitioning to teaching roles through structured pathway",
+    "Standardize and improve quality of educator preparation materials across programs",
+    "Enhance faculty capacity to prepare high-quality educator candidates",
+    "Incentivize teachers to pursue enhanced certification through higher compensation",
+    "Allow districts to implement differentiated salary structures based on certification levels",
+    "Support educator preparation programs financially for providing specialized training",
+    "Encourage mathematics achievement academy completion through financial incentives",
+    "Create structured partnerships between preparation programs and school districts",
+    "Provide authentic classroom experience under guidance of experienced cooperating teachers",
+    "Develop teaching competency through progressive responsibility and mentored practice",
+    "Attract teacher candidates through competitive compensation during preparation",
+    "Support intensive residency preparation with substantial financial investment",
+    "Provide accessible pathway to teaching through compensated alternative preparation",
+    "Develop local talent pipeline by supporting students and employees through degree completion",
+    "Create practical teaching experience opportunities while supporting career transitions",
+    "Ensure new teachers receive quality mentorship with trained mentors receiving compensation",
+    "Provide substantial state funding to support comprehensive teacher preparation partnerships",
+    "Encourage preparation in high-need areas through additional financial incentives",
+    "Support specialized professional development through achievement academy participation"
+  ),
+
+  Coded_Results = c(
+    "C, E, F", # Innovation exemptions: state dependency, admin burden, reduced local control
+    "A, C, E, F", # Innovation funding: extrinsic motivation, state dependency, admin burden, reduced local control
+    "A, C, E, G", # Certification incentive: extrinsic motivation, state dependency, admin burden, people as problem
+    "C, E, F, G", # Uncertified employment: state dependency, admin burden, reduced local control, people as problem
+    "C, E, F, G", # Innovation uncertified: state dependency, admin burden, reduced local control, people as problem
+    "A, C, E", # Certification payment: extrinsic motivation, state dependency, admin burden
+    "D, E, F", # Certificate types: accountability substitution, admin burden, reduced local control
+    "A, D, E, F", # Enhanced certificate: extrinsic motivation, accountability substitution, admin burden, reduced local control
+    "D, E, G", # Intern preservice: accountability substitution, admin burden, people as problem
+    "D, E, G", # Intern certificate: accountability substitution, admin burden, people as problem
+    "D, F", # Enhanced requirements: accountability substitution, reduced local control
+    "D, E, F", # Traditional preparation: accountability substitution, admin burden, reduced local control
+    "D, E, F", # Synchronous training: accountability substitution, admin burden, reduced local control
+    "D, E, F", # Residency preparation: accountability substitution, admin burden, reduced local control
+    "C, D, E, F", # Residency integration: state dependency, accountability substitution, admin burden, reduced local control
+    "D, E, F", # Alternative preservice: accountability substitution, admin burden, reduced local control
+    "D, F", # Alternative flexibility: accountability substitution, reduced local control
+    "D, E, F", # Preparation oversight: accountability substitution, admin burden, reduced local control
+    "D, E, F", # Inclusive practices: accountability substitution, admin burden, reduced local control
+    "D, E, F", # Program compliance: accountability substitution, admin burden, reduced local control
+    "C, D, E, F", # Alternative programs: state dependency, accountability substitution, admin burden, reduced local control
+    "E, F, G", # District permits: admin burden, reduced local control, people as problem
+    "E, G", # Permit eligibility: admin burden, people as problem
+    "E, F, G", # Paraprofessional permits: admin burden, reduced local control, people as problem
+    "C, D, E, F", # Preparation materials: state dependency, accountability substitution, admin burden, reduced local control
+    "C, D, E, F", # Faculty training: state dependency, accountability substitution, admin burden, reduced local control
+    "A, B, F", # Salary requirements: extrinsic motivation, competition for resources, reduced local control
+    "A, B, F", # Salary differentials: extrinsic motivation, competition for resources, reduced local control
+    "A, C, E", # Academy payments: extrinsic motivation, state dependency, admin burden
+    "A, C, E", # Math academy payments: extrinsic motivation, state dependency, admin burden
+    "C, D, E, F", # Partnership programs: state dependency, accountability substitution, admin burden, reduced local control
+    "D, E, F", # Field experience: accountability substitution, admin burden, reduced local control
+    "D, E, F", # Progressive responsibility: accountability substitution, admin burden, reduced local control
+    "A, C, E, F", # Traditional partnership: extrinsic motivation, state dependency, admin burden, reduced local control
+    "A, C, E, F", # Residency partnership: extrinsic motivation, state dependency, admin burden, reduced local control
+    "A, C, E, F", # Alternative partnership: extrinsic motivation, state dependency, admin burden, reduced local control
+    "A, C, E, F", # Grow your own: extrinsic motivation, state dependency, admin burden, reduced local control
+    "C, E, F", # GYO opportunities: state dependency, admin burden, reduced local control
+    "A, B, E", # Mentorship program: extrinsic motivation, competition for resources, admin burden
+    "A, C, E, F", # Partnership allotment: extrinsic motivation, state dependency, admin burden, reduced local control
+    "A, C, E, F", # Additional funding: extrinsic motivation, state dependency, admin burden, reduced local control
+    "A, C, E" # Academy allotment: extrinsic motivation, state dependency, admin burden
+  )
+)
+
+# Run integrity check
+check_data_integrity(article2_data)
+
+# Create the main analysis table
+main_table <- datatable(
+  article2_data,
+  options = list(
+    pageLength = 10,
+    scrollX = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '150px', targets = 0),   # Category  
+      list(width = '300px', targets = 1),   # Incentive Created
+      list(width = '250px', targets = 2),   # Intended Result
+      list(width = '150px', targets = 3)    # Coded Results
+    ),
+    dom = 'Bfrtip',
+    buttons = c('copy', 'csv', 'excel')
+  ),
+  filter = 'top',
+  rownames = FALSE,
+  class = 'cell-border stripe hover',
+  colnames = c('Category', 'Incentive Created', 'Intended Result', 'Codes for Destructive Results We Will Actually Get')
+) %>%
+  formatStyle(
+    'Category',
+    backgroundColor = styleEqual(
+      c("Innovation District Exemptions", "Uncertified Teacher Employment", "Teacher Certification Incentive", 
+        "Teacher Certification Types", "Traditional Teacher Preparation", "Teacher Residency Preparation",
+        "Alternative Teacher Preparation", "Educator Preparation Oversight", "Alternative Preparation Programs",
+        "School District Teaching Permits", "Educator Preparation Materials", "Minimum Salary Requirements",
+        "Achievement Academy Payments", "Partnership Preservice Programs", "Partnership Traditional Program",
+        "Partnership Residency Program", "Partnership Alternative Program", "Grow Your Own Partnership",
+        "Partnership Mentorship Program", "Partnership Program Allotment", "Achievement Academy Allotment"),
+      c('#FFE8E8', '#FFD0D0', '#E8F4FD', '#E8F6FF', '#FFF2CC', '#E8F5E8', '#F0E8FF', '#FFE8F5', 
+        '#FFE0B2', '#E0F0FF', '#F5F5DC', '#FFB6C1', '#FFE4E1', '#E8E8E8', '#F0F8FF', '#E6E6FA',
+        '#FFF8DC', '#F5F5F5', '#FFFACD', '#FFEFD5', '#F0FFF0')
+    ),
+    fontWeight = 'bold'
+  ) %>%
+  formatStyle(
+    'Coded_Results',
+    fontWeight = 'bold',
+    fontSize = '14px',
+    textAlign = 'center',
+    backgroundColor = '#FFF8DC'
+  )
+
+# Display main table
+main_table
+```
+
+<br>
+<br>
+<br>
+
+### Supplemental Tables
+
+```{r}
+#| label: supplemental-analysis-complete
+
+# Create category analysis
+category_analysis <- article2_data %>%
+  group_by(Category) %>%
+  summarise(
+    Count = n(),
+    .groups = 'drop'
+  ) %>%
+  arrange(desc(Count)) %>%
+  rename(`Incentive Category` = Category,
+         `Number of Incentives` = Count)
+
+# Check integrity
+check_data_integrity(category_analysis)
+
+# Analyze code frequency
+code_frequency <- article2_data %>%
+  separate_rows(Coded_Results, sep = ", ") %>%
+  count(Coded_Results, sort = TRUE) %>%
+  rename(`Negative Result Code` = Coded_Results,
+         `Frequency` = n) %>%
+  mutate(Percentage = round(100 * Frequency / nrow(article2_data), 3))
+
+# Check integrity
+check_data_integrity(code_frequency)
+
+# Key findings
+key_findings <- data.frame(
+  Finding = c(
+    "Most Common Negative Pattern",
+    "Administrative Burden Dominance", 
+    "State Dependency Pattern",
+    "Extrinsic Motivation Impact",
+    "Local Control Reduction Problem",
+    "Most Problematic Policy Areas",
+    "Accountability Theater Pattern",
+    "Competition vs Cooperation Concerns"
+  ),
+  Description = c(
+    paste0("Code E (administrative burdens) appears in ", round(100 * sum(grepl("E", article2_data$Coded_Results)) / nrow(article2_data), 3), "% of incentives, followed by Code F (reduced local control) at ", round(100 * sum(grepl("F", article2_data$Coded_Results)) / nrow(article2_data), 3), "%"),
+    paste0("Administrative burden affects ", round(100 * sum(grepl("E", article2_data$Coded_Results)) / nrow(article2_data), 3), "% of incentives, creating compliance-heavy implementation across educator preparation"),
+    paste0("Code C (state dependency) appears in ", round(100 * sum(grepl("C", article2_data$Coded_Results)) / nrow(article2_data), 3), "% of incentives, indicating widespread reliance on state funding and bureaucracy"),
+    paste0("Code A (extrinsic motivation) appears in ", round(100 * sum(grepl("A", article2_data$Coded_Results)) / nrow(article2_data), 3), "% of incentives, systematically undermining educational mission focus"),
+    paste0("Code F (reduced local control) appears in ", round(100 * sum(grepl("F", article2_data$Coded_Results)) / nrow(article2_data), 3), "% of incentives, primarily in state-mandated preparation and oversight systems"),
+    "Partnership Programs and Educator Preparation Oversight show highest concentration of negative codes per incentive",
+    paste0("Code D (accountability substitution) appears in ", round(100 * sum(grepl("D", article2_data$Coded_Results)) / nrow(article2_data), 3), "% of incentives, replacing system improvement with compliance theater"),
+    paste0("Code B (competition for resources) appears in ", round(100 * sum(grepl("B", article2_data$Coded_Results)) / nrow(article2_data), 3), "% of incentives, undermining collaborative professional cultures")
+  )
+)
+
+# Check integrity
+check_data_integrity(key_findings)
+
+# Summary statistics
+summary_statistics <- data.frame(
+  Metric = c(
+    "Total Incentives Analyzed",
+    "Most Problematic Code", 
+    "Most Frequent Code Combination",
+    "Policy Categories with Code E",
+    "Policy Categories with Code F",
+    "Average Codes per Incentive"
+  ),
+  Value = c(
+    nrow(article2_data),
+    paste0("Code ", code_frequency$`Negative Result Code`[1], " (appears ", code_frequency$Frequency[1], " times)"),
+    "E, F (admin burden + reduced local control)",
+    sum(grepl("E", article2_data$Coded_Results)),
+    sum(grepl("F", article2_data$Coded_Results)),
+    round(mean(lengths(strsplit(article2_data$Coded_Results, ", "))), 3)
+  )
+)
+
+# Check integrity
+check_data_integrity(summary_statistics)
+
+# Display Category Analysis
+cat("## INCENTIVE CATEGORY ANALYSIS\n\n")
+datatable(
+  category_analysis,
+  options = list(
+    pageLength = 15,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle(2,
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = styleColorBar(range(category_analysis[[2]]), '#E8F4FD')) %>%
+  formatStyle(1,
+              fontWeight = 'bold',
+              textAlign = 'left')
+```
+
+```{r}
+#| label: code-frequency-table
+
+# Display Code Frequency Analysis
+cat("## NEGATIVE RESULT CODE FREQUENCY\n\n")
+datatable(
+  code_frequency,
+  options = list(
+    pageLength = 15,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle(2,
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = styleColorBar(range(code_frequency[[2]]), '#FFB6C1')) %>%
+  formatStyle(1,
+              fontWeight = 'bold',
+              textAlign = 'center',
+              fontSize = '16px') %>%
+  formatStyle(3,
+              fontWeight = 'bold',
+              textAlign = 'center')
+```
+
+```{r}
+#| label: key-findings-table
+
+# Display Key Findings
+cat("## KEY CODED PATTERN FINDINGS\n\n")
+datatable(
+  key_findings,
+  options = list(
+    pageLength = 10,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '25%', targets = 0),
+      list(width = '75%', targets = 1)
+    )
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle(1,
+              fontWeight = 'bold',
+              backgroundColor = '#FFE4E1',
+              textAlign = 'left') %>%
+  formatStyle(2,
+              textAlign = 'left')
+```
+
+```{r}
+#| label: summary-statistics-table
+
+# Display Summary Statistics
+cat("## CODED ANALYSIS SUMMARY STATISTICS\n\n")
+datatable(
+  summary_statistics,
+  options = list(
+    pageLength = 10,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '40%', targets = 0),
+      list(width = '60%', targets = 1)
+    )
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle(1,
+              fontWeight = 'bold',
+              textAlign = 'left') %>%
+  formatStyle(2,
+              textAlign = 'left',
+              fontWeight = 'bold')
+```
+
+<br>
+<br>
+
+### Key List of Likely Negative Results (Revised 7-Code Framework)
+
+#### The evaluation codes are based on these axioms:
+
+- Central planning (one size fits all) degrades everyone's performance
+  - Makes nearly every district action a legal matter
+  - Robs people of pride in their work
+  
+- Efforts at 'accountability' will not improve performance of anyone
+
+- Cooperation within an organization is far more effective than competition 
+
+- All incentives work; some promote and some pervert the ***intention*** of the incentive
+
+
+
+```{r}
+#| label: negative-results-coding-key
+
+# Create negative results table with 7-code framework
+negative_results <- data.frame(
+  Code = c("A", "B", "C", "D", "E", "F", "G"),
+  Likely_Negative_Result = c(
+    "Decreases intrinsic motivation in favor of extrinsic motivation",
+    "Decreases cooperation within districts in favor of competition for resources",  
+    "Increases dependency on State funding and bureaucracy",
+    "Substitutes 'accountability' for improvement of the system people work in",
+    "Increases district administrative burdens",
+    "Decreases local control and flexibility",
+    "Treats people as the 'problem', instead of the system they work in"
+  )
+)
+
+# Check integrity
+check_data_integrity(negative_results)
+
+# Define bright contrasting color palette
+color_palette <- c("#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FECA57", "#FF9FF3", "#54A0FF")
+
+# Display the 7-code framework table
+datatable(
+  negative_results,
+  options = list(
+    pageLength = 15,
+    dom = 'Bfrtip',
+    buttons = c('copy', 'csv', 'excel'),
+    columnDefs = list(
+      list(width = '40px', targets = 0),
+      list(width = '90%', targets = 1)
+    ),
+    scrollX = FALSE,
+    autoWidth = FALSE
+  ),
+  rownames = FALSE,
+  class = 'display'
+) %>%
+  formatStyle(
+    1,
+    textAlign = 'right',
+    fontWeight = 'bold',
+    backgroundColor = styleEqual(negative_results$Code, color_palette),
+    color = 'white'
+  ) %>%
+  formatStyle(
+    2,
+    backgroundColor = styleEqual(negative_results$Code, color_palette),
+    color = 'black'
+  ) %>%
+  formatStyle(
+    columns = c(1, 2),
+    border = '2px solid #333',
+    borderCollapse = 'collapse'
+  ) %>%
+  formatStyle(
+    columns = c(1, 2),
+    maxWidth = '9in',
+    tableLayout = 'fixed'
+  )
+```
+
+

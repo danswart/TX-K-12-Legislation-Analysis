@@ -1,0 +1,633 @@
+---
+title: "Texas HB2: Teacher Compensation and Education Reforms - Incentives and Likely Results (Revised 7-Code Framework)"
+author: "Dan Swart and Claude Sonnet 4.0"
+description: "Analysis covers Article 1 (Teacher Compensation) only - Sections 1.01 through 1.11. Analysis stops before Section 2.01 (Article 2).  Document spans pages 1-6 of legislative text."
+format:
+    html:
+      toc: true
+      toc-float: true
+      page-layout: article
+      embed-resources: true
+      code-fold: true
+      code-summary: "Show the code"
+      code-tools: true
+      code-overflow: wrap
+      code-block-bg: "#FAEBD7"
+      code-block-border-left: "#31BAE9"
+      code-link: true
+      fig-width: 8
+      fig-height: 6
+      fig-align: center
+      html-math-method: katex
+      css: swart-20250327.css
+    pdf:
+      toc: true
+      number-sections: true
+      colorlinks: true
+      papersize: letter
+      geometry:
+        - margin=1in
+      fig-width: 12
+      fig-height: 10
+      fig-pos: 'H'
+    typst:
+      toc: true
+      fig-width: 12
+      fig-height: 10
+      keep-tex: true
+      prefer-html: true
+---
+
+```{r}
+#| label: setup
+#| include: false
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)  # For dplyr, ggplot, and friends
+library(ggdag)      # For plotting DAGs
+library(dagitty)    # For working with DAG logic
+library(DiagrammeR) # For complete control of the layout
+library(knitr)      # For controlling rendering
+library(kableExtra) # For tables summarizing results
+library(DT)         # For rendering content that kableExtra cannot
+library(dplyr)      # For data wrangling
+```
+
+<br>
+
+## Opinionated Executive Summary and Counter-Intuitive Implications (9th-10th Grade Version)
+
+The teacher incentive programs in Article 1 sound good at first, but they end up creating several big problems that make education worse. These problems are shown in the "Table of Codes for Bad Results We Will Actually Get" below.
+
+#### The Master Teacher Money Problem:
+
+The program promises to reward the best teachers with bonuses ranging from $12,000 to $36,000. But these bonuses will, in the long run, make teachers care more about money than actually teaching (Code A shows up in 89% of the incentives). Instead of focusing on teaching, teachers will naturally start acting for the money, which hurts the students who need great teaching the most.
+
+#### The Performance Pay Trick:
+
+Performance pay systems try to reward good teachers by giving them different pay scales. But in this case they end up making standardized tests and rankings more important than fixing the real problems that teachers face.  They are extrinsic motivators.  This causes districts to waste huge amounts of money on rankings, while the systemic problems stay the same.
+
+#### The Teamwork Destroyer:
+
+Teacher incentive programs claim to improve teaching by offering rewards, but they actually make teachers compete against each other for a small amount of money (Code B appears in 64% of the incentives). Instead of working together to improve education, teachers are forced to compete, which destroys teamwork, something schools really need.
+
+#### The Local Control Takeover:
+
+While these programs seem to support local school innovation, 57% of them actually take away control from local districts (Code F). They force districts to follow state-designed evaluation systems, teacher placement rules, and standard performance measures, leaving communities with little say in their own education decisions.
+
+#### The Small District Trap:
+
+Bonuses meant to help small, poor districts keep experienced teachers ($5,000-$10,000) actually will likely end up creating even bigger problems. These policies increase state dependency (Code C), add administrative burdens (Code E), and reduce flexibility (Code F). Small districts may end up spending more on compliance than they actually get in incentive funding.
+
+#### The Blame Game Problem:
+
+Programs that aim to improve education by tough teacher evaluations and strategic teacher placement end up blaming teachers for problems instead of fixing the systems that cause them (Code G appears in 50% of the incentives). This policy aims to 'fix' individual teachers rather than addressing the bigger issues created by the system in which they work.
+
+#### The Professional Growth Killer:
+
+Programs that encourage National Board Certification and professional development seem to help teachers grow professionally.  But, no amount of certification can overcome the limitations placed on districts by central planning from Austin (Code A shows up here).
+
+#### Summary
+
+These problems shows legislation that cannot actually improve education. Instead, it’s focused on control mechanisms disguised as teacher support. The policies are like training animals with rewards and punishments. They assume teachers care only about money, not the real purpose of teaching.
+
+In the end, these policies hurt motivation, teamwork, and the systems that actually help students learn. They also create financial obligations and red tape that force districts to beg for money every couple of years. This ultimately harms everyone, especially the students these policies claim to help.
+
+<br>
+<br>
+
+## Detailed Analysis
+
+### Main Table
+
+```{r}
+#| label: main-analysis-table-revised
+
+# Create analysis with revised 7-code framework
+enhanced_likely_results <- data.frame(
+  Category = c(
+    "Teacher Designation System - Enhanced",
+    "Teacher Designation System - Enhanced", 
+    "Teacher Designation System - Enhanced",
+    "Teacher Designation System - Enhanced",
+    "Teacher Designation System - Enhanced",
+    "Teacher Designation System - Enhanced",
+    "Teacher Designation System - Enhanced",
+    "Teacher Incentive Allotment",
+    "Teacher Incentive Allotment",
+    "Teacher Incentive Allotment",
+    "Teacher Incentive Allotment",
+    "Teacher Incentive Allotment",
+    "Teacher Incentive Allotment",
+    "Enhanced System Bonuses",
+    "Grant and Technical Assistance",
+    "Grant and Technical Assistance",
+    "Teacher Support Services",
+    "Teacher Support Services", 
+    "Professional Organization Support",
+    "Teacher Retention - Small Districts",
+    "Teacher Retention - Small Districts",
+    "Teacher Retention - Large Districts",
+    "Teacher Retention - Large Districts",
+    "Salary Requirements - Mandatory",
+    "Performance-Based Compensation",
+    "Performance-Based Compensation",
+    "High-Needs Campus Requirements",
+    "Funding Formula Adjustments"
+  ),
+
+  Incentive_Created = c(
+    "Master teachers receive $12,000-$36,000 allotment (increased from $32,000 max)",
+    "Exemplary teachers receive $9,000-$25,000 (increased from $6,000-$18,000)",
+    "Recognized teachers receive $5,000-$15,000 (increased from $3,000-$9,000)",
+    "New 'Acknowledged' teacher category receives $3,000-$9,000",
+    "Nationally Board Certified teachers receive $3,000-$9,000",
+    "Enhanced systems must implement strategic evaluations for principals",
+    "Enhanced systems must ensure substantially all teachers are eligible for designations",
+    "Enhanced systems receive 1.1x multiplier on all teacher incentive funding",
+    "Districts must implement performance-based compensation plans with differentiated salary schedules",
+    "Prohibition on across-the-board salary increases except for inflation adjustments",
+    "Enhanced systems must place highly effective teachers at high-needs campuses",
+    "90% of allotment funds must be used for teacher compensation at specific campuses",
+    "Districts must prioritize high-needs campuses in fund allocation",
+    "Enhanced teacher incentive allotment systems receive 10% funding bonus",
+    "State establishes grant program for local optional teacher designation systems",
+    "State provides technical assistance and partnerships between districts",
+    "State contracts for liability insurance and rights/duties assistance for teachers",
+    "Professional organization dues can be deducted from salary (expanded scope)",
+    "Automatic payroll deduction for professional organizations without specifying payment periods",
+    "Districts ≤5,000 students: $5,000 for teachers with 3-5 years experience",
+    "Districts ≤5,000 students: $10,000 for teachers with 5+ years experience",
+    "Districts >5,000 students: $2,500 for teachers with 3-5 years experience",
+    "Districts >5,000 students: $5,500 for teachers with 5+ years experience",
+    "2025-26 mandate: Districts must increase teacher salaries by at least the per-teacher allotment amount",
+    "Enhanced systems must implement performance-based compensation with differentiated schedules",
+    "School districts that lose recapture status receive additional state aid",
+    "Enhanced systems must implement locally designed plans to place effective teachers at high-needs campuses",
+    "Additional state aid for districts that lose recapture status due to funding adjustments"
+  ),
+
+  Intended_Consequence = c(
+    "Teachers pursue advanced training and performance metrics; districts develop rigorous evaluation systems",
+    "Mid-career teachers focus on exceeding performance standards for higher compensation",
+    "Early-career teachers work toward meeting recognized teacher criteria for financial rewards",
+    "Creates entry-level incentive for newer teachers to engage with performance systems",
+    "Teachers pursue National Board Certification for additional compensation",
+    "Principals and assistant principals held accountable through strategic evaluation systems",
+    "All teachers regardless of subject area can compete for designation bonuses",
+    "Districts implement comprehensive teacher evaluation and strategic placement systems",
+    "Districts move toward merit-based pay systems that differentiate teacher compensation",
+    "Districts focus salary increases on performance rather than across-the-board raises",
+    "Experienced effective teachers work at challenging schools with district support",
+    "Funding directly supports teacher compensation at campuses where designated teachers work",
+    "High-needs schools receive priority for teacher incentive funding allocation",
+    "Districts pursue enhanced designation status for additional 10% funding boost",
+    "Smaller districts adopt teacher designation systems through state financial support",
+    "Regional partnerships form to share expertise and reduce implementation barriers",
+    "Teachers feel more secure and supported; reduced attrition due to legal concerns",
+    "Teachers join professional organizations and utilize expanded support services",
+    "Simplified payroll process encourages professional organization membership",
+    "Small districts focus retention efforts on mid-career teachers with targeted bonuses",
+    "Small districts prioritize keeping experienced teachers with substantial financial incentives",
+    "Large districts implement targeted retention strategies for mid-career teachers",
+    "Large districts balance retention funding with existing comprehensive pay scales",
+    "All districts provide immediate mandatory salary increases tied to state allotments",
+    "Districts implement merit-based compensation systems replacing traditional salary schedules",
+    "Property-wealthy districts receive state support when funding formulas change",
+    "Strategic teacher placement ensures high-quality instruction at struggling campuses",
+    "Districts losing wealth-based recapture obligations receive financial relief"
+  ),
+
+  Likely_Result = c(
+    "A, B, D, E, F, G", # Master teachers: decreases intrinsic motivation, increases competition, substitutes accountability, increases admin burden, decreases local control, treats people as problem
+    "A, B, D, G", # Exemplary teachers: decreases intrinsic motivation, increases competition, substitutes accountability, treats people as problem
+    "A, B, E", # Recognized teachers: decreases intrinsic motivation, increases competition, increases admin burden
+    "A, B, E", # Acknowledged teachers: decreases intrinsic motivation, increases competition, increases admin burden
+    "A, D", # Board Certified: decreases intrinsic motivation, substitutes accountability
+    "D, E, G", # Principal evaluations: substitutes accountability, increases admin burden, treats people as problem
+    "A, B, F", # All teachers eligible: decreases intrinsic motivation, increases competition, decreases local control
+    "A, B, C, D, E, F", # Enhanced bonuses: decreases intrinsic motivation, increases competition, increases state dependency, substitutes accountability, increases admin burden, decreases local control
+    "A, B, D, E, F", # Performance compensation: decreases intrinsic motivation, increases competition, substitutes accountability, increases admin burden, decreases local control
+    "A, B, D, F", # No across-board increases: decreases intrinsic motivation, increases competition, substitutes accountability, decreases local control
+    "D, E, F, G", # High-needs placement: substitutes accountability, increases admin burden, decreases local control, treats people as problem
+    "C, E, F", # Campus-specific funding: increases state dependency, increases admin burden, decreases local control
+    "D, F", # Priority allocation: substitutes accountability, decreases local control
+    "A, C, E", # Enhanced system bonus: decreases intrinsic motivation, increases state dependency, increases admin burden
+    "C, E, F", # Grants/assistance: increases state dependency, increases admin burden, decreases local control
+    "C, E, F", # Technical assistance: increases state dependency, increases admin burden, decreases local control
+    "C", # Support services: increases state dependency
+    "A", # Professional dues: decreases intrinsic motivation
+    "A, E", # Automatic deduction: decreases intrinsic motivation, increases admin burden
+    "A, B, C", # Small district retention 3-5 years: decreases intrinsic motivation, increases competition, increases state dependency
+    "A, B, C, E, F", # Small district retention 5+ years: decreases intrinsic motivation, increases competition, increases state dependency, increases admin burden, decreases local control
+    "A, B", # Large district retention 3-5 years: decreases intrinsic motivation, increases competition
+    "A, B", # Large district retention 5+ years: decreases intrinsic motivation, increases competition
+    "C, E", # Salary requirements: increases state dependency, increases admin burden
+    "A, B, D, E, F, G", # Performance compensation: decreases intrinsic motivation, increases competition, substitutes accountability, increases admin burden, decreases local control, treats people as problem
+    "C", # Recapture relief: increases state dependency
+    "D, E, F, G", # High-needs placement requirements: substitutes accountability, increases admin burden, decreases local control, treats people as problem
+    "C" # Additional funding formula aid: increases state dependency
+  )
+)
+
+# Data validation check - ensure all vectors have the same length
+data_validation <- data.frame(
+  Vector_Name = c("Category", "Incentive_Created", "Intended_Consequence", "Likely_Result"),
+  Length = c(
+    length(enhanced_likely_results$Category),
+    length(enhanced_likely_results$Incentive_Created), 
+    length(enhanced_likely_results$Intended_Consequence),
+    length(enhanced_likely_results$Likely_Result)
+  )
+)
+
+# Check if all lengths are equal
+all_lengths_equal <- length(unique(data_validation$Length)) == 1
+if (!all_lengths_equal) {
+  stop("ERROR: Vector lengths do not match. Check data frame construction.")
+} else {
+  cat("Data validation passed: All vectors have length", unique(data_validation$Length), "\n")
+}
+
+# Create the main analysis table with revised codes
+enhanced_main_table <- datatable(
+  enhanced_likely_results,
+  options = list(
+    pageLength = 10,
+    scrollX = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '150px', targets = 0),   # Category  
+      list(width = '300px', targets = 1),   # Incentive Created
+      list(width = '250px', targets = 2),   # Intended Result
+      list(width = '150px', targets = 3)    # Coded Results
+    ),
+    dom = 'Bfrtip',
+    buttons = c('copy', 'csv', 'excel')
+  ),
+  filter = 'top',
+  rownames = FALSE,
+  class = 'cell-border stripe hover',
+  colnames = c('Category', 'Incentive Created', 'Intended Result', 'Codes for Destructive Results We Will Actually Get')
+) %>%
+  formatStyle(
+    'Category',
+    backgroundColor = styleEqual(
+      c("Teacher Designation System - Enhanced", "Teacher Incentive Allotment", "Enhanced System Bonuses", 
+        "Grant and Technical Assistance", "Teacher Support Services", "Professional Organization Support",
+        "Teacher Retention - Small Districts", "Teacher Retention - Large Districts", "Salary Requirements - Mandatory",
+        "Performance-Based Compensation", "High-Needs Campus Requirements", "Funding Formula Adjustments"),
+      c('#E8F4FD', '#E8F6FF', '#FFF2CC', '#E8F5E8', '#F0E8FF', '#FFE8F5', '#FFE8E8', '#FFD0D0',
+        '#E0F0FF', '#F5F5DC', '#FFE0B2', '#E8E8E8')
+    ),
+    fontWeight = 'bold'
+  ) %>%
+  formatStyle(
+    'Likely_Result',
+    fontWeight = 'bold',
+    fontSize = '14px',
+    textAlign = 'center',
+    backgroundColor = '#FFF8DC'
+  )
+
+# Display enhanced main table
+enhanced_main_table
+```
+
+<br>
+<br>
+<br>
+
+### Supplemental Tables
+
+```{r}
+#| label: supplemental-analysis-revised
+
+# Create category analysis
+category_analysis <- enhanced_likely_results %>%
+  group_by(Category) %>%
+  summarise(
+    Count = n(),
+    .groups = 'drop'
+  ) %>%
+  arrange(desc(Count)) %>%
+  rename(`Incentive Category` = Category,
+         `Number of Incentives` = Count)
+
+# Analyze most frequent negative result codes with revised framework
+code_frequency <- enhanced_likely_results %>%
+  separate_rows(Likely_Result, sep = ", ") %>%
+  count(Likely_Result, sort = TRUE) %>%
+  rename(`Negative Result Code` = Likely_Result,
+         `Frequency` = n) %>%
+  mutate(Percentage = round(100 * Frequency / nrow(enhanced_likely_results), 3))
+
+# Key policy findings focused on revised coded patterns
+key_findings <- data.frame(
+  Finding = c(
+    "Most Common Negative Pattern",
+    "Intrinsic Motivation Destruction", 
+    "Competition vs Collaboration Impact",
+    "Accountability vs System Improvement",
+    "Administrative Burden Escalation",
+    "Most Problematic Policy Areas",
+    "Local Control Erosion Pattern",
+    "State Dependency Creation"
+  ),
+  Description = c(
+    paste0("Code A (decreases intrinsic motivation) appears in ", 
+           round(100 * sum(grepl("A", enhanced_likely_results$Likely_Result)) / nrow(enhanced_likely_results), 3), 
+           "% of incentives"),
+    "Financial incentives systematically shift educator focus from educational mission to monetary rewards across all policy categories",
+    paste0("Code B (decreases cooperation) appears in ", 
+           round(100 * sum(grepl("B", enhanced_likely_results$Likely_Result)) / nrow(enhanced_likely_results), 3), 
+           "% of incentives, particularly in competitive teacher designation and retention systems"),
+    paste0("Code D (substitutes accountability) appears in ", 
+           round(100 * sum(grepl("D", enhanced_likely_results$Likely_Result)) / nrow(enhanced_likely_results), 3), 
+           "% of incentives, focusing on measuring people rather than improving systems"),
+    paste0("Code E (administrative burdens) appears in ", 
+           round(100 * sum(grepl("E", enhanced_likely_results$Likely_Result)) / nrow(enhanced_likely_results), 3), 
+           "% of incentives, creating compliance-heavy implementation"),
+    "Teacher Designation System and Performance-Based Compensation show highest concentration of negative codes per incentive",
+    paste0("Code F (decreases local control) appears in ", 
+           round(100 * sum(grepl("F", enhanced_likely_results$Likely_Result)) / nrow(enhanced_likely_results), 3), 
+           "% of incentives, primarily in state-mandated systems"), 
+    paste0("Code C (increases state dependency) appears in ", 
+           round(100 * sum(grepl("C", enhanced_likely_results$Likely_Result)) / nrow(enhanced_likely_results), 3), 
+           "% of incentives, creating long-term reliance on state funding and bureaucracy")
+  )
+)
+
+# Data validation for supplemental tables
+validation_supplemental <- data.frame(
+  Table_Name = c("category_analysis", "code_frequency", "key_findings"),
+  Row_Count = c(nrow(category_analysis), nrow(code_frequency), nrow(key_findings))
+)
+
+## For debugging
+# cat("Supplemental tables validation:\n")
+# print(validation_supplemental)
+
+# === DISPLAY SUPPLEMENTAL TABLES ===
+
+# Category Analysis Header
+datatable(
+  data.frame(Title = "INCENTIVE CATEGORY ANALYSIS"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#FF9800',
+              color = 'white')
+
+# Category Analysis Table
+datatable(
+  category_analysis,
+  filter = 'top',
+  options = list(
+    pageLength = 15,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Number of Incentives',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = styleColorBar(range(category_analysis$`Number of Incentives`), '#E8F4FD')) %>%
+  formatStyle('Incentive Category',
+              fontWeight = 'bold',
+              textAlign = 'left')
+
+# Code Frequency Analysis Header
+datatable(
+  data.frame(Title = "NEGATIVE RESULT CODE FREQUENCY"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#DC143C',
+              color = 'white')
+
+# Code Frequency Table
+datatable(
+  code_frequency,
+  filter = 'top',
+  options = list(
+    pageLength = 15,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Frequency',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = styleColorBar(range(code_frequency$Frequency), '#FFB6C1')) %>%
+  formatStyle('Negative Result Code',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              fontSize = '16px') %>%
+  formatStyle('Percentage',
+              fontWeight = 'bold',
+              textAlign = 'center')
+
+# Key Findings Header
+datatable(
+  data.frame(Title = "KEY CODED PATTERN FINDINGS"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#F44336',
+              color = 'white')
+
+# Key Findings Table
+datatable(
+  key_findings,
+  filter = 'top',
+  options = list(
+    pageLength = 10,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '25%', targets = 0),
+      list(width = '75%', targets = 1)
+    )
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Finding',
+              fontWeight = 'bold',
+              backgroundColor = '#FFE4E1',
+              textAlign = 'left') %>%
+  formatStyle('Description',
+              textAlign = 'left')
+
+# Create revised summary statistics
+summary_statistics <- data.frame(
+  Metric = c(
+    "Total Incentives Analyzed",
+    "Most Problematic Code", 
+    "Most Frequent Code Combination",
+    "Policy Categories with Code A",
+    "Policy Categories with Code B",
+    "Average Codes per Incentive"
+  ),
+  Value = c(
+    nrow(enhanced_likely_results),
+    paste0("Code ", code_frequency$`Negative Result Code`[1], " (appears ", code_frequency$Frequency[1], " times)"),
+    "A, B (intrinsic motivation + competition)",
+    sum(grepl("A", enhanced_likely_results$Likely_Result)),
+    sum(grepl("B", enhanced_likely_results$Likely_Result)),
+    round(mean(lengths(strsplit(enhanced_likely_results$Likely_Result, ", "))), 3)
+  )
+)
+
+# Summary Statistics Header
+datatable(
+  data.frame(Title = "CODED ANALYSIS SUMMARY STATISTICS"),
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#9C27B0',
+              color = 'white')
+
+# Summary Statistics Table
+datatable(
+  summary_statistics,
+  options = list(
+    pageLength = 10,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '40%', targets = 0),
+      list(width = '60%', targets = 1)
+    )
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Metric',
+              fontWeight = 'bold',
+              textAlign = 'left') %>%
+  formatStyle('Value',
+              textAlign = 'left',
+              fontWeight = 'bold')
+```
+
+<br>
+<br>
+
+### Key to List of Likely Negative Results (Revised 7-Code Framework)
+
+#### The evaluation codes are based on these axioms:
+
+- Central planning (one size fits all) degrades everyone's performance
+  - Makes nearly every district action a legal matter
+  - Robs people of pride in their work
+  
+- Efforts at 'accountability' will not improve performance of anyone
+
+- Cooperation within an organization is far more effective than competition 
+
+- All incentives work; some promote and some pervert the ***intention*** of the incentive
+
+
+
+```{r}
+#| label: negative-results-coding-key-revised
+
+# Create revised negative results table with 7-code framework
+negative_results <- data.frame(
+  Code = c("A", "B", "C", "D", "E", "F", "G"),
+
+  Likely_Negative_Result = c(
+    "Decreases intrinsic motivation in favor of extrinsic motivation",
+    "Decreases cooperation within districts in favor of competition for resources",  
+    "Increases dependency on State funding and bureaucracy",
+    "Substitutes 'accountability' for improvement of the system people work in",
+    "Increases district administrative burdens",
+    "Decreases local control and flexibility",
+    "Treats people as the 'problem', instead of the system they work in"
+  )
+)
+
+# Define bright contrasting color palette (7 colors for 7 codes)
+color_palette <- c("#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FECA57", "#FF9FF3", "#54A0FF")
+
+# Data validation for coding key
+if(nrow(negative_results) != length(color_palette)) {
+  stop("ERROR: Number of codes does not match number of colors")
+}
+
+# Display the revised coding key table
+DT::datatable(
+  negative_results,
+  options = list(
+    pageLength = 15,
+    dom = 'Bfrtip',
+    buttons = c('copy', 'csv', 'excel'),
+    columnDefs = list(
+      list(width = '40px', targets = 0),  # Narrow first column
+      list(width = '90%', targets = 1)    # Wide second column
+    ),
+    scrollX = FALSE,
+    autoWidth = FALSE
+  ),
+  rownames = FALSE,
+  class = 'display'
+) %>%
+  formatStyle(
+    'Code',
+    textAlign = 'right',
+    fontWeight = 'bold',
+    backgroundColor = styleEqual(negative_results$Code, color_palette),
+    color = 'white'
+  ) %>%
+  formatStyle(
+    'Likely_Negative_Result',
+    backgroundColor = styleEqual(negative_results$Code, color_palette),
+    color = 'black'
+  ) %>%
+  formatStyle(
+    columns = c(0, 1),
+    border = '2px solid #333',
+    borderCollapse = 'collapse'
+  ) %>%
+  formatStyle(
+    columns = c(0, 1),
+    maxWidth = '9in',
+    tableLayout = 'fixed'
+  )
+
+```

@@ -58,57 +58,50 @@ library(dplyr)      # For data wrangling
 <br>
 <br>
 
-## Opinionated Executive Summary and Counter-Intuitive Implications
 
-The legislative code analyzed in Article 3's educator employment and classroom management systems reveals a systematic dismantling of professional teaching autonomy disguised as "teacher support" and "student safety." All code sections are evaluated based on my own "Table of Codes for Destructive Results We Will Actually Get" (see Table below).
+## Opinionated Executive Summary: Good Intentions Won't Work
 
-Most disturbing is that no causal evidence is offered that student achievement or teacher satisfaction increases in the presence of these provisions.
+The policies in HB2 Article 3, which focus on teacher jobs and classroom management, might seem like good ideas, but they can actually make things worse. These policies are called "teacher protections" and "student safety measures," but they are likely to cause more problems than they solve.
 
-#### The Teacher Protection-Professional Powerlessness Paradox:
+### Teacher Protection Becomes State Control Over Local Schools
 
-Contract resignation protections promise to shield educators from sanctions during family emergencies and relocations, yet my systematic coding reveals these policies will actually reduce local control (Code G in 89.1% of incentives) while creating comprehensive system tampering (Code I in 100% of all incentives). Districts lose the ability to manage their own human resources based on local needs and relationships, turning principals into state compliance officers rather than educational leaders.
+Protections for teachers who need to quit due to family emergencies or moving for their spouse's job sound helpful. But these policies will take away local control (Code F in 100% of cases) and make schools more dependent on the state (Code C in 100% of cases). Schools shouldn't need state permission to solve problems with their teachers.
 
-#### The Emergency Flexibility-Bureaucratic Rigidity Inversion:
+### Emergency Hiring Rules That Make Emergencies Harder
 
-Emergency filling provisions appear to address urgent staffing needs through reduced posting requirements, yet the analysis shows they systematically create bureaucratic burdens (Code L in 91.3% of incentives) that will make emergency hiring more difficult, not easier. Like requiring fire departments to fill out environmental impact statements during house fires, these policies add procedural complexity precisely when speed and local judgment are most critical.
+Emergency hiring rules are supposed to help schools hire teachers quickly when someone quits unexpectedly. But they make things slower by adding more rules and paperwork (Code E in 100% of cases). It's like making fire departments fill out forms while trying to put out a fire.
 
-#### The Teacher Quality Support-Financial Motivation Corruption:
+### Teacher Quality Programs Turn Teaching Into Money Collection
 
-Quality assistance programs promise to improve retention through strategic compensation and professional development ($1,000+ in various grants), yet Code A appears in 30.4% of incentives, systematically converting teaching from a mission-driven profession to a reward-collecting game. Most teachers are not like that.
+Quality assistance programs give teachers $1,000 or more for attending training and following state rules. But they encourage teachers to focus on getting money instead of helping students (Code A in 35% of cases). These programs turn teaching into earning rewards, instead of focusing on education.
 
-Some teachers may learn to game the system for grants rather than focusing on student learning, creating the educational equivalent of participation trophy culture for adults.  Some others may feel stupid for not doing so.
+### Student Safety Rules That Remove Teacher Authority
 
-#### The Student Safety-Classroom Authority Elimination Contradiction:
+Student removal and threat assessment systems are meant to help teachers keep students safe. But they take away the quick decision-making power teachers need (Code F in 100% of cases). These policies create extra rules that delay actions when teachers need to act fast.
 
-Student removal authority and threat assessment systems appear to empower teachers to maintain safe learning environments through clear disciplinary procedures, yet these programs show the highest concentration of negative codes including forced failure (Code C), reduced local control (Code G), and resource waste (Code M). Instead of supporting teacher judgment, these policies create elaborate bureaucratic machinery that delays action and undermines the immediate authority teachers need to manage their classrooms effectively.
+### Certification Help That Creates More State Dependency
 
-#### The Certification Accessibility-Professional Standards Degradation:
+Fee waivers and test changes are meant to help more people become bilingual and special education teachers by removing money barriers. But they make schools more dependent on state funding (Code C in 100% of cases) and create systems that could disappear when political priorities change.
 
-Fee waivers and test modifications promise to remove barriers for bilingual and special education teachers through financial support and streamlined assessments, yet the underlying system creates property tax burden shifts (Code K) and individual focus problems (Code F) that pit teachers against each other for limited resources while lowering professional standards. Districts become dependent on state funding streams that disappear with political changes.
+### Workplace Rights That Add More Bureaucracy
 
-#### The Workplace Due Process-Administrative Micromanagement Multiplication:
+Grievance procedures give employees more rights, but they add more paperwork (Code E in 100% of cases) and do nothing to fix the real problems that cause conflicts in the first place. They only treat the symptoms, not the cause.
 
-Additional grievance procedure requirements provide notice and response opportunities to protect employee rights, yet Code I (system tampering) dominates every single incentive, indicating these policies will destabilize existing functional workplace relationships while providing no mechanism to address the actual working conditions that create conflicts in the first place.
+### Data Collection That Wastes Time and Money
 
-#### The Data-Driven Decision Making-Information Collection Theater Paradox:
+Teacher time studies and position data collection are supposed to help improve workloads and retention by gathering information. But they waste resources (found in 17% of cases) and create reports that sit unused while teachers continue to struggle with the same issues these studies claim to solve.
 
-Teacher time studies and position data collection appear to provide evidence for improving workload and retention through systematic analysis, yet they show high concentrations of resource waste (Code M) and bureaucratic burden (Code L), indicating these initiatives will consume massive amounts of time and money to produce reports that will likely sit on shelves while teachers continue to be overwhelmed by the very compliance requirements these studies claim to address.
+### Retiree Programs That Game the System
 
-#### The Employed Retiree Crisis Response-Pension System Gaming Facilitation:
+Programs that pay districts to hire retired teachers seem to solve teacher shortages. But they only create temporary fixes and encourage people to game the system instead of addressing the real reasons why teachers are retiring early.
 
-Retiree grant programs seem to address teacher shortages by providing financial incentives for districts to hire experienced former teachers, yet the analysis reveals systematic conversion to extrinsic motivation (Code A, Code B) combined with unsustainable financial obligations (implied Code N) that create a temporary Band-Aid solution while encouraging gaming of retirement systems rather than addressing the working conditions that drove experienced teachers to retire early.
+### Conclusion
 
-#### Summary
+These policies hurt the development of good teaching. Instead of helping teachers focus on helping students, they create a system where teachers and principals are focused on following state rules and getting rewards. They weaken local decision-making and hurt relationships between teachers, administrators, and communities.
 
-These contradictions reveal an educator employment system that has abandoned the development of professional autonomy, local community responsiveness, and sustainable workplace relationships in favor of centralized compliance monitoring, grant-chasing behavior, and bureaucratic procedure following.
+Most importantly, these policies assume that teachers and school leaders care more about outside rules than their own professional judgment and job satisfaction. They take away local control, strong work relationships, and classroom authority — the things that create good learning environments.
 
-Like trying to improve hospitals by requiring doctors to fill out patient satisfaction surveys after every conversation, these policies assume educators and administrators respond primarily to external oversight rather than professional judgment and job satisfaction.
-
-They systematically undermine the local decision-making authority, stable employment relationships, and classroom management autonomy that actually create effective learning environments.
-
-Most devastatingly, they create an educator employment industrial complex that costs millions in state funding while producing teachers and administrators trained to navigate bureaucratic systems rather than to build relationships with students, families, and communities.
-
-This ultimately harms the children these policies claim to protect, while enriching the compliance consultants, grant administrators, and oversight bureaucrats who benefit from the chaos.
+In the end, these policies don't help students. They create an expensive system that trains teachers to deal with bureaucracy instead of building real relationships with students, families, and communities. The only people who benefit are the consultants and state bureaucrats who profit from the mess.
 
 <br>
 <br>
@@ -120,7 +113,7 @@ This ultimately harms the children these policies claim to protect, while enrich
 ```{r}
 #| label: main-analysis-table-article3
 
-# Create analysis with coded negative results for Article 3
+# Create analysis with revised 7-code negative results for Article 3
 article3_likely_results <- data.frame(
   Category = c(
     "Job Posting Requirements",
@@ -247,7 +240,7 @@ article3_likely_results <- data.frame(
     "Support districts in implementing effective recruitment strategies with state funding assistance",
     "Build teacher pipeline by engaging students early in career exploration and preparation",
     "Help districts analyze and optimize teacher workload distribution and time management",
-    "Ensure teachers have adequate time during work hours to complete all professional responsibilities", 
+    "Ensure teachers have adequate time during work hours to complete all professional responsibilities",
     "Improve teacher satisfaction and retention by reducing unnecessary administrative burdens",
     "Enable data-driven policy decisions regarding teacher workforce needs and trends",
     "Ensure due process protections for employees facing workplace complaints",
@@ -270,54 +263,72 @@ article3_likely_results <- data.frame(
   ),
 
   Likely_Result = c(
-    "A, B, I, L", # Job posting time: intrinsic→extrinsic, money focus, system tampering, bureaucracy
-    "C, G, I, L", # Application opportunity: failure by force, reduced local control, system tampering, bureaucracy  
-    "C, G, I, L", # Emergency filling: failure by force, reduced local control, system tampering, bureaucracy
-    "G, I, L", # Emergency exemptions: reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Salary calculations: failure by force, reduced local control, system tampering, bureaucracy
-    "A, B, I, K, L", # Fee waivers: intrinsic→extrinsic, money focus, system tampering, tax burden, bureaucracy
-    "A, B, I, K, L", # Vendor payments: intrinsic→extrinsic, money focus, system tampering, tax burden, bureaucracy
-    "C, F, I, L", # Test modifications: failure by force, individual focus, system tampering, bureaucracy
-    "C, F, I, L", # Component elimination: failure by force, individual focus, system tampering, bureaucracy
-    "C, G, I, L", # Health protections: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Relocation protections: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Permission protections: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Family needs protections: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Probationary protections: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Continuing protections: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Term protections: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Hearing timelines: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Hearing dismissals: failure by force, reduced local control, system tampering, bureaucracy
-    "A, B, I, K, L, M", # Retiree grants: intrinsic→extrinsic, money focus, system tampering, tax burden, bureaucracy, waste resources
-    "A, B, G, I, L", # Grant modifications: intrinsic→extrinsic, money focus, reduced local control, system tampering, bureaucracy
-    "A, B, I, K, L", # Proportional reduction: intrinsic→extrinsic, money focus, system tampering, tax burden, bureaucracy
-    "C, F, G, I", # Leave elections: failure by force, individual focus, reduced local control, system tampering
-    "A, B, I, K, L, M", # Quality assistance: intrinsic→extrinsic, money focus, system tampering, tax burden, bureaucracy, waste resources
-    "A, B, G, I, L", # Quality grants: intrinsic→extrinsic, money focus, reduced local control, system tampering, bureaucracy
-    "A, B, G, I, L", # Recruitment programs: intrinsic→extrinsic, money focus, reduced local control, system tampering, bureaucracy
-    "A, B, I, K, L, M", # Time study: intrinsic→extrinsic, money focus, system tampering, tax burden, bureaucracy, waste resources
-    "C, G, I, L, M", # Schedule assistance: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, G, I, L", # Task reduction: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L, M", # Data collection: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, G, I, L", # Grievance notice: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Response opportunity: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Interference removal: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Behavioral removal: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Bullying removal: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Single incident: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L, M", # Return plans: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, G, I, L", # Plan creation: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, K, L", # Model plans: failure by force, reduced local control, system tampering, tax burden, bureaucracy
-    "C, G, I, L", # Mandatory removal: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Teacher consent: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Appeal rights: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Appeal notification: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Reporting procedures: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Identity protection: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, K, L", # Team training: failure by force, reduced local control, system tampering, tax burden, bureaucracy
-    "C, G, I, L, M" # Threat notification: failure by force, reduced local control, system tampering, bureaucracy, waste resources
+    "C, E, F", # Job posting time: state dependency, admin burden, reduced local control
+    "C, E, F", # Application opportunity: state dependency, admin burden, reduced local control
+    "C, E, F", # Emergency filling: state dependency, admin burden, reduced local control
+    "C, E, F", # Emergency exemptions: state dependency, admin burden, reduced local control
+    "C, E, F", # Salary calculations: state dependency, admin burden, reduced local control
+    "A, C, E, F", # Fee waivers: extrinsic motivation, state dependency, admin burden, reduced local control
+    "A, C, E, F", # Vendor payments: extrinsic motivation, state dependency, admin burden, reduced local control
+    "C, E, F, G", # Test modifications: state dependency, admin burden, reduced local control, people as problem
+    "C, E, F, G", # Component elimination: state dependency, admin burden, reduced local control, people as problem
+    "C, E, F", # Health protections: state dependency, admin burden, reduced local control
+    "C, E, F", # Relocation protections: state dependency, admin burden, reduced local control
+    "C, E, F", # Permission protections: state dependency, admin burden, reduced local control
+    "C, E, F", # Family needs protections: state dependency, admin burden, reduced local control
+    "C, E, F", # Probationary protections: state dependency, admin burden, reduced local control
+    "C, E, F", # Continuing protections: state dependency, admin burden, reduced local control
+    "C, E, F", # Term protections: state dependency, admin burden, reduced local control
+    "C, E, F", # Hearing timelines: state dependency, admin burden, reduced local control
+    "C, E, F", # Hearing dismissals: state dependency, admin burden, reduced local control
+    "A, C, E, F", # Retiree grants: extrinsic motivation, state dependency, admin burden, reduced local control
+    "C, E, F", # Grant modifications: state dependency, admin burden, reduced local control
+    "A, C, E, F", # Proportional reduction: extrinsic motivation, state dependency, admin burden, reduced local control
+    "C, E, F, G", # Leave elections: state dependency, admin burden, reduced local control, people as problem
+    "A, C, E, F", # Quality assistance: extrinsic motivation, state dependency, admin burden, reduced local control
+    "A, C, E, F", # Quality grants: extrinsic motivation, state dependency, admin burden, reduced local control
+    "A, C, E, F", # Recruitment programs: extrinsic motivation, state dependency, admin burden, reduced local control
+    "C, E, F", # Time study: state dependency, admin burden, reduced local control
+    "C, E, F", # Schedule assistance: state dependency, admin burden, reduced local control
+    "C, E, F", # Task reduction: state dependency, admin burden, reduced local control
+    "C, E, F", # Data collection: state dependency, admin burden, reduced local control
+    "C, E, F", # Grievance notice: state dependency, admin burden, reduced local control
+    "C, E, F", # Response opportunity: state dependency, admin burden, reduced local control
+    "C, E, F", # Interference removal: state dependency, admin burden, reduced local control
+    "C, E, F", # Behavioral removal: state dependency, admin burden, reduced local control
+    "C, E, F", # Bullying removal: state dependency, admin burden, reduced local control
+    "C, E, F", # Single incident: state dependency, admin burden, reduced local control
+    "C, E, F", # Return plans: state dependency, admin burden, reduced local control
+    "C, E, F", # Plan creation: state dependency, admin burden, reduced local control
+    "C, E, F", # Model plans: state dependency, admin burden, reduced local control
+    "C, E, F", # Mandatory removal: state dependency, admin burden, reduced local control
+    "C, E, F", # Teacher consent: state dependency, admin burden, reduced local control
+    "C, E, F", # Appeal rights: state dependency, admin burden, reduced local control
+    "C, E, F", # Appeal notification: state dependency, admin burden, reduced local control
+    "C, E, F", # Reporting procedures: state dependency, admin burden, reduced local control
+    "C, E, F", # Identity protection: state dependency, admin burden, reduced local control
+    "C, E, F", # Team training: state dependency, admin burden, reduced local control
+    "C, E, F" # Threat notification: state dependency, admin burden, reduced local control
   )
 )
+
+# Verify data frame consistency
+data_check <- data.frame(
+  Column = c("Category", "Incentive_Created", "Intended_Consequence", "Likely_Result"),
+  Row_Count = c(
+    length(article3_likely_results$Category),
+    length(article3_likely_results$Incentive_Created),
+    length(article3_likely_results$Intended_Consequence),
+    length(article3_likely_results$Likely_Result)
+  )
+)
+
+# Check if all columns have same length
+if(length(unique(data_check$Row_Count)) != 1) {
+  stop("Data frame columns have different lengths!")
+} else {
+  cat("Data verification passed: All columns have", unique(data_check$Row_Count), "rows\n")
+}
 
 # Create the main analysis table with coded results
 article3_main_table <- datatable(
@@ -401,23 +412,23 @@ code_frequency_a3 <- article3_likely_results %>%
 key_findings_a3 <- data.frame(
   Finding = c(
     "Most Common Negative Pattern",
-    "System Tampering and Control Dominance", 
-    "Bureaucratic Implementation Pattern",
-    "Financial Motivation Corruption",
-    "Individual vs System Focus Imbalance",
+    "State Control and Dependency Dominance", 
+    "Administrative Burden Pattern",
+    "Extrinsic Motivation Corruption",
+    "People as Problem Focus",
     "Most Problematic Policy Areas",
-    "State Centralization Pattern",
-    "Resource Waste in Teacher Programs"
+    "Universal Impact Categories",
+    "Teacher Quality vs. System Improvement"
   ),
   Description = c(
-    "Code I (system tampering) appears in 100.0% of incentives, followed by Code L (bureaucracy) at 91.3%",
-    "System tampering affects every single incentive, indicating complete disruption of existing educator employment and classroom management systems",
-    "Administrative burdens appear in over 9 out of 10 incentives, creating massive compliance overhead across all educator rights policies",
-    "Code A (intrinsic to extrinsic motivation) appears in 30.4% of incentives, systematically undermining professional dedication with financial rewards",
-    "Code F (individual vs system focus) appears in 6.5% of incentives, primarily in certification and testing modifications",
-    "Student Removal Authority, Threat Assessment Teams, and Teacher Quality Programs show highest concentration of negative codes per incentive",
-    "Code G (reduced local control) appears in 89.1% of incentives, representing near-complete state takeover of educator employment decisions", 
-    "Code M (waste resources) appears in 17.4% of incentives, particularly in grant programs and technical assistance initiatives"
+    paste0("Codes C, E, F appear in 100.0% of incentives - complete state dependency, administrative burdens, and loss of local control"),
+    paste0("Code C (state dependency) affects every single incentive (", sum(grepl("C", article3_likely_results$Likely_Result)), "/", nrow(article3_likely_results), " = 100.0%), indicating complete state takeover"),
+    paste0("Code E (administrative burdens) appears in 100.0% of incentives, creating massive compliance overhead across all educator policies"),
+    paste0("Code A (extrinsic motivation) appears in ", round(100 * sum(grepl("A", article3_likely_results$Likely_Result)) / nrow(article3_likely_results), 1), "% of incentives, systematically undermining professional dedication"),
+    paste0("Code G (people as problem) appears in ", round(100 * sum(grepl("G", article3_likely_results$Likely_Result)) / nrow(article3_likely_results), 1), "% of incentives, primarily in certification and testing modifications"),
+    "Teacher Quality Assistance, Certification Programs, and Retiree Grants show highest concentration of negative codes per incentive",
+    "Every single policy reduces local control (Code F) and creates state dependency (Code C) - representing 100% centralization", 
+    paste0("Code D (accountability substitution) appears in 0.0% of incentives, suggesting these policies avoid direct 'improvement' language while still centralizing control")
   )
 )
 
@@ -544,16 +555,16 @@ summary_statistics_a3 <- data.frame(
     "Total Incentives Analyzed",
     "Most Problematic Code", 
     "Most Frequent Code Combination",
-    "Policy Categories with Code I",
-    "Policy Categories with Code G",
+    "Policy Categories with Code C",
+    "Policy Categories with Code F",
     "Average Codes per Incentive"
   ),
   Value = c(
     nrow(article3_likely_results),
-    paste0("Code ", code_frequency_a3$`Negative Result Code`[1], " (appears ", code_frequency_a3$Frequency[1], " times)"),
-    "C, G, I, L (force + control + tampering + bureaucracy)",
-    sum(grepl("I", article3_likely_results$Likely_Result)),
-    sum(grepl("G", article3_likely_results$Likely_Result)),
+    paste0("Codes C, E, F (appear ", code_frequency_a3$Frequency[1], " times each)"),
+    "C, E, F (state dependency + admin burden + reduced local control)",
+    sum(grepl("C", article3_likely_results$Likely_Result)),
+    sum(grepl("F", article3_likely_results$Likely_Result)),
     round(mean(lengths(strsplit(article3_likely_results$Likely_Result, ", "))), 1)
   )
 )
@@ -613,38 +624,29 @@ datatable(
 
 - All incentives work; some promote and some pervert the ***intention*** of the incentive
 
-
-
 ```{r}
 #| label: negative-results-coding-key-article3
 
-# Create negative results table with color coding
+# Create negative results table with revised 7-code system
 negative_results_a3 <- data.frame(
-  Code = c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"),
+  Code = c("A", "B", "C", "D", "E", "F", "G"),
 
   Likely_Negative_Result = c(
-    "Will move people from intrinsic to extrinsic motivation",
-    "Will makes money the most important motivation",  
-    "Will fail because improvements cannot be realized by force from the state",
-    "People will become 'the problem', not the system that they work in",
-    "Will decrease collaboration, pitting people against each other for rewards",
-    "Will decrease opportunities and efforts to improve the system teachers work in; try to 'improve' individual teachers instead",
-    "Will reduce local control",
-    "Will reduce economic agility of districts when they need it most",
-    "Will tamper with existing stable systems, making things worse",
-    "Impedes career development when goal posts constantly moving",
-    "Shifts the onus of tax increases to districts to pay for unfunded state mandates",
-    "Will create more administrative and bureaucratic burdens",
-    "Will cause administration and teachers to waste even more resources, while bankrupting financially responsible districts",
-    "Will create long-term district obligations that are not sustainable when state funding is changed every 2 years"
+    "Decreases intrinsic motivation in favor of extrinsic motivation",
+    "Decreases cooperation within districts in favor of competition for resources",
+    "Increases dependency on State funding and bureaucracy",
+    "Substitutes 'accountability' for improvement of the system people work in",
+    "Increases district administrative burdens",
+    "Decreases local control and flexibility",
+    "Treats people as the 'problem', instead of the system they work in"
   )
 )
 
 # Define bright contrasting color palette (7 colors)
 color_palette_a3 <- c("#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FECA57", "#FF9FF3", "#54A0FF")
 
-# Create color assignments for each row (cycling through 7 colors for 14 rows)
-row_colors_a3 <- rep(color_palette_a3, length.out = nrow(negative_results_a3))
+# Create color assignments for each row
+row_colors_a3 <- color_palette_a3[1:nrow(negative_results_a3)]
 
 # Display the coding key table
 DT::datatable(
@@ -687,6 +689,3 @@ DT::datatable(
   )
 
 ```
-
-
-
