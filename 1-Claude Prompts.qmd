@@ -89,7 +89,7 @@ Here is the new DAG conceptual code:
 ## FIRST PROMPT - TEMPLATE CODE FOR ANALYZING LEGISLATION:
 
 
-I will first transmit to you a fully operational TEMPLATE for building out tables based on your analysis of the legislative code sections that will come to you in the next prompt.  Use this a template for building out the tables for a new Quarto document based on the sections of legislation I will transmit in the next prompt.
+I am transmitting to you a fully operational TEMPLATE for building out tables based on your analysis of the legislative code sections that will come to you in the next prompt.  Use this a template for building out the tables for a new Quarto document based on the sections of legislation I will transmit in the next prompt.
 
 
 
@@ -103,14 +103,12 @@ DO NOTHING UNTIL YOU RECEIVE MY NEXT PROMPT
 ## SECOND SUBMIT PDF OF LEGISLATIVE CODE SECTIONS TO BE ANALYSED:
 
 
-Here is the pdf file with the legislative code for analysis. 
+THERE ARE A LOT OF INSTRUCTIONS HERE SO READ THEM CAREFULLY
 
-
-ANALYZE ONLY Article 4 (Sections 4.27-4.40). 
-STOP ANALYSIS AT Article 4, Section 4.41. 
-EXCLUDE Section 4.41 and all subsequent content.
+ANALYZE ONLY Article 5 (Sections 5.01 - 5.09). 
+STOP ANALYSIS AT Article 5, Section 5.10. 
+EXCLUDE Section 5.10 and all subsequent content.
 Document this scope in the YAML description field.
-
 
 
 Rules for composition of new code:
@@ -122,6 +120,8 @@ Pay attention to my preferences for categories, section headings, style, formatt
 Populate columns 1, 2, 3 AND 4 of the new MAIN TABLE based on your careful and thoughtful analysis of the pdf document. 
 
 CREATE ALL THE SUPPLEMENTAL TABLES AS WELL.
+
+ADD SECTION AT THE END NAMED "INTERESTING..." AND INCLUDE IN THAT SECTION (IN A VERY BRIEF WAY) ANY IRONIC OR COUNTER-INTUTIVE IMPLICATIONS OF THE LEGISLATIVE CODE YOU JUST ANALYZED - THIS IS SECTION IS NEW FOR THIS CYCLE OF TABLES.
 
 
 1. ALWAYS use the DT() package, not the kable/kableExtra packages.
@@ -142,9 +142,43 @@ CREATE ALL THE SUPPLEMENTAL TABLES AS WELL.
 
 DO NOT REPEAT CONTENT IN THE ARTIFACT!
 
+Watch out for unexpected string constants
 
-Here are the legislative code sections for you to analyze:
+put in code to verify that there's a match in the number of rows between the different columns in the data frame. Make the code a generic check so the same code will work with all future jobs no matter how many rows are generated.  Ensure all pertinent vectors have exactly the same length.
 
+Here is the pdf file with the legislative code for analysis. 
+
+
+
+
+
+
+# PROMPT TO CREATE EXECUTIVE SUMMARIES FOR EARLIER FILES
+
+## FIRST PROMPT:
+
+
+Our earlier legislative code analysis did not contain an Executive Summary section where you put your opinions of the ironic or counter-intuitive aspects of the legislative code sections we analyzed.  
+
+Here is a NEW, REVISED TEMPLATE for constructing the rmarkdown code that I can add to my existing QUARTO document.
+
+DON'T DO ANYTHING UNTIL YOU GET MY NEXT PROMPT, which will contain the rmarkdown code we arrived at in our analysis of Article 4 of the legislative code.  Here's the TEMPLATE:   
+
+
+
+
+## SECOND PROMPT:
+
+
+Here is the relevant Quarto content for you to analyze and then create the brief executive summary.  
+
+DO NOT INCLUDE A YAML OR LOAD ANY LIBRARIES.  
+
+INCLUDE ALL RMARKDOWN SYNTAX AND FORMATTING.
+
+DO NOT COPY ANY CODE WHATSOEVER FROM THE CONTENT PROVIDED.
+
+I will be cutting and pasting this new code into my existing Quarto documents.
 
 
 

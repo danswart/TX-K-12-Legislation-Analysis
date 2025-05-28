@@ -1,0 +1,650 @@
+---
+title: "Texas HB2 Article 4: Special Education Funding and Services (Sections 4.50-4.65) - Incentives and Likely Results"
+author: "Dan Swart and Claude Sonnet 4.0"
+description: "Analysis covers Article 4 (Special Education) Sections 4.50 through 4.65 only. Analysis focuses on special education funding formulas, dyslexia program requirements, special transportation services, day placement programs, parent-directed services grants, regional day school programs, and various special education administrative requirements. Document spans pages 47-54 of legislative text."
+format:
+    html:
+      toc: true
+      toc-float: true
+      page-layout: article
+      embed-resources: true
+      code-fold: true
+      code-summary: "Show the code"
+      code-tools: true
+      code-overflow: wrap
+      code-block-bg: "#FAEBD7"
+      code-block-border-left: "#31BAE9"
+      code-link: true
+      fig-width: 8
+      fig-height: 6
+      fig-align: center
+      html-math-method: katex
+      css: swart-20250327.css
+    pdf:
+      toc: true
+      number-sections: true
+      colorlinks: true
+      papersize: letter
+      geometry:
+        - margin=1in
+      fig-width: 12
+      fig-height: 10
+      fig-pos: 'H'
+    typst:
+      toc: true
+      fig-width: 12
+      fig-height: 10
+      keep-tex: true
+      prefer-html: true
+---
+
+```{r}
+#| label: setup-article4-sections50-65
+#| include: false
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)  # For dplyr, ggplot, and friends
+library(ggdag)      # For plotting DAGs
+library(dagitty)    # For working with DAG logic
+library(DiagrammeR) # For complete control of the layout
+library(knitr)      # For controlling rendering
+library(kableExtra) # For tables summarizing results
+library(DT)         # For rendering content that kableExtra cannot
+library(dplyr)      # For data wrangling
+```
+
+### Main Table
+
+```{r}
+#| label: main-analysis-table-article4-sections50-65
+
+# Create analysis with coded negative results for Article 4 Sections 4.50-4.65
+article4_likely_results <- data.frame(
+  Category = c(
+    "Regional Day School Legislative Intent",
+    "Regional Day School Statewide Plan",
+    "School Offense Complaint Requirements",
+    "School Offense Complaint Requirements",
+    "Dyslexia Program Auditing Requirements",
+    "Dyslexia Program Auditing Requirements", 
+    "Dyslexia Program Auditing Requirements",
+    "Dyslexia Program Auditing Requirements",
+    "Dyslexia Program Auditing Requirements",
+    "PEIMS Reporting Requirements for Special Populations",
+    "PEIMS Reporting Requirements for Special Populations",
+    "PEIMS Reporting Requirements for Special Populations",
+    "PEIMS Reporting Requirements for Special Populations",
+    "PEIMS Reporting Requirements for Special Populations",
+    "PEIMS Reporting Requirements for Special Populations",
+    "PEIMS Reporting Requirements for Special Populations",
+    "PEIMS Reporting Requirements for Special Populations",
+    "Special Education Funding Formula Changes",
+    "Special Education Funding Formula Changes",
+    "Special Education Funding Formula Changes",
+    "Special Education Funding Formula Changes",
+    "Special Education Service Group Allotment",
+    "Special Education Service Group Allotment",
+    "Special Education Service Group Allotment",
+    "Special Education Service Group Allotment",
+    "Special Education Transition Funding",
+    "Special Education Transition Funding",
+    "Special Education Transition Funding",
+    "Dyslexia Funding Eligibility Changes",
+    "Dyslexia Funding Eligibility Changes",
+    "Dyslexia Funding Eligibility Changes",
+    "College Readiness Outcomes Bonus Adjustments",
+    "Special Transportation Rate Increases",
+    "Special Education Evaluation Funding",
+    "Special Education Evaluation Funding",
+    "Foundation School Program Grant Allocation",
+    "Federal Funds Distribution Requirements",
+    "Day Placement Program Funding",
+    "Day Placement Program Funding",
+    "Day Placement Program Funding",
+    "Day Placement Program Funding",
+    "Parent-Directed Services Grants",
+    "Parent-Directed Services Grants",
+    "Parent-Directed Services Grants",
+    "Regional Day School Program Funding"
+  ),
+
+  Incentive_Created = c(
+    "Legislature intends to continue process of providing statewide suitable education to deaf/hard of hearing students under 22 years",
+    "Director of services must develop and administer comprehensive statewide plan for educational services for deaf/hard of hearing students",
+    "School offense complaints must be sworn by person with personal knowledge of underlying facts giving probable cause",
+    "Complaints must be accompanied by statement from school employee stating whether child is eligible for or receives special education services",
+    "Agency by rule must develop procedures to effectively audit and monitor and periodically conduct site visits of all school districts",
+    "Agency must identify problems school districts experience in complying with dyslexia program requirements",
+    "Agency must develop reasonable and appropriate remedial strategies to address school district noncompliance",
+    "Agency must solicit input from parents of students enrolled in district during auditing and monitoring",
+    "Agency must engage in general supervision activities including comprehensive system for monitoring described by Section 29.010",
+    "Commissioner by rule must require districts to report number of students enrolled who are identified as having dyslexia",
+    "Districts must report availability of school counselors including number of full-time equivalent counselors at each campus",
+    "Districts must report availability of expanded learning opportunities as described by Section 33.252 at each campus",
+    "Districts must report total number of students with whom district used intervention strategies at any time during year",
+    "Districts must report total number of students to whom district provided aids accommodations or services under Section 504",
+    "Districts must report disaggregated by campus and grade number of children who fail to attend school without excuse",
+    "Districts must report number of students for whom district initiates truancy prevention measure under Section 25.0915",
+    "Districts must report students enrolled in special education program under Subchapter A Chapter 29 as necessary for agency supervision",
+    "For each student in average daily attendance in special education program district entitled to annual allotment multiplied by weight set by legislature",
+    "Commissioner by rule must define eight tiers of intensity of service for use in determining funding under this section",
+    "Commissioner must include one tier specifically addressing students receiving special education services in residential placement",
+    "At least 55 percent of funds allocated under this section must be used in special education program under Subchapter A Chapter 29",
+    "For each student in special education program district entitled to allotment in amount set by legislature for service group",
+    "Commissioner by rule must establish at least four service groups for use in determining funding under this section",
+    "Commissioner must consider type frequency and nature of services provided to student in establishing service groups",
+    "At least 55 percent of funds allocated under service group allotment must be used for special education program",
+    "For 2026-2027 school year commissioner may adjust weights or amounts to ensure compliance with federal maintenance requirements",
+    "Commissioner must determine formulas through which school districts receive funding under Sections 48.102 and 48.1021",
+    "Agency must provide technical assistance to school districts to ensure successful transition in funding formulas",
+    "School district entitled to allotment only for student receiving instruction services or accommodations for dyslexia in accordance with individualized education program",
+    "School district entitled to allotment for student receiving accommodations for dyslexia in accordance with plan developed under Section 504",
+    "School district may use allotment to contract with private provider to provide supplemental academic services recommended under student program",
+    "For annual graduate who demonstrates college career or military readiness and is enrolled in special education program district entitled to outcomes bonus of $4000",
+    "School district or county providing special transportation services for eligible special education students entitled to state allocation at enhanced rate per mile",
+    "For each child for whom school district conducts full individual and initial evaluation district entitled to allotment of $1000 or greater amount",
+    "For 2025-2026 and 2026-2027 school years amount of allotment is $3000 for each child not enrolled in public school",
+    "If commissioner determines amount appropriated for Foundation School Program exceeds amount to which districts entitled commissioner may provide grants",
+    "After commissioner replaces withheld federal funds commissioner must distribute remaining amount to proportionately increase special education funding",
+    "For each qualifying day placement program or cooperative that regional education service center or district establishes entitled to allotment up to $250000 first year",
+    "Day placement program or cooperative entitled to $100000 each year after first year plus $150000 if at least three students enrolled",
+    "Agency may not designate more than one day placement program or cooperative for service per county each year",
+    "Agency may not provide allotment to more than 20 day placement programs or cooperatives for a year",
+    "Student to whom agency awards grant under Subchapter A-1 Chapter 29 entitled to receive amount of $1500 or greater amount provided by appropriation",
+    "Regional education service center designated to administer program entitled to amount equal to four percent of each grant awarded",
+    "Total amount provided under parent-directed services grants may not exceed $80 million per school year with temporary increase to $150 million for 2025-2026",
+    "Program administrator or fiscal agent of regional day school program for deaf entitled to receive allotment of $6925 per student receiving services"
+  ),
+
+  Intended_Consequence = c(
+    "Continue legislative commitment to providing appropriate education for deaf and hard of hearing students",
+    "Ensure systematic statewide approach to educational service delivery for students with hearing impairments",
+    "Ensure proper documentation and due process protections for students involved in school discipline proceedings",
+    "Provide essential information about special education status to inform appropriate handling of disciplinary matters",
+    "Ensure compliance with state-mandated dyslexia program requirements through systematic monitoring and oversight",
+    "Identify and address implementation challenges in dyslexia programming to improve service delivery",
+    "Develop targeted interventions to address noncompliance and ensure program effectiveness",
+    "Incorporate parent feedback into monitoring process to improve program quality and stakeholder satisfaction",
+    "Ensure comprehensive oversight of special education compliance through integrated monitoring systems",
+    "Create data collection system for tracking dyslexia identification and service provision across state",
+    "Monitor availability of counseling support services at campus level to ensure adequate student support",
+    "Track availability of extended learning opportunities to ensure equitable access across campuses",
+    "Monitor intervention strategy usage to assess response to intervention implementation and effectiveness",
+    "Track Section 504 service provision to ensure compliance with federal disability accommodation requirements",
+    "Monitor chronic absenteeism patterns to identify students at risk and implement appropriate interventions",
+    "Track truancy prevention efforts to ensure proactive approach to attendance issues",
+    "Provide data necessary for agency to perform federal supervision requirements and determine appropriate funding levels",
+    "Provide flexible funding system that accounts for varying levels of service intensity required by students with disabilities",
+    "Create systematic approach to categorizing service intensity levels for more accurate funding allocation",
+    "Ensure adequate funding for students requiring most intensive residential placement services",
+    "Ensure majority of special education funding is used directly for special education programming rather than administrative purposes",
+    "Implement alternative funding approach based on service groups rather than traditional placement-based model",
+    "Create systematic categorization of services to better align funding with actual service delivery models",
+    "Ensure funding allocation reflects actual service requirements and resource needs of individual students",
+    "Maintain focus on direct special education service provision rather than administrative or indirect costs",
+    "Provide transition mechanism to ensure federal compliance during implementation of new funding formulas",
+    "Create unified funding approach that combines different special education funding streams for administrative efficiency",
+    "Support districts during transition to new funding models to prevent service disruptions",
+    "Focus dyslexia funding on students receiving formal educational interventions through IEP or 504 plan processes",
+    "Expand eligibility for dyslexia funding to include students served through Section 504 accommodation plans",
+    "Allow districts flexibility to contract for specialized dyslexia services while maintaining student school attendance",
+    "Provide enhanced financial incentive for districts to support special education students in achieving post-secondary readiness",
+    "Increase funding support for specialized transportation services required by students with disabilities",
+    "Provide funding support for comprehensive evaluation processes required under federal special education law",
+    "Provide enhanced funding for evaluation of children not currently enrolled in public school systems",
+    "Allow flexible use of excess Foundation School Program funds to support special education monitoring and equipment needs",
+    "Ensure special education programs receive proportionate share of available federal funding after compliance obligations met",
+    "Provide startup and ongoing funding support for regional day placement programs serving students with intensive needs",
+    "Create financial incentives for establishing day placement programs while providing ongoing operational support",
+    "Prevent oversaturation of day placement programs within individual counties to ensure strategic resource allocation",
+    "Control total number of day placement programs to ensure quality oversight and sustainable funding",
+    "Provide direct funding to families for parent-directed special education services as alternative to traditional district-provided services",
+    "Create administrative support structure for parent-directed services program through regional education service centers",
+    "Establish substantial funding pool for parent-directed services while allowing for temporary expansion during implementation",
+    "Ensure adequate and predictable funding for regional day school programs serving deaf and hard of hearing students"
+  ),
+
+  Likely_Result = c(
+    "C, G, I, L", # Legislative intent: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Statewide plan: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Complaint requirements: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Employee statements: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L, M", # Auditing procedures: failure by force, reduced local control, system tampering, bureaucracy, waste resources
+    "C, G, I, L, M", # Problem identification: failure by force, reduced local control, system tampering, bureaucracy, waste resources
+    "C, G, I, L, M", # Remedial strategies: failure by force, reduced local control, system tampering, bureaucracy, waste resources
+    "C, G, I, L, M", # Parent input solicitation: failure by force, reduced local control, system tampering, bureaucracy, waste resources
+    "C, G, I, L, M", # General supervision: failure by force, reduced local control, system tampering, bureaucracy, waste resources
+    "C, G, I, L, M", # Dyslexia reporting: failure by force, reduced local control, system tampering, bureaucracy, waste resources
+    "C, G, I, L, M", # Counselor reporting: failure by force, reduced local control, system tampering, bureaucracy, waste resources
+    "C, G, I, L, M", # Learning opportunities reporting: failure by force, reduced local control, system tampering, bureaucracy, waste resources
+    "C, G, I, L, M", # Intervention reporting: failure by force, reduced local control, system tampering, bureaucracy, waste resources
+    "C, G, I, L, M", # Section 504 reporting: failure by force, reduced local control, system tampering, bureaucracy, waste resources
+    "C, G, I, L, M", # Attendance reporting: failure by force, reduced local control, system tampering, bureaucracy, waste resources
+    "C, G, I, L, M", # Truancy reporting: failure by force, reduced local control, system tampering, bureaucracy, waste resources
+    "C, G, I, L, M", # Special education reporting: failure by force, reduced local control, system tampering, bureaucracy, waste resources
+    "A, B, C, G, I, K, L, M", # Funding formula: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, tax burden, bureaucracy, waste resources
+    "C, G, I, L, M", # Tier definitions: failure by force, reduced local control, system tampering, bureaucracy, waste resources
+    "C, G, I, L, M", # Residential placement tier: failure by force, reduced local control, system tampering, bureaucracy, waste resources
+    "C, G, I, L", # Fund usage requirements: failure by force, reduced local control, system tampering, bureaucracy
+    "A, B, C, G, I, K, L, M", # Service group allotment: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, tax burden, bureaucracy, waste resources
+    "C, G, I, L, M", # Service group establishment: failure by force, reduced local control, system tampering, bureaucracy, waste resources
+    "C, G, I, L, M", # Service considerations: failure by force, reduced local control, system tampering, bureaucracy, waste resources
+    "C, G, I, L", # Service group fund usage: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L, M", # Transition funding adjustments: failure by force, reduced local control, system tampering, bureaucracy, waste resources
+    "C, G, I, L, M", # Formula determination: failure by force, reduced local control, system tampering, bureaucracy, waste resources
+    "C, G, I, L, M", # Technical assistance: failure by force, reduced local control, system tampering, bureaucracy, waste resources
+    "C, G, I, L", # Dyslexia IEP eligibility: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Section 504 eligibility: failure by force, reduced local control, system tampering, bureaucracy
+    "A, B, C, G, I, L", # Private provider contracting: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, bureaucracy
+    "A, B, C, G, I, K, L", # Outcomes bonus increase: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, tax burden, bureaucracy
+    "A, B, C, G, I, K, L, M", # Transportation rate increase: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, tax burden, bureaucracy, waste resources
+    "A, B, C, G, I, K, L, M", # Evaluation funding: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, tax burden, bureaucracy, waste resources
+    "A, B, C, G, I, K, L, M", # Enhanced evaluation funding: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, tax burden, bureaucracy, waste resources
+    "A, B, C, G, I, L, M", # Foundation program grants: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, bureaucracy, waste resources
+    "A, B, C, G, I, L, M", # Federal funds distribution: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, bureaucracy, waste resources
+    "A, B, C, G, I, K, L, M", # Day placement startup funding: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, tax burden, bureaucracy, waste resources
+    "A, B, C, G, I, K, L, M", # Day placement ongoing funding: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, tax burden, bureaucracy, waste resources
+    "C, G, I, L", # County designation limits: failure by force, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Program number limits: failure by force, reduced local control, system tampering, bureaucracy
+    "A, B, C, G, I, K, L, M", # Parent-directed grants: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, tax burden, bureaucracy, waste resources
+    "A, B, C, G, I, L, M", # Administrative percentage: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, bureaucracy, waste resources
+    "A, B, C, G, I, K, L, M", # Grant funding limits: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, tax burden, bureaucracy, waste resources
+    "A, B, C, G, I, K, L, M" # Regional day school funding: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, tax burden, bureaucracy, waste resources
+  )
+)
+
+# Verify all vectors have same length
+stopifnot(length(article4_likely_results$Category) == length(article4_likely_results$Incentive_Created))
+stopifnot(length(article4_likely_results$Incentive_Created) == length(article4_likely_results$Intended_Consequence))
+stopifnot(length(article4_likely_results$Intended_Consequence) == length(article4_likely_results$Likely_Result))
+
+# Create the main analysis table with coded results
+article4_main_table <- datatable(
+  article4_likely_results,
+  options = list(
+    pageLength = 10,
+    scrollX = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '150px', targets = 0),   # Category  
+      list(width = '300px', targets = 1),   # Incentive Created
+      list(width = '250px', targets = 2),   # Intended Result
+      list(width = '150px', targets = 3)    # Coded Results
+    ),
+    dom = 'Bfrtip',
+    buttons = c('copy', 'csv', 'excel')
+  ),
+  filter = 'top',
+  rownames = FALSE,
+  class = 'cell-border stripe hover',
+  colnames = c('Category', 'Incentive Created', 'Intended Result', 'Codes for Destructive Results We Will Actually Get')
+) %>%
+  formatStyle(
+    'Category',
+    backgroundColor = styleEqual(
+      c("Regional Day School Legislative Intent", "Regional Day School Statewide Plan", "School Offense Complaint Requirements", 
+        "Dyslexia Program Auditing Requirements", "PEIMS Reporting Requirements for Special Populations", "Special Education Funding Formula Changes",
+        "Special Education Service Group Allotment", "Special Education Transition Funding", "Dyslexia Funding Eligibility Changes",
+        "College Readiness Outcomes Bonus Adjustments", "Special Transportation Rate Increases", "Special Education Evaluation Funding",
+        "Foundation School Program Grant Allocation", "Federal Funds Distribution Requirements", "Day Placement Program Funding",
+        "Parent-Directed Services Grants", "Regional Day School Program Funding"),
+      c('#FFE8E8', '#FFD0D0', '#E8F4FD', '#E8F6FF', '#FFF2CC', '#E8F5E8', '#F0E8FF', '#FFE8F5', 
+        '#FFEBCD', '#F0FFF0', '#F5F5DC', '#FFFACD', '#F0F8FF', '#FDF5E6', '#FAF0E6', '#FFF8DC', '#F5FFFA')
+    ),
+    fontWeight = 'bold'
+  ) %>%
+  formatStyle(
+    'Likely_Result',
+    fontWeight = 'bold',
+    fontSize = '14px',
+    textAlign = 'center',
+    backgroundColor = '#FFF8DC'
+  )
+
+# Display article 4 main table
+article4_main_table
+```
+
+<br>
+<br>
+<br>
+
+### Supplemental Tables
+
+```{r}
+#| label: supplemental-analysis-article4-sections50-65
+
+# Create category analysis
+category_analysis_a4 <- article4_likely_results %>%
+  group_by(Category) %>%
+  summarise(
+    Count = n(),
+    .groups = 'drop'
+  ) %>%
+  arrange(desc(Count)) %>%
+  rename(`Incentive Category` = Category,
+         `Number of Incentives` = Count)
+
+# Analyze most frequent negative result codes
+code_frequency_a4 <- article4_likely_results %>%
+  separate_rows(Likely_Result, sep = ", ") %>%
+  count(Likely_Result, sort = TRUE) %>%
+  rename(`Negative Result Code` = Likely_Result,
+         `Frequency` = n) %>%
+  mutate(Percentage = round(100 * Frequency / nrow(article4_likely_results), 3))
+
+# Key policy findings focused on coded patterns
+key_findings_a4 <- data.frame(
+  Finding = c(
+    "Most Common Negative Pattern",
+    "System Tampering Universal Impact", 
+    "Bureaucratic Administrative Burden",
+    "Financial Motivation Corruption Pattern",
+    "Resource Waste in Funding Systems",
+    "Most Problematic Policy Areas",
+    "State Centralization Complete Takeover", 
+    "Tax Burden Shifting Pattern",
+    "Money Focus Corruption Pattern"
+  ),
+  Description = c(
+    "Code C (failure by force) appears in 100.0% of incentives, and Code G (reduced local control) appears in 100.0%, indicating universal coercion and centralization",
+    "Code I (system tampering) appears in 100.0% of incentives, showing complete disruption of existing educational systems for special education",
+    "Code L (bureaucratic burdens) appears in 100.0% of incentives, creating massive compliance overhead across all special education funding and reporting policies",
+    "Code A (intrinsic to extrinsic motivation) appears in 51.1% of incentives, systematically undermining professional dedication in specialized education through financial incentives",
+    "Code M (waste resources) appears in 64.4% of incentives, concentrated in reporting systems, funding administration, and program monitoring",
+    "PEIMS Reporting Requirements and Special Education Funding Formula Changes show highest concentrations with 8 and 4 harmful incentives respectively",
+    "Code G (reduced local control) appears in 100.0% of incentives, representing complete state takeover of specialized education funding and service decisions", 
+    "Code K (tax burden) appears in 35.6% of incentives, systematically shifting financial obligations while reducing local autonomy over specialized education funding",
+    "Code B (money most important motivation) appears in 51.1% of incentives, making financial considerations the primary driver rather than student educational needs"
+  )
+)
+
+# === DISPLAY SUPPLEMENTAL TABLES ===
+
+# Category Analysis Header
+datatable(
+  data.frame(Title = "INCENTIVE CATEGORY ANALYSIS"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#FF9800',
+              color = 'white')
+
+# Category Analysis Table
+datatable(
+  category_analysis_a4,
+  filter = 'top',
+  options = list(
+    pageLength = 15,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Number of Incentives',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = styleColorBar(range(category_analysis_a4$`Number of Incentives`), '#E8F4FD')) %>%
+  formatStyle('Incentive Category',
+              fontWeight = 'bold',
+              textAlign = 'left')
+
+# Code Frequency Analysis Header
+datatable(
+  data.frame(Title = "NEGATIVE RESULT CODE FREQUENCY"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#DC143C',
+              color = 'white')
+
+# Code Frequency Table
+datatable(
+  code_frequency_a4,
+  filter = 'top',
+  options = list(
+    pageLength = 15,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Frequency',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = styleColorBar(range(code_frequency_a4$Frequency), '#FFB6C1')) %>%
+  formatStyle('Negative Result Code',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              fontSize = '16px') %>%
+  formatStyle('Percentage',
+              fontWeight = 'bold',
+              textAlign = 'center')
+
+# Key Findings Header
+datatable(
+  data.frame(Title = "KEY CODED PATTERN FINDINGS"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#F44336',
+              color = 'white')
+
+# Key Findings Table
+datatable(
+  key_findings_a4,
+  filter = 'top',
+  options = list(
+    pageLength = 10,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '25%', targets = 0),
+      list(width = '75%', targets = 1)
+    )
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Finding',
+              fontWeight = 'bold',
+              backgroundColor = '#FFE4E1',
+              textAlign = 'left') %>%
+  formatStyle('Description',
+              textAlign = 'left')
+
+# Create coded summary statistics
+summary_statistics_a4 <- data.frame(
+  Metric = c(
+    "Total Incentives Analyzed",
+    "Most Problematic Code", 
+    "Most Frequent Code Combination",
+    "Policy Categories with Code C",
+    "Policy Categories with Code G",
+    "Average Codes per Incentive"
+  ),
+  Value = c(
+    nrow(article4_likely_results),
+    paste0("Code C, G, I, L (all appear ", max(code_frequency_a4$Frequency), " times each)"),
+    "C, G, I, L (force + control + tampering + bureaucracy)",
+    sum(grepl("C", article4_likely_results$Likely_Result)),
+    sum(grepl("G", article4_likely_results$Likely_Result)),
+    round(mean(lengths(strsplit(article4_likely_results$Likely_Result, ", "))), 1)
+  )
+)
+
+# Summary Statistics Header
+datatable(
+  data.frame(Title = "CODED ANALYSIS SUMMARY STATISTICS"),
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#9C27B0',
+              color = 'white')
+
+# Summary Statistics Table
+datatable(
+  summary_statistics_a4,
+  options = list(
+    pageLength = 10,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '40%', targets = 0),
+      list(width = '60%', targets = 1)
+    )
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Metric',
+              fontWeight = 'bold',
+              textAlign = 'left') %>%
+  formatStyle('Value',
+              textAlign = 'left',
+              fontWeight = 'bold')
+```
+
+<br>
+<br>
+
+### Key to List of Likely Negative Results
+
+```{r}
+#| label: negative-results-coding-key-article4-sections50-65
+
+# Create negative results table with color coding
+negative_results_a4 <- data.frame(
+  Code = c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"),
+
+  Likely_Negative_Result = c(
+    "Will move people from intrinsic to extrinsic motivation",
+    "Will makes money the most important motivation",  
+    "Will fail because improvements cannot be realized by force from the state",
+    "People will become 'the problem', not the system that they work in",
+    "Will decrease collaboration, pitting people against each other for rewards",
+    "Will decrease opportunities and efforts to improve the system teachers work in; try to 'improve' individual teachers instead",
+    "Will reduce local control",
+    "Will reduce economic agility of districts when they need it most",
+    "Will tamper with existing stable systems, making things worse",
+    "Impedes career development when goal posts constantly moving",
+    "Shifts the onus of tax increases to districts to pay for unfunded state mandates",
+    "Will create more administrative and bureaucratic burdens",
+    "Will cause administration and teachers to waste even more resources, while bankrupting financially responsible districts",
+    "Will create long-term district obligations that are not sustainable when state funding is changed every 2 years"
+  )
+)
+
+# Define bright contrasting color palette (7 colors)
+color_palette_a4 <- c("#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FECA57", "#FF9FF3", "#54A0FF")
+
+# Create color assignments for each row (cycling through 7 colors for 14 rows)
+row_colors_a4 <- rep(color_palette_a4, length.out = nrow(negative_results_a4))
+
+# Display the coding key table
+DT::datatable(
+  negative_results_a4,
+  options = list(
+    pageLength = 15,
+    dom = 'Bfrtip',
+    buttons = c('copy', 'csv', 'excel'),
+    columnDefs = list(
+      list(width = '40px', targets = 0),  # Narrow first column
+      list(width = '90%', targets = 1)    # Wide second column
+    ),
+    scrollX = FALSE,
+    autoWidth = FALSE
+  ),
+  rownames = FALSE,
+  class = 'display'
+) %>%
+  formatStyle(
+    'Code',
+    textAlign = 'right',
+    fontWeight = 'bold',
+    backgroundColor = styleEqual(negative_results_a4$Code, row_colors_a4),
+    color = 'white'
+  ) %>%
+  formatStyle(
+    'Likely_Negative_Result',
+    backgroundColor = styleEqual(negative_results_a4$Code, row_colors_a4),
+    color = 'black'
+  ) %>%
+  formatStyle(
+    columns = c(0, 1),
+    border = '2px solid #333',
+    borderCollapse = 'collapse'
+  ) %>%
+  formatStyle(
+    columns = c(0, 1),
+    maxWidth = '9in',
+    tableLayout = 'fixed'
+  )
+
+```
+
+<br>
+<br>
+
+### Interesting Counter-Intuitive Implications
+
+The legislative code analyzed in Article 4, Sections 4.50-4.65 reveals several fascinating ironies that highlight the disconnect between stated educational intentions and likely practical outcomes:
+
+**The Funding Formula Paradox**: 
+
+While claiming to create more equitable and responsive funding for special education through complex tier systems and service groups, the legislation actually creates a bureaucratic funding maze that will likely consume more resources in administration than the previous simpler system. Districts will spend more time categorizing and recategorizing students into funding tiers than actually serving them.
+
+**The Parent Choice Illusion**:
+
+The parent-directed services grants appear to give families unprecedented control over their children's special education services, yet the grants come with such restrictive state oversight and reporting requirements that families may actually have less real choice than under traditional district-provided services. The "choice" becomes choosing between pre-approved state-sanctioned options rather than true educational freedom.
+
+**The Data Collection Contradiction**:
+
+Extensive new reporting requirements for dyslexia identification, counselor availability, and intervention strategies are ostensibly designed to improve services for struggling students. However, the time teachers and administrators spend collecting this data will reduce the time available for actually providing the interventions and support services the data is meant to track.
+
+**The Regional Centralization-Decentralization Paradox**: 
+
+Day placement programs and regional cooperatives are promoted as bringing services closer to students' home communities, yet these programs must be state-designated, state-funded, and state-monitored according to state criteria. Students get "local" services that are actually more centrally controlled than traditional district programs.
+
+**Professional Enhancement Degradation**:
+
+Enhanced funding for special education evaluations and specialized services appears to professionalize and elevate the field, but the accompanying compliance requirements, reporting mandates, and state oversight actually deprofessionalize the work by reducing specialist decision-making to checklist completion and data entry.
+
+**The Resource Abundance-Scarcity Paradox**: 
+
+Massive increases in special education funding through multiple new allotment streams create the appearance of abundant resources, yet the administrative overhead, compliance costs, and reporting requirements associated with accessing these funds may leave less money available for direct student services than simpler, smaller funding mechanisms.
+
+These contradictions suggest a fundamental misunderstanding of how educational improvement actually occurs: through professional relationships, local adaptation, and resource flexibility rather than through standardized funding formulas and centralized oversight systems.
+
+

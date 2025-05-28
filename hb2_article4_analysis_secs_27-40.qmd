@@ -54,6 +54,74 @@ library(kableExtra) # For tables summarizing results
 library(DT)         # For rendering content that kableExtra cannot
 library(dplyr)      # For data wrangling
 ```
+<br>
+<br>
+
+## Opinionated Executive Summary and Counter-Intuitive Implications
+The legislative code analyzed in Article 4's parent-directed services and dyslexia training framework reveals a systematic dismantling of local educational judgment disguised as "parental choice" and "specialized support." All code sections are evaluated based on my own "Table of Codes for Destructive Results We Will Actually Get" (see Table below).
+
+Disturbing is that 100% of incentives contain Code C (failure by central planning) and Code G (reduced local control), indicating complete state takeover of decisions that should belong to educators and families who actually know the children.
+
+
+#### The Parent Choice-Family Dependency Paradox:
+
+Parent-Directed Services Program promises unprecedented parental autonomy through state-funded accounts for supplemental services, flexible provider selection, and religious liberty protections, yet my coding reveals these policies will create failure by central planning (Code C in 100% of grants) while systematically replacing family independence with bureaucratic oversight. Like requiring parents to get government permission before choosing their children's tutors, these programs transform natural family decision-making into compliance theater where parents must prove their need to access their own assigned accounts.
+
+
+#### The Provider Autonomy-State Approval Contradiction:
+
+Provider and Vendor Criteria appear to protect religious liberty and institutional independence through explicit non-interference language and burden-of-proof requirements, yet the analysis shows systematic tampering (Code I in 100% of provider policies) that will destabilize existing successful relationships between families and service providers. 
+
+Parents who have spent years building trust with specific therapists or tutors will face state-approved provider networks instead of choosing based on their children's actual needs, creating the equivalent of requiring government licensing before parents can hire babysitters.
+
+
+#### The Professional Development-Training Industry Multiplication:
+
+The Dyslexia Teacher Training Grant Program promises evidence-based capacity building through high-quality training and credentialing programs with $350 million in potential funding, yet shows the highest concentration of negative codes with financial perverse incentives (Code A and B in 75% of training incentives) plus complete bureaucratic burden creation (Code L in 100% of cases). 
+
+Instead of improving reading instruction, this creates an elaborate professional development machinery that rewards compliance documentation over direct student support, ensuring the money never reaches classrooms while enriching the training industry that profits from teacher certification requirements.
+
+
+#### The Evidence-Based Support-Standardized Intervention Inversion:
+
+Grant Program Implementation appears to target resources toward districts lacking dyslexia capacity through stakeholder panels and evidence-based design requirements, yet Code F (individual vs system focus problems) combined with failure by central planning (Code C) will push students into standardized intervention pathways rather than truly individualized approaches. 
+
+The ultimate irony: policies claiming to build local capacity actually eliminate the local flexibility necessary for reading interventions that match each child's specific learning profile and community resources.
+
+
+#### The Religious Liberty-Regulatory Expansion Escalation:
+
+Participant Autonomy Protections promise comprehensive religious liberty safeguards through explicit non-interference language, burden-of-proof requirements, and least-restrictive-means standards, yet they systematically create regulatory infrastructure (Code L in 100% of autonomy policies) that benefits compliance administrators more than families.
+
+Instead of protecting genuine religious freedom, these policies create a special education legal framework where families must navigate complex regulatory systems to exercise rights they should have naturally, like requiring constitutional law degrees to attend church.
+
+
+#### The Final Determination-Appeal Elimination Amplification:
+
+Final Determination Authority promises efficient program administration through commissioner authority and elimination of appeals processes, yet Code I (system tampering) appears in 100% of determination policies, indicating these programs will destabilize existing functional relationships between families and districts. 
+
+Parents who have spent years working collaboratively with schools around their children's needs will be forced into state-administered systems with no recourse for disagreements, creating the educational equivalent of requiring federal approval for every family decision with no appeals process.
+
+
+#### The Account Access-Bureaucratic Navigation Multiplication:
+
+IEP Committee Information Requirements promise comprehensive parent information about supplemental services and account access instructions, yet the analysis shows Code G (reduced local control) in 100% of information incentives, meaning support will be achieved by eliminating the local decision-making authority that actually creates effective special education outcomes. 
+
+Like requiring parents to get driving directions from government agencies before visiting their children's schools, these policies assume families are better served by regulatory guidance than by direct relationships with knowledgeable professionals.
+
+
+#### Summary
+
+These contradictions reveal a parent-directed services system that has abandoned the development of family autonomy, provider relationships, and individualized programming in favor of centralized account management, procedural documentation, and bureaucratic coordination mechanisms.
+
+Like trying to improve family dinners by requiring state approval of every recipe and dining room conversation, these policies assume students with disabilities are better served by regulatory oversight than by knowledgeable families working directly with trusted providers.
+
+They systematically undermine the local decision-making authority, stable service relationships, and individualized programming flexibility that actually create effective special education outcomes, while creating a parent-directed services industrial complex that costs hundreds of millions in state funding while producing administrators and consultants trained to navigate bureaucratic systems rather than to build relationships with students and families around individual needs and strengths.
+
+<br>
+<br>
+
+## Detailed Analysis
 
 ### Main Table
 

@@ -54,6 +54,55 @@ library(kableExtra) # For tables summarizing results
 library(DT)         # For rendering content that kableExtra cannot
 library(dplyr)      # For data wrangling
 ```
+<br>
+<br>
+
+## Opinionated Executive Summary and Counter-Intuitive Implications
+
+The legislative code analyzed in Article 4's special education framework reveals a systematic dismantling of local educational judgment disguised as "student support" and "federal compliance." All code sections are evaluated based on my own "Table of Codes for Destructive Results We Will Actually Get" (see Table below).
+
+Most disturbing is that 100% of incentives contain Code C (failure by central planning) and Code G (reduced local control), indicating complete state takeover of decisions that should belong to educators who actually know the children.
+
+#### The Community Support-Family Isolation Paradox:
+
+Community Support Services Grant Programs promise comprehensive family assistance through systematic state-administered funding for in-home support, behavioral interventions, respite care, and case management, yet my coding reveals these policies will create failure by central planning (Code C in 100% of grants) while systematically replacing family autonomy with bureaucratic oversight. Like requiring families to get government permission before helping their own children, these grants transform natural family problem-solving into compliance theater where parents must prove their incompetence to access help.
+
+#### The Hospital Education-Student Disruption Multiplication:
+
+Hospital Education Student Service Classifications appear to ensure educational continuity during medical treatment through flexible attendance accounting and service provision, yet the analysis shows systematic tampering (Code I in 100% of hospital policies) that will destabilize existing successful partnerships between hospitals, families, and school districts. Students recovering from serious medical conditions will face educational bureaucracy battles instead of healing-focused learning, creating the equivalent of requiring surgery patients to fill out school enrollment forms before receiving medical care.
+
+#### The Funding Formula-Resource Chaos Inversion:
+
+The Special Education Service Group Allotment System and Transition Funding Formula promise equitable resource distribution through systematic service categorization and $350 million funding increases, yet shows the highest concentration of negative codes with financial perverse incentives (Code A and B in 80% of funding incentives) plus complete bureaucratic burden creation (Code L in 100% of cases). Instead of improving services, this creates an elaborate financial machinery that rewards compliance documentation over direct student support, ensuring the money never reaches classrooms while enriching the consulting industry that profits from complexity.
+
+#### The Dyslexia Support-Individual Standardization Contradiction:
+
+Dyslexia Program Allotment Requirements appear to target resources toward students actually receiving services through individualized education programs and Section 504 accommodations, yet Code F (individual vs system focus problems) combined with failure by central planning (Code C) will push students into standardized intervention pathways rather than truly individualized approaches. The ultimate irony: policies claiming to individualize dyslexia support actually eliminate the local flexibility necessary for reading interventions that match each child's specific learning profile.
+
+#### The Representative Empowerment-Advocacy Industrialization Escalation:
+
+Special Education Representative Qualifications and Grant Eligibility Criteria promise improved parent advocacy through professional standards and additional funding when districts lack resources, yet they systematically create advocacy-for-profit systems (Code A in 85% of representative policies) that benefit professional advocates more than families. Instead of empowering parents to understand their children's needs, these policies create a special education legal industry where families must hire representatives to navigate systems designed to be incomprehensible, like requiring lawyers to order coffee.
+
+#### The IEP Facilitation-Conflict Manufacturing Amplification:
+
+IEP Facilitation Program Administration promises collaborative dispute resolution through independent facilitators and structured processes, yet Code I (system tampering) appears in 100% of facilitation policies, indicating these programs will destabilize existing functional relationships between families and schools. Districts that have spent years building trust around individual students will be forced to include state-approved facilitators in intimate conversations about children's needs, creating the educational equivalent of requiring marriage counselors at every family dinner.
+
+#### The Federal Compliance-Local Chaos Multiplication:
+
+All funding formulas and service requirements claim alignment with federal mandates through systematic reporting and technical assistance, yet the analysis shows Code G (reduced local control) in 100% of incentives, meaning compliance will be achieved by eliminating the local decision-making authority that actually creates effective special education outcomes. Like requiring hospitals to get federal approval before treating patients, these policies assume students with disabilities are better served by regulatory oversight than by knowledgeable professionals working directly with families.
+
+#### Summary
+
+These contradictions reveal a special education system that has abandoned the development of professional relationships, family partnerships, and individualized programming in favor of centralized funding control, procedural documentation, and bureaucratic coordination mechanisms.
+
+Like trying to improve restaurants by requiring chefs to get approval from food critics before every meal, these policies assume students with disabilities are better served by regulatory oversight than by knowledgeable professionals working directly with families.
+
+They systematically undermine the local decision-making authority, stable service relationships, and individualized programming flexibility that actually create effective special education outcomes, while creating a special education industrial complex that costs hundreds of millions in state funding while producing administrators and consultants trained to navigate bureaucratic systems rather than to build relationships with students and families around individual needs and strengths.
+
+<br>
+<br>
+
+## Detailed Analysis
 
 ### Main Table
 
@@ -162,36 +211,36 @@ article4_likely_results <- data.frame(
   ),
 
   Likely_Result = c(
-    "A, B, C, G, I, K, L", # Grant program rules: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, tax burden, bureaucracy
-    "A, B, C, G, I, L", # Grant targeting: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, bureaucracy
-    "A, B, C, F, G, I, L", # Support services: intrinsic→extrinsic, money focus, failure by force, individual focus, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Parent notification: failure by force, reduced local control, system tampering, bureaucracy
-    "A, B, C, G, I, L, M", # Account creation: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "A, B, C, G, I, L", # Grant procedures: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Regional administration: failure by force, reduced local control, system tampering, bureaucracy
-    "C, F, G, I, L", # Hospital classification: failure by force, individual focus, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Attendance counting: failure by force, reduced local control, system tampering, bureaucracy
-    "A, B, C, G, I, K, L", # Service groups: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, tax burden, bureaucracy
-    "C, G, I, L", # Service considerations: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Equipment requirements: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L, M", # Budget submissions: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "A, B, C, G, I, K, L", # Weight adjustments: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, tax burden, bureaucracy
-    "A, B, C, G, I, L", # Formula determination: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, bureaucracy
-    "A, B, C, G, I, K, L", # Funding increase: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, tax burden, bureaucracy
-    "C, G, I, L, M", # District reporting: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, G, I, L, M", # Technical assistance: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "A, B, C, F, G, I, L", # Dyslexia allotment: intrinsic→extrinsic, money focus, failure by force, individual focus, reduced local control, system tampering, bureaucracy
-    "A, B, C, F, G, I, L", # Service requirements: intrinsic→extrinsic, money focus, failure by force, individual focus, reduced local control, system tampering, bureaucracy
-    "A, B, C, G, I, L", # Private contracting: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Representative qualifications: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Knowledge requirements: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Ethics requirements: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Written agreements: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Conflict restrictions: failure by force, reduced local control, system tampering, bureaucracy
-    "A, B, C, G, I, K, L", # Grant eligibility: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, tax burden, bureaucracy
-    "A, B, C, G, I, L", # Funding insufficiency: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Facilitation rules: failure by force, reduced local control, system tampering, bureaucracy
-    "A, B, C, G, I, K, L" # Federal funding: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, tax burden, bureaucracy
+    "A, B, C, G, I, K, L", # Grant program rules: intrinsic→extrinsic, money focus, failure by central planning, reduced local control, system tampering, tax burden, bureaucracy
+    "A, B, C, G, I, L", # Grant targeting: intrinsic→extrinsic, money focus, failure by central planning, reduced local control, system tampering, bureaucracy
+    "A, B, C, F, G, I, L", # Support services: intrinsic→extrinsic, money focus, failure by central planning, individual focus, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Parent notification: failure by central planning, reduced local control, system tampering, bureaucracy
+    "A, B, C, G, I, L, M", # Account creation: intrinsic→extrinsic, money focus, failure by central planning, reduced local control, system tampering, bureaucracy, waste resources
+    "A, B, C, G, I, L", # Grant procedures: intrinsic→extrinsic, money focus, failure by central planning, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Regional administration: failure by central planning, reduced local control, system tampering, bureaucracy
+    "C, F, G, I, L", # Hospital classification: failure by central planning, individual focus, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Attendance counting: failure by central planning, reduced local control, system tampering, bureaucracy
+    "A, B, C, G, I, K, L", # Service groups: intrinsic→extrinsic, money focus, failure by central planning, reduced local control, system tampering, tax burden, bureaucracy
+    "C, G, I, L", # Service considerations: failure by central planning, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Equipment requirements: failure by central planning, reduced local control, system tampering, bureaucracy
+    "C, G, I, L, M", # Budget submissions: failure by central planning, reduced local control, system tampering, bureaucracy, waste resources
+    "A, B, C, G, I, K, L", # Weight adjustments: intrinsic→extrinsic, money focus, failure by central planning, reduced local control, system tampering, tax burden, bureaucracy
+    "A, B, C, G, I, L", # Formula determination: intrinsic→extrinsic, money focus, failure by central planning, reduced local control, system tampering, bureaucracy
+    "A, B, C, G, I, K, L", # Funding increase: intrinsic→extrinsic, money focus, failure by central planning, reduced local control, system tampering, tax burden, bureaucracy
+    "C, G, I, L, M", # District reporting: failure by central planning, reduced local control, system tampering, bureaucracy, waste resources
+    "C, G, I, L, M", # Technical assistance: failure by central planning, reduced local control, system tampering, bureaucracy, waste resources
+    "A, B, C, F, G, I, L", # Dyslexia allotment: intrinsic→extrinsic, money focus, failure by central planning, individual focus, reduced local control, system tampering, bureaucracy
+    "A, B, C, F, G, I, L", # Service requirements: intrinsic→extrinsic, money focus, failure by central planning, individual focus, reduced local control, system tampering, bureaucracy
+    "A, B, C, G, I, L", # Private contracting: intrinsic→extrinsic, money focus, failure by central planning, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Representative qualifications: failure by central planning, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Knowledge requirements: failure by central planning, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Ethics requirements: failure by central planning, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Written agreements: failure by central planning, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Conflict restrictions: failure by central planning, reduced local control, system tampering, bureaucracy
+    "A, B, C, G, I, K, L", # Grant eligibility: intrinsic→extrinsic, money focus, failure by central planning, reduced local control, system tampering, tax burden, bureaucracy
+    "A, B, C, G, I, L", # Funding insufficiency: intrinsic→extrinsic, money focus, failure by central planning, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Facilitation rules: failure by central planning, reduced local control, system tampering, bureaucracy
+    "A, B, C, G, I, K, L" # Federal funding: intrinsic→extrinsic, money focus, failure by central planning, reduced local control, system tampering, tax burden, bureaucracy
   )
 )
 
@@ -279,7 +328,7 @@ key_findings_a4 <- data.frame(
     "Resource Waste in Grant Programs"
   ),
   Description = c(
-    "Code C (failure by force) appears in 100.0% of incentives, followed by Code G (reduced local control) at 100.0%",
+    "Code C (failure by central planning) appears in 100.0% of incentives, followed by Code G (reduced local control) at 100.0%",
     "System tampering affects every single incentive, indicating complete disruption of existing special education systems",
     "Administrative burdens appear in 100.0% of incentives, creating massive compliance overhead across all special education policies",
     "Code A (intrinsic to extrinsic motivation) appears in 60.0% of incentives, systematically undermining professional dedication with financial rewards",

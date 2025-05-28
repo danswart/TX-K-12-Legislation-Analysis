@@ -1,0 +1,659 @@
+---
+title: "Texas HB2 Article 4: Special Education Services for Deaf/Hard of Hearing and Visual Impairments (Sections 4.41-4.49) - Incentives and Likely Results"
+author: "Dan Swart and Claude Sonnet 4.0"
+description: "Analysis covers Article 4 (Special Education) Sections 4.41 through 4.49 only. Analysis focuses on language acquisition assessment, state plan requirements, visual impairment education mandates, Texas School funding adjustments, regional day school programs, and school offense complaint procedures. Document spans pages 40-47 of legislative text."
+format:
+    html:
+      toc: true
+      toc-float: true
+      page-layout: article
+      embed-resources: true
+      code-fold: true
+      code-summary: "Show the code"
+      code-tools: true
+      code-overflow: wrap
+      code-block-bg: "#FAEBD7"
+      code-block-border-left: "#31BAE9"
+      code-link: true
+      fig-width: 8
+      fig-height: 6
+      fig-align: center
+      html-math-method: katex
+      css: swart-20250327.css
+    pdf:
+      toc: true
+      number-sections: true
+      colorlinks: true
+      papersize: letter
+      geometry:
+        - margin=1in
+      fig-width: 12
+      fig-height: 10
+      fig-pos: 'H'
+    typst:
+      toc: true
+      fig-width: 12
+      fig-height: 10
+      keep-tex: true
+      prefer-html: true
+---
+
+```{r}
+#| label: setup-article4-sections41-49
+#| include: false
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)  # For dplyr, ggplot, and friends
+library(ggdag)      # For plotting DAGs
+library(dagitty)    # For working with DAG logic
+library(DiagrammeR) # For complete control of the layout
+library(knitr)      # For controlling rendering
+library(kableExtra) # For tables summarizing results
+library(DT)         # For rendering content that kableExtra cannot
+library(dplyr)      # For data wrangling
+```
+
+<br>
+
+## Opinionated Executive Summary and Counter-Intuitive Implications
+
+The legislative framework outlined in Article 4's requirements for language acquisition assessments and sensory impairment education programs reveals a deep paradox between the policies' stated goals and their likely outcomes. 
+
+What initially appears to be a commitment to individualized support and educational autonomy devolves into a centralization of authority, stripping local control and further entrenching bureaucratic oversight. 
+
+This analysis is based on my "Table of Codes for Destructive Results We Will Actually Get" (see Table below), which highlights the systemic contradictions and inefficiencies embedded in the legislation.
+
+#### The Assessment Paradox: A Bureaucratic Overload
+
+While the legislation claims to improve language acquisition for young deaf and hard of hearing children through comprehensive assessment, it inadvertently creates a bureaucratic assessment machine. These assessments, rather than serving the primary goal of language instruction, become an end in themselves. 
+
+School districts are required to collect data for state reporting purposes, which diverts resources away from direct educational interventions like language instruction and therapeutic services. As a result, the very students the law aims to help may receive less service time as educators are forced to focus on compliance rather than their core teaching duties.
+
+#### The Specialization-Standardization Contradiction
+
+The code mandates highly individualized approaches for students with visual impairments and hearing loss, yet simultaneously imposes standardized state-level planning, reporting, and evaluation systems. This creates the bizarre situation where the state demands both maximum individualization and maximum standardization from the same programs serving the same children. 
+
+The requirements for state-run systems, standardized assessments, and uniform reporting structures stifle the ability of local districts to tailor services to the unique needs of students, undermining the very notion of individualized education plans (IEPs).
+
+
+#### The Local Control Elimination for “Local Needs”
+
+Perhaps most ironically, legislation designed to ensure that children with sensory impairments receive appropriate services in their “home communities” systematically eliminates local decision-making authority. Districts lose control over how to serve their own students, while being held responsible for outcomes using methods prescribed by distant state bureaucrats. 
+
+Local educators, who are best positioned to understand the needs of their students, are sidelined in favor of state mandates that fail to account for the specific needs of individual communities. This loss of local control erodes the ability of districts to innovate and provide targeted, effective services for students with sensory impairments.
+
+
+#### The Professional Degradation for Professional Enhancement
+
+The law is designed to professionalize the field of special education by mandating highly specialized professionals—such as certified orientation and mobility specialists, braille instructors, and deaf education experts. 
+
+However, this legislation simultaneously burdens these professionals with increasing amounts of time spent on compliance documentation and state reporting. Instead of focusing on direct service delivery, these professionals will be forced to navigate complex bureaucratic systems.
+
+The law thus professionalizes the field of special education in name, but deprofessionalizes the practice itself by redirecting focus from meaningful student interaction to administrative tasks. This shift undermines the core mission of special education: to provide high-quality, individualized instruction to students with disabilities.
+
+
+#### Transparent Opacity: The Illusion of Clarity
+
+The legislation mandates extensive public reporting and “transparency” about student outcomes, yet the data presented will likely be so complex and bureaucratically filtered that parents and community members will understand less about what’s actually happening in their children’s education, not more. 
+
+The transparency touted in the policy is more an illusion than a reality. Instead of enabling parents to make informed decisions about their children’s education, the layers of bureaucratic reporting will obscure real outcomes. True transparency—direct communication between teachers, students, and families—gets buried under a mountain of compliance documentation. 
+
+Parents will find themselves navigating a maze of reports that are difficult to interpret and provide little meaningful insight into their child’s progress.
+
+
+#### Summary of the Paradoxes
+
+These contradictions highlight a fundamental misunderstanding of how specialized education truly works: through relationships, professional expertise, and local adaptation rather than through rigid, standardized systems and bureaucratic oversight. 
+
+The policies fail to recognize that effective special education relies not on top-down mandates but on the flexibility to meet students where they are, both in terms of their learning needs and their community contexts.
+
+Ultimately, these policies risk creating a system that is more focused on compliance and reporting than on delivering quality education and individualized support for students. The laws are structured in a way that prioritizes state control, administrative efficiency, and resource allocation over the actual needs of students with sensory impairments, their families, and the professionals working to support them.
+
+<br>
+<br>
+
+## Detailed Analysis
+
+### Main Table
+
+```{r}
+#| label: main-analysis-table-article4-sections41-49
+
+# Create analysis with coded negative results for Article 4 Sections 4.41-4.49
+article4_likely_results <- data.frame(
+  Category = c(
+    "Language Acquisition Assessment Requirements",
+    "Language Acquisition Assessment Requirements", 
+    "Language Acquisition Assessment Requirements",
+    "Language Acquisition Assessment Requirements",
+    "Language Acquisition Assessment Requirements",
+    "Language Acquisition Assessment Requirements",
+    "State Plan for Children with Impairments",
+    "State Plan for Children with Impairments",
+    "State Plan for Children with Impairments", 
+    "State Plan for Children with Impairments",
+    "State Plan for Children with Impairments",
+    "State Plan for Children with Impairments",
+    "Visual Impairment Education Requirements",
+    "Visual Impairment Education Requirements",
+    "Visual Impairment Education Requirements",
+    "Visual Impairment Education Requirements",
+    "Visual Impairment Education Requirements", 
+    "Visual Impairment Education Requirements",
+    "Visual Impairment Education Requirements",
+    "Visual Impairment Education Requirements",
+    "Visual Impairment Education Requirements",
+    "Texas School Funding Adjustments",
+    "Texas School Funding Adjustments",
+    "Texas School Funding Adjustments",
+    "Texas School Funding Adjustments",
+    "Texas School Memorandum Requirements",
+    "Texas School Memorandum Requirements",
+    "Texas School Memorandum Requirements",
+    "Texas School Memorandum Requirements",
+    "Regional Day School Legislative Intent",
+    "Regional Day School Statewide Plan",
+    "School Offense Complaint Requirements"
+  ),
+
+  Incentive_Created = c(
+    "School districts must ensure language acquisition assessment of deaf/hard of hearing children 8 years or younger using commissioner-approved tools",
+    "Districts must report assessment data to commissioner through PEIMS or other method on schedule set by commissioner rule", 
+    "Commissioner must adopt rules establishing assessment data required to be reported under subsection requirements",
+    "Commissioner must annually post report on language acquisition of children 8 years or younger who are deaf/hard of hearing",
+    "Commissioner must use assessment data reported in determining whether to award grants under Section 29.018",
+    "Commissioner must use assessment data in seeking federal money for projects aimed at improving outcomes for students with disabilities",
+    "Agency must develop and administer comprehensive statewide plan for education of children under 22 years who have visual impairments, are deaf/hard of hearing, or deaf-blind",
+    "Agency must develop standards and guidelines for all special education services for children with visual impairments, deaf/hard of hearing, or deaf-blind",
+    "Agency must supervise regional education service centers in assisting school districts serving children with impairments more effectively",
+    "Agency must maintain effective liaison between special education programs and related initiatives of other state agencies",
+    "Plan must adequately provide for comprehensive diagnosis and evaluation of each school-age child with impairments",
+    "Plan must include procedures, format, and content of individualized education program for each child with impairments",
+    "Each child with visual impairment must receive instruction in expanded core curriculum required for classroom success",
+    "Districts must conduct orientation and mobility evaluation by appropriately certified specialist in variety of lighting conditions and settings",
+    "Individualized education programs must include braille instruction unless committee documents determination that braille is not appropriate",
+    "Districts must provide information describing benefits of braille instruction to persons developing individualized education programs",
+    "Commissioner must develop system to distribute special supplemental allowance from foundation school fund for each student with visual impairment",
+    "Supplemental allowance may be spent only for special education services uniquely required by nature of child's disabilities",
+    "Supplemental allowance may not be used in lieu of educational funds otherwise available under code or through appropriations",
+    "Commissioner must reduce maintenance taxes obligated under subsection by amount district required to reduce local revenue under Section 48.257",
+    "Commissioner must determine total amount Texas Schools would have received if various legislative provisions had not reduced districts' share",
+    "Texas Education Agency and Texas School for Blind and Visually Impaired must develop memorandum of understanding for quality indicators",
+    "Memorandum must establish method for developing and reevaluating set of indicators of quality of learning at Texas School",
+    "Memorandum must establish process for agency to conduct and report annual evaluation of school's performance on indicators",
+    "Memorandum must establish requirements for school's board to publish, discuss, and disseminate annual report on educational performance",
+    "Legislature intends to continue process of providing statewide suitable education to deaf/hard of hearing students under 22 years",
+    "Legislature assures that deaf/hard of hearing students have opportunity to become independent citizens",
+    "Director of services must develop and administer comprehensive statewide plan for educational services for deaf/hard of hearing students",
+    "Plan must be included as part of comprehensive statewide plan under Section 30.002 for regional day school programs",
+    "School offense complaints must be sworn by person with personal knowledge of underlying facts giving probable cause",
+    "Complaints must be accompanied by statement from school employee stating whether child is eligible for or receives special education services",
+    "Employee statements must include information about graduated sanctions imposed on child before complaint was filed"
+  ),
+
+  Intended_Consequence = c(
+    "Ensure systematic assessment and tracking of language development in young deaf and hard of hearing children",
+    "Provide data collection mechanism for monitoring language acquisition progress and outcomes across state",
+    "Establish regulatory framework for consistent assessment data reporting and program evaluation", 
+    "Create transparency and accountability through public reporting of language acquisition outcomes",
+    "Use assessment data to inform grant allocation decisions for programs serving students with disabilities",
+    "Leverage assessment data to secure federal funding for evidence-based improvement projects",
+    "Ensure comprehensive educational planning and service delivery for students with various sensory impairments",
+    "Establish consistent quality standards for special education services across different types of impairments",
+    "Improve coordination and support for local districts serving students with sensory impairments",
+    "Create integrated approach linking special education programs with broader state health and human services",
+    "Ensure thorough evaluation and appropriate educational planning for each student with sensory impairments",
+    "Standardize individualized education program development processes for students with visual impairments and hearing loss",
+    "Provide specialized curriculum addressing unique educational needs of students with visual impairments",
+    "Ensure comprehensive mobility assessment by qualified specialists in realistic environmental conditions",
+    "Prioritize braille literacy instruction while allowing for individualized determinations based on student needs",
+    "Educate IEP team members about importance and benefits of braille instruction for informed decision-making",
+    "Provide additional funding to support specialized services required by students with visual impairments",
+    "Ensure supplemental funding is used appropriately for disability-specific educational services and equipment",
+    "Prevent misuse of specialized funding for general education purposes that should be funded through other sources",
+    "Adjust local tax obligations to account for state-mandated revenue reductions affecting district funding capacity",
+    "Maintain adequate funding for specialized schools despite various legislative changes affecting district contributions",
+    "Establish formal partnership framework between state education agency and specialized school for blind students",
+    "Create systematic approach to measuring and improving educational quality at state school for blind students",
+    "Ensure regular evaluation and public reporting of specialized school performance and outcomes",
+    "Require transparency and stakeholder engagement in reporting educational effectiveness of specialized institutions",
+    "Continue legislative commitment to providing appropriate education for deaf and hard of hearing students",
+    "Ensure deaf and hard of hearing students develop independence and citizenship skills through appropriate education",
+    "Ensure systematic statewide approach to educational service delivery for students with hearing impairments",
+    "Integrate regional day school planning with broader state planning for students with sensory impairments",
+    "Ensure proper documentation and due process protections for students involved in school discipline proceedings",
+    "Provide essential information about special education status to inform appropriate handling of disciplinary matters",
+    "Document progressive discipline attempts before filing formal complaints against students with disabilities"
+  ),
+
+  Likely_Result = c(
+    "C, G, I, L, M", # Assessment requirements: failure by central control, reduced local control, system tampering, bureaucracy, waste resources
+    "C, G, I, L, M", # Data reporting: failure by central control, reduced local control, system tampering, bureaucracy, waste resources
+    "C, G, I, L", # Rule adoption: failure by central control, reduced local control, system tampering, bureaucracy
+    "C, G, I, L, M", # Annual reporting: failure by central control, reduced local control, system tampering, bureaucracy, waste resources
+    "A, B, C, G, I, L", # Grant determination: intrinsic→extrinsic, money focus, failure by central control, reduced local control, system tampering, bureaucracy
+    "A, B, C, G, I, L", # Federal funding: intrinsic→extrinsic, money focus, failure by central control, reduced local control, system tampering, bureaucracy
+    "C, G, I, L, M", # Statewide plan: failure by central control, reduced local control, system tampering, bureaucracy, waste resources
+    "C, G, I, L", # Standards development: failure by central control, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Regional supervision: failure by by central control, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Agency liaison: failure by central control, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Diagnosis requirements: failure by central control, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # IEP procedures: failure by central control, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Core curriculum: failure by central control, reduced local control, system tampering, bureaucracy
+    "C, G, I, L, M", # Mobility evaluation: failure by central control, reduced local control, system tampering, bureaucracy, waste resources
+    "C, G, I, L", # Braille instruction: failure by central control, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Information provision: failure by central control, reduced local control, system tampering, bureaucracy
+    "A, B, C, G, I, K, L, M", # Supplemental allowance: intrinsic→extrinsic, money focus, failure by central control, reduced local control, system tampering, tax burden, bureaucracy, waste resources
+    "C, G, I, L", # Allowance restrictions: failure by central control, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Fund limitations: failure by central control, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Tax adjustments: failure by central control, reduced local control, system tampering, bureaucracy
+    "C, G, I, L, M", # Funding determinations: failure by central control, reduced local control, system tampering, bureaucracy, waste resources
+    "C, G, I, L", # Memorandum requirements: failure by central control, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Quality indicators: failure by central control, reduced local control, system tampering, bureaucracy
+    "C, G, I, L, M", # Performance evaluation: failure by central control, reduced local control, system tampering, bureaucracy, waste resources
+    "C, G, I, L", # Reporting requirements: failure by central control, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Legislative intent: failure by central control, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Education continuation: failure by central control, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Statewide plan development: failure by central control, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Plan integration: failure by central control, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Complaint requirements: failure by central control, reduced local control, system tampering, bureaucracy
+    "C, G, I, L", # Employee statements: failure by central control, reduced local control, system tampering, bureaucracy
+    "C, G, I, L" # Graduated sanctions: failure by central control, reduced local control, system tampering, bureaucracy
+  )
+)
+
+# Create the main analysis table with coded results
+article4_main_table <- datatable(
+  article4_likely_results,
+  options = list(
+    pageLength = 10,
+    scrollX = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '150px', targets = 0),   # Category  
+      list(width = '300px', targets = 1),   # Incentive Created
+      list(width = '250px', targets = 2),   # Intended Result
+      list(width = '150px', targets = 3)    # Coded Results
+    ),
+    dom = 'Bfrtip',
+    buttons = c('copy', 'csv', 'excel')
+  ),
+  filter = 'top',
+  rownames = FALSE,
+  class = 'cell-border stripe hover',
+  colnames = c('Category', 'Incentive Created', 'Intended Result', 'Codes for Destructive Results We Will Actually Get')
+) %>%
+  formatStyle(
+    'Category',
+    backgroundColor = styleEqual(
+      c("Language Acquisition Assessment Requirements", "State Plan for Children with Impairments", "Visual Impairment Education Requirements", 
+        "Texas School Funding Adjustments", "Texas School Memorandum Requirements", "Regional Day School Legislative Intent",
+        "Regional Day School Statewide Plan", "School Offense Complaint Requirements"),
+      c('#FFE8E8', '#FFD0D0', '#E8F4FD', '#E8F6FF', '#FFF2CC', '#E8F5E8', '#F0E8FF', '#FFE8F5')
+    ),
+    fontWeight = 'bold'
+  ) %>%
+  formatStyle(
+    'Likely_Result',
+    fontWeight = 'bold',
+    fontSize = '14px',
+    textAlign = 'center',
+    backgroundColor = '#FFF8DC'
+  )
+
+# Display article 4 main table
+article4_main_table
+```
+
+<br>
+<br>
+<br>
+
+### Supplemental Tables
+
+```{r}
+#| label: supplemental-analysis-article4-sections41-49
+
+# Create category analysis
+category_analysis_a4 <- article4_likely_results %>%
+  group_by(Category) %>%
+  summarise(
+    Count = n(),
+    .groups = 'drop'
+  ) %>%
+  arrange(desc(Count)) %>%
+  rename(`Incentive Category` = Category,
+         `Number of Incentives` = Count)
+
+# Analyze most frequent negative result codes
+code_frequency_a4 <- article4_likely_results %>%
+  separate_rows(Likely_Result, sep = ", ") %>%
+  count(Likely_Result, sort = TRUE) %>%
+  rename(`Negative Result Code` = Likely_Result,
+         `Frequency` = n) %>%
+  mutate(Percentage = round(100 * Frequency / nrow(article4_likely_results), 3))
+
+# Key policy findings focused on coded patterns
+key_findings_a4 <- data.frame(
+  Finding = c(
+    "Most Common Negative Pattern",
+    "System Tampering Universal Impact", 
+    "Bureaucratic Administrative Burden",
+    "Financial Motivation Corruption Pattern",
+    "Resource Waste in Assessment Systems",
+    "Most Problematic Policy Areas",
+    "State Centralization Complete Takeover", 
+    "Individual Focus Absence",
+    "Tax Burden Shifting Pattern"
+  ),
+  Description = c(
+    "Code C (failure by central control) and Code G (reduced local control) both appear in 100.0% of incentives, indicating universal coercion",
+    "Code I (system tampering) appears in 100.0% of incentives, showing complete disruption of existing educational systems for sensory-impaired students",
+    "Code L (bureaucratic burdens) appears in 100.0% of incentives, creating massive compliance overhead across all special education policies",
+    "Code A (intrinsic to extrinsic motivation) appears in 9.7% of incentives, systematically undermining professional dedication in specialized education",
+    "Code M (waste resources) appears in 25.8% of incentives, concentrated in assessment systems and funding administration",
+    "Visual Impairment Education Requirements and Language Acquisition Assessment Requirements show highest concentrations with 9 and 6 harmful incentives respectively",
+    "Code G (reduced local control) appears in 100.0% of incentives, representing complete state takeover of specialized education decisions", 
+    "No individual focus codes (F) appear in these sections, indicating exclusive focus on systemic rather than student-centered interventions",
+    "Code K (tax burden) appears in 3.2% of incentives, shifting financial obligations while reducing local autonomy over specialized education funding"
+  )
+)
+
+# === DISPLAY SUPPLEMENTAL TABLES ===
+
+# Category Analysis Header
+datatable(
+  data.frame(Title = "INCENTIVE CATEGORY ANALYSIS"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#FF9800',
+              color = 'white')
+
+# Category Analysis Table
+datatable(
+  category_analysis_a4,
+  filter = 'top',
+  options = list(
+    pageLength = 15,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Number of Incentives',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = styleColorBar(range(category_analysis_a4$`Number of Incentives`), '#E8F4FD')) %>%
+  formatStyle('Incentive Category',
+              fontWeight = 'bold',
+              textAlign = 'left')
+
+# Code Frequency Analysis Header
+datatable(
+  data.frame(Title = "NEGATIVE RESULT CODE FREQUENCY"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#DC143C',
+              color = 'white')
+
+# Code Frequency Table
+datatable(
+  code_frequency_a4,
+  filter = 'top',
+  options = list(
+    pageLength = 15,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Frequency',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = styleColorBar(range(code_frequency_a4$Frequency), '#FFB6C1')) %>%
+  formatStyle('Negative Result Code',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              fontSize = '16px') %>%
+  formatStyle('Percentage',
+              fontWeight = 'bold',
+              textAlign = 'center')
+
+# Key Findings Header
+datatable(
+  data.frame(Title = "KEY CODED PATTERN FINDINGS"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#F44336',
+              color = 'white')
+
+# Key Findings Table
+datatable(
+  key_findings_a4,
+  filter = 'top',
+  options = list(
+    pageLength = 10,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '25%', targets = 0),
+      list(width = '75%', targets = 1)
+    )
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Finding',
+              fontWeight = 'bold',
+              backgroundColor = '#FFE4E1',
+              textAlign = 'left') %>%
+  formatStyle('Description',
+              textAlign = 'left')
+
+# Create coded summary statistics
+summary_statistics_a4 <- data.frame(
+  Metric = c(
+    "Total Incentives Analyzed",
+    "Most Problematic Code", 
+    "Most Frequent Code Combination",
+    "Policy Categories with Code C",
+    "Policy Categories with Code G",
+    "Average Codes per Incentive"
+  ),
+  Value = c(
+    nrow(article4_likely_results),
+    paste0("Code C, G, I, L (all appear ", max(code_frequency_a4$Frequency), " times each)"),
+    "C, G, I, L (force + control + tampering + bureaucracy)",
+    sum(grepl("C", article4_likely_results$Likely_Result)),
+    sum(grepl("G", article4_likely_results$Likely_Result)),
+    round(mean(lengths(strsplit(article4_likely_results$Likely_Result, ", "))), 1)
+  )
+)
+
+# Summary Statistics Header
+datatable(
+  data.frame(Title = "CODED ANALYSIS SUMMARY STATISTICS"),
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#9C27B0',
+              color = 'white')
+
+# Summary Statistics Table
+datatable(
+  summary_statistics_a4,
+  options = list(
+    pageLength = 10,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '40%', targets = 0),
+      list(width = '60%', targets = 1)
+    )
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Metric',
+              fontWeight = 'bold',
+              textAlign = 'left') %>%
+  formatStyle('Value',
+              textAlign = 'left',
+              fontWeight = 'bold')
+```
+
+<br>
+<br>
+
+### Key to List of Likely Negative Results
+
+```{r}
+#| label: negative-results-coding-key-article4-sections41-49
+
+# Create negative results table with color coding
+negative_results_a4 <- data.frame(
+  Code = c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"),
+
+  Likely_Negative_Result = c(
+    "Will move people from intrinsic to extrinsic motivation",
+    "Will makes money the most important motivation",  
+    "Will fail because improvements cannot be realized by central control from the state",
+    "People will become 'the problem', not the system that they work in",
+    "Will decrease collaboration, pitting people against each other for rewards",
+    "Will decrease opportunities and efforts to improve the system teachers work in; try to 'improve' individual teachers instead",
+    "Will reduce local control",
+    "Will reduce economic agility of districts when they need it most",
+    "Will tamper with existing stable systems, making things worse",
+    "Impedes career development when goal posts constantly moving",
+    "Shifts the onus of tax increases to districts to pay for unfunded state mandates",
+    "Will create more administrative and bureaucratic burdens",
+    "Will cause administration and teachers to waste even more resources, while bankrupting financially responsible districts",
+    "Will create long-term district obligations that are not sustainable when state funding is changed every 2 years"
+  )
+)
+
+# Define bright contrasting color palette (7 colors)
+color_palette_a4 <- c("#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FECA57", "#FF9FF3", "#54A0FF")
+
+# Create color assignments for each row (cycling through 7 colors for 14 rows)
+row_colors_a4 <- rep(color_palette_a4, length.out = nrow(negative_results_a4))
+
+# Display the coding key table
+DT::datatable(
+  negative_results_a4,
+  options = list(
+    pageLength = 15,
+    dom = 'Bfrtip',
+    buttons = c('copy', 'csv', 'excel'),
+    columnDefs = list(
+      list(width = '40px', targets = 0),  # Narrow first column
+      list(width = '90%', targets = 1)    # Wide second column
+    ),
+    scrollX = FALSE,
+    autoWidth = FALSE
+  ),
+  rownames = FALSE,
+  class = 'display'
+) %>%
+  formatStyle(
+    'Code',
+    textAlign = 'right',
+    fontWeight = 'bold',
+    backgroundColor = styleEqual(negative_results_a4$Code, row_colors_a4),
+    color = 'white'
+  ) %>%
+  formatStyle(
+    'Likely_Negative_Result',
+    backgroundColor = styleEqual(negative_results_a4$Code, row_colors_a4),
+    color = 'black'
+  ) %>%
+  formatStyle(
+    columns = c(0, 1),
+    border = '2px solid #333',
+    borderCollapse = 'collapse'
+  ) %>%
+  formatStyle(
+    columns = c(0, 1),
+    maxWidth = '9in',
+    tableLayout = 'fixed'
+  )
+
+```
+
+# Simplified Summaries
+
+## Opinionated Executive Summary and Counter-Intuitive Implications
+
+The rules in Article 4 about language learning and helping students with hearing or vision problems will not work as expected. While the goal is to help students with disabilities get the right services, these rules will cause more problems than they solve.
+
+Instead of giving schools more freedom to help students, these laws will take away local control and give too much power to state officials. The analysis below shows how these rules will go wrong, based on my "Table of Codes for Destructive Results We Will Actually Get."
+
+#### The Assessment Paradox: A Bureaucratic Overload
+
+The law claims it will help young deaf and hard-of-hearing children improve their language skills, but it will actually create a huge system to collect data. Schools will be required to spend time gathering information for the state, which will take away time that could be used for real teaching or therapy. 
+
+Instead of focusing on teaching, teachers will have to spend time filling out reports and following rules. This will mean the students who need the most help will get less time with their teachers.
+
+#### The Specialization-Standardization Contradiction
+
+The law requires personalized help for students with vision or hearing problems, but it also forces schools to follow a one-size-fits-all system. This is a problem because the state wants schools to focus on each student's individual needs, but at the same time, schools will be forced to follow the same rules for every student. 
+
+This will take away schools' ability to make education plans that work best for each student, and instead, they will have to use systems that don’t fit every student’s needs.
+
+#### The Local Control Elimination for “Local Needs”
+
+The law says it wants to help kids with sensory impairments get the right services in their own communities. But, it actually takes away local control over how schools serve their students. Schools will lose the power to decide what’s best for their students and will be forced to follow rules set by people who don’t know their students as well.
+
+Teachers and school leaders who know their students best will be pushed aside in favor of state decisions that won’t always fit what’s needed in each community. This will take away schools’ ability to create flexible, creative programs for students with disabilities.
+
+#### The Professional Degradation for Professional Enhancement
+
+The law says it wants to make special education more professional by requiring experts like braille teachers and mobility specialists. But, at the same time, it will add so many requirements for reporting and paperwork that these experts will spend more time filling out forms than actually working with students.
+
+Instead of focusing on helping students directly, these professionals will be distracted by paperwork. This will make special education seem more professional but will take away from the work that helps students most.
+
+#### Transparent Opacity: The Illusion of Clarity
+
+The law says it will make education more transparent by requiring public reports on how students are doing. But these reports will be so complicated and full of confusing details that they won’t help parents or anyone else understand what’s really going on.
+
+Instead of making things clearer, these reports will just confuse people. True transparency means simple, clear communication between teachers, students, and families—not complex forms and reports. Parents will find it harder, not easier, to understand how their child is doing.
+
+#### Summary of the Paradoxes
+
+These contradictions show that the law doesn’t fully understand how special education works. Successful education for kids with disabilities depends on good relationships, local knowledge, and the ability to adjust to each student’s needs. It doesn’t rely on strict rules or too much red tape.
+
+The law should focus on helping schools meet the needs of their students, not forcing them to follow rigid systems that don’t work for everyone. By focusing too much on rules and reporting, the law will get in the way of real progress and will hurt the students, their families, and the teachers who want to help.
