@@ -15,8 +15,8 @@ format:
       code-block-bg: "#FAEBD7"
       code-block-border-left: "#31BAE9"
       code-link: true
-      fig-width: 8
-      fig-height: 6
+      fig-width: 10
+      fig-height: 8
       fig-align: center
       html-math-method: katex
       css: swart-20250327.css
@@ -36,6 +36,9 @@ format:
       fig-height: 10
       keep-tex: true
       prefer-html: true
+      echo: false
+      warning: false
+      message: false
 ---
 
 ```{r}
@@ -49,8 +52,8 @@ library(tidyverse)  # For dplyr, ggplot, and friends
 library(ggdag)      # For plotting DAGs
 library(dagitty)    # For working with DAG logic
 library(DiagrammeR) # For complete control of the layout
-library(knitr)      # For controlling rendering
-library(kableExtra) # For tables summarizing results
+library(knitr)      # For controlling output rendering
+library(kableExtra) # For controlling pdf rendering
 library(DT)         # For rendering content that kableExtra cannot
 library(dplyr)      # For data wrangling
 ```

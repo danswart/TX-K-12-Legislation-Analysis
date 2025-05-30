@@ -36,6 +36,9 @@ format:
       fig-height: 10
       keep-tex: true
       prefer-html: true
+      echo: false
+      warning: false
+      message: false
 ---
 
 ```{r}

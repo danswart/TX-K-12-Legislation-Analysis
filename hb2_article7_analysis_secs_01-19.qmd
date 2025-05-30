@@ -15,8 +15,8 @@ format:
       code-block-bg: "#FAEBD7"
       code-block-border-left: "#31BAE9"
       code-link: true
-      fig-width: 8
-      fig-height: 6
+      fig-width: 10
+      fig-height: 8
       fig-align: center
       html-math-method: katex
       css: swart-20250327.css
@@ -36,6 +36,9 @@ format:
       fig-height: 10
       keep-tex: true
       prefer-html: true
+      echo: false
+      warning: false
+      message: false
 ---
 
 ```{r}
@@ -105,7 +108,6 @@ These changes may increase funding for some districts, but they take away the po
 
 ```{r}
 #| label: main-analysis-table-article7-sections01-19
-#| echo: false
 #| warning: false
 #| message: false
 
@@ -407,7 +409,6 @@ article7_sections01_19_main_table
 
 ```{r}
 #| label: supplemental-analysis-article7-sections01-19
-#| echo: false
 #| warning: false
 #| message: false
 
@@ -652,7 +653,6 @@ datatable(
 
 ```{r}
 #| label: negative-results-coding-key-article7-sections01-19
-#| echo: false
 #| message: false
 #| warning: false
 
@@ -726,7 +726,6 @@ DT::datatable(
 
 ```{r}
 #| label: counter-intuitive-implications-article7-sections01-19
-#| echo: false
 #| message: false
 #| warning: false
 
