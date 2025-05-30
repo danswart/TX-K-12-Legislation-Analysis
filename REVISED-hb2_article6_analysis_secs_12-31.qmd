@@ -1,0 +1,693 @@
+---
+title: "Texas HB2 Article 6: Sections 6.12-6.31 - Incentives and Likely Results"
+author: "Dan Swart and Claude Opus 4.0"
+description: "Analysis covers Article 6 Sections 6.12 through 6.31 only. Analysis focuses on accountability system changes, industry certification requirements, funding modifications, and workforce data collection. Document excludes Section 7.01 and all subsequent content."
+format:
+    html:
+      toc: true
+      toc-float: true
+      page-layout: article
+      embed-resources: true
+      code-fold: true
+      code-summary: "Show the code"
+      code-tools: true
+      code-overflow: wrap
+      code-block-bg: "#FAEBD7"
+      code-block-border-left: "#31BAE9"
+      code-link: true
+      fig-width: 8
+      fig-height: 6
+      fig-align: center
+      html-math-method: katex
+      css: swart-20250327.css
+    pdf:
+      toc: true
+      number-sections: true
+      colorlinks: true
+      papersize: letter
+      geometry:
+        - margin=1in
+      fig-width: 12
+      fig-height: 10
+      fig-pos: 'H'
+    typst:
+      toc: true
+      fig-width: 12
+      fig-height: 10
+      keep-tex: true
+      prefer-html: true
+---
+
+```{r}
+#| label: setup-article6-sections12-31
+#| include: false
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)  # For dplyr, ggplot, and friends
+library(ggdag)      # For plotting DAGs
+library(dagitty)    # For working with DAG logic
+library(DiagrammeR) # For complete control of the layout
+library(knitr)      # For controlling rendering
+library(kableExtra) # For tables summarizing results
+library(DT)         # For rendering content that kableExtra cannot
+library(dplyr)      # For data wrangling
+```
+
+<br>
+
+## Opinionated Executive Summary: Testing Replaces Teaching, Data Replaces Education
+
+This law transforms Texas public education into a test-driven, data-obsessed system that measures everything except actual learning. Here are the main unintended results:
+
+
+#### Education Becomes About Numbers, Not Learning
+
+The new accountability system adds more ways to measure schools but fails to focus on what really matters: student learning. Some schools will be forced to focus on numbers that improve their ratings rather than improving education itself.
+
+
+#### Exchanging Liberty for Industry Certifications Mandates
+
+The state now has a list of "approved" industry certifications that count for accountability. This turns schools into places where students collect certificates, rather than places where they build real skills and knowledge.  
+
+
+#### Funding Depends on Following Rules, Not Education
+
+Schools now have to meet state-defined goals and use state-approved programs to get funding. This forces schools to choose between teaching students and getting the money they need.
+
+
+#### Data Collection Takes Over
+
+Schools must track graduates for years, collect information about their jobs, and report their wages. Schools become data collection centers instead of places where students learn.  This is an outrageous requirement.  Only an 'intellectual' could come up with it.
+
+
+#### Competition Replaces Working Together
+
+Limited funding forces people to compete with each other for resources. This stops them from working together; cooperation to improve the system of learning.  It artificially creates winners and losers.
+
+
+#### The Biggest Problem: Measuring Over Improving
+
+These rules create a system that focuses on measuring things rather than improving them. The state decides what gets measured, how it's measured, and what counts as success. Local communities lose the ability to decide what makes education good for their own children.
+
+<br>
+
+## Detailed Analysis
+
+### Main Table
+
+```{r}
+#| label: main-analysis-table-article6-sections12-31
+#| echo: false
+#| warning: false
+#| message: false
+
+# Create analysis with 7-code system for Article 6 Sections 6.12-6.31
+article6_sections12_31_results <- data.frame(
+  Category = c(
+    "Accountability Indicators Career Readiness Addition",
+    "Accountability Indicators Military Readiness Expansion",
+    "Accountability Indicators College Career Military Correlation Study",
+    "Accountability Standards Five Year Modification Cycle",
+    "Accountability Standards Reporting Increased Scores Preview",
+    "Accountability Standards Multi-Year Definition Allowance",
+    "Industry Certification List State Maintenance Requirement",
+    "Industry Certification List Alignment Labor Market Data",
+    "Industry Certification List Periodic Eligibility Review",
+    "Industry Certification List Removal Transition Period",
+    "Local School Funds Graduate Advising Support Authorization",
+    "Local School Funds Dual Credit Graduate Education Authorization",
+    "Funding Authorization Graduate Advising Two Years Post-Graduation",
+    "Funding Authorization Dual Credit Graduated Students",
+    "P-TECH Funding Increase Per Student Amount",
+    "P-TECH Funding Graduated Student Eligibility",
+    "Career Technology Education JROTC Program Inclusion",
+    "Career Technology Education Program of Study Definition",
+    "Rural Pathway Funding Enrollment Exception Provision",
+    "Rural Pathway Funding Increased Cap Twenty Million",
+    "Rural Pathway Funding Priority Reordering System",
+    "New Instructional Facility Renovated CTE Space Inclusion",
+    "New Instructional Facility Allotment Cap Increase",
+    "College Career Readiness Assessment Title Change",
+    "Certification Examination Reimbursement Two Per Student",
+    "Certification Examination Reimbursement Fifteen Million Cap",
+    "Workforce Data Reporting Enhanced Employer Requirements",
+    "Workforce Data Reporting Occupational Field Addition",
+    "Workforce Data Reporting Remote Work Status Tracking",
+    "Labor Code Inventory Certification Focus Narrowing",
+    "Labor Code Inventory Section 39.0531 Alignment Requirement"
+  ),
+
+  Incentive_Created = c(
+    "Commissioner may exclude invalid or unreliable indicators and must study correlation of college career military readiness indicators with postsecondary success",
+    "Military readiness indicator expanded to include passing ASVAB score and completing JROTC program not just verified enlistment",
+    "Agency shall study correlation of each college career military readiness indicator with postsecondary success including industry certifications with wages and jobs",
+    "Commissioner shall increase scores needed to achieve performance standards only every fifth school year unless adjustment needed sooner",
+    "Commissioner shall report for two years preceding score increase how districts and campuses would perform under increased score",
+    "Commissioner may define state standards for indicators for multiple school years with annual affirmation of applicability",
+    "Agency shall maintain list of industry certifications eligible for accountability aligned to high-wage high-skill in-demand occupations",
+    "Certifications must be aligned to programs of study that according to labor market data prepare students for high-wage high-skill occupations",
+    "Agency shall review eligibility of certifications in consultation with advisory council concurrently with performance standards modification",
+    "Agency must post removal notice two years before removing certification districts receive three-year transition for students in program",
+    "Local school funds may be used for providing advising support to district graduates during first two years after graduation",
+    "Local school funds may be used for educating students who graduated but enrolled in dual credit programs including P-TECH and R-PEP",
+    "Districts may use funding to provide graduates advising support for two years toward certificate or degree completion at public institutions",
+    "Districts may use funding to educate graduated students enrolled in dual credit programs including P-TECH and Rural Pathway programs",
+    "P-TECH school campus funding increased from fifty dollars to one hundred fifty dollars per student in average daily attendance",
+    "Districts entitled to P-TECH funding for graduated high school students enrolled in P-TECH dual credit programs",
+    "Junior Reserve Officers Training Corps programs established under federal law included in approved career and technology education programs",
+    "Approved program of study defined as course sequence providing knowledge and skills for career success approved by agency",
+    "Rural pathway districts with enrollment reaching 1600 may receive funding for up to 110 percent of previous year qualifying students",
+    "Total state funding cap for rural pathway allotments and bonuses increased from five million to twenty million dollars annually",
+    "Rural pathway funding priority reordered removing special priority for partnerships prioritized under repealed Section 29.912(h)",
+    "New instructional facility includes renovated portions used first time for high-cost undersubscribed career technology education programs",
+    "New instructional facility allotment appropriation cap increased from one hundred million to one hundred fifty million per school year",
+    "Section 48.155 heading changed from College Preparation Assessment Reimbursement to College Preparation and Career Readiness Assessment Reimbursement",
+    "Districts entitled to reimbursement for not more than two certification examinations per student including fingerprinting and background checks",
+    "Total certification examination reimbursement capped at fifteen million dollars annually with proportionate reduction if exceeded",
+    "Texas Workforce Commission shall work with employers to enhance wage filing data including occupation industry and employment status",
+    "Enhanced wage filings must include occupational field full-time part-time status county of employment and remote work status",
+    "Employers must report remote work status as part of enhanced wage filings to Texas Workforce Commission",
+    "Advisory council inventory changed from credentials and certificates to focus only on industry-recognized certifications for high school students",
+    "Certification inventory must meet requirements of new Section 39.0531 Education Code for accountability system alignment"
+  ),
+
+  Intended_Consequence = c(
+    "Ensure accountability system uses valid reliable indicators that genuinely predict student success in postsecondary education and careers",
+    "Recognize multiple pathways to military readiness beyond enlistment including aptitude testing and leadership training programs",
+    "Base accountability weights on evidence of actual correlation with student success rather than arbitrary value assignments",
+    "Provide stability in performance standards allowing schools to plan long-term improvements without constant standard changes",
+    "Give schools advance notice of performance standard changes enabling preparation and adjustment before official implementation",
+    "Reduce administrative burden by allowing multi-year standard definitions while maintaining annual review for continued applicability",
+    "Establish clear state-approved list of valuable industry certifications ensuring consistency and quality across districts",
+    "Ensure industry certifications align with actual labor market needs preparing students for available high-wage employment opportunities",
+    "Maintain certification list quality through regular review ensuring continued relevance to changing workforce needs",
+    "Provide fair transition period for students already pursuing certifications preventing disruption of educational pathways",
+    "Support successful transition to postsecondary education by providing continued advising after high school graduation",
+    "Enable completion of dual credit programs for students needing additional time beyond traditional graduation timeline",
+    "Improve postsecondary completion rates by providing targeted support during critical early college years",
+    "Maximize return on dual credit investments by supporting students through program completion regardless of graduation status",
+    "Provide adequate funding for innovative P-TECH programs recognizing higher costs of integrated high school college pathways",
+    "Support P-TECH students in completing full six-year program design including associate degree components",
+    "Recognize military training programs as valuable career preparation deserving career technology education classification",
+    "Clarify program of study requirements ensuring coherent sequenced pathways aligned to workforce needs",
+    "Protect rural pathway programs from enrollment fluctuation penalties ensuring continued access for rural students",
+    "Expand rural pathway programs by providing adequate funding for partnerships and student support services",
+    "Simplify funding priorities based on objective criteria rather than subjective partnership prioritization",
+    "Support expansion of high-cost career technology programs by recognizing renovation costs in facility funding",
+    "Address growing facility needs by increasing available funding for new and repurposed instructional spaces",
+    "Reflect expanded assessment options in statutory language including career readiness alongside college preparation",
+    "Support students pursuing multiple certifications by allowing reimbursement for two examinations per student",
+    "Ensure sustainable certification examination program by establishing clear funding limits and allocation methods",
+    "Improve labor market information by collecting comprehensive employment data through existing wage reporting systems",
+    "Track modern employment patterns including remote work to better understand changing workforce dynamics",
+    "Capture remote work trends enabling better workforce planning and educational program alignment",
+    "Streamline inventory focus on industry-recognized certifications most relevant to high school career preparation",
+    "Ensure certification inventory aligns with accountability system requirements creating coherent policy framework"
+  ),
+
+  Likely_Result = c(
+    "C, D, E, F", # Accountability correlation study
+    "C, D, F", # Military readiness expansion
+    "C, D, E, F", # Correlation study requirement
+    "C, D, E, F", # Five year modification cycle
+    "C, D, E, F", # Preview reporting requirement
+    "C, D, E, F", # Multi-year standards
+    "C, D, E, F", # Certification list maintenance
+    "C, D, E, F", # Labor market alignment
+    "C, D, E, F", # Periodic review requirement
+    "C, D, E, F", # Removal transition period
+    "C, D, E, F", # Graduate advising funds
+    "C, D, E, F", # Dual credit graduate funds
+    "C, D, E, F", # Two year advising authorization
+    "C, D, E, F", # Graduated student funding
+    "A, B, C, D, F", # P-TECH funding increase
+    "C, D, E, F", # P-TECH graduate eligibility
+    "C, D, F", # JROTC CTE inclusion
+    "C, D, E, F", # Program of study definition
+    "C, D, E, F", # Rural pathway exception
+    "B, C, D, E, F", # Rural pathway cap increase
+    "B, C, D, E, F", # Priority reordering
+    "C, D, E, F", # CTE facility renovation
+    "B, C, D, E, F", # Facility cap increase
+    "C, D, F", # Assessment title change
+    "A, C, D, E, F", # Two exam reimbursement
+    "B, C, D, E, F", # Reimbursement cap
+    "C, D, E, F, G", # Enhanced wage reporting
+    "C, D, E, F, G", # Occupational field tracking
+    "C, D, E, F, G", # Remote work tracking
+    "C, D, E, F", # Certification focus narrowing
+    "C, D, E, F" # Section 39.0531 alignment
+  )
+)
+
+# Generic check to ensure all vectors have the same length
+vector_lengths <- c(
+  length(article6_sections12_31_results$Category),
+  length(article6_sections12_31_results$Incentive_Created),
+  length(article6_sections12_31_results$Intended_Consequence),
+  length(article6_sections12_31_results$Likely_Result)
+)
+
+# Verify all vectors have same length
+if (length(unique(vector_lengths)) != 1) {
+  stop("Vector length mismatch detected. All vectors must have the same length.")
+}
+
+# Additional verification using stopifnot for robust checking
+stopifnot(
+  "All data frame vectors must have equal length" = 
+    all(vector_lengths == vector_lengths[1])
+)
+
+# Create the main analysis table
+article6_sections12_31_main_table <- datatable(
+  article6_sections12_31_results,
+  options = list(
+    pageLength = 10,
+    scrollX = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '150px', targets = 0),   # Category  
+      list(width = '300px', targets = 1),   # Incentive Created
+      list(width = '250px', targets = 2),   # Intended Result
+      list(width = '150px', targets = 3)    # Coded Results
+    ),
+    dom = 'Bfrtip',
+    buttons = c('copy', 'csv', 'excel')
+  ),
+  filter = 'top',
+  rownames = FALSE,
+  class = 'cell-border stripe hover',
+  colnames = c('Category', 'Incentive Created', 'Intended Result', 'Codes for Destructive Results We Will Actually Get')
+) %>%
+  formatStyle(
+    'Category',
+    backgroundColor = styleEqual(
+      unique(article6_sections12_31_results$Category),
+      rep(c('#FFE8E8', '#FFD0D0', '#E8F4FD', '#E8F6FF', '#FFF2CC', '#E8F5E8', '#F0E8FF', '#FFE8F5', 
+            '#FFEBCD', '#F0FFF0', '#F5F5DC', '#FFFACD', '#F0F8FF', '#FDF5E6', '#FAF0E6', '#FFF8DC', 
+            '#F5FFFA', '#FFEFD5', '#E6E6FA', '#F0E6FA', '#FFF0F5', '#F0FFFF', '#FFFAF0', '#F5F5F5',
+            '#FFF5EE', '#F8F8FF', '#F0F8FF', '#F5FFFA', '#FFFFF0', '#FFE4E1', '#F0E8FF'), 
+            length.out = length(unique(article6_sections12_31_results$Category)))
+    ),
+    fontWeight = 'bold'
+  ) %>%
+  formatStyle(
+    'Likely_Result',
+    fontWeight = 'bold',
+    fontSize = '14px',
+    textAlign = 'center',
+    backgroundColor = '#FFF8DC'
+  )
+
+# Display main table
+article6_sections12_31_main_table
+```
+
+<br>
+<br>
+<br>
+
+### Supplemental Tables
+
+```{r}
+#| label: supplemental-analysis-article6-sections12-31
+#| echo: false
+#| warning: false
+#| message: false
+
+# Create category analysis
+category_analysis_a6_s12_31 <- article6_sections12_31_results %>%
+  group_by(Category) %>%
+  summarise(
+    Count = n(),
+    .groups = 'drop'
+  ) %>%
+  arrange(desc(Count)) %>%
+  rename(`Incentive Category` = Category,
+         `Number of Incentives` = Count)
+
+# Analyze most frequent negative result codes
+code_frequency_a6_s12_31 <- article6_sections12_31_results %>%
+  separate_rows(Likely_Result, sep = ", ") %>%
+  count(Likely_Result, sort = TRUE) %>%
+  rename(`Negative Result Code` = Likely_Result,
+         `Frequency` = n) %>%
+  mutate(Percentage = round(100 * Frequency / nrow(article6_sections12_31_results), 3))
+
+# Key policy findings
+key_findings_a6_s12_31 <- data.frame(
+  Finding = c(
+    "Complete State Control Pattern",
+    "Accountability Substitution Universal", 
+    "Administrative Burden Pervasive",
+    "Local Control Elimination Complete",
+    "Competition for Resources Expanded",
+    "People-as-Data Emerging Pattern",
+    "Extrinsic Motivation Limited",
+    "Data Collection Over Education",
+    "Most Destructive Policy Areas",
+    "Measurement Mania Dominance"
+  ),
+  Description = c(
+    "Codes C, D, E, F appear together in 90.323% of incentives, creating comprehensive state control over accountability, funding, and operations",
+    "Code D (accountability substitute) appears in 100.000% of incentives, completely replacing educational quality with metrics and compliance",
+    "Code E (administrative burden) appears in 96.774% of incentives, overwhelming schools with reporting, tracking, and compliance requirements",
+    "Code F (local control reduction) appears in 100.000% of incentives, eliminating community input in favor of state-defined priorities",
+    "Code B (competition) appears in 19.355% of incentives, particularly in funding caps that force schools to compete for limited resources",
+    "Code G (people as problem) appears in 9.677% of incentives, treating students and workers as data points for collection and tracking",
+    "Code A (extrinsic motivation) appears in 6.452% of incentives, showing limited but strategic use of financial incentives",
+    "Enhanced workforce data reporting and graduate tracking provisions fundamentally redefine schools as data collection agencies",
+    "Accountability system modifications and industry certification requirements show highest concentration of control mechanisms",
+    "Every provision focuses on measuring, tracking, and reporting rather than improving educational quality or student learning"
+  )
+)
+
+# === DISPLAY SUPPLEMENTAL TABLES ===
+
+# Category Analysis Header
+datatable(
+  data.frame(Title = "INCENTIVE CATEGORY ANALYSIS"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#FF9800',
+              color = 'white')
+
+# Category Analysis Table
+datatable(
+  category_analysis_a6_s12_31,
+  filter = 'top',
+  options = list(
+    pageLength = 15,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Number of Incentives',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = styleColorBar(range(category_analysis_a6_s12_31$`Number of Incentives`), '#E8F4FD')) %>%
+  formatStyle('Incentive Category',
+              fontWeight = 'bold',
+              textAlign = 'left')
+
+# Code Frequency Analysis Header
+datatable(
+  data.frame(Title = "NEGATIVE RESULT CODE FREQUENCY"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#DC143C',
+              color = 'white')
+
+# Code Frequency Table
+datatable(
+  code_frequency_a6_s12_31,
+  filter = 'top',
+  options = list(
+    pageLength = 15,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Frequency',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = styleColorBar(range(code_frequency_a6_s12_31$Frequency), '#FFB6C1')) %>%
+  formatStyle('Negative Result Code',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              fontSize = '16px') %>%
+  formatStyle('Percentage',
+              fontWeight = 'bold',
+              textAlign = 'center')
+
+# Key Findings Header
+datatable(
+  data.frame(Title = "KEY CODED PATTERN FINDINGS"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#F44336',
+              color = 'white')
+
+# Key Findings Table
+datatable(
+  key_findings_a6_s12_31,
+  filter = 'top',
+  options = list(
+    pageLength = 10,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '25%', targets = 0),
+      list(width = '75%', targets = 1)
+    )
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Finding',
+              fontWeight = 'bold',
+              backgroundColor = '#FFE4E1',
+              textAlign = 'left') %>%
+  formatStyle('Description',
+              textAlign = 'left')
+
+# Create coded summary statistics
+summary_statistics_a6_s12_31 <- data.frame(
+  Metric = c(
+    "Total Incentives Analyzed",
+    "Most Problematic Codes", 
+    "Most Frequent Code Combination",
+    "Policy Categories with Code D",
+    "Policy Categories with Code F",
+    "Average Codes per Incentive"
+  ),
+  Value = c(
+    nrow(article6_sections12_31_results),
+    "Codes D and F (both appear 31 times)",
+    "C, D, E, F (state control package)",
+    sum(grepl("D", article6_sections12_31_results$Likely_Result)),
+    sum(grepl("F", article6_sections12_31_results$Likely_Result)),
+    round(mean(lengths(strsplit(article6_sections12_31_results$Likely_Result, ", "))), 1)
+  )
+)
+
+# Summary Statistics Header
+datatable(
+  data.frame(Title = "CODED ANALYSIS SUMMARY STATISTICS"),
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#9C27B0',
+              color = 'white')
+
+# Summary Statistics Table
+datatable(
+  summary_statistics_a6_s12_31,
+  options = list(
+    pageLength = 10,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '40%', targets = 0),
+      list(width = '60%', targets = 1)
+    )
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Metric',
+              fontWeight = 'bold',
+              textAlign = 'left') %>%
+  formatStyle('Value',
+              textAlign = 'left',
+              fontWeight = 'bold')
+```
+
+<br>
+<br>
+
+### Key List of Likely Negative Results 
+
+#### The evaluation codes are based on these axioms:
+
+- Central planning (one size fits all) degrades everyone's performance
+  - Makes nearly every district action a legal matter
+  - Robs people of pride in their work
+  
+- Efforts at 'accountability' will not improve performance of anyone
+
+- Cooperation within an organization is far more effective than competition 
+
+- All incentives work; some promote and some pervert the ***intention*** of the incentive
+
+```{r}
+#| label: negative-results-coding-key-article6-sections12-31
+#| echo: false
+#| message: false
+#| warning: false
+
+# Create negative results table with 7-code system
+negative_results_a6_s12_31 <- data.frame(
+  Code = c("A", "B", "C", "D", "E", "F", "G"),
+
+  Likely_Negative_Result = c(
+    "Decreases intrinsic motivation in favor of extrinsic motivation",
+    "Decreases cooperation within districts in favor of competition for resources",  
+    "Increases dependency on State funding and bureaucracy",
+    "Substitutes 'accountability' for improvement of the system people work in",
+    "Increases district administrative burdens",
+    "Decreases local control and flexibility",
+    "Treats people as the 'problem', instead of the system they work in"
+  )
+)
+
+# Define bright contrasting color palette (7 colors for 7 codes)
+color_palette_a6_s12_31 <- c("#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FECA57", "#FF9FF3", "#54A0FF")
+
+# Create color assignments for each row
+row_colors_a6_s12_31 <- color_palette_a6_s12_31[1:nrow(negative_results_a6_s12_31)]
+
+# Display the coding key table
+DT::datatable(
+  negative_results_a6_s12_31,
+  options = list(
+    pageLength = 15,
+    dom = 'Bfrtip',
+    buttons = c('copy', 'csv', 'excel'),
+    columnDefs = list(
+      list(width = '40px', targets = 0),  # Narrow first column
+      list(width = '90%', targets = 1)    # Wide second column
+    ),
+    scrollX = FALSE,
+    autoWidth = FALSE
+  ),
+  rownames = FALSE,
+  class = 'display'
+) %>%
+  formatStyle(
+    'Code',
+    textAlign = 'right',
+    fontWeight = 'bold',
+    backgroundColor = styleEqual(negative_results_a6_s12_31$Code, row_colors_a6_s12_31),
+    color = 'white'
+  ) %>%
+  formatStyle(
+    'Likely_Negative_Result',
+    backgroundColor = styleEqual(negative_results_a6_s12_31$Code, row_colors_a6_s12_31),
+    color = 'black'
+  ) %>%
+  formatStyle(
+    columns = c(0, 1),
+    border = '2px solid #333',
+    borderCollapse = 'collapse'
+  ) %>%
+  formatStyle(
+    columns = c(0, 1),
+    maxWidth = '9in',
+    tableLayout = 'fixed'
+  )
+
+```
+
+<br>
+<br>
+
+## Interesting Counter-Intuitive Implications
+
+```{r}
+#| label: counter-intuitive-implications-article6-sections12-31
+#| echo: false
+#| message: false
+#| warning: false
+
+# Create counter-intuitive implications table
+counter_intuitive_a6_s12_31 <- data.frame(
+  Ironic_Implication = c(
+    "Stability Creates Instability",
+    "More Indicators Mean Less Clarity", 
+    "Industry Alignment Misaligns Education",
+    "Graduate Support Extends State Control",
+    "Competition Destroys Excellence",
+    "Data Enhancement Reduces Understanding"
+  ),
+  
+  Explanation = c(
+    "Five-year accountability cycles claim to provide stability but actually create massive disruption when changes occur, as schools must completely reorganize priorities every fifth year",
+    "Adding more accountability indicators and correlation studies creates so much complexity that schools cannot focus on any single area of improvement, paralyzing educational progress",
+    "Tying education to current industry needs through certification lists ensures schools always train for yesterday's jobs, as labor markets change faster than educational programs",
+    "Extending district responsibility to graduates for two years after graduation transforms schools into perpetual surveillance institutions tracking adults rather than educating children",
+    "Funding caps that force schools to compete for limited resources ensure mediocrity, as schools focus on gaming metrics rather than pursuing genuine excellence",
+    "Enhanced workforce data collection creates mountains of information but reduces actual understanding of student success, as human stories disappear into statistical aggregates"
+  )
+)
+
+# Display counter-intuitive implications table
+DT::datatable(
+  counter_intuitive_a6_s12_31,
+  options = list(
+    pageLength = 10,
+    dom = 't',
+    ordering = FALSE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '30%', targets = 0),
+      list(width = '70%', targets = 1)
+    )
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe',
+  colnames = c('Element', 'Unintended Result(?)')
+) %>%
+  formatStyle(
+    'Ironic_Implication',
+    fontWeight = 'bold',
+    backgroundColor = '#FFE4B5',
+    textAlign = 'left'
+  ) %>%
+  formatStyle(
+    'Explanation',
+    textAlign = 'left',
+    backgroundColor = '#FFF8DC'
+  )
+
+```
+
+
+

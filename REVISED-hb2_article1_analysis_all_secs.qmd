@@ -1,5 +1,5 @@
 ---
-title: "Texas HB2: Teacher Compensation and Education Reforms - Incentives and Likely Results (Revised 7-Code Framework)"
+title: "Texas HB2: Teacher Compensation and Education Reforms - Incentives and Likely Results"
 author: "Dan Swart and Claude Sonnet 4.0"
 description: "Analysis covers Article 1 (Teacher Compensation) only - Sections 1.01 through 1.11. Analysis stops before Section 2.01 (Article 2).  Document spans pages 1-6 of legislative text."
 format:
@@ -57,7 +57,7 @@ library(dplyr)      # For data wrangling
 
 <br>
 
-## Opinionated Executive Summary and Counter-Intuitive Implications (9th-10th Grade Version)
+## Opinionated Executive Summary:  Good Intentions, Unintended Results
 
 The teacher incentive programs in Article 1 sound good at first, but they end up creating several big problems that make education worse. These problems are shown in the "Table of Codes for Bad Results We Will Actually Get" below.
 
@@ -548,7 +548,7 @@ datatable(
 <br>
 <br>
 
-### Key to List of Likely Negative Results (Revised 7-Code Framework)
+### Key to List of Likely Negative Results 
 
 #### The evaluation codes are based on these axioms:
 

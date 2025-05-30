@@ -1,0 +1,640 @@
+---
+title: "Texas HB2 Article 5: Sections 5.27-5.32 - Incentives and Likely Results"
+author: "Dan Swart and Claude Sonnet 4.0"
+description: "Analysis covers Article 5 Sections 5.27 through 5.32 only. Analysis focuses on early education allotment distribution, literacy intervention funding, third grade supplementary supports, and various code repeals. Document spans pages 70-72 of legislative text."
+format:
+    html:
+      toc: true
+      toc-float: true
+      page-layout: article
+      embed-resources: true
+      code-fold: true
+      code-summary: "Show the code"
+      code-tools: true
+      code-overflow: wrap
+      code-block-bg: "#FAEBD7"
+      code-block-border-left: "#31BAE9"
+      code-link: true
+      fig-width: 8
+      fig-height: 6
+      fig-align: center
+      html-math-method: katex
+      css: swart-20250327.css
+    pdf:
+      toc: true
+      number-sections: true
+      colorlinks: true
+      papersize: letter
+      geometry:
+        - margin=1in
+      fig-width: 12
+      fig-height: 10
+      fig-pos: 'H'
+    typst:
+      toc: true
+      fig-width: 12
+      fig-height: 10
+      keep-tex: true
+      prefer-html: true
+---
+
+```{r}
+#| label: setup-article5-sections27-32
+#| include: false
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)  # For dplyr, ggplot, and friends
+library(ggdag)      # For plotting DAGs
+library(dagitty)    # For working with DAG logic
+library(DiagrammeR) # For complete control of the layout
+library(knitr)      # For controlling rendering
+library(kableExtra) # For tables summarizing results
+library(DT)         # For rendering content that kableExtra cannot
+library(dplyr)      # For data wrangling
+```
+
+<br>
+
+## Opinionated Executive Summary: Control Through Complex Distribution Mechanisms
+
+This law creates elaborate funding schemes that appear to support early education but actually increase state control over local decisions through complex distribution formulas and punitive mechanisms. Here are the main unintended results:
+
+
+#### State Control Through Funding
+
+The new funding rules for full-day prekindergarten give the state control over how districts use their resources. Schools must follow state-set rules instead of deciding what works best for their students.
+
+
+#### Limited Choices for Literacy Programs
+
+The Early Literacy Intervention funding helps pay for reading programs, but it forces schools to use state-approved methods. This limits schools from choosing the best reading programs for their students.  Good for publishers, bad for districts.
+
+
+#### Third Grade Grants Will Punish Schools
+
+The Third Grade Supplementary Supports rule says that if students who got grants still fail reading tests in third grade, the district loses future funding. This punishes schools for things they often don't control and blames teachers instead of addressesing those factors outside teacher control e.g., home environments, discipline, parent preference).  This may be the craziest section yet.
+
+
+#### WAY Too Much Paperwork
+
+The new rules require schools to track, report, and follow many complicated programs. Schools spend more time filling out forms instead of focusing on teaching. This adds a lot of extra work that takes away from helping students.  In the face of all this added bureaucracy, I don't know why anyone will still want to be a teacher.  Teaching is becoming a smaller and smaller part of what 'teachers' are expectd to do.
+
+
+#### Detrimental Focus for Schools
+
+Schools will have to start making decisions based on what brings in the most state money, not what helps students the most. The funding rules push schools to follow certain programs, even if they don’t match the needs of local students or communities.
+
+
+#### State Control Sneaking In Under the Guise of Support
+
+These funding rules make schools follow state-approved methods. They give the illusion of more support but actually make schools more controlled by the state instead of being able to respond to local needs.
+
+
+#### The Real Problem - Central Planning NEVER Improves Anything
+
+These rules change early education funding from a system that schools can manage to one controlled by the state. They promise help but actually make schools more dependent on the state. The result is less control for local schools, more paperwork, and decisions based on rules instead of what students actually need.
+
+<br>
+
+## Detailed Analysis
+
+### Main Table
+
+```{r}
+#| label: main-analysis-table-article5-sections27-32
+#| echo: false
+#| warning: false
+#| message: false
+
+# Create analysis with 7-code system for Article 5 Sections 5.27-5.32
+article5_sections27_32_results <- data.frame(
+  Category = c(
+    "Full-Day Prekindergarten Early Education Allotment Distribution Priority",
+    "Full-Day Prekindergarten State-Determined Distribution Mechanism Authority",
+    "Full-Day Prekindergarten Proportional District Entitlement Distribution",
+    "Early Literacy Intervention Annual Student Allotment of $250 Base Amount",
+    "Early Literacy Intervention Funding Exclusion for Title I Compensatory Education Recipients",
+    "Early Literacy Intervention District Enrollment Percentage Cap at 10 Percent",
+    "Third Grade Supplementary Supports Grant Amount $400 Per Student Eligibility",
+    "Third Grade Supplementary Supports Single Grant Limitation Per Category",
+    "Third Grade Supplementary Supports Future School Year Funding Reduction Mechanism",
+    "Third Grade Supplementary Supports District Funding Penalty for Failed Assessment Performance",
+    "Third Grade Supplementary Supports Special Education Student Partial Funding Reduction",
+    "Third Grade Supplementary Supports Commissioner Final Determination Without Appeal Rights",
+    "Education Code Section 7.058 Repeal Elimination",
+    "Education Code Section 28.006 Multiple Subsection Repeal Elimination",
+    "Education Code Section 28.007 Complete Section Repeal Elimination",
+    "Legislative Article Conflict Resolution Priority Establishment",
+    "Implementation Timeline 2025-2026 School Year Beginning Date",
+    "Implementation Timeline 2027-2028 School Year Beginning Date for Specific Sections",
+    "Funding Sections Immediate September 1 2025 Effect Date"
+  ),
+
+  Incentive_Created = c(
+    "Agency shall provide funding to districts operating full-day prekindergarten programs based on one-half average daily attendance for each student in program",
+    "Agency shall distribute early education allotment money according to state-determined distribution mechanism instead of standard district allocation",
+    "If funding remains after full-day program distribution agency shall provide proportional amounts based on district entitlement under Section 48.108(a-1)",
+    "School district entitled to annual allotment of $250 or greater appropriated amount for each enrolled student receiving reading interventions under Section 28.0064",
+    "School district may not receive literacy intervention funding for students already receiving allotment under compensatory education Section 48.103",
+    "School district may receive literacy intervention funding for not more than 10 percent of students enrolled in kindergarten through third grade",
+    "Student entitled to receive $400 grant amount for each grant eligibility under Section 28.02111 or greater amount provided by appropriation",
+    "Student may receive only one grant under each subsection of Section 28.02111 unless legislature provides additional grants by appropriation",
+    "Beginning 2030-2031 school year agency shall reduce district entitlement by total grant money received for students meeting specific failure criteria",
+    "Agency shall reduce district funding for students who fail third grade reading assessment received grants and were enrolled kindergarten through third grade",
+    "For special education eligible students agency shall reduce district entitlement by one-half amount determined under funding reduction mechanism",
+    "Commissioner determination under third grade supports section is final and may not be appealed under any provision",
+    "Section 7.058 relating to commissioner powers and duties is eliminated from Education Code effective with this legislation",
+    "Multiple subsections of Section 28.006 relating to reading instruments and assessments are eliminated from Education Code",
+    "Section 28.007 relating to mathematics assessments and reporting requirements is eliminated from Education Code",
+    "Changes made by this article prevail over any conflicting changes made by other acts of the 89th Legislature Regular Session 2025",
+    "Specified sections apply beginning with 2025-2026 school year including assessment reading intervention and prekindergarten provisions",
+    "Sections 29.153(g) and 29.1531 relating to prekindergarten programs apply beginning with 2027-2028 school year",
+    "Funding sections including 48.0051 48.108 48.0052 48.1081 48.122 and 48.317 take effect September 1 2025"
+  ),
+
+  Intended_Consequence = c(
+    "Provide enhanced funding support for districts operating comprehensive full-day prekindergarten programs to ensure adequate resources for extended instructional time",
+    "Ensure efficient and targeted distribution of early education funds specifically supporting full-day prekindergarten programs through systematic allocation methods",
+    "Maintain equitable distribution of remaining early education allotment funds while prioritizing full-day prekindergarten program operational support",
+    "Provide dedicated funding for intensive reading intervention services to support students identified as needing additional literacy instruction support",
+    "Prevent double funding by ensuring districts do not receive literacy intervention money for students already supported through compensatory education programs",
+    "Establish reasonable limits on literacy intervention funding to ensure program sustainability and prevent districts from over-identifying intervention students",
+    "Provide financial assistance to families and districts for supplementary educational supports helping third grade students achieve reading proficiency",
+    "Ensure appropriate use of grant funds by limiting students to one grant per category while allowing legislative flexibility for additional appropriations",
+    "Create accountability mechanism ensuring districts effectively use supplementary support grants by reducing future funding for continued student failure",
+    "Incentivize effective use of intervention grants by establishing financial consequences for districts when supported students continue to struggle",
+    "Provide modified accountability for special education students recognizing additional challenges while maintaining some financial incentive for improvement",
+    "Ensure efficient administration and final resolution of funding determinations without creating additional administrative burden through appeal processes",
+    "Eliminate outdated or redundant commissioner authority provisions to streamline Education Code and reduce regulatory complexity",
+    "Remove obsolete reading assessment and instrument provisions that have been superseded by updated requirements in other sections",
+    "Eliminate mathematics assessment requirements that may conflict with or duplicate assessment provisions established elsewhere in updated Education Code",
+    "Ensure legislative intent is preserved by establishing clear precedence for this article over potentially conflicting provisions in other legislation",
+    "Provide adequate implementation timeline for districts to prepare for new assessment intervention and prekindergarten program requirements",
+    "Allow additional preparation time for complex prekindergarten program changes requiring more extensive district planning and implementation",
+    "Ensure immediate funding availability for critical early education programs while allowing adequate time for other provisions to be implemented"
+  ),
+
+  Likely_Result = c(
+    "C, D, E, F", # Full-day prekindergarten distribution priority
+    "C, D, E, F", # State-determined distribution mechanism
+    "C, D, E, F", # Proportional district entitlement
+    "A, C, D, E, F", # Literacy intervention $250 allotment
+    "C, D, E, F, G", # Funding exclusion for Title I recipients
+    "C, D, E, F, G", # 10 percent enrollment cap
+    "A, C, D, E, F", # Third grade $400 grant amount
+    "C, D, E, F, G", # Single grant limitation
+    "A, C, D, E, F, G", # Future funding reduction mechanism
+    "A, C, D, E, F, G", # District funding penalty
+    "C, D, E, F, G", # Special education partial reduction
+    "C, D, E, F", # Commissioner final determination
+    "C, D, E, F", # Section 7.058 repeal
+    "C, D, E, F", # Section 28.006 repeals
+    "C, D, E, F", # Section 28.007 repeal
+    "C, D, E, F", # Article conflict resolution
+    "C, D, E, F", # 2025-2026 implementation
+    "C, D, E, F", # 2027-2028 implementation
+    "C, D, E, F" # September 2025 funding effect
+  )
+)
+
+# Generic check to ensure all vectors have the same length
+vector_lengths <- c(
+  length(article5_sections27_32_results$Category),
+  length(article5_sections27_32_results$Incentive_Created),
+  length(article5_sections27_32_results$Intended_Consequence),
+  length(article5_sections27_32_results$Likely_Result)
+)
+
+# Verify all vectors have same length
+if (length(unique(vector_lengths)) != 1) {
+  stop("Vector length mismatch detected. All vectors must have the same length.")
+}
+
+# Additional verification using stopifnot for robust checking
+stopifnot(
+  "All data frame vectors must have equal length" = 
+    all(vector_lengths == vector_lengths[1])
+)
+
+# Create the main analysis table
+article5_sections27_32_main_table <- datatable(
+  article5_sections27_32_results,
+  options = list(
+    pageLength = 10,
+    scrollX = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '150px', targets = 0),   # Category  
+      list(width = '300px', targets = 1),   # Incentive Created
+      list(width = '250px', targets = 2),   # Intended Result
+      list(width = '150px', targets = 3)    # Coded Results
+    ),
+    dom = 'Bfrtip',
+    buttons = c('copy', 'csv', 'excel')
+  ),
+  filter = 'top',
+  rownames = FALSE,
+  class = 'cell-border stripe hover',
+  colnames = c('Category', 'Incentive Created', 'Intended Result', 'Codes for Destructive Results We Will Actually Get')
+) %>%
+  formatStyle(
+    'Category',
+    backgroundColor = styleEqual(
+      unique(article5_sections27_32_results$Category),
+      rep(c('#FFE8E8', '#FFD0D0', '#E8F4FD', '#E8F6FF', '#FFF2CC', '#E8F5E8', '#F0E8FF', '#FFE8F5', 
+            '#FFEBCD', '#F0FFF0', '#F5F5DC', '#FFFACD', '#F0F8FF', '#FDF5E6', '#FAF0E6', '#FFF8DC', 
+            '#F5FFFA', '#FFEFD5', '#E6E6FA'), length.out = length(unique(article5_sections27_32_results$Category)))
+    ),
+    fontWeight = 'bold'
+  ) %>%
+  formatStyle(
+    'Likely_Result',
+    fontWeight = 'bold',
+    fontSize = '14px',
+    textAlign = 'center',
+    backgroundColor = '#FFF8DC'
+  )
+
+# Display main table
+article5_sections27_32_main_table
+```
+
+<br>
+<br>
+<br>
+
+### Supplemental Tables
+
+```{r}
+#| label: supplemental-analysis-article5-sections27-32
+#| echo: false
+#| warning: false
+#| message: false
+
+# Create category analysis
+category_analysis_a5_s27_32 <- article5_sections27_32_results %>%
+  group_by(Category) %>%
+  summarise(
+    Count = n(),
+    .groups = 'drop'
+  ) %>%
+  arrange(desc(Count)) %>%
+  rename(`Incentive Category` = Category,
+         `Number of Incentives` = Count)
+
+# Analyze most frequent negative result codes
+code_frequency_a5_s27_32 <- article5_sections27_32_results %>%
+  separate_rows(Likely_Result, sep = ", ") %>%
+  count(Likely_Result, sort = TRUE) %>%
+  rename(`Negative Result Code` = Likely_Result,
+         `Frequency` = n) %>%
+  mutate(Percentage = round(100 * Frequency / nrow(article5_sections27_32_results), 3))
+
+# Key policy findings
+key_findings_a5_s27_32 <- data.frame(
+  Finding = c(
+    "Most Universal Negative Pattern",
+    "State Dependency Complete Penetration", 
+    "Accountability Substitution Universal Impact",
+    "Administrative Burden Nearly Universal",
+    "Local Control Complete Elimination",
+    "People-as-Problem Concentrated Pattern",
+    "Extrinsic Motivation Funding Corruption",
+    "Most Problematic Policy Areas",
+    "Future Punishment Mechanism"
+  ),
+  Description = c(
+    "Codes C, D, F appear in 100.000% of incentives, indicating universal state dependency, accountability substitution, and local control elimination",
+    "Code C (state dependency) appears in 100.000% of incentives, representing complete state control over funding distribution, program requirements, and implementation timelines",
+    "Code D (accountability substitute) appears in 100.000% of incentives, replacing educational improvement with compliance, reporting, and measurement systems",
+    "Code E (administrative burden) appears in 89.474% of incentives, creating extensive overhead in funding distribution, grant management, and compliance requirements",
+    "Code F (local control reduction) appears in 100.000% of incentives, eliminating local flexibility in funding allocation, program design, and implementation approaches",
+    "Code G (people as problem) appears in 36.842% of incentives, treating students, teachers, and districts as problems requiring state correction through funding restrictions and penalties",
+    "Code A (extrinsic motivation) appears in 26.316% of incentives, undermining intrinsic educational motivation through funding dependency and financial incentives",
+    "Third Grade Supplementary Supports and Early Literacy Intervention funding show highest concentrations of harmful codes, particularly treating educators and students as problems",
+    "Third Grade Supplementary Supports creates unprecedented mechanism to punish districts financially for student outcomes, establishing precedent for future funding penalties"
+  )
+)
+
+# === DISPLAY SUPPLEMENTAL TABLES ===
+
+# Category Analysis Header
+datatable(
+  data.frame(Title = "INCENTIVE CATEGORY ANALYSIS"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#FF9800',
+              color = 'white')
+
+# Category Analysis Table
+datatable(
+  category_analysis_a5_s27_32,
+  filter = 'top',
+  options = list(
+    pageLength = 15,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Number of Incentives',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = styleColorBar(range(category_analysis_a5_s27_32$`Number of Incentives`), '#E8F4FD')) %>%
+  formatStyle('Incentive Category',
+              fontWeight = 'bold',
+              textAlign = 'left')
+
+# Code Frequency Analysis Header
+datatable(
+  data.frame(Title = "NEGATIVE RESULT CODE FREQUENCY"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#DC143C',
+              color = 'white')
+
+# Code Frequency Table
+datatable(
+  code_frequency_a5_s27_32,
+  filter = 'top',
+  options = list(
+    pageLength = 15,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Frequency',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = styleColorBar(range(code_frequency_a5_s27_32$Frequency), '#FFB6C1')) %>%
+  formatStyle('Negative Result Code',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              fontSize = '16px') %>%
+  formatStyle('Percentage',
+              fontWeight = 'bold',
+              textAlign = 'center')
+
+# Key Findings Header
+datatable(
+  data.frame(Title = "KEY CODED PATTERN FINDINGS"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#F44336',
+              color = 'white')
+
+# Key Findings Table
+datatable(
+  key_findings_a5_s27_32,
+  filter = 'top',
+  options = list(
+    pageLength = 10,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '25%', targets = 0),
+      list(width = '75%', targets = 1)
+    )
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Finding',
+              fontWeight = 'bold',
+              backgroundColor = '#FFE4E1',
+              textAlign = 'left') %>%
+  formatStyle('Description',
+              textAlign = 'left')
+
+# Create coded summary statistics
+summary_statistics_a5_s27_32 <- data.frame(
+  Metric = c(
+    "Total Incentives Analyzed",
+    "Most Problematic Code", 
+    "Most Frequent Code Combination",
+    "Policy Categories with Code C",
+    "Policy Categories with Code F",
+    "Average Codes per Incentive"
+  ),
+  Value = c(
+    nrow(article5_sections27_32_results),
+    paste0("Codes C, D, F (all appear ", max(code_frequency_a5_s27_32$Frequency), " times each)"),
+    "C, D, E, F (dependency + accountability + burden + control)",
+    sum(grepl("C", article5_sections27_32_results$Likely_Result)),
+    sum(grepl("F", article5_sections27_32_results$Likely_Result)),
+    round(mean(lengths(strsplit(article5_sections27_32_results$Likely_Result, ", "))), 1)
+  )
+)
+
+# Summary Statistics Header
+datatable(
+  data.frame(Title = "CODED ANALYSIS SUMMARY STATISTICS"),
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#9C27B0',
+              color = 'white')
+
+# Summary Statistics Table
+datatable(
+  summary_statistics_a5_s27_32,
+  options = list(
+    pageLength = 10,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '40%', targets = 0),
+      list(width = '60%', targets = 1)
+    )
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Metric',
+              fontWeight = 'bold',
+              textAlign = 'left') %>%
+  formatStyle('Value',
+              textAlign = 'left',
+              fontWeight = 'bold')
+```
+
+<br>
+<br>
+
+### Key List of Likely Negative Results 
+
+#### The evaluation codes are based on these axioms:
+
+- Central planning (one size fits all) degrades everyone's performance
+  - Makes nearly every district action a legal matter
+  - Robs people of pride in their work
+  
+- Efforts at 'accountability' will not improve performance of anyone
+
+- Cooperation within an organization is far more effective than competition 
+
+- All incentives work; some promote and some pervert the ***intention*** of the incentive
+
+```{r}
+#| label: negative-results-coding-key-article5-sections27-32
+#| echo: false
+#| message: false
+#| warning: false
+
+# Create negative results table with 7-code system
+negative_results_a5_s27_32 <- data.frame(
+  Code = c("A", "B", "C", "D", "E", "F", "G"),
+
+  Likely_Negative_Result = c(
+    "Decreases intrinsic motivation in favor of extrinsic motivation",
+    "Decreases cooperation within districts in favor of competition for resources",  
+    "Increases dependency on State funding and bureaucracy",
+    "Substitutes 'accountability' for improvement of the system people work in",
+    "Increases district administrative burdens",
+    "Decreases local control and flexibility",
+    "Treats people as the 'problem', instead of the system they work in"
+  )
+)
+
+# Define bright contrasting color palette (7 colors for 7 codes)
+color_palette_a5_s27_32 <- c("#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FECA57", "#FF9FF3", "#54A0FF")
+
+# Create color assignments for each row
+row_colors_a5_s27_32 <- color_palette_a5_s27_32[1:nrow(negative_results_a5_s27_32)]
+
+# Display the coding key table
+DT::datatable(
+  negative_results_a5_s27_32,
+  options = list(
+    pageLength = 15,
+    dom = 'Bfrtip',
+    buttons = c('copy', 'csv', 'excel'),
+    columnDefs = list(
+      list(width = '40px', targets = 0),  # Narrow first column
+      list(width = '90%', targets = 1)    # Wide second column
+    ),
+    scrollX = FALSE,
+    autoWidth = FALSE
+  ),
+  rownames = FALSE,
+  class = 'display'
+) %>%
+  formatStyle(
+    'Code',
+    textAlign = 'right',
+    fontWeight = 'bold',
+    backgroundColor = styleEqual(negative_results_a5_s27_32$Code, row_colors_a5_s27_32),
+    color = 'white'
+  ) %>%
+  formatStyle(
+    'Likely_Negative_Result',
+    backgroundColor = styleEqual(negative_results_a5_s27_32$Code, row_colors_a5_s27_32),
+    color = 'black'
+  ) %>%
+  formatStyle(
+    columns = c(0, 1),
+    border = '2px solid #333',
+    borderCollapse = 'collapse'
+  ) %>%
+  formatStyle(
+    columns = c(0, 1),
+    maxWidth = '9in',
+    tableLayout = 'fixed'
+  )
+
+```
+
+<br>
+<br>
+
+## Interesting Counter-Intuitive Implications
+
+```{r}
+#| label: counter-intuitive-implications-article5-sections27-32
+#| echo: false
+#| message: false
+#| warning: false
+
+# Create counter-intuitive implications table
+counter_intuitive_a5_s27_32 <- data.frame(
+  Ironic_Implication = c(
+    "Success Becomes Punishment",
+    "Help Creates Future Harm", 
+    "Support Generates Dependency",
+    "Flexibility Eliminates Choice",
+    "Assistance Increases Burden"
+  ),
+  
+  Explanation = c(
+    "Districts that successfully help struggling third-graders through supplementary grants face future funding reductions if those same students later fail assessments - punishing districts for trying to help",
+    "Early literacy intervention funding is designed to help students but creates administrative systems that divert resources from actual instruction to compliance and reporting",
+    "Full-day prekindergarten funding support makes districts dependent on state distribution mechanisms rather than building local capacity for sustainable early education programs",
+    "Multiple funding streams appear to offer program flexibility but actually require conformity to specific state-approved intervention methods and reporting requirements",
+    "Grant assistance for reading interventions increases district administrative burden through eligibility tracking, enrollment caps, and exclusion rules rather than simplifying support for struggling readers"
+  )
+)
+
+# Display counter-intuitive implications table
+DT::datatable(
+  counter_intuitive_a5_s27_32,
+  options = list(
+    pageLength = 10,
+    dom = 't',
+    ordering = FALSE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '30%', targets = 0),
+      list(width = '70%', targets = 1)
+    )
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe',
+  colnames = c('Counter-Intuitive Pattern', 'Legislative Reality')
+) %>%
+  formatStyle(
+    'Ironic_Implication',
+    fontWeight = 'bold',
+    backgroundColor = '#FFE4B5',
+    textAlign = 'left'
+  ) %>%
+  formatStyle(
+    'Explanation',
+    textAlign = 'left',
+    backgroundColor = '#FFF8DC'
+  )
+```

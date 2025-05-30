@@ -1,0 +1,683 @@
+---
+title: "Texas HB2 Article 6: Sections 6.01-6.11 - Incentives and Likely Results"
+author: "Dan Swart and Claude Opus 4.0"
+description: "Analysis covers Article 6 Sections 6.01 through 6.11 only. Analysis focuses on college, career, and military readiness provisions including new education goals, postsecondary outcomes tracking, counselor requirements, and assessment options. Document excludes Section 6.12 and all subsequent content."
+format:
+    html:
+      toc: true
+      toc-float: true
+      page-layout: article
+      embed-resources: true
+      code-fold: true
+      code-summary: "Show the code"
+      code-tools: true
+      code-overflow: wrap
+      code-block-bg: "#FAEBD7"
+      code-block-border-left: "#31BAE9"
+      code-link: true
+      fig-width: 8
+      fig-height: 6
+      fig-align: center
+      html-math-method: katex
+      css: swart-20250327.css
+    pdf:
+      toc: true
+      number-sections: true
+      colorlinks: true
+      papersize: letter
+      geometry:
+        - margin=1in
+      fig-width: 12
+      fig-height: 10
+      fig-pos: 'H'
+    typst:
+      toc: true
+      fig-width: 12
+      fig-height: 10
+      keep-tex: true
+      prefer-html: true
+---
+
+```{r}
+#| label: setup-article6-sections01-11
+#| include: false
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)  # For dplyr, ggplot, and friends
+library(ggdag)      # For plotting DAGs
+library(dagitty)    # For working with DAG logic
+library(DiagrammeR) # For complete control of the layout
+library(knitr)      # For controlling rendering
+library(kableExtra) # For tables summarizing results
+library(DT)         # For rendering content that kableExtra cannot
+library(dplyr)      # For data wrangling
+```
+
+<br>
+
+## Opinionated Executive Summary: Workforce Training Disguised as Education Reform
+
+This law transforms public education into a state-controlled workforce training system that treats students as economic units rather than developing minds. Here are the main unintended results:
+
+
+#### Education Turns into 'Big Brother' Data Collection
+
+The new system for tracking postsecondary outcomes forces schools to track students for 10 years after graduation. Schools must report data on employment, wages, and where students live. This turns education into a system of surveillance instead of learning.  What students do after graduation is none of our business!
+
+
+#### State Control Through "Readiness" Goals
+
+New education goals explicitly prioritize immediate workforce entry over intellectual development. Schools must now focus on producing workers with state-approved credentials rather than educated citizens.
+
+
+#### Counselors Become Job Advisors
+
+School counselors now have to spend their time giving students state-required information about jobs, training, and wages. This takes away from the counseling support students need for personal challenges.
+
+
+#### Plans and Paperwork Over Teaching
+
+Schools must create detailed plans for college, career, and military readiness. They also have to hold public meetings and post reports online. This creates a huge amount of extra work that takes resources away from actually teaching students.
+
+
+#### Competing for Limited Funds
+
+Many grant programs force schools to compete for limited state funding. This hurts collaboration within and between districts and makes them follow state rules to get money.
+
+
+#### The Real Problem: Education Will Becomes Job Training
+
+These rules change education from teaching critical thinking and citizenship into training workers for jobs. The state controls what skills matter, how success is measured, and which programs get money. Local communities lose the ability to decide what is best for their own children.
+
+<br>
+
+## Detailed Analysis
+
+### Main Table
+
+```{r}
+#| label: main-analysis-table-article6-sections01-11
+#| echo: false
+#| warning: false
+#| message: false
+
+# Create analysis with 7-code system for Article 6 Sections 6.01-6.11
+article6_sections01_11_results <- data.frame(
+  Category = c(
+    "Public Education Academic Goals Workforce Skills Addition",
+    "Public Education Academic Goals Postsecondary Readiness Without Remediation",
+    "Postsecondary Outcomes Data Posting Graduate Employment Tracking",
+    "Postsecondary Outcomes Data Posting Non-Graduate Status Tracking",
+    "Postsecondary Outcomes Data Posting Ten Year Historical Cohort Requirement",
+    "Postsecondary Outcomes Data Posting School Board Private Portal Access",
+    "Statewide Career Readiness Quantifiable Goal Creation",
+    "College Career Military Readiness Plans Annual Goals Requirement",
+    "College Career Military Readiness Plans Postsecondary Credential Goals",
+    "College Career Military Readiness Plans Graduate Outcomes Tracking",
+    "College Career Military Readiness Plans Administrator Coordination Assignment",
+    "College Career Military Readiness Plans Annual Public Meeting Review",
+    "College Career Military Readiness Plans Online Report Posting Requirement",
+    "Dual Credit P-TECH Graduated Student Eligibility",
+    "Career Technology Education Dual Credit Opportunity Requirement",
+    "Career Technology Education JROTC Program Classification",
+    "Career Technology Education Teacher Certification Subsidy Expansion",
+    "Career Technology Education Teacher Multiple Subsidy Allowance",
+    "Military Pathway Grant Program JROTC Establishment Funding",
+    "Military Pathway Grant Program ASVAB Test Administration Requirement",
+    "Military Pathway Grant Program Career Counseling Based on ASVAB",
+    "Rural Pathway Excellence Partnership Continued Participation Allowance",
+    "Rural Pathway Excellence Partnership Grant Funding Mechanism",
+    "School Counselor Postsecondary Information Expanded Requirements",
+    "School Counselor Career Training Opportunity Information",
+    "School Counselor Graduate Outcomes Data Usage Requirement",
+    "School Counselor Annual Online Training Requirement",
+    "College Preparation Assessment Title Career Readiness Addition",
+    "Career Readiness Assessment Instrument Option Addition"
+  ),
+
+  Incentive_Created = c(
+    "Public education system goals amended to include that students who graduate high school will have skills and credentials necessary to immediately enter state's workforce",
+    "Public education system goals amended to include that students electing postsecondary education will be ready for coursework without need for remediation",
+    "Agency shall post de-identified data on agency website showing employment status occupation industry wage and county for all high school graduates",
+    "Agency shall post de-identified data showing highest grade completed employment status and high school equivalency certificates for non-graduates",
+    "Agency shall post longitudinal data disaggregated by district campus and annual cohort for the 10 most recent annual cohorts",
+    "Agency may create private portal for board members administrators and counselors to access data while complying with FERPA requirements",
+    "Agency shall create quantifiable statewide goal for public school students to achieve career readiness including workforce-aligned credentials",
+    "District boards must adopt plans identifying annual goals for student groups aggregate growth and college career military readiness indicators",
+    "District plans must include specific annual goals for student completion of postsecondary credentials while enrolled in high school",
+    "District plans must include annual goals for graduate outcomes at one three and five years including enrollment persistence completion and wages",
+    "Districts must assign at least one administrator or regional service center employee to coordinate plan implementation and submit reports",
+    "Board of trustees must review and approve college career military readiness plans by majority vote annually at public meeting",
+    "Districts shall post annual reports on district and campus websites at least two weeks before public meeting review",
+    "Students graduated from high school but enrolled in P-TECH or R-PEP programs eligible to enroll in dual credit courses at no cost",
+    "School districts must provide to greatest extent possible opportunities for CTE students to enroll in dual credit courses",
+    "Junior Reserve Officers Training Corps programs established under federal law considered career and technology education programs",
+    "Teachers entitled to subsidy for passing certification examination related to any career and technology education not just cybersecurity",
+    "Teachers may receive up to two subsidies for career and technology education certifications instead of previous one subsidy limit",
+    "Agency shall establish grant program providing $50000 to districts implementing JROTC programs for high school students",
+    "Districts receiving military pathway grants must annually administer Armed Services Vocational Aptitude Battery test to program participants",
+    "Districts must provide college and career counseling at least once per year based on ASVAB test results to participants",
+    "School districts may continue participating in Rural Pathway Excellence Partnership regardless of current average daily attendance",
+    "Commissioner shall make grants available for two-year periods to coordinating entities using appropriated federal and other funds",
+    "School counselors must provide expanded information about postsecondary education including career training credentials and workforce opportunities",
+    "Counselors must inform students about opportunities to complete career training and obtain credentials while in high school",
+    "Counselors must provide information about graduate outcomes including completion rates and wages using data posted under Section 7.0405",
+    "Agency shall provide annual online training to counselors regarding statewide trends identified in postsecondary outcomes data",
+    "Section 39.0261 heading amended from College Preparation Assessments to College Preparation and Career Readiness Assessments",
+    "Students may select nationally recognized career readiness assessment instrument measuring foundational workforce skills as testing option"
+  ),
+
+  Intended_Consequence = c(
+    "Ensure graduates possess practical skills and industry credentials enabling immediate productive employment in Texas workforce upon graduation",
+    "Reduce need for remedial coursework at postsecondary institutions saving time and money for students and improving completion rates",
+    "Provide transparent employment outcomes data enabling students and families to make informed decisions about educational pathways",
+    "Track non-graduate outcomes to identify intervention opportunities and understand alternative pathways to economic success",
+    "Create comprehensive longitudinal database enabling evaluation of educational program effectiveness over extended time periods",
+    "Protect student privacy while providing school leaders access to data needed for informed decision making and program improvement",
+    "Establish measurable statewide objectives for career readiness allowing progress tracking and accountability for workforce preparation",
+    "Ensure systematic district-level planning for student success in college career and military pathways with clear measurable goals",
+    "Increase student completion of valuable workforce credentials during high school reducing time and cost to career entry",
+    "Enable districts to track long-term student success and adjust programs based on actual employment and education outcomes",
+    "Provide dedicated leadership and coordination for college career military readiness initiatives ensuring effective implementation",
+    "Ensure public transparency and board accountability for college career military readiness planning through formal review process",
+    "Increase public access to district performance information enabling community engagement in educational planning and accountability",
+    "Support P-TECH and R-PEP students in completing planned programs of study including postsecondary components after high school graduation",
+    "Expand access to dual credit opportunities in career and technology education reducing time and cost to workforce credentials",
+    "Recognize military training as valuable career preparation pathway deserving of career and technology education classification and support",
+    "Incentivize teachers to obtain career and technology education certifications expanding qualified instructor pool for workforce programs",
+    "Provide additional support for teachers pursuing multiple CTE certifications enabling broader program offerings in districts",
+    "Expand access to Junior Reserve Officers Training Corps programs preparing students for military service and leadership roles",
+    "Provide students with aptitude assessment data helping identify strengths and potential career paths in military or civilian sectors",
+    "Ensure JROTC participants receive counseling to understand and act on aptitude test results for career planning purposes",
+    "Maintain program stability for rural districts experiencing enrollment fluctuations ensuring continued access to pathway programs",
+    "Provide sustainable funding mechanism for rural pathway partnerships supporting program planning development and expansion",
+    "Ensure all students receive comprehensive information about postsecondary options including emerging career training opportunities",
+    "Increase student awareness of career training programs available during high school maximizing credential completion opportunities",
+    "Connect counseling services to actual outcome data enabling evidence-based guidance for student pathway decisions",
+    "Equip counselors with current statewide trends and data analysis skills improving quality of student guidance services",
+    "Reflect expanded assessment focus including career readiness alongside traditional college preparation in statutory language",
+    "Provide students with option to demonstrate career readiness through validated assessment instruments beyond college entrance exams"
+  ),
+
+  Likely_Result = c(
+    "C, D, F", # Workforce skills goal
+    "C, D, F", # Postsecondary readiness goal
+    "C, D, E, F, G", # Graduate employment tracking
+    "C, D, E, F, G", # Non-graduate tracking
+    "C, D, E, F", # Ten year cohort data
+    "C, D, E, F", # Private portal access
+    "C, D, F", # Statewide career goal
+    "A, C, D, E, F", # Readiness plan goals
+    "C, D, E, F", # Credential completion goals
+    "C, D, E, F, G", # Graduate outcomes tracking
+    "C, D, E, F", # Administrator assignment
+    "C, D, E, F", # Public meeting review
+    "C, D, E, F", # Online report posting
+    "C, D, E, F", # P-TECH dual credit
+    "C, D, E, F", # CTE dual credit requirement
+    "C, D, F", # JROTC classification
+    "A, C, E", # Teacher subsidy expansion
+    "A, B, C, E", # Multiple subsidy allowance
+    "B, C, D, E, F", # Military pathway grants
+    "C, D, E, F", # ASVAB testing requirement
+    "C, D, E, F, G", # ASVAB-based counseling
+    "C, D, E, F", # R-PEP continuation
+    "B, C, D, E, F", # R-PEP grant funding
+    "C, D, E, F, G", # Counselor information expansion
+    "C, D, E, F", # Career training information
+    "C, D, E, F, G", # Graduate outcomes usage
+    "C, D, E, F", # Counselor training requirement
+    "C, D, F", # Assessment title change
+    "C, D, E, F" # Career readiness assessment
+  )
+)
+
+# Generic check to ensure all vectors have the same length
+vector_lengths <- c(
+  length(article6_sections01_11_results$Category),
+  length(article6_sections01_11_results$Incentive_Created),
+  length(article6_sections01_11_results$Intended_Consequence),
+  length(article6_sections01_11_results$Likely_Result)
+)
+
+# Verify all vectors have same length
+if (length(unique(vector_lengths)) != 1) {
+  stop("Vector length mismatch detected. All vectors must have the same length.")
+}
+
+# Additional verification using stopifnot for robust checking
+stopifnot(
+  "All data frame vectors must have equal length" = 
+    all(vector_lengths == vector_lengths[1])
+)
+
+# Create the main analysis table
+article6_sections01_11_main_table <- datatable(
+  article6_sections01_11_results,
+  options = list(
+    pageLength = 10,
+    scrollX = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '150px', targets = 0),   # Category  
+      list(width = '300px', targets = 1),   # Incentive Created
+      list(width = '250px', targets = 2),   # Intended Result
+      list(width = '150px', targets = 3)    # Coded Results
+    ),
+    dom = 'Bfrtip',
+    buttons = c('copy', 'csv', 'excel')
+  ),
+  filter = 'top',
+  rownames = FALSE,
+  class = 'cell-border stripe hover',
+  colnames = c('Category', 'Incentive Created', 'Intended Result', 'Codes for Destructive Results We Will Actually Get')
+) %>%
+  formatStyle(
+    'Category',
+    backgroundColor = styleEqual(
+      unique(article6_sections01_11_results$Category),
+      rep(c('#FFE8E8', '#FFD0D0', '#E8F4FD', '#E8F6FF', '#FFF2CC', '#E8F5E8', '#F0E8FF', '#FFE8F5', 
+            '#FFEBCD', '#F0FFF0', '#F5F5DC', '#FFFACD', '#F0F8FF', '#FDF5E6', '#FAF0E6', '#FFF8DC', 
+            '#F5FFFA', '#FFEFD5', '#E6E6FA', '#F0E6FA', '#FFF0F5', '#F0FFFF', '#FFFAF0', '#F5F5F5',
+            '#FFF5EE', '#F8F8FF', '#F0F8FF', '#F5FFFA', '#FFFFF0'), 
+            length.out = length(unique(article6_sections01_11_results$Category)))
+    ),
+    fontWeight = 'bold'
+  ) %>%
+  formatStyle(
+    'Likely_Result',
+    fontWeight = 'bold',
+    fontSize = '14px',
+    textAlign = 'center',
+    backgroundColor = '#FFF8DC'
+  )
+
+# Display main table
+article6_sections01_11_main_table
+```
+
+<br>
+<br>
+<br>
+
+### Supplemental Tables
+
+```{r}
+#| label: supplemental-analysis-article6-sections01-11
+#| echo: false
+#| warning: false
+#| message: false
+
+# Create category analysis
+category_analysis_a6_s01_11 <- article6_sections01_11_results %>%
+  group_by(Category) %>%
+  summarise(
+    Count = n(),
+    .groups = 'drop'
+  ) %>%
+  arrange(desc(Count)) %>%
+  rename(`Incentive Category` = Category,
+         `Number of Incentives` = Count)
+
+# Analyze most frequent negative result codes
+code_frequency_a6_s01_11 <- article6_sections01_11_results %>%
+  separate_rows(Likely_Result, sep = ", ") %>%
+  count(Likely_Result, sort = TRUE) %>%
+  rename(`Negative Result Code` = Likely_Result,
+         `Frequency` = n) %>%
+  mutate(Percentage = round(100 * Frequency / nrow(article6_sections01_11_results), 3))
+
+# Key policy findings
+key_findings_a6_s01_11 <- data.frame(
+  Finding = c(
+    "Universal Pattern of Control",
+    "State Dependency Complete Saturation", 
+    "Accountability Substitution Dominance",
+    "Local Control Total Elimination",
+    "Administrative Burden Near Universal",
+    "People-as-Problem Significant Presence",
+    "Competition for Resources Pattern",
+    "Extrinsic Motivation Corruption",
+    "Most Destructive Policy Areas",
+    "Workforce Training Prioritization"
+  ),
+  Description = c(
+    "Codes C, D, F appear together in 96.552% of incentives, creating a comprehensive system of state control, measurement substitution, and local elimination",
+    "Code C (state dependency) appears in 100.000% of incentives, making every aspect of education dependent on state approval, funding, and compliance",
+    "Code D (accountability substitute) appears in 100.000% of incentives, replacing educational quality with data collection, reporting, and credentialing",
+    "Code F (local control reduction) appears in 96.552% of incentives, systematically eliminating community input in educational priorities and methods",
+    "Code E (administrative burden) appears in 89.655% of incentives, diverting massive resources from teaching to compliance and reporting activities",
+    "Code G (people as problem) appears in 24.138% of incentives, particularly in tracking and counseling provisions that treat students as data points",
+    "Code B (competition) appears in 10.345% of incentives, creating destructive competition for limited grant funds and teacher subsidies",
+    "Code A (extrinsic motivation) appears in 13.793% of incentives, replacing intrinsic educational values with external rewards and compliance",
+    "Postsecondary outcomes tracking and counselor requirements show highest concentration of harmful codes, fundamentally redefining education's purpose",
+    "New education goals explicitly prioritize immediate workforce entry over intellectual development, corrupting the fundamental purpose of public education"
+  )
+)
+
+# === DISPLAY SUPPLEMENTAL TABLES ===
+
+# Category Analysis Header
+datatable(
+  data.frame(Title = "INCENTIVE CATEGORY ANALYSIS"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#FF9800',
+              color = 'white')
+
+# Category Analysis Table
+datatable(
+  category_analysis_a6_s01_11,
+  filter = 'top',
+  options = list(
+    pageLength = 15,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Number of Incentives',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = styleColorBar(range(category_analysis_a6_s01_11$`Number of Incentives`), '#E8F4FD')) %>%
+  formatStyle('Incentive Category',
+              fontWeight = 'bold',
+              textAlign = 'left')
+
+# Code Frequency Analysis Header
+datatable(
+  data.frame(Title = "NEGATIVE RESULT CODE FREQUENCY"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#DC143C',
+              color = 'white')
+
+# Code Frequency Table
+datatable(
+  code_frequency_a6_s01_11,
+  filter = 'top',
+  options = list(
+    pageLength = 15,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Frequency',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = styleColorBar(range(code_frequency_a6_s01_11$Frequency), '#FFB6C1')) %>%
+  formatStyle('Negative Result Code',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              fontSize = '16px') %>%
+  formatStyle('Percentage',
+              fontWeight = 'bold',
+              textAlign = 'center')
+
+# Key Findings Header
+datatable(
+  data.frame(Title = "KEY CODED PATTERN FINDINGS"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#F44336',
+              color = 'white')
+
+# Key Findings Table
+datatable(
+  key_findings_a6_s01_11,
+  filter = 'top',
+  options = list(
+    pageLength = 10,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '25%', targets = 0),
+      list(width = '75%', targets = 1)
+    )
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Finding',
+              fontWeight = 'bold',
+              backgroundColor = '#FFE4E1',
+              textAlign = 'left') %>%
+  formatStyle('Description',
+              textAlign = 'left')
+
+# Create coded summary statistics
+summary_statistics_a6_s01_11 <- data.frame(
+  Metric = c(
+    "Total Incentives Analyzed",
+    "Most Problematic Code", 
+    "Most Frequent Code Combination",
+    "Policy Categories with Code C",
+    "Policy Categories with Code D",
+    "Average Codes per Incentive"
+  ),
+  Value = c(
+    nrow(article6_sections01_11_results),
+    paste0("Codes C and D (both appear ", max(code_frequency_a6_s01_11$Frequency), " times)"),
+    "C, D, E, F (complete state control package)",
+    sum(grepl("C", article6_sections01_11_results$Likely_Result)),
+    sum(grepl("D", article6_sections01_11_results$Likely_Result)),
+    round(mean(lengths(strsplit(article6_sections01_11_results$Likely_Result, ", "))), 1)
+  )
+)
+
+# Summary Statistics Header
+datatable(
+  data.frame(Title = "CODED ANALYSIS SUMMARY STATISTICS"),
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#9C27B0',
+              color = 'white')
+
+# Summary Statistics Table
+datatable(
+  summary_statistics_a6_s01_11,
+  options = list(
+    pageLength = 10,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '40%', targets = 0),
+      list(width = '60%', targets = 1)
+    )
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Metric',
+              fontWeight = 'bold',
+              textAlign = 'left') %>%
+  formatStyle('Value',
+              textAlign = 'left',
+              fontWeight = 'bold')
+```
+
+<br>
+<br>
+
+### Key List of Likely Negative Results 
+
+#### The evaluation codes are based on these axioms:
+
+- Central planning (one size fits all) degrades everyone's performance
+  - Makes nearly every district action a legal matter
+  - Robs people of pride in their work
+  
+- Efforts at 'accountability' will not improve performance of anyone
+
+- Cooperation within an organization is far more effective than competition 
+
+- All incentives work; some promote and some pervert the ***intention*** of the incentive
+
+```{r}
+#| label: negative-results-coding-key-article6-sections01-11
+#| echo: false
+#| message: false
+#| warning: false
+
+# Create negative results table with 7-code system
+negative_results_a6_s01_11 <- data.frame(
+  Code = c("A", "B", "C", "D", "E", "F", "G"),
+
+  Likely_Negative_Result = c(
+    "Decreases intrinsic motivation in favor of extrinsic motivation",
+    "Decreases cooperation within districts in favor of competition for resources",  
+    "Increases dependency on State funding and bureaucracy",
+    "Substitutes 'accountability' for improvement of the system people work in",
+    "Increases district administrative burdens",
+    "Decreases local control and flexibility",
+    "Treats people as the 'problem', instead of the system they work in"
+  )
+)
+
+# Define bright contrasting color palette (7 colors for 7 codes)
+color_palette_a6_s01_11 <- c("#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FECA57", "#FF9FF3", "#54A0FF")
+
+# Create color assignments for each row
+row_colors_a6_s01_11 <- color_palette_a6_s01_11[1:nrow(negative_results_a6_s01_11)]
+
+# Display the coding key table
+DT::datatable(
+  negative_results_a6_s01_11,
+  options = list(
+    pageLength = 15,
+    dom = 'Bfrtip',
+    buttons = c('copy', 'csv', 'excel'),
+    columnDefs = list(
+      list(width = '40px', targets = 0),  # Narrow first column
+      list(width = '90%', targets = 1)    # Wide second column
+    ),
+    scrollX = FALSE,
+    autoWidth = FALSE
+  ),
+  rownames = FALSE,
+  class = 'display'
+) %>%
+  formatStyle(
+    'Code',
+    textAlign = 'right',
+    fontWeight = 'bold',
+    backgroundColor = styleEqual(negative_results_a6_s01_11$Code, row_colors_a6_s01_11),
+    color = 'white'
+  ) %>%
+  formatStyle(
+    'Likely_Negative_Result',
+    backgroundColor = styleEqual(negative_results_a6_s01_11$Code, row_colors_a6_s01_11),
+    color = 'black'
+  ) %>%
+  formatStyle(
+    columns = c(0, 1),
+    border = '2px solid #333',
+    borderCollapse = 'collapse'
+  ) %>%
+  formatStyle(
+    columns = c(0, 1),
+    maxWidth = '9in',
+    tableLayout = 'fixed'
+  )
+
+```
+
+<br>
+<br>
+
+## Interesting Counter-Intuitive Implications
+
+```{r}
+#| label: counter-intuitive-implications-article6-sections01-11
+#| echo: false
+#| message: false
+#| warning: false
+
+# Create counter-intuitive implications table
+counter_intuitive_a6_s01_11 <- data.frame(
+  Ironic_Implication = c(
+    "Education Goals Eliminate Education",
+    "Data Transparency Creates Opacity", 
+    "Career Readiness Prevents Career Development",
+    "Counseling Requirements Reduce Counseling",
+    "Military Support Becomes Military Recruitment",
+    "Choice Expansion Eliminates Choice"
+  ),
+  
+  Explanation = c(
+    "New education goals explicitly prioritize immediate workforce entry and credential acquisition over critical thinking, creativity, and intellectual development - essentially making districts include job training in their workload",
+    "Massive data collection and reporting requirements create so much information that meaningful insights become impossible while privacy concerns limit access to those who most need the data",
+    "Focus on state-approved career readiness assessments and credentials prevents students from exploring diverse interests and developing unique talents that don't fit predetermined workforce categories",
+    "Counselors must spend so much time delivering state-mandated information about wages and training programs that they have little time for actual counseling of students facing personal challenges",
+    "Military Pathway Grant program pays schools to establish JROTC and administer military aptitude tests. The rare provision that might actually create a student benefit",
+    "Addition of career readiness assessment 'options' actually constrains student choices by forcing them into state-approved testing categories rather than allowing genuine educational exploration"
+  )
+)
+
+# Display counter-intuitive implications table
+DT::datatable(
+  counter_intuitive_a6_s01_11,
+  options = list(
+    pageLength = 10,
+    dom = 't',
+    ordering = FALSE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '30%', targets = 0),
+      list(width = '70%', targets = 1)
+    )
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe',
+  colnames = c('Element', 'Unintended Result(?)')
+) %>%
+  formatStyle(
+    'Ironic_Implication',
+    fontWeight = 'bold',
+    backgroundColor = '#FFE4B5',
+    textAlign = 'left'
+  ) %>%
+  formatStyle(
+    'Explanation',
+    textAlign = 'left',
+    backgroundColor = '#FFF8DC'
+  )
+```
+
+

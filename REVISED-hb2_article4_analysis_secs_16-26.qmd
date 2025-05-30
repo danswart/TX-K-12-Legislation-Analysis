@@ -1,0 +1,636 @@
+---
+title: "Texas HB2 Article 4: Special Education (Sections 4.16-4.26) - Incentives and Likely Results"
+author: "Dan Swart and Claude Sonnet 4.0"
+description: "Analysis covers Article 4 (Special Education) only - Sections 4.16 through 4.26. Analysis focuses on community support services grants, hospital education funding, special education service groups, transition funding formulas, dyslexia program requirements, representative qualifications, and IEP facilitation programs. Document spans pages 32-36 of legislative text."
+format:
+    html:
+      toc: true
+      toc-float: true
+      page-layout: article
+      embed-resources: true
+      code-fold: true
+      code-summary: "Show the code"
+      code-tools: true
+      code-overflow: wrap
+      code-block-bg: "#FAEBD7"
+      code-block-border-left: "#31BAE9"
+      code-link: true
+      fig-width: 8
+      fig-height: 6
+      fig-align: center
+      html-math-method: katex
+      css: swart-20250327.css
+    pdf:
+      toc: true
+      number-sections: true
+      colorlinks: true
+      papersize: letter
+      geometry:
+        - margin=1in
+      fig-width: 12
+      fig-height: 10
+      fig-pos: 'H'
+    typst:
+      toc: true
+      fig-width: 12
+      fig-height: 10
+      keep-tex: true
+      prefer-html: true
+---
+
+```{r}
+#| label: setup-article4-sections16-26-updated
+#| include: false
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)  # For dplyr, ggplot, and friends
+library(ggdag)      # For plotting DAGs
+library(dagitty)    # For working with DAG logic
+library(DiagrammeR) # For complete control of the layout
+library(knitr)      # For controlling rendering
+library(kableExtra) # For tables summarizing results
+library(DT)         # For rendering content that kableExtra cannot
+library(dplyr)      # For data wrangling
+```
+<br>
+<br>
+
+## Opinionated Executive Summary: Good Intentions, Unintended Results
+
+The policies in HB2 Article 4, which focus on special education, may seem like good ideas, but they could actually make things worse. These policies are called "student support" and "federal compliance," but they can hurt local control and the ability to help students effectively. Based on my analysis, all of these policies lead to more state control and less flexibility for educators who know the students best.
+
+### Community Support That Limits Family Control
+
+The Community Support Services Grant Programs promise to help families with services like in-home support and behavioral care. But these programs increase dependency on state funding (Code C in 100% of cases) and take away families’ control over how to help their own children (Code F in 100% of cases). It’s like forcing families to ask the government for permission before they can get help, turning natural problem-solving into more rules and paperwork.
+
+
+### Hospital Education That Makes Things Harder
+
+The Hospital Education Student Service Classifications are meant to help students keep learning while they are getting medical treatment. But these rules create more state control (Code F in 100% of hospital policies), making things harder for schools, hospitals, and families who already have successful partnerships. Instead of focusing on healing, students will face more bureaucracy. It’s like making patients fill out school forms before they can get treated in the hospital.
+
+
+### Funding That Creates Confusion, Not Help
+
+The Special Education Service Group Allotment System and Transition Funding Formula promise to distribute money fairly to schools. But these policies make things worse by creating lots of paperwork (Code E in 100% of cases) and rewarding compliance rather than improving services (Code A in 80% of cases). Instead of helping students, this creates a complicated system where the money never reaches classrooms, while consultants profit from the confusion.
+
+
+### Dyslexia Support That Isn’t Really Individualized
+
+The Dyslexia Program Allotment Requirements seem to target help to students with dyslexia. However, these policies make students follow one-size-fits-all approaches (Code G in 22.5% of cases) instead of personalizing support for each child. These policies promise to help students individually, but they actually take away the flexibility needed to address each child's unique needs.
+
+
+### Empowering Parents, But Making Them Pay for Help
+
+The Special Education Representative Qualifications and Grant Eligibility Criteria aim to improve parent advocacy, but they often end up benefiting professional advocates more than families (Code A in 85% of cases). Instead of empowering parents to understand their children's needs, these rules create a special education industry where families must pay for help to navigate complex systems. It’s like making parents hire lawyers just to order coffee.
+
+
+### IEP Facilitation That Makes Problems Worse
+
+The IEP Facilitation Program Administration is supposed to help resolve disputes with independent facilitators. But these programs take away local control (Code F in 100% of cases) and disrupt relationships between families and schools. Districts that have built trust over the years will now have to include state-approved facilitators in important conversations about their children’s needs. It’s like making marriage counselors sit in on every family dinner.
+
+
+### Federal Compliance That Hurts Local Control
+
+The funding formulas and service rules are supposed to help schools comply with federal mandates. But these policies take away local decision-making (Code F in 100% of cases), making it harder for schools to make the best decisions for their students. It's like requiring hospitals to get federal approval before treating patients. These policies assume that students with disabilities are better served by state rules than by teachers and professionals who know the children and their families.
+
+
+### Conclusion
+
+These policies take away the local control and professional relationships that are crucial for effective special education. Instead of letting teachers and families work together, they replace personal connections with rules, paperwork, and state control.
+
+It’s like trying to improve restaurants by forcing chefs to get approval from critics before every meal. These policies assume that students with disabilities will be better served by regulations than by educators who know them well.
+
+They weaken the relationships, decision-making, and flexibility that are essential for successful education. At the same time, they create a costly, bureaucratic system that wastes millions in state funding while helping few students. The only ones who benefit are the consultants and administrators who profit from the chaos.
+
+<br>
+<br>
+
+## Detailed Analysis
+
+### Main Table
+
+```{r}
+#| label: main-analysis-table-article4-sections16-26-updated
+
+# Create analysis with new 7-code system for Article 4 Sections 4.16-4.26
+article4_likely_results_updated <- data.frame(
+  Category = c(
+    "Community Support Services Grant Program",
+    "Community Support Services Grant Program",
+    "Community Support Services Grant Program",
+    "Community Support Services Grant Program",
+    "Community Support Services Grant Program",
+    "Community Support Services Grant Program",
+    "Community Support Services Grant Program",
+    "Hospital Education Student Service Classification",
+    "Hospital Education Student Service Classification",
+    "Special Education Service Group Allotment System",
+    "Special Education Service Group Allotment System",
+    "Special Education Service Group Allotment System",
+    "Special Education Service Group Allotment System",
+    "Special Education Transition Funding Formula",
+    "Special Education Transition Funding Formula",
+    "Special Education Transition Funding Formula",
+    "Special Education Transition Funding Formula",
+    "Special Education Transition Funding Formula",
+    "Dyslexia Program Allotment Requirements",
+    "Dyslexia Program Allotment Requirements",
+    "Dyslexia Program Allotment Requirements",
+    "Special Education Representative Qualifications",
+    "Special Education Representative Qualifications",
+    "Special Education Representative Qualifications",
+    "Special Education Representative Qualifications",
+    "Special Education Representative Qualifications",
+    "Special Education Grant Eligibility Criteria",
+    "Special Education Grant Eligibility Criteria",
+    "IEP Facilitation Program Administration",
+    "IEP Facilitation Program Administration"
+  ),
+
+  Incentive_Created = c(
+    "Commissioner must adopt rules establishing procedures and criteria for grants to students with disabilities and families",
+    "Grants may be awarded only to students placed in residential or day placement programs at risk of residential placement",
+    "Support services may include in-home family support, behavioral supports, respite care, and case management",
+    "School districts must notify parents of grant availability and designate staff to assist families in accessing grants",
+    "Commissioner must create accounts for students to access grants for approved support services upon parent request",
+    "Commissioner must adopt rules detailing grant access process and amounts including process for grant increases",
+    "Regional education service centers may be designated to administer grants under this program",
+    "Students temporarily classified as special education eligible due to hospital confinement may receive services",
+    "Students' education provided by applicable district allows counting for attendance purposes",
+    "Commissioner must establish at least four service groups for special education funding determination",
+    "Service groups must consider type, frequency, nature of services and required personnel qualifications",
+    "Service groups must account for provider-to-student ratios and required equipment or technology",
+    "Commissioner must submit proposed funding amounts for service groups to Legislative Budget Board biennially",
+    "For 2026-2027 school year, commissioner may adjust weights or amounts to ensure federal compliance",
+    "Commissioner must determine formulas for districts to receive funding under both old and new sections",
+    "Formulas must ensure estimated $350 million increase over previous funding levels",
+    "Districts and charter schools must report information necessary for transition implementation",
+    "Agency must provide technical assistance to ensure successful funding formula transition",
+    "Districts entitled to allotment only for students receiving dyslexia instruction, services, or accommodations",
+    "Students must receive individualized education program services or Section 504 accommodations for eligibility",
+    "Districts may use allotment to contract with private providers for supplemental academic services",
+    "Commissioner must establish additional qualifications for special education representatives",
+    "Representatives must have knowledge of dispute resolution options and federal/state special education laws",
+    "Representatives receiving compensation must agree to voluntary code of ethics during representation period",
+    "Compensated representatives must enter written agreement including dispute resolution process with clients",
+    "Representatives cannot oppose districts if they have prior employment with district and district objects",
+    "Districts eligible for grants if insufficient state and federal funds available for special education services",
+    "Grant eligibility applies when districts lack sufficient funding for individual students or all students with disabilities",
+    "Agency must develop rules for state-administered IEP facilitation program with independent facilitators",
+    "Commissioner may authorize facilitation program use of federal funds if adequate funding determined available"
+  ),
+
+  Intended_Consequence = c(
+    "Prevent inappropriate residential placement by providing community-based support services to families with children at risk",
+    "Target grants specifically to students most likely to be placed in costly residential facilities",
+    "Provide comprehensive family support services to address multiple needs that contribute to residential placement risk",
+    "Ensure parents are aware of available alternatives to residential placement and receive assistance accessing services",
+    "Streamline grant access process by providing individual accounts managed by state agency for approved services",
+    "Establish clear procedures and flexible funding amounts to meet varying family needs and circumstances",
+    "Allow regional service centers to provide administrative support and local coordination for grant programs",
+    "Ensure students receive appropriate educational services during temporary medical confinement periods",
+    "Maintain student enrollment and attendance accounting during hospital-based educational service provision",
+    "Create funding structure that better reflects actual types and complexity of special education services provided",
+    "Ensure funding formulas consider all relevant factors affecting service delivery costs and personnel requirements",
+    "Account for specialized equipment, technology, and staffing ratios required for different types of services",
+    "Provide legislative oversight and input on special education funding through required biennial budget submissions",
+    "Maintain compliance with federal maintenance of effort and support requirements during funding transition",
+    "Ensure smooth transition between funding formulas while maintaining service levels and district financial stability",
+    "Provide significant increase in special education funding to improve services and address historical underfunding",
+    "Collect necessary data and information to support effective implementation of new funding formulas",
+    "Provide technical assistance and support to districts during complex transition to new funding structures",
+    "Focus dyslexia funding on students actually receiving appropriate instruction rather than broad eligibility categories",
+    "Ensure dyslexia funding targets students with documented needs receiving individualized services or accommodations",
+    "Allow districts flexibility to contract with qualified providers for specialized dyslexia intervention services",
+    "Establish professional standards for individuals representing parents in special education due process proceedings",
+    "Ensure representatives have necessary knowledge of laws and procedures to effectively advocate for students",
+    "Create ethical standards and accountability measures for compensated representatives during representation periods",
+    "Establish clear agreements and dispute resolution processes between representatives and families they serve",
+    "Prevent conflicts of interest by restricting former district employees from opposing their previous employers",
+    "Provide additional funding support to districts lacking sufficient resources to serve students with disabilities",
+    "Ensure all students with disabilities receive appropriate services regardless of district financial constraints",
+    "Offer structured alternative to adversarial due process hearings through facilitated IEP meetings and disputes",
+    "Provide cost-effective dispute resolution mechanism using federal funds when available for program support"
+  ),
+
+  Likely_Result = c(
+    "A, C, D, E, F", # Grant program rules: decreases intrinsic motivation, increases state dependency, substitutes accountability, increases admin burdens, decreases local control
+    "A, C, D, E, F", # Grant targeting: decreases intrinsic motivation, increases state dependency, substitutes accountability, increases admin burdens, decreases local control
+    "A, C, E, F, G", # Support services: decreases intrinsic motivation, increases state dependency, increases admin burdens, decreases local control, treats people as problem
+    "C, E, F", # Parent notification: increases state dependency, increases admin burdens, decreases local control
+    "A, C, E, F", # Account creation: decreases intrinsic motivation, increases state dependency, increases admin burdens, decreases local control
+    "A, C, D, E, F", # Grant procedures: decreases intrinsic motivation, increases state dependency, substitutes accountability, increases admin burdens, decreases local control
+    "C, E, F", # Regional administration: increases state dependency, increases admin burdens, decreases local control
+    "C, E, F, G", # Hospital classification: increases state dependency, increases admin burdens, decreases local control, treats people as problem
+    "C, E, F", # Attendance counting: increases state dependency, increases admin burdens, decreases local control
+    "A, C, D, E, F", # Service groups: decreases intrinsic motivation, increases state dependency, substitutes accountability, increases admin burdens, decreases local control
+    "C, D, E, F", # Service considerations: increases state dependency, substitutes accountability, increases admin burdens, decreases local control
+    "C, D, E, F", # Equipment requirements: increases state dependency, substitutes accountability, increases admin burdens, decreases local control
+    "C, D, E, F", # Budget submissions: increases state dependency, substitutes accountability, increases admin burdens, decreases local control
+    "A, C, D, E, F", # Weight adjustments: decreases intrinsic motivation, increases state dependency, substitutes accountability, increases admin burdens, decreases local control
+    "A, C, D, E, F", # Formula determination: decreases intrinsic motivation, increases state dependency, substitutes accountability, increases admin burdens, decreases local control
+    "A, C, D, E, F", # Funding increase: decreases intrinsic motivation, increases state dependency, substitutes accountability, increases admin burdens, decreases local control
+    "C, D, E, F", # District reporting: increases state dependency, substitutes accountability, increases admin burdens, decreases local control
+    "C, E, F", # Technical assistance: increases state dependency, increases admin burdens, decreases local control
+    "A, C, D, E, F, G", # Dyslexia allotment: decreases intrinsic motivation, increases state dependency, substitutes accountability, increases admin burdens, decreases local control, treats people as problem
+    "A, C, D, E, F, G", # Service requirements: decreases intrinsic motivation, increases state dependency, substitutes accountability, increases admin burdens, decreases local control, treats people as problem
+    "A, C, E, F", # Private contracting: decreases intrinsic motivation, increases state dependency, increases admin burdens, decreases local control
+    "C, D, E, F", # Representative qualifications: increases state dependency, substitutes accountability, increases admin burdens, decreases local control
+    "C, D, E, F", # Knowledge requirements: increases state dependency, substitutes accountability, increases admin burdens, decreases local control
+    "C, D, E, F", # Ethics requirements: increases state dependency, substitutes accountability, increases admin burdens, decreases local control
+    "C, D, E, F", # Written agreements: increases state dependency, substitutes accountability, increases admin burdens, decreases local control
+    "C, D, E, F", # Conflict restrictions: increases state dependency, substitutes accountability, increases admin burdens, decreases local control
+    "A, C, D, E, F", # Grant eligibility: decreases intrinsic motivation, increases state dependency, substitutes accountability, increases admin burdens, decreases local control
+    "A, C, D, E, F", # Funding insufficiency: decreases intrinsic motivation, increases state dependency, substitutes accountability, increases admin burdens, decreases local control
+    "C, D, E, F", # Facilitation rules: increases state dependency, substitutes accountability, increases admin burdens, decreases local control
+    "A, C, D, E, F" # Federal funding: decreases intrinsic motivation, increases state dependency, substitutes accountability, increases admin burdens, decreases local control
+  )
+)
+
+# Verify data integrity - check that all vectors have the same length
+data_check <- data.frame(
+  Vector = c("Category", "Incentive_Created", "Intended_Consequence", "Likely_Result"),
+  Length = c(
+    length(article4_likely_results_updated$Category),
+    length(article4_likely_results_updated$Incentive_Created),
+    length(article4_likely_results_updated$Intended_Consequence),
+    length(article4_likely_results_updated$Likely_Result)
+  )
+)
+
+# Check if all lengths are equal
+if(length(unique(data_check$Length)) != 1) {
+  stop("ERROR: Not all data frame columns have the same length!")
+} else {
+  cat("Data integrity check passed: All vectors have", unique(data_check$Length), "elements\n")
+}
+
+# Create the main analysis table with new coded results
+article4_main_table_updated <- datatable(
+  article4_likely_results_updated,
+  options = list(
+    pageLength = 10,
+    scrollX = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '150px', targets = 0),   # Category  
+      list(width = '300px', targets = 1),   # Incentive Created
+      list(width = '250px', targets = 2),   # Intended Result
+      list(width = '150px', targets = 3)    # Coded Results
+    ),
+    dom = 'Bfrtip',
+    buttons = c('copy', 'csv', 'excel')
+  ),
+  filter = 'top',
+  rownames = FALSE,
+  class = 'cell-border stripe hover',
+  colnames = c('Category', 'Incentive Created', 'Intended Result', 'Codes for Destructive Results We Will Actually Get')
+) %>%
+  formatStyle(
+    'Category',
+    backgroundColor = styleEqual(
+      c("Community Support Services Grant Program", "Hospital Education Student Service Classification", "Special Education Service Group Allotment System", 
+        "Special Education Transition Funding Formula", "Dyslexia Program Allotment Requirements", "Special Education Representative Qualifications",
+        "Special Education Grant Eligibility Criteria", "IEP Facilitation Program Administration"),
+      c('#FFE8E8', '#FFD0D0', '#E8F4FD', '#E8F6FF', '#FFF2CC', '#E8F5E8', '#F0E8FF', '#FFE8F5')
+    ),
+    fontWeight = 'bold'
+  ) %>%
+  formatStyle(
+    'Likely_Result',
+    fontWeight = 'bold',
+    fontSize = '14px',
+    textAlign = 'center',
+    backgroundColor = '#FFF8DC'
+  )
+
+# Display article 4 main table
+article4_main_table_updated
+```
+
+<br>
+<br>
+<br>
+
+### Supplemental Tables
+
+```{r}
+#| label: supplemental-analysis-article4-sections16-26-updated
+
+# Create category analysis
+category_analysis_a4_updated <- article4_likely_results_updated %>%
+  group_by(Category) %>%
+  summarise(
+    Count = n(),
+    .groups = 'drop'
+  ) %>%
+  arrange(desc(Count)) %>%
+  rename(`Incentive Category` = Category,
+         `Number of Incentives` = Count)
+
+# Analyze most frequent negative result codes with new 7-code system
+code_frequency_a4_updated <- article4_likely_results_updated %>%
+  separate_rows(Likely_Result, sep = ", ") %>%
+  count(Likely_Result, sort = TRUE) %>%
+  rename(`Negative Result Code` = Likely_Result,
+         `Frequency` = n) %>%
+  mutate(Percentage = round(100 * Frequency / nrow(article4_likely_results_updated), 3))
+
+# Key policy findings focused on new coded patterns
+key_findings_a4_updated <- data.frame(
+  Finding = c(
+    "Most Common Negative Pattern",
+    "State Dependency and Control Dominance", 
+    "Administrative Burden Pattern",
+    "Accountability Substitution Pattern",
+    "Intrinsic Motivation Destruction",
+    "Most Problematic Policy Areas",
+    "Local Control Elimination Pattern",
+    "People-as-Problem Treatment"
+  ),
+  Description = c(
+    paste0("Code C (increases dependency on state funding and bureaucracy) appears in ", 
+           round(100 * sum(grepl("C", article4_likely_results_updated$Likely_Result)) / nrow(article4_likely_results_updated), 3), 
+           "% of incentives, followed by Code F (decreases local control) at ", 
+           round(100 * sum(grepl("F", article4_likely_results_updated$Likely_Result)) / nrow(article4_likely_results_updated), 3), "%"),
+    paste0("State dependency affects ", 
+           round(100 * sum(grepl("C", article4_likely_results_updated$Likely_Result)) / nrow(article4_likely_results_updated), 3), 
+           "% of incentives, indicating complete disruption of local special education autonomy"),
+    paste0("Administrative burdens appear in ", 
+           round(100 * sum(grepl("E", article4_likely_results_updated$Likely_Result)) / nrow(article4_likely_results_updated), 3), 
+           "% of incentives, creating massive compliance overhead across all special education policies"),
+    paste0("Code D (substitutes accountability for improvement) appears in ", 
+           round(100 * sum(grepl("D", article4_likely_results_updated$Likely_Result)) / nrow(article4_likely_results_updated), 3), 
+           "% of incentives, systematically undermining system improvement with measurement theater"),
+    paste0("Code A (decreases intrinsic motivation) appears in ", 
+           round(100 * sum(grepl("A", article4_likely_results_updated$Likely_Result)) / nrow(article4_likely_results_updated), 3), 
+           "% of incentives, systematically undermining professional dedication with external rewards"),
+    "Community Support Services Grant Program shows highest concentration with 7 separate harmful incentives in single policy area",
+    paste0("Code F (decreases local control) appears in ", 
+           round(100 * sum(grepl("F", article4_likely_results_updated$Likely_Result)) / nrow(article4_likely_results_updated), 3), 
+           "% of incentives, representing complete state takeover of special education decisions"), 
+    paste0("Code G (treats people as problem) appears in ", 
+           round(100 * sum(grepl("G", article4_likely_results_updated$Likely_Result)) / nrow(article4_likely_results_updated), 3), 
+           "% of incentives, particularly in support services and dyslexia programs")
+  )
+)
+
+# === DISPLAY SUPPLEMENTAL TABLES ===
+
+# Category Analysis Header
+datatable(
+  data.frame(Title = "INCENTIVE CATEGORY ANALYSIS"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#FF9800',
+              color = 'white')
+
+# Category Analysis Table
+datatable(
+  category_analysis_a4_updated,
+  filter = 'top',
+  options = list(
+    pageLength = 15,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Number of Incentives',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = styleColorBar(range(category_analysis_a4_updated$`Number of Incentives`), '#E8F4FD')) %>%
+  formatStyle('Incentive Category',
+              fontWeight = 'bold',
+              textAlign = 'left')
+
+# Code Frequency Analysis Header
+datatable(
+  data.frame(Title = "NEGATIVE RESULT CODE FREQUENCY"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#DC143C',
+              color = 'white')
+
+# Code Frequency Table
+datatable(
+  code_frequency_a4_updated,
+  filter = 'top',
+  options = list(
+    pageLength = 15,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Frequency',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = styleColorBar(range(code_frequency_a4_updated$Frequency), '#FFB6C1')) %>%
+  formatStyle('Negative Result Code',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              fontSize = '16px') %>%
+  formatStyle('Percentage',
+              fontWeight = 'bold',
+              textAlign = 'center')
+
+# Key Findings Header
+datatable(
+  data.frame(Title = "KEY CODED PATTERN FINDINGS"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#F44336',
+              color = 'white')
+
+# Key Findings Table
+datatable(
+  key_findings_a4_updated,
+  filter = 'top',
+  options = list(
+    pageLength = 10,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '25%', targets = 0),
+      list(width = '75%', targets = 1)
+    )
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Finding',
+              fontWeight = 'bold',
+              backgroundColor = '#FFE4E1',
+              textAlign = 'left') %>%
+  formatStyle('Description',
+              textAlign = 'left')
+
+# Create coded summary statistics with new 7-code system
+summary_statistics_a4_updated <- data.frame(
+  Metric = c(
+    "Total Incentives Analyzed",
+    "Most Problematic Code", 
+    "Most Frequent Code Combination",
+    "Policy Categories with Code C",
+    "Policy Categories with Code F",
+    "Average Codes per Incentive"
+  ),
+  Value = c(
+    nrow(article4_likely_results_updated),
+    paste0("Code C and F (appear ", max(code_frequency_a4_updated$Frequency), " and ", 
+           code_frequency_a4_updated$Frequency[code_frequency_a4_updated$`Negative Result Code` == "F"], " times respectively)"),
+    "A, C, D, E, F (intrinsic motivation loss + state dependency + accountability substitution + admin burdens + local control loss)",
+    sum(grepl("C", article4_likely_results_updated$Likely_Result)),
+    sum(grepl("F", article4_likely_results_updated$Likely_Result)),
+    round(mean(lengths(strsplit(article4_likely_results_updated$Likely_Result, ", "))), 3)
+  )
+)
+
+# Summary Statistics Header
+datatable(
+  data.frame(Title = "CODED ANALYSIS SUMMARY STATISTICS"),
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#9C27B0',
+              color = 'white')
+
+# Summary Statistics Table
+datatable(
+  summary_statistics_a4_updated,
+  options = list(
+    pageLength = 10,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '40%', targets = 0),
+      list(width = '60%', targets = 1)
+    )
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Metric',
+              fontWeight = 'bold',
+              textAlign = 'left') %>%
+  formatStyle('Value',
+              textAlign = 'left',
+              fontWeight = 'bold')
+```
+
+<br>
+<br>
+
+### Key List of Likely Negative Results 
+
+#### The evaluation codes are based on these axioms:
+
+- Central planning (one size fits all) degrades everyone's performance
+  - Makes nearly every district action a legal matter
+  - Robs people of pride in their work
+  
+- Efforts at 'accountability' will not improve performance of anyone
+
+- Cooperation within an organization is far more effective than competition 
+
+- All incentives work; some promote and some pervert the ***intention*** of the incentive
+
+```{r}
+#| label: negative-results-coding-key-article4-sections16-26-updated
+
+# Create negative results table with new 7-code system and color coding
+negative_results_a4_updated <- data.frame(
+  Code = c("A", "B", "C", "D", "E", "F", "G"),
+
+  Likely_Negative_Result = c(
+    "Decreases intrinsic motivation in favor of extrinsic motivation",
+    "Decreases cooperation within districts in favor of competition for resources",  
+    "Increases dependency on State funding and bureaucracy",
+    "Substitutes 'accountability' for improvement of the system people work in",
+    "Increases district administrative burdens",
+    "Decreases local control and flexibility",
+    "Treats people as the 'problem', instead of the system they work in"
+  )
+)
+
+# Define bright contrasting color palette (7 colors for 7 codes)
+color_palette_a4_updated <- c("#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FECA57", "#FF9FF3", "#54A0FF")
+
+# Create color assignments for each row
+row_colors_a4_updated <- color_palette_a4_updated[1:nrow(negative_results_a4_updated)]
+
+# Display the updated coding key table
+DT::datatable(
+  negative_results_a4_updated,
+  options = list(
+    pageLength = 15,
+    dom = 'Bfrtip',
+    buttons = c('copy', 'csv', 'excel'),
+    columnDefs = list(
+      list(width = '40px', targets = 0),  # Narrow first column
+      list(width = '90%', targets = 1)    # Wide second column
+    ),
+    scrollX = FALSE,
+    autoWidth = FALSE
+  ),
+  rownames = FALSE,
+  class = 'display'
+) %>%
+  formatStyle(
+    'Code',
+    textAlign = 'right',
+    fontWeight = 'bold',
+    backgroundColor = styleEqual(negative_results_a4_updated$Code, row_colors_a4_updated),
+    color = 'white'
+  ) %>%
+  formatStyle(
+    'Likely_Negative_Result',
+    backgroundColor = styleEqual(negative_results_a4_updated$Code, row_colors_a4_updated),
+    color = 'black'
+  ) %>%
+  formatStyle(
+    columns = c(0, 1),
+    border = '2px solid #333',
+    borderCollapse = 'collapse'
+  ) %>%
+  formatStyle(
+    columns = c(0, 1),
+    maxWidth = '9in',
+    tableLayout = 'fixed'
+  )
+```

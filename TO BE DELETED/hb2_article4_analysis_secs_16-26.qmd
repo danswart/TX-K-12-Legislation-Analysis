@@ -517,7 +517,20 @@ datatable(
 <br>
 <br>
 
-### Key to List of Likely Negative Results
+### Key List of Likely Negative Results (Revised 7-Code Framework)
+
+#### The evaluation codes are based on these axioms:
+
+- Central planning (one size fits all) degrades everyone's performance
+  - Makes nearly every district action a legal matter
+  - Robs people of pride in their work
+  
+- Efforts at 'accountability' will not improve performance of anyone
+
+- Cooperation within an organization is far more effective than competition 
+
+- All incentives work; some promote and some pervert the ***intention*** of the incentive
+
 
 ```{r}
 #| label: negative-results-coding-key-article4-sections16-26
@@ -591,5 +604,8 @@ DT::datatable(
   )
 
 ```
+
+
+
 
 

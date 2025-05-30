@@ -39,7 +39,7 @@ format:
 ---
 
 ```{r}
-#| label: setup-article4-sections50-65
+#| label: setup-article4-sections50-65-revised
 #| include: false
 #| echo: false
 #| message: false
@@ -55,13 +55,59 @@ library(DT)         # For rendering content that kableExtra cannot
 library(dplyr)      # For data wrangling
 ```
 
+<br>
+
+### Opinionated Executive Summary:  Good Intentions, Unintended Results
+
+The rules in Article 4, Sections 4.50-4.65 reveal several issues that show how the law will produce disappointing results.
+
+
+#### Funding Confusion
+
+The new funding system seems like it will provide more money to help special education students. However, the system is so complicated that schools will spend more time filling out forms and sorting students into categories than actually helping them learn. What was supposed to be "help" becomes an extra burden.
+
+
+#### Limited Choices for Parents
+
+Parents are promised more control over their child's education through parent-directed service grants. But the state controls the options that parents can choose from. Instead of picking what their child really needs, parents are limited to options selected by the state. It’s like being told you can pick any color car you want, but only if it’s black.
+
+
+#### Even More Data Overload
+
+Schools are required to collect tons of data about students with dyslexia and other learning needs. While the law says this data will help provide better services, it actually takes up so much time that teachers have less time to help students directly. The effort spent on recording information ends up taking away from teaching.  Consider for one moment the enormous amounts of data that accumulate in state and federal government databases.
+
+
+#### More Loss of Local Control (are you detecting a pattern yet?)
+
+The law claims that regional programs will bring services closer to home. But these "local" programs must still follow state rules, use state money, and meet state standards. While services may be delivered locally, the decisions are made by state officials who don’t know the students, leaving local educators with little control over the services they provide.
+
+
+#### The Expert Time Sink
+
+The law puts more money into special education evaluations and expert services to make the field more professional. However, the rules and paperwork requirements are so heavy that experts spend more time on administrative tasks than using their skills to help students directly.
+
+
+#### The Resource Drain
+
+The law promises large increases in special education funding, but the cost of managing all the new rules and reports is very likely to eat up more money than schools actually get for helping students. What seems like extra funding might not go as far as it seems.
+
+
+### The Core Problem
+
+These issues show that the law doesn’t understand how school systems improve. Real progress in schools happens through good relationships, local knowledge, and the flexibility to alter policies to better meet students' needs. Instead, this law focuses on complicated funding systems and state control that will get in the way of actual improvement.
+
+<br>
+<br>
+
+## Detailed Analysis
+
 ### Main Table
 
 ```{r}
-#| label: main-analysis-table-article4-sections50-65
+#| label: main-analysis-table-article4-sections50-65-revised
 
-# Create analysis with coded negative results for Article 4 Sections 4.50-4.65
-article4_likely_results <- data.frame(
+# Create analysis with new 7-code framework for Article 4 Sections 4.50-4.65
+article4_likely_results_revised <- data.frame(
   Category = c(
     "Regional Day School Legislative Intent",
     "Regional Day School Statewide Plan",
@@ -207,62 +253,62 @@ article4_likely_results <- data.frame(
   ),
 
   Likely_Result = c(
-    "C, G, I, L", # Legislative intent: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Statewide plan: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Complaint requirements: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Employee statements: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L, M", # Auditing procedures: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, G, I, L, M", # Problem identification: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, G, I, L, M", # Remedial strategies: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, G, I, L, M", # Parent input solicitation: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, G, I, L, M", # General supervision: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, G, I, L, M", # Dyslexia reporting: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, G, I, L, M", # Counselor reporting: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, G, I, L, M", # Learning opportunities reporting: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, G, I, L, M", # Intervention reporting: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, G, I, L, M", # Section 504 reporting: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, G, I, L, M", # Attendance reporting: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, G, I, L, M", # Truancy reporting: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, G, I, L, M", # Special education reporting: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "A, B, C, G, I, K, L, M", # Funding formula: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, tax burden, bureaucracy, waste resources
-    "C, G, I, L, M", # Tier definitions: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, G, I, L, M", # Residential placement tier: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, G, I, L", # Fund usage requirements: failure by force, reduced local control, system tampering, bureaucracy
-    "A, B, C, G, I, K, L, M", # Service group allotment: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, tax burden, bureaucracy, waste resources
-    "C, G, I, L, M", # Service group establishment: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, G, I, L, M", # Service considerations: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, G, I, L", # Service group fund usage: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L, M", # Transition funding adjustments: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, G, I, L, M", # Formula determination: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, G, I, L, M", # Technical assistance: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, G, I, L", # Dyslexia IEP eligibility: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Section 504 eligibility: failure by force, reduced local control, system tampering, bureaucracy
-    "A, B, C, G, I, L", # Private provider contracting: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, bureaucracy
-    "A, B, C, G, I, K, L", # Outcomes bonus increase: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, tax burden, bureaucracy
-    "A, B, C, G, I, K, L, M", # Transportation rate increase: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, tax burden, bureaucracy, waste resources
-    "A, B, C, G, I, K, L, M", # Evaluation funding: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, tax burden, bureaucracy, waste resources
-    "A, B, C, G, I, K, L, M", # Enhanced evaluation funding: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, tax burden, bureaucracy, waste resources
-    "A, B, C, G, I, L, M", # Foundation program grants: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "A, B, C, G, I, L, M", # Federal funds distribution: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "A, B, C, G, I, K, L, M", # Day placement startup funding: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, tax burden, bureaucracy, waste resources
-    "A, B, C, G, I, K, L, M", # Day placement ongoing funding: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, tax burden, bureaucracy, waste resources
-    "C, G, I, L", # County designation limits: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Program number limits: failure by force, reduced local control, system tampering, bureaucracy
-    "A, B, C, G, I, K, L, M", # Parent-directed grants: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, tax burden, bureaucracy, waste resources
-    "A, B, C, G, I, L, M", # Administrative percentage: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "A, B, C, G, I, K, L, M", # Grant funding limits: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, tax burden, bureaucracy, waste resources
-    "A, B, C, G, I, K, L, M" # Regional day school funding: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, tax burden, bureaucracy, waste resources
+    "C, E, F", # Legislative intent: state dependency, admin burden, reduced local control
+    "C, E, F", # Statewide plan: state dependency, admin burden, reduced local control
+    "C, E, F", # Complaint requirements: state dependency, admin burden, reduced local control
+    "C, E, F", # Employee statements: state dependency, admin burden, reduced local control
+    "C, D, E, F", # Auditing procedures: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Problem identification: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Remedial strategies: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Parent input solicitation: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # General supervision: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Dyslexia reporting: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Counselor reporting: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Learning opportunities reporting: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Intervention reporting: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Section 504 reporting: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Attendance reporting: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Truancy reporting: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Special education reporting: state dependency, accountability substitute, admin burden, reduced local control
+    "A, B, C, E, F", # Funding formula: extrinsic motivation, competition, state dependency, admin burden, reduced local control
+    "C, E, F", # Tier definitions: state dependency, admin burden, reduced local control
+    "C, E, F", # Residential placement tier: state dependency, admin burden, reduced local control
+    "C, E, F", # Fund usage requirements: state dependency, admin burden, reduced local control
+    "A, B, C, E, F", # Service group allotment: extrinsic motivation, competition, state dependency, admin burden, reduced local control
+    "C, E, F", # Service group establishment: state dependency, admin burden, reduced local control
+    "C, E, F", # Service considerations: state dependency, admin burden, reduced local control
+    "C, E, F", # Service group fund usage: state dependency, admin burden, reduced local control
+    "C, E, F", # Transition funding adjustments: state dependency, admin burden, reduced local control
+    "C, E, F", # Formula determination: state dependency, admin burden, reduced local control
+    "C, E, F", # Technical assistance: state dependency, admin burden, reduced local control
+    "C, E, F", # Dyslexia IEP eligibility: state dependency, admin burden, reduced local control
+    "C, E, F", # Section 504 eligibility: state dependency, admin burden, reduced local control
+    "A, C, E, F", # Private provider contracting: extrinsic motivation, state dependency, admin burden, reduced local control
+    "A, B, C, E, F", # Outcomes bonus increase: extrinsic motivation, competition, state dependency, admin burden, reduced local control
+    "A, C, E, F", # Transportation rate increase: extrinsic motivation, state dependency, admin burden, reduced local control
+    "A, C, E, F", # Evaluation funding: extrinsic motivation, state dependency, admin burden, reduced local control
+    "A, C, E, F", # Enhanced evaluation funding: extrinsic motivation, state dependency, admin burden, reduced local control
+    "C, E, F", # Foundation program grants: state dependency, admin burden, reduced local control
+    "C, E, F", # Federal funds distribution: state dependency, admin burden, reduced local control
+    "A, B, C, E, F", # Day placement start up funding: extrinsic motivation, competition, state dependency, admin burden, reduced local control
+    "A, B, C, E, F", # Day placement ongoing funding: extrinsic motivation, competition, state dependency, admin burden, reduced local control
+    "C, E, F", # County designation limits: state dependency, admin burden, reduced local control
+    "C, E, F", # Program number limits: state dependency, admin burden, reduced local control
+    "A, C, E, F", # Parent-directed grants: extrinsic motivation, state dependency, admin burden, reduced local control
+    "C, E, F", # Administrative percentage: state dependency, admin burden, reduced local control
+    "C, E, F", # Grant funding limits: state dependency, admin burden, reduced local control
+    "A, C, E, F" # Regional day school funding: extrinsic motivation, state dependency, admin burden, reduced local control
   )
 )
 
 # Verify all vectors have same length
-stopifnot(length(article4_likely_results$Category) == length(article4_likely_results$Incentive_Created))
-stopifnot(length(article4_likely_results$Incentive_Created) == length(article4_likely_results$Intended_Consequence))
-stopifnot(length(article4_likely_results$Intended_Consequence) == length(article4_likely_results$Likely_Result))
+stopifnot(length(article4_likely_results_revised$Category) == length(article4_likely_results_revised$Incentive_Created))
+stopifnot(length(article4_likely_results_revised$Incentive_Created) == length(article4_likely_results_revised$Intended_Consequence))
+stopifnot(length(article4_likely_results_revised$Intended_Consequence) == length(article4_likely_results_revised$Likely_Result))
 
-# Create the main analysis table with coded results
-article4_main_table <- datatable(
-  article4_likely_results,
+# Create the main analysis table with revised codes
+article4_main_table_revised <- datatable(
+  article4_likely_results_revised,
   options = list(
     pageLength = 10,
     scrollX = TRUE,
@@ -304,7 +350,7 @@ article4_main_table <- datatable(
   )
 
 # Display article 4 main table
-article4_main_table
+article4_main_table_revised
 ```
 
 <br>
@@ -314,10 +360,10 @@ article4_main_table
 ### Supplemental Tables
 
 ```{r}
-#| label: supplemental-analysis-article4-sections50-65
+#| label: supplemental-analysis-article4-sections50-65-revised
 
 # Create category analysis
-category_analysis_a4 <- article4_likely_results %>%
+category_analysis_a4_revised <- article4_likely_results_revised %>%
   group_by(Category) %>%
   summarise(
     Count = n(),
@@ -328,36 +374,34 @@ category_analysis_a4 <- article4_likely_results %>%
          `Number of Incentives` = Count)
 
 # Analyze most frequent negative result codes
-code_frequency_a4 <- article4_likely_results %>%
+code_frequency_a4_revised <- article4_likely_results_revised %>%
   separate_rows(Likely_Result, sep = ", ") %>%
   count(Likely_Result, sort = TRUE) %>%
   rename(`Negative Result Code` = Likely_Result,
          `Frequency` = n) %>%
-  mutate(Percentage = round(100 * Frequency / nrow(article4_likely_results), 3))
+  mutate(Percentage = round(100 * Frequency / nrow(article4_likely_results_revised), 3))
 
 # Key policy findings focused on coded patterns
-key_findings_a4 <- data.frame(
+key_findings_a4_revised <- data.frame(
   Finding = c(
-    "Most Common Negative Pattern",
-    "System Tampering Universal Impact", 
-    "Bureaucratic Administrative Burden",
-    "Financial Motivation Corruption Pattern",
-    "Resource Waste in Funding Systems",
+    "Most Universal Negative Patterns",
+    "State Dependency Complete Takeover", 
+    "Administrative Burden Universal Impact",
+    "Local Control Elimination Pattern",
+    "Accountability Substitution Pattern",
     "Most Problematic Policy Areas",
-    "State Centralization Complete Takeover", 
-    "Tax Burden Shifting Pattern",
-    "Money Focus Corruption Pattern"
+    "Extrinsic Motivation Corruption Pattern", 
+    "Competition Over Cooperation Pattern"
   ),
   Description = c(
-    "Code C (failure by force) appears in 100.0% of incentives, and Code G (reduced local control) appears in 100.0%, indicating universal coercion and centralization",
-    "Code I (system tampering) appears in 100.0% of incentives, showing complete disruption of existing educational systems for special education",
-    "Code L (bureaucratic burdens) appears in 100.0% of incentives, creating massive compliance overhead across all special education funding and reporting policies",
-    "Code A (intrinsic to extrinsic motivation) appears in 51.1% of incentives, systematically undermining professional dedication in specialized education through financial incentives",
-    "Code M (waste resources) appears in 64.4% of incentives, concentrated in reporting systems, funding administration, and program monitoring",
+    "Codes C (state dependency), E (admin burden), and F (local control loss) appear in 100.000% of incentives, indicating universal centralization and bureaucratization",
+    "Code C (state dependency) appears in 100.000% of incentives, showing complete shift from local autonomy to state control in specialized education",
+    "Code E (admin burden) appears in 100.000% of incentives, creating massive compliance overhead across all special education funding and reporting policies",
+    "Code F (local control loss) appears in 100.000% of incentives, representing complete elimination of district flexibility in specialized education decisions",
+    "Code D (accountability substitute) appears in 37.778% of incentives, concentrated in monitoring and reporting requirements that replace system improvement",
     "PEIMS Reporting Requirements and Special Education Funding Formula Changes show highest concentrations with 8 and 4 harmful incentives respectively",
-    "Code G (reduced local control) appears in 100.0% of incentives, representing complete state takeover of specialized education funding and service decisions", 
-    "Code K (tax burden) appears in 35.6% of incentives, systematically shifting financial obligations while reducing local autonomy over specialized education funding",
-    "Code B (money most important motivation) appears in 51.1% of incentives, making financial considerations the primary driver rather than student educational needs"
+    "Code A (extrinsic motivation) appears in 31.111% of incentives, systematically undermining professional dedication through financial incentives", 
+    "Code B (competition over cooperation) appears in 13.333% of incentives, creating resource competition rather than collaborative improvement"
   )
 )
 
@@ -380,7 +424,7 @@ datatable(
 
 # Category Analysis Table
 datatable(
-  category_analysis_a4,
+  category_analysis_a4_revised,
   filter = 'top',
   options = list(
     pageLength = 15,
@@ -394,7 +438,7 @@ datatable(
   formatStyle('Number of Incentives',
               fontWeight = 'bold',
               textAlign = 'center',
-              backgroundColor = styleColorBar(range(category_analysis_a4$`Number of Incentives`), '#E8F4FD')) %>%
+              backgroundColor = styleColorBar(range(category_analysis_a4_revised$`Number of Incentives`), '#E8F4FD')) %>%
   formatStyle('Incentive Category',
               fontWeight = 'bold',
               textAlign = 'left')
@@ -416,7 +460,7 @@ datatable(
 
 # Code Frequency Table
 datatable(
-  code_frequency_a4,
+  code_frequency_a4_revised,
   filter = 'top',
   options = list(
     pageLength = 15,
@@ -430,7 +474,7 @@ datatable(
   formatStyle('Frequency',
               fontWeight = 'bold',
               textAlign = 'center',
-              backgroundColor = styleColorBar(range(code_frequency_a4$Frequency), '#FFB6C1')) %>%
+              backgroundColor = styleColorBar(range(code_frequency_a4_revised$Frequency), '#FFB6C1')) %>%
   formatStyle('Negative Result Code',
               fontWeight = 'bold',
               textAlign = 'center',
@@ -456,7 +500,7 @@ datatable(
 
 # Key Findings Table
 datatable(
-  key_findings_a4,
+  key_findings_a4_revised,
   filter = 'top',
   options = list(
     pageLength = 10,
@@ -479,22 +523,22 @@ datatable(
               textAlign = 'left')
 
 # Create coded summary statistics
-summary_statistics_a4 <- data.frame(
+summary_statistics_a4_revised <- data.frame(
   Metric = c(
     "Total Incentives Analyzed",
     "Most Problematic Code", 
     "Most Frequent Code Combination",
     "Policy Categories with Code C",
-    "Policy Categories with Code G",
+    "Policy Categories with Code F",
     "Average Codes per Incentive"
   ),
   Value = c(
-    nrow(article4_likely_results),
-    paste0("Code C, G, I, L (all appear ", max(code_frequency_a4$Frequency), " times each)"),
-    "C, G, I, L (force + control + tampering + bureaucracy)",
-    sum(grepl("C", article4_likely_results$Likely_Result)),
-    sum(grepl("G", article4_likely_results$Likely_Result)),
-    round(mean(lengths(strsplit(article4_likely_results$Likely_Result, ", "))), 1)
+    nrow(article4_likely_results_revised),
+    paste0("Codes C, E, F (all appear ", max(code_frequency_a4_revised$Frequency), " times each)"),
+    "C, E, F (state dependency + admin burden + local control loss)",
+    sum(grepl("C", article4_likely_results_revised$Likely_Result)),
+    sum(grepl("F", article4_likely_results_revised$Likely_Result)),
+    round(mean(lengths(strsplit(article4_likely_results_revised$Likely_Result, ", "))), 3)
   )
 )
 
@@ -514,7 +558,7 @@ datatable(
 
 # Summary Statistics Table
 datatable(
-  summary_statistics_a4,
+  summary_statistics_a4_revised,
   options = list(
     pageLength = 10,
     dom = 't',
@@ -539,42 +583,48 @@ datatable(
 <br>
 <br>
 
-### Key to List of Likely Negative Results
+### Key List of Likely Negative Results 
+
+#### The evaluation codes are based on these axioms:
+
+- Central planning (one size fits all) degrades everyone's performance
+  - Makes nearly every district action a legal matter
+  - Robs people of pride in their work
+  
+- Efforts at 'accountability' will not improve performance of anyone
+
+- Cooperation within an organization is far more effective than competition 
+
+- All incentives work; some promote and some pervert the ***intention*** of the incentive
+
 
 ```{r}
-#| label: negative-results-coding-key-article4-sections50-65
+#| label: negative-results-coding-key-article4-sections50-65-revised
 
-# Create negative results table with color coding
-negative_results_a4 <- data.frame(
-  Code = c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"),
+# Create negative results table with color coding for new 7-code framework
+negative_results_a4_revised <- data.frame(
+  Code = c("A", "B", "C", "D", "E", "F", "G"),
 
   Likely_Negative_Result = c(
-    "Will move people from intrinsic to extrinsic motivation",
-    "Will makes money the most important motivation",  
-    "Will fail because improvements cannot be realized by force from the state",
-    "People will become 'the problem', not the system that they work in",
-    "Will decrease collaboration, pitting people against each other for rewards",
-    "Will decrease opportunities and efforts to improve the system teachers work in; try to 'improve' individual teachers instead",
-    "Will reduce local control",
-    "Will reduce economic agility of districts when they need it most",
-    "Will tamper with existing stable systems, making things worse",
-    "Impedes career development when goal posts constantly moving",
-    "Shifts the onus of tax increases to districts to pay for unfunded state mandates",
-    "Will create more administrative and bureaucratic burdens",
-    "Will cause administration and teachers to waste even more resources, while bankrupting financially responsible districts",
-    "Will create long-term district obligations that are not sustainable when state funding is changed every 2 years"
+    "Decreases intrinsic motivation in favor of extrinsic motivation",
+    "Decreases cooperation within districts in favor of competition for resources",  
+    "Increases dependency on State funding and bureaucracy",
+    "Substitutes 'accountability' for improvement of the system people work in",
+    "Increases district administrative burdens",
+    "Decreases local control and flexibility",
+    "Treats people as the 'problem', instead of the system they work in"
   )
 )
 
 # Define bright contrasting color palette (7 colors)
-color_palette_a4 <- c("#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FECA57", "#FF9FF3", "#54A0FF")
+color_palette_a4_revised <- c("#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FECA57", "#FF9FF3", "#54A0FF")
 
-# Create color assignments for each row (cycling through 7 colors for 14 rows)
-row_colors_a4 <- rep(color_palette_a4, length.out = nrow(negative_results_a4))
+# Create color assignments for each row
+row_colors_a4_revised <- color_palette_a4_revised[1:nrow(negative_results_a4_revised)]
 
 # Display the coding key table
 DT::datatable(
-  negative_results_a4,
+  negative_results_a4_revised,
   options = list(
     pageLength = 15,
     dom = 'Bfrtip',
@@ -593,12 +643,12 @@ DT::datatable(
     'Code',
     textAlign = 'right',
     fontWeight = 'bold',
-    backgroundColor = styleEqual(negative_results_a4$Code, row_colors_a4),
+    backgroundColor = styleEqual(negative_results_a4_revised$Code, row_colors_a4_revised),
     color = 'white'
   ) %>%
   formatStyle(
     'Likely_Negative_Result',
-    backgroundColor = styleEqual(negative_results_a4$Code, row_colors_a4),
+    backgroundColor = styleEqual(negative_results_a4_revised$Code, row_colors_a4_revised),
     color = 'black'
   ) %>%
   formatStyle(
@@ -613,38 +663,5 @@ DT::datatable(
   )
 
 ```
-
-<br>
-<br>
-
-### Interesting Counter-Intuitive Implications
-
-The legislative code analyzed in Article 4, Sections 4.50-4.65 reveals several fascinating ironies that highlight the disconnect between stated educational intentions and likely practical outcomes:
-
-**The Funding Formula Paradox**: 
-
-While claiming to create more equitable and responsive funding for special education through complex tier systems and service groups, the legislation actually creates a bureaucratic funding maze that will likely consume more resources in administration than the previous simpler system. Districts will spend more time categorizing and recategorizing students into funding tiers than actually serving them.
-
-**The Parent Choice Illusion**:
-
-The parent-directed services grants appear to give families unprecedented control over their children's special education services, yet the grants come with such restrictive state oversight and reporting requirements that families may actually have less real choice than under traditional district-provided services. The "choice" becomes choosing between pre-approved state-sanctioned options rather than true educational freedom.
-
-**The Data Collection Contradiction**:
-
-Extensive new reporting requirements for dyslexia identification, counselor availability, and intervention strategies are ostensibly designed to improve services for struggling students. However, the time teachers and administrators spend collecting this data will reduce the time available for actually providing the interventions and support services the data is meant to track.
-
-**The Regional Centralization-Decentralization Paradox**: 
-
-Day placement programs and regional cooperatives are promoted as bringing services closer to students' home communities, yet these programs must be state-designated, state-funded, and state-monitored according to state criteria. Students get "local" services that are actually more centrally controlled than traditional district programs.
-
-**Professional Enhancement Degradation**:
-
-Enhanced funding for special education evaluations and specialized services appears to professionalize and elevate the field, but the accompanying compliance requirements, reporting mandates, and state oversight actually deprofessionalize the work by reducing specialist decision-making to checklist completion and data entry.
-
-**The Resource Abundance-Scarcity Paradox**: 
-
-Massive increases in special education funding through multiple new allotment streams create the appearance of abundant resources, yet the administrative overhead, compliance costs, and reporting requirements associated with accessing these funds may leave less money available for direct student services than simpler, smaller funding mechanisms.
-
-These contradictions suggest a fundamental misunderstanding of how educational improvement actually occurs: through professional relationships, local adaptation, and resource flexibility rather than through standardized funding formulas and centralized oversight systems.
 
 

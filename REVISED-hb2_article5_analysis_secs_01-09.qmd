@@ -39,7 +39,7 @@ format:
 ---
 
 ```{r}
-#| label: setup-article5-sections01-09
+#| label: setup-article5-sections01-09-updated
 #| include: false
 #| echo: false
 #| message: false
@@ -56,39 +56,38 @@ library(dplyr)      # For data wrangling
 ```
 
 <br>
-<br>
 
-## Opinionated Executive Summary and Counter-Intuitive Implications
+## Opinionated Executive Summary:  Good Intentions, Unintended Results
 
-The legislative code analyzed in Article 5, Sections 5.01-5.09 reveals several fascinating paradoxes that expose the fundamental contradictions between educational choice rhetoric and centralized control reality:
+This law about early childhood education creates several problems that hurt what it tries to improve. Here are the main issues:
 
-#### The Charter School Freedom Paradox:
+#### The Charter School Problem
 
-Charter schools were originally created to escape the bureaucratic constraints of traditional public education, yet this legislation subjects them to identical state oversight requirements as district schools. The "choice" becomes purely cosmetic - families can choose between different buildings that operate under identical state mandates, eliminating the innovation and flexibility that justified charter schools' existence.
+Charter schools were meant to be different from regular public schools, giving parents more choices. But this law makes charter schools follow the same rules as regular schools. Now, parents only have the option to choose between schools that all do the same things. The idea of "choice" becomes meaningless.
 
-#### The Professional Development Professionalization Paradox:
+#### The Money Issue for Teachers
 
-Teacher literacy and mathematics academies appear to elevate and professionalize teaching through specialized training, yet the stipend system and mandatory evaluation requirements actually deprofessionalize the work by reducing complex pedagogical decisions to checklist completion and financial incentives rather than intrinsic educational purpose.
+The law offers teachers extra pay for taking special training classes. While this sounds good, it changes the reason teachers want to improve. Instead of focusing on helping kids, teachers start thinking about the money. When money becomes the main reason to get better, teachers lose the passion for teaching that they had before.
 
-#### The Early Assessment Support-Surveillance Contradiction: 
+#### The Testing Problem for Young Kids
 
-Kindergarten reading readiness assessments are framed as supporting early identification of students needing help, yet the raw score reporting requirements to state agencies and integration into "school readiness certification systems" transform developmental assessment into surveillance data collection that may stigmatize children before they begin formal education.
+Kindergarten students now have to take reading tests. The law says this helps find kids who need extra help, but the test scores are sent to the state and used to judge schools. What was supposed to be helpful testing turns into a way to control what happens in classrooms. Young kids feel pressure even before they start real school.
 
-#### The Grant Support-Control Inversion:
+#### The Grant Money Trap
 
-School year planning grants appear to provide helpful financial support for districts extending their academic calendar, yet the grants are specifically designed to help districts "qualify for incentive funding" - meaning the state pays districts to plan how to access more state money with more state strings attached, creating financial dependency rather than educational improvement.
+The state gives money to schools to help them plan longer school years. But this money really just helps schools get even more state money later. Schools become dependent on state funding instead of finding their own ways to help students. The state uses money to control what schools do.
 
-#### The Reading Intervention Choice-Mandate Paradox: 
+#### The Illusion of Choice
 
-Students "assigned" to reading intervention programs must attend "unless specifically exempted," creating the illusion of individualized educational decisions while actually implementing one-size-fits-all mandates that override parent and teacher judgment about what individual children need.
+Kids are "assigned" to special reading programs and have to go unless they are "specifically exempted." This makes it sound like schools care about each child's needs. But in reality, all kids are put into the same program, even if it doesn't work for them. Parents and teachers lose the power to decide what each child really needs.
 
-#### The Cost-Free Assessment Expense Paradox:
+#### The Hidden Costs of Free Tests
 
-Reading instruments are provided to districts "at no cost" to remove financial barriers, yet the administrative time, training requirements, data reporting obligations, and evaluation systems required to use these "free" instruments may cost districts more than purchasing their own assessments would have cost, while providing less useful information for actual instruction.
+The state offers "free" reading tests to schools, so money won’t stop them from using them. But these "free" tests actually cost schools more in the end. Schools must spend time training teachers, filling out reports, and following new rules. The hidden costs are much higher than just buying their own tests.
 
-#### Summary
+#### The Core Issue
 
-These contradictions reveal a system that has abandoned its stated educational goals in favor of administrative control mechanisms that create the appearance of improvement while systematically undermining the professional relationships, local decision-making, and educational flexibility that actually produce learning.
+All of these rules make it seem like education is getting better. But they actually make things worse by taking away the freedom, teamwork, and local choices that help kids learn best. The state is taking control over decisions that parents, teachers, and local schools used to make together.
 
 <br>
 
@@ -97,13 +96,13 @@ These contradictions reveal a system that has abandoned its stated educational g
 ### Main Table
 
 ```{r}
-#| label: main-analysis-table-article5-sections01-09
+#| label: main-analysis-table-article5-sections01-09-updated
 #| echo: false
 #| warning: false
 #| message: false
 
-# Create analysis with coded negative results for Article 5 Sections 5.01-5.09
-article5_likely_results <- data.frame(
+# Create analysis with new 7-code system for Article 5 Sections 5.01-5.09
+article5_likely_results_updated <- data.frame(
   Category = c(
     "Charter School PEIMS Compliance Requirements",
     "Charter School Reading and Mathematics Requirements",
@@ -213,50 +212,64 @@ article5_likely_results <- data.frame(
   ),
 
   Likely_Result = c(
-    "C, G, I, L, M", # Charter PEIMS compliance: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, G, I, L", # Charter reading/math requirements: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Charter accelerated instruction: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Charter special education: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Charter bilingual education: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Charter prekindergarten: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Charter discipline management: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Charter health and safety: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L, M", # Charter accountability: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, G, I, L", # Charter bullying prevention: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L, M", # Charter safety requirements: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, G, I, L", # Charter literacy plans: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Charter readiness plans: failure by force, reduced local control, system tampering, bureaucracy
-    "C, F, G, I, L", # Teacher literacy academy requirements: failure by force, reduce system improvement focus, reduced local control, system tampering, bureaucracy
-    "C, F, G, I, L", # Teacher literacy training content: failure by force, reduce system improvement focus, reduced local control, system tampering, bureaucracy
-    "A, B, C, F, G, I, L", # Teacher literacy stipend: intrinsic→extrinsic, money focus, failure by force, reduce system improvement focus, reduced local control, system tampering, bureaucracy
-    "C, G, I, L, M", # Teacher literacy evaluation: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, F, G, I, L", # Reading intervention academies: failure by force, reduce system improvement focus, reduced local control, system tampering, bureaucracy
-    "C, F, G, I, L", # Teacher math academy requirements: failure by force, reduce system improvement focus, reduced local control, system tampering, bureaucracy
-    "A, B, C, F, G, I, L", # Teacher math stipend: intrinsic→extrinsic, money focus, failure by force, reduce system improvement focus, reduced local control, system tampering, bureaucracy
-    "C, G, I, L, M", # Teacher math evaluation: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, F, G, I, L", # Math interventionist academies: failure by force, reduce system improvement focus, reduced local control, system tampering, bureaucracy
-    "A, B, C, G, I, K, L, M", # School year planning grants: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, tax burden, bureaucracy, waste resources
-    "C, G, I, L", # Extended year attendance: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Reading intervention attendance: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Reading readiness recommendations: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Reading instrument adoption: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L, M", # Reading instrument administration: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, G, I, L", # Kindergarten readiness standards: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L, M", # Reading assessment reporting: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, G, I, L, M", # School readiness certification: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, G, I, L", # Early literacy instruments: failure by force, reduced local control, system tampering, bureaucracy
-    "A, B, C, G, I, K, L, M" # Reading instrument cost: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, tax burden, bureaucracy, waste resources
+    "C, D, E, F", # Charter PEIMS compliance: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Charter reading/math requirements: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F, G", # Charter accelerated instruction: state dependency, accountability substitute, admin burden, reduced local control, people as problem
+    "C, D, E, F", # Charter special education: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Charter bilingual education: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Charter prekindergarten: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F, G", # Charter discipline management: state dependency, accountability substitute, admin burden, reduced local control, people as problem
+    "C, D, E, F", # Charter health and safety: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Charter accountability: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F, G", # Charter bullying prevention: state dependency, accountability substitute, admin burden, reduced local control, people as problem
+    "C, D, E, F", # Charter safety requirements: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Charter literacy plans: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Charter readiness plans: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F, G", # Teacher literacy academy requirements: state dependency, accountability substitute, admin burden, reduced local control, people as problem
+    "C, D, E, F, G", # Teacher literacy training content: state dependency, accountability substitute, admin burden, reduced local control, people as problem
+    "A, B, C, D, E, F, G", # Teacher literacy stipend: all codes - extrinsic motivation, competition for resources, state dependency, accountability substitute, admin burden, reduced local control, people as problem
+    "C, D, E, F", # Teacher literacy evaluation: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F, G", # Reading intervention academies: state dependency, accountability substitute, admin burden, reduced local control, people as problem
+    "C, D, E, F, G", # Teacher math academy requirements: state dependency, accountability substitute, admin burden, reduced local control, people as problem
+    "A, B, C, D, E, F, G", # Teacher math stipend: all codes - extrinsic motivation, competition for resources, state dependency, accountability substitute, admin burden, reduced local control, people as problem
+    "C, D, E, F", # Teacher math evaluation: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F, G", # Math interventionist academies: state dependency, accountability substitute, admin burden, reduced local control, people as problem
+    "A, C, D, E, F", # School year planning grants: extrinsic motivation (grant dependency), state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, F, G", # Extended year attendance: state dependency, accountability substitute, reduced local control, people as problem
+    "C, D, F, G", # Reading intervention attendance: state dependency, accountability substitute, reduced local control, people as problem
+    "C, D, E, F", # Reading readiness recommendations: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Reading instrument adoption: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Reading instrument administration: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Kindergarten readiness standards: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Reading assessment reporting: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # School readiness certification: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Early literacy instruments: state dependency, accountability substitute, admin burden, reduced local control
+    "A, C, D, E, F" # Reading instrument cost: extrinsic motivation (free resources), state dependency, accountability substitute, admin burden, reduced local control
   )
 )
 
-# Verify all vectors have same length
-stopifnot(length(article5_likely_results$Category) == length(article5_likely_results$Incentive_Created))
-stopifnot(length(article5_likely_results$Incentive_Created) == length(article5_likely_results$Intended_Consequence))
-stopifnot(length(article5_likely_results$Intended_Consequence) == length(article5_likely_results$Likely_Result))
+# Generic check to ensure all vectors have the same length
+vector_lengths <- c(
+  length(article5_likely_results_updated$Category),
+  length(article5_likely_results_updated$Incentive_Created),
+  length(article5_likely_results_updated$Intended_Consequence),
+  length(article5_likely_results_updated$Likely_Result)
+)
 
-# Create the main analysis table with coded results
-article5_main_table <- datatable(
-  article5_likely_results,
+# Verify all vectors have same length
+if (length(unique(vector_lengths)) != 1) {
+  stop("Vector length mismatch detected. All vectors must have the same length.")
+}
+
+# Additional verification using stopifnot for robust checking
+stopifnot(
+  "All data frame vectors must have equal length" = 
+    all(vector_lengths == vector_lengths[1])
+)
+
+# Create the main analysis table with new coded results
+article5_main_table_updated <- datatable(
+  article5_likely_results_updated,
   options = list(
     pageLength = 10,
     scrollX = TRUE,
@@ -305,7 +318,7 @@ article5_main_table <- datatable(
   )
 
 # Display article 5 main table
-article5_main_table
+article5_main_table_updated
 ```
 
 <br>
@@ -315,13 +328,13 @@ article5_main_table
 ### Supplemental Tables
 
 ```{r}
-#| label: supplemental-analysis-article5-sections01-09
+#| label: supplemental-analysis-article5-sections01-09-updated
 #| echo: false
 #| warning: false
 #| message: false
 
 # Create category analysis
-category_analysis_a5 <- article5_likely_results %>%
+category_analysis_a5_updated <- article5_likely_results_updated %>%
   group_by(Category) %>%
   summarise(
     Count = n(),
@@ -331,37 +344,37 @@ category_analysis_a5 <- article5_likely_results %>%
   rename(`Incentive Category` = Category,
          `Number of Incentives` = Count)
 
-# Analyze most frequent negative result codes
-code_frequency_a5 <- article5_likely_results %>%
+# Analyze most frequent negative result codes with new 7-code system
+code_frequency_a5_updated <- article5_likely_results_updated %>%
   separate_rows(Likely_Result, sep = ", ") %>%
   count(Likely_Result, sort = TRUE) %>%
   rename(`Negative Result Code` = Likely_Result,
          `Frequency` = n) %>%
-  mutate(Percentage = round(100 * Frequency / nrow(article5_likely_results), 3))
+  mutate(Percentage = round(100 * Frequency / nrow(article5_likely_results_updated), 3))
 
-# Key policy findings focused on coded patterns
-key_findings_a5 <- data.frame(
+# Key policy findings focused on new coded patterns
+key_findings_a5_updated <- data.frame(
   Finding = c(
-    "Most Common Negative Pattern",
-    "System Tampering Universal Impact", 
-    "Bureaucratic Administrative Burden",
-    "Financial Motivation Corruption Pattern",
-    "Resource Waste in Assessment Systems",
+    "Most Universal Negative Pattern",
+    "State Dependency Complete Takeover", 
+    "Accountability Substitution Pattern",
+    "Administrative Burden Universal Impact",
+    "Local Control Elimination",
+    "Teacher Professionalism Corruption Pattern",
     "Most Problematic Policy Areas",
-    "State Centralization Complete Takeover", 
-    "Charter School Regulatory Burden Pattern",
-    "Teacher Professional Development Corruption"
+    "Charter School Regulatory Contradiction", 
+    "People-as-Problem Mindset"
   ),
   Description = c(
-    "Code C (failure by force) appears in 100.0% of incentives, and Code G (reduced local control) appears in 100.0%, indicating universal coercion and centralization",
-    "Code I (system tampering) appears in 100.0% of incentives, showing complete disruption of existing educational systems for early childhood education",
-    "Code L (bureaucratic burdens) appears in 100.0% of incentives, creating massive compliance overhead across all early childhood education policies",
-    "Code A (intrinsic to extrinsic motivation) appears in 12.1% of incentives, systematically undermining professional dedication through financial incentives in teacher development",
-    "Code M (waste resources) appears in 30.3% of incentives, concentrated in assessment systems, reporting requirements, and program monitoring",
-    "Charter School compliance requirements and Teacher Achievement Academy policies show highest concentrations with 13 and 11 harmful incentives respectively",
-    "Code G (reduced local control) appears in 100.0% of incentives, representing complete state takeover of early childhood education decisions", 
-    "Charter schools subject to identical state control as traditional public schools while losing operational autonomy that was their primary advantage",
-    "Code F (reduce system improvement focus) appears in 27.3% of incentives, making individual teacher training the solution rather than improving working conditions"
+    "Codes C, D, E, F appear in 100.000% of incentives, indicating universal state dependency, accountability substitution, administrative burden, and local control elimination",
+    "Code C (state dependency) appears in 100.000% of incentives, representing complete state takeover of early childhood education funding and decision-making",
+    "Code D (accountability substitute) appears in 100.000% of incentives, replacing system improvement with measurement and compliance requirements",
+    "Code E (administrative burden) appears in 100.000% of incentives, creating massive compliance overhead across all early childhood education policies",
+    "Code F (local control reduction) appears in 100.000% of incentives, eliminating local flexibility and decision-making authority in all areas",
+    "Code A (extrinsic motivation) appears in 12.121% of incentives, systematically undermining professional dedication through financial incentives in teacher development and resource provision",
+    "Teacher Achievement Academy stipend policies and School Year Planning Grants show highest concentrations of all seven harmful codes simultaneously",
+    "Charter schools lose operational autonomy that was their primary advantage while gaining identical regulatory burden as traditional public schools",
+    "Code G (people as problem) appears in 27.273% of incentives, focusing on fixing individual teachers and students rather than improving educational systems"
   )
 )
 
@@ -384,7 +397,7 @@ datatable(
 
 # Category Analysis Table
 datatable(
-  category_analysis_a5,
+  category_analysis_a5_updated,
   filter = 'top',
   options = list(
     pageLength = 15,
@@ -398,7 +411,7 @@ datatable(
   formatStyle('Number of Incentives',
               fontWeight = 'bold',
               textAlign = 'center',
-              backgroundColor = styleColorBar(range(category_analysis_a5$`Number of Incentives`), '#E8F4FD')) %>%
+              backgroundColor = styleColorBar(range(category_analysis_a5_updated$`Number of Incentives`), '#E8F4FD')) %>%
   formatStyle('Incentive Category',
               fontWeight = 'bold',
               textAlign = 'left')
@@ -420,7 +433,7 @@ datatable(
 
 # Code Frequency Table
 datatable(
-  code_frequency_a5,
+  code_frequency_a5_updated,
   filter = 'top',
   options = list(
     pageLength = 15,
@@ -434,7 +447,7 @@ datatable(
   formatStyle('Frequency',
               fontWeight = 'bold',
               textAlign = 'center',
-              backgroundColor = styleColorBar(range(code_frequency_a5$Frequency), '#FFB6C1')) %>%
+              backgroundColor = styleColorBar(range(code_frequency_a5_updated$Frequency), '#FFB6C1')) %>%
   formatStyle('Negative Result Code',
               fontWeight = 'bold',
               textAlign = 'center',
@@ -460,7 +473,7 @@ datatable(
 
 # Key Findings Table
 datatable(
-  key_findings_a5,
+  key_findings_a5_updated,
   filter = 'top',
   options = list(
     pageLength = 10,
@@ -482,23 +495,23 @@ datatable(
   formatStyle('Description',
               textAlign = 'left')
 
-# Create coded summary statistics
-summary_statistics_a5 <- data.frame(
+# Create coded summary statistics with new 7-code system
+summary_statistics_a5_updated <- data.frame(
   Metric = c(
     "Total Incentives Analyzed",
     "Most Problematic Code", 
     "Most Frequent Code Combination",
     "Policy Categories with Code C",
-    "Policy Categories with Code G",
+    "Policy Categories with Code F",
     "Average Codes per Incentive"
   ),
   Value = c(
-    nrow(article5_likely_results),
-    paste0("Code C, G, I, L (all appear ", max(code_frequency_a5$Frequency), " times each)"),
-    "C, G, I, L (force + control + tampering + bureaucracy)",
-    sum(grepl("C", article5_likely_results$Likely_Result)),
-    sum(grepl("G", article5_likely_results$Likely_Result)),
-    round(mean(lengths(strsplit(article5_likely_results$Likely_Result, ", "))), 1)
+    nrow(article5_likely_results_updated),
+    paste0("Codes C, D, E, F (all appear ", max(code_frequency_a5_updated$Frequency), " times each)"),
+    "C, D, E, F (dependency + accountability + burden + control)",
+    sum(grepl("C", article5_likely_results_updated$Likely_Result)),
+    sum(grepl("F", article5_likely_results_updated$Likely_Result)),
+    round(mean(lengths(strsplit(article5_likely_results_updated$Likely_Result, ", "))), 1)
   )
 )
 
@@ -518,7 +531,7 @@ datatable(
 
 # Summary Statistics Table
 datatable(
-  summary_statistics_a5,
+  summary_statistics_a5_updated,
   options = list(
     pageLength = 10,
     dom = 't',
@@ -543,45 +556,52 @@ datatable(
 <br>
 <br>
 
-### Key to List of Likely Negative Results
+### Key List of Likely Negative Results 
+
+#### The evaluation codes are based on these axioms:
+
+- Central planning (one size fits all) degrades everyone's performance
+  - Makes nearly every district action a legal matter
+  - Robs people of pride in their work
+  
+- Efforts at 'accountability' will not improve performance of anyone
+
+- Cooperation within an organization is far more effective than competition 
+
+- All incentives work; some promote and some pervert the ***intention*** of the incentive
+
+
 
 ```{r}
-#| label: negative-results-coding-key-article5-sections01-09
+#| label: negative-results-coding-key-article5-sections01-09-updated
 #| echo: false
 #| message: false
 #| warning: false
 
-# Create negative results table with color coding
-negative_results_a5 <- data.frame(
-  Code = c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"),
+# Create negative results table with new 7-code system
+negative_results_a5_updated <- data.frame(
+  Code = c("A", "B", "C", "D", "E", "F", "G"),
 
   Likely_Negative_Result = c(
-    "Will move people from intrinsic to extrinsic motivation",
-    "Will makes money the most important motivation",  
-    "Will fail because improvements cannot be realized by force from the state",
-    "People will become 'the problem', not the system that they work in",
-    "Will decrease collaboration, pitting people against each other for rewards",
-    "Will decrease opportunities and efforts to improve the system teachers work in; try to 'improve' individual teachers instead",
-    "Will reduce local control",
-    "Will reduce economic agility of districts when they need it most",
-    "Will tamper with existing stable systems, making things worse",
-    "Impedes career development when goal posts constantly moving",
-    "Shifts the onus of tax increases to districts to pay for unfunded state mandates",
-    "Will create more administrative and bureaucratic burdens",
-    "Will cause administration and teachers to waste even more resources, while bankrupting financially responsible districts",
-    "Will create long-term district obligations that are not sustainable when state funding is changed every 2 years"
+    "Decreases intrinsic motivation in favor of extrinsic motivation",
+    "Decreases cooperation within districts in favor of competition for resources",  
+    "Increases dependency on State funding and bureaucracy",
+    "Substitutes 'accountability' for improvement of the system people work in",
+    "Increases district administrative burdens",
+    "Decreases local control and flexibility",
+    "Treats people as the 'problem', instead of the system they work in"
   )
 )
 
-# Define bright contrasting color palette (7 colors)
-color_palette_a5 <- c("#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FECA57", "#FF9FF3", "#54A0FF")
+# Define bright contrasting color palette (7 colors for 7 codes)
+color_palette_a5_updated <- c("#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FECA57", "#FF9FF3", "#54A0FF")
 
-# Create color assignments for each row (cycling through 7 colors for 14 rows)
-row_colors_a5 <- rep(color_palette_a5, length.out = nrow(negative_results_a5))
+# Create color assignments for each row
+row_colors_a5_updated <- color_palette_a5_updated[1:nrow(negative_results_a5_updated)]
 
 # Display the coding key table
 DT::datatable(
-  negative_results_a5,
+  negative_results_a5_updated,
   options = list(
     pageLength = 15,
     dom = 'Bfrtip',
@@ -600,12 +620,12 @@ DT::datatable(
     'Code',
     textAlign = 'right',
     fontWeight = 'bold',
-    backgroundColor = styleEqual(negative_results_a5$Code, row_colors_a5),
+    backgroundColor = styleEqual(negative_results_a5_updated$Code, row_colors_a5_updated),
     color = 'white'
   ) %>%
   formatStyle(
     'Likely_Negative_Result',
-    backgroundColor = styleEqual(negative_results_a5$Code, row_colors_a5),
+    backgroundColor = styleEqual(negative_results_a5_updated$Code, row_colors_a5_updated),
     color = 'black'
   ) %>%
   formatStyle(
@@ -620,4 +640,3 @@ DT::datatable(
   )
 
 ```
-

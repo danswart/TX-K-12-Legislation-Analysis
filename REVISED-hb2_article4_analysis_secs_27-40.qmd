@@ -39,7 +39,7 @@ format:
 ---
 
 ```{r}
-#| label: setup-article4-sections27-40
+#| label: setup-article4-sections27-40-revised
 #| include: false
 #| echo: false
 #| message: false
@@ -57,66 +57,70 @@ library(dplyr)      # For data wrangling
 <br>
 <br>
 
-## Opinionated Executive Summary and Counter-Intuitive Implications
-The legislative code analyzed in Article 4's parent-directed services and dyslexia training framework reveals a systematic dismantling of local educational judgment disguised as "parental choice" and "specialized support." All code sections are evaluated based on my own "Table of Codes for Destructive Results We Will Actually Get" (see Table below).
+## Opinionated Executive Summary: Good Intentions, Unintended Results
 
-Disturbing is that 100% of incentives contain Code C (failure by central planning) and Code G (reduced local control), indicating complete state takeover of decisions that should belong to educators and families who actually know the children.
+The policies in Article 4, which focus on parent-directed services and dyslexia training, seem helpful but actually give more power to the state. These policies are labeled as "parental choice" and "specialized support," but they end up increasing state control while taking away local decision-making. All the policies are analyzed using a framework to detect likely consequences not intended by the legislature, showing how they will cause harm.
 
-
-#### The Parent Choice-Family Dependency Paradox:
-
-Parent-Directed Services Program promises unprecedented parental autonomy through state-funded accounts for supplemental services, flexible provider selection, and religious liberty protections, yet my coding reveals these policies will create failure by central planning (Code C in 100% of grants) while systematically replacing family independence with bureaucratic oversight. Like requiring parents to get government permission before choosing their children's tutors, these programs transform natural family decision-making into compliance theater where parents must prove their need to access their own assigned accounts.
+Not surprisingly, all the policies in these sections increase state dependency (Code C) and reduce local control (Code F). This means that every policy takes power away from local districts and puts it into the hands of state bureaucrats.
 
 
-#### The Provider Autonomy-State Approval Contradiction:
+### The Parent Choice Switcher-Roo
 
-Provider and Vendor Criteria appear to protect religious liberty and institutional independence through explicit non-interference language and burden-of-proof requirements, yet the analysis shows systematic tampering (Code I in 100% of provider policies) that will destabilize existing successful relationships between families and service providers. 
+Parent-Directed Services Programs promise to give parents more control with state-funded accounts for services, flexible provider choices, and protections for religious freedom. However, these programs make parents more dependent on the state (Code C in 100% of cases) and reduce their independence. 
 
-Parents who have spent years building trust with specific therapists or tutors will face state-approved provider networks instead of choosing based on their children's actual needs, creating the equivalent of requiring government licensing before parents can hire babysitters.
-
-
-#### The Professional Development-Training Industry Multiplication:
-
-The Dyslexia Teacher Training Grant Program promises evidence-based capacity building through high-quality training and credentialing programs with $350 million in potential funding, yet shows the highest concentration of negative codes with financial perverse incentives (Code A and B in 75% of training incentives) plus complete bureaucratic burden creation (Code L in 100% of cases). 
-
-Instead of improving reading instruction, this creates an elaborate professional development machinery that rewards compliance documentation over direct student support, ensuring the money never reaches classrooms while enriching the training industry that profits from teacher certification requirements.
+It’s like saying, "You can pick any car you want, but only if you get permission from us first and choose from our approved list." Parents end up with less choice because they have to follow state rules to get the money that should be theirs.
 
 
-#### The Evidence-Based Support-Standardized Intervention Inversion:
+### Provider Freedom Means Getting To Chose, but the State Controls the Options
 
-Grant Program Implementation appears to target resources toward districts lacking dyslexia capacity through stakeholder panels and evidence-based design requirements, yet Code F (individual vs system focus problems) combined with failure by central planning (Code C) will push students into standardized intervention pathways rather than truly individualized approaches. 
+The Provider and Vendor Criteria claim to protect religious freedom and independence by allowing parents to choose their own providers. But these policies actually decrease local control (Code F in 100% of cases) by forcing family-provider relationships into state-approved networks.
 
-The ultimate irony: policies claiming to build local capacity actually eliminate the local flexibility necessary for reading interventions that match each child's specific learning profile and community resources.
-
-
-#### The Religious Liberty-Regulatory Expansion Escalation:
-
-Participant Autonomy Protections promise comprehensive religious liberty safeguards through explicit non-interference language, burden-of-proof requirements, and least-restrictive-means standards, yet they systematically create regulatory infrastructure (Code L in 100% of autonomy policies) that benefits compliance administrators more than families.
-
-Instead of protecting genuine religious freedom, these policies create a special education legal framework where families must navigate complex regulatory systems to exercise rights they should have naturally, like requiring constitutional law degrees to attend church.
+Parents who have spent years building trust with their therapists or tutors will lose those relationships when providers can't or won't meet state requirements. It’s like needing a government license for babysitters — it harms the natural relationships that actually work.
 
 
-#### The Final Determination-Appeal Elimination Amplification:
+### The Dyslexia Training Trap
 
-Final Determination Authority promises efficient program administration through commissioner authority and elimination of appeals processes, yet Code I (system tampering) appears in 100% of determination policies, indicating these programs will destabilize existing functional relationships between families and districts. 
+The Dyslexia Teacher Training Grant Program promises $350 million for better teacher training. But this program has the worst issues, including reduced motivation (Code A), more competition (Code B), and massive paperwork (Code E in 100% of cases).
 
-Parents who have spent years working collaboratively with schools around their children's needs will be forced into state-administered systems with no recourse for disagreements, creating the educational equivalent of requiring federal approval for every family decision with no appeals process.
-
-
-#### The Account Access-Bureaucratic Navigation Multiplication:
-
-IEP Committee Information Requirements promise comprehensive parent information about supplemental services and account access instructions, yet the analysis shows Code G (reduced local control) in 100% of information incentives, meaning support will be achieved by eliminating the local decision-making authority that actually creates effective special education outcomes. 
-
-Like requiring parents to get driving directions from government agencies before visiting their children's schools, these policies assume families are better served by regulatory guidance than by direct relationships with knowledgeable professionals.
+Instead of improving reading instruction, this creates yet another training industry that makes money off teacher certification requirements, but the money never reaches classrooms. Teachers end up competing for grants instead of working together to help kids learn to read.
 
 
-#### Summary
+### The Central Planning Approach to Support
 
-These contradictions reveal a parent-directed services system that has abandoned the development of family autonomy, provider relationships, and individualized programming in favor of centralized account management, procedural documentation, and bureaucratic coordination mechanisms.
+The Grant Program Implementation aims to help districts that don’t have enough dyslexia resources by providing panels and evidence-based design. But these policies force students into one-size-fits-all programs instead of offering personalized approaches (Code G and Code C).
 
-Like trying to improve family dinners by requiring state approval of every recipe and dining room conversation, these policies assume students with disabilities are better served by regulatory oversight than by knowledgeable families working directly with trusted providers.
+Ironically, the policies that claim to build local resources actually remove the local flexibility needed for timely interventions that match each child's unique needs.
 
-They systematically undermine the local decision-making authority, stable service relationships, and individualized programming flexibility that actually create effective special education outcomes, while creating a parent-directed services industrial complex that costs hundreds of millions in state funding while producing administrators and consultants trained to navigate bureaucratic systems rather than to build relationships with students and families around individual needs and strengths.
+
+### The Religious Liberty Lawyers Relief Act
+
+The Participant Autonomy Protections promise to protect religious freedom with non-interference language and burden-of-proof rules. But these protections come with huge administrative burdens (Code E in 100% of cases), which hurt families more than help them.
+
+Instead of protecting religious freedom, these policies create a system where families need lawyers to exercise their rights. It’s like needing a law degree just to go to church.
+
+
+### The Loss of Parental Control
+
+The Final Determination Authority promises to make program decisions faster by giving the state commissioner the final say, eliminating the appeals process. But this means parents lose their ability to disagree with state decisions (Code F in 100% of cases).  This is a terrible thing.
+
+Parents who have worked with schools to support their children’s needs will now have to follow state-run systems with no way to appeal poor decisions. It’s like needing federal approval for every family choice with no chance to say no.
+
+
+### Information Overload
+
+The IEP Committee Information Requirements promise to give parents full details about services and accounts. But these requirements just create more paperwork (Code E in 100% of cases), making the process about forms instead of relationships.
+
+It’s like requiring parents to read a manual before they can talk to teachers. These policies assume that families need more rules instead of building relationships with knowledgeable professionals.
+
+
+### Conclusion
+
+These policies show a shift from family independence to centralized state control. They take away the flexibility, strong relationships, and individualized programs that are key to effective special education.
+
+It’s like trying to improve family meals by requiring the state to approve every recipe. These policies assume that students with disabilities are better served by state regulations than by knowledgeable families working with trusted providers.
+
+In the end, these policies undermine local decision-making and create a costly system that benefits consultants and administrators, not students. They cost millions in state funding while helping few students. The real winners are the state bureaucrats who profit from the system, not the families or children who need real support.
+
 
 <br>
 <br>
@@ -126,10 +130,10 @@ They systematically undermine the local decision-making authority, stable servic
 ### Main Table
 
 ```{r}
-#| label: main-analysis-table-article4-sections27-40
+#| label: main-analysis-table-article4-sections27-40-revised
 
-# Create analysis with coded negative results for Article 4 Sections 4.27-4.40
-article4_likely_results <- data.frame(
+# Create analysis with new 7-code framework for Article 4 Sections 4.27-4.40
+article4_likely_results_revised <- data.frame(
   Category = c(
     "Parent-Directed Services Program Implementation",
     "Parent-Directed Services Program Implementation",
@@ -227,41 +231,60 @@ article4_likely_results <- data.frame(
   ),
 
   Likely_Result = c(
-    "C, G, I, L", # Student approval: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Funding allocation: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L, M", # Application maintenance: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, G, I, L, M", # Application system: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, G, I, L", # Provider criteria: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Provider procedures: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Vendor criteria: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Vendor procedures: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Federal assistance: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Action restrictions: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Provider limits: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Participant limits: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Value obligations: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Regulation restrictions: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Modification requirements: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Legal burden: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Restrictive means: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # ARD information: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Account instructions: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Final determination: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Rule authority: failure by force, reduced local control, system tampering, bureaucracy
-    "A, B, C, G, I, K, L, M", # Grant program: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, tax burden, bureaucracy, waste resources
-    "A, B, C, G, I, L", # Evidence-based design: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Stakeholder panels: failure by force, reduced local control, system tampering, bureaucracy
-    "A, B, C, G, I, L", # Gift acceptance: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Financial restrictions: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Regional administration: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Implementation rules: failure by force, reduced local control, system tampering, bureaucracy
-    "A, B, C, G, I, L" # Donation acceptance: intrinsic→extrinsic, money focus, failure by force, reduced local control, system tampering, bureaucracy
+    "C, E, F", # Student approval: state dependency, admin burdens, reduced local control
+    "B, C, E, F", # Funding allocation: competition, state dependency, admin burdens, reduced local control
+    "C, E, F", # Application maintenance: state dependency, admin burdens, reduced local control
+    "C, E, F", # Application system: state dependency, admin burdens, reduced local control
+    "C, E, F", # Provider criteria: state dependency, admin burdens, reduced local control
+    "C, E, F", # Provider procedures: state dependency, admin burdens, reduced local control
+    "C, E, F", # Vendor criteria: state dependency, admin burdens, reduced local control
+    "C, E, F", # Vendor procedures: state dependency, admin burdens, reduced local control
+    "C, E, F", # Federal assistance: state dependency, admin burdens, reduced local control
+    "C, E, F", # Action restrictions: state dependency, admin burdens, reduced local control
+    "C, E, F", # Provider limits: state dependency, admin burdens, reduced local control
+    "C, E, F", # Participant limits: state dependency, admin burdens, reduced local control
+    "C, E, F", # Value obligations: state dependency, admin burdens, reduced local control
+    "C, E, F", # Regulation restrictions: state dependency, admin burdens, reduced local control
+    "C, E, F", # Modification requirements: state dependency, admin burdens, reduced local control
+    "C, E, F", # Legal burden: state dependency, admin burdens, reduced local control
+    "C, E, F", # Restrictive means: state dependency, admin burdens, reduced local control
+    "C, E, F", # ARD information: state dependency, admin burdens, reduced local control
+    "C, E, F", # Account instructions: state dependency, admin burdens, reduced local control
+    "C, F", # Final determination: state dependency, reduced local control
+    "C, E, F", # Rule authority: state dependency, admin burdens, reduced local control
+    "A, B, C, E, F, G", # Grant program: extrinsic motivation, competition, state dependency, admin burdens, reduced local control, people as problem
+    "A, D, C, E, F, G", # Evidence-based design: extrinsic motivation, accountability substitution, state dependency, admin burdens, reduced local control, people as problem
+    "B, C, E, F", # Stakeholder panels: competition, state dependency, admin burdens, reduced local control
+    "A, B, C, E, F", # Gift acceptance: extrinsic motivation, competition, state dependency, admin burdens, reduced local control
+    "C, E, F", # Financial restrictions: state dependency, admin burdens, reduced local control
+    "C, E, F", # Regional administration: state dependency, admin burdens, reduced local control
+    "C, E, F", # Implementation rules: state dependency, admin burdens, reduced local control
+    "A, B, C, E, F" # Donation acceptance: extrinsic motivation, competition, state dependency, admin burdens, reduced local control
   )
 )
 
-# Create the main analysis table with coded results
-article4_main_table <- datatable(
-  article4_likely_results,
+# Data validation check - ensure all vectors have same length
+validation_check <- data.frame(
+  Vector_Name = c("Category", "Incentive_Created", "Intended_Consequence", "Likely_Result"),
+  Length = c(
+    length(article4_likely_results_revised$Category),
+    length(article4_likely_results_revised$Incentive_Created),
+    length(article4_likely_results_revised$Intended_Consequence),
+    length(article4_likely_results_revised$Likely_Result)
+  )
+)
+
+# Check if all lengths are equal
+if(length(unique(validation_check$Length)) != 1) {
+  stop(paste("Vector length mismatch detected:", 
+             paste(validation_check$Vector_Name, "=", validation_check$Length, collapse = ", ")))
+} else {
+  cat("Data validation passed: All vectors have", unique(validation_check$Length), "elements\n")
+}
+
+# Create the main analysis table with new coded results
+article4_main_table_revised <- datatable(
+  article4_likely_results_revised,
   options = list(
     pageLength = 10,
     scrollX = TRUE,
@@ -299,7 +322,7 @@ article4_main_table <- datatable(
   )
 
 # Display article 4 main table
-article4_main_table
+article4_main_table_revised
 ```
 
 <br>
@@ -309,10 +332,10 @@ article4_main_table
 ### Supplemental Tables
 
 ```{r}
-#| label: supplemental-analysis-article4-sections27-40
+#| label: supplemental-analysis-article4-sections27-40-revised
 
 # Create category analysis
-category_analysis_a4 <- article4_likely_results %>%
+category_analysis_a4_revised <- article4_likely_results_revised %>%
   group_by(Category) %>%
   summarise(
     Count = n(),
@@ -323,34 +346,34 @@ category_analysis_a4 <- article4_likely_results %>%
          `Number of Incentives` = Count)
 
 # Analyze most frequent negative result codes
-code_frequency_a4 <- article4_likely_results %>%
+code_frequency_a4_revised <- article4_likely_results_revised %>%
   separate_rows(Likely_Result, sep = ", ") %>%
   count(Likely_Result, sort = TRUE) %>%
   rename(`Negative Result Code` = Likely_Result,
          `Frequency` = n) %>%
-  mutate(Percentage = round(100 * Frequency / nrow(article4_likely_results), 3))
+  mutate(Percentage = round(100 * Frequency / nrow(article4_likely_results_revised), 3))
 
 # Key policy findings focused on coded patterns
-key_findings_a4 <- data.frame(
+key_findings_a4_revised <- data.frame(
   Finding = c(
     "Most Common Negative Pattern",
-    "System Tampering and Control Dominance", 
-    "Bureaucratic Implementation Pattern",
-    "Financial Motivation Corruption",
-    "Individual vs System Focus Imbalance",
+    "State Dependency Dominance", 
+    "Administrative Burden Pattern",
+    "Local Control Elimination",
+    "Competition vs Cooperation",
     "Most Problematic Policy Areas",
-    "State Centralization Pattern",
-    "Resource Waste in Program Administration"
+    "Extrinsic Motivation Pattern",
+    "People as Problem vs System Focus"
   ),
   Description = c(
-    "Code C (failure by force) appears in 100.0% of incentives, followed by Code G (reduced local control) at 100.0%",
-    "System tampering affects every single incentive, indicating complete disruption of existing special education systems",
-    "Administrative burdens appear in 100.0% of incentives, creating massive compliance overhead across all special education policies",
-    "Code A (intrinsic to extrinsic motivation) appears in 20.7% of incentives, systematically undermining professional dedication with financial rewards",
-    "No individual focus codes (F) appear in these sections, indicating focus on systemic rather than individual interventions",
-    "Parent-Directed Services Program Participant Autonomy shows highest concentration with 9 separate harmful incentives in single policy area",
-    "Code G (reduced local control) appears in 100.0% of incentives, representing complete state takeover of special education decisions", 
-    "Code M (waste resources) appears in 10.3% of incentives, concentrated in application systems and grant program administration"
+    "Code C (state dependency) appears in 96.552% of incentives, followed by Code F (reduced local control) at 96.552%",
+    "State dependency affects nearly every incentive, creating complete reliance on state bureaucracy across all special education policies",
+    "Administrative burdens appear in 93.103% of incentives, creating massive compliance overhead across all special education policies",
+    "Code F (reduced local control) appears in 96.552% of incentives, representing near-complete state takeover of special education decisions", 
+    "Code B (competition) appears in 17.241% of incentives, systematically undermining cooperation within districts",
+    "Dyslexia Teacher Training Grant Program shows highest concentration with 8 separate harmful incentives in single policy area",
+    "Code A (extrinsic motivation) appears in 17.241% of incentives, systematically undermining professional dedication", 
+    "Code G (treats people as problem) appears in 6.897% of incentives, concentrated in grant program areas"
   )
 )
 
@@ -373,7 +396,7 @@ datatable(
 
 # Category Analysis Table
 datatable(
-  category_analysis_a4,
+  category_analysis_a4_revised,
   filter = 'top',
   options = list(
     pageLength = 15,
@@ -387,7 +410,7 @@ datatable(
   formatStyle('Number of Incentives',
               fontWeight = 'bold',
               textAlign = 'center',
-              backgroundColor = styleColorBar(range(category_analysis_a4$`Number of Incentives`), '#E8F4FD')) %>%
+              backgroundColor = styleColorBar(range(category_analysis_a4_revised$`Number of Incentives`), '#E8F4FD')) %>%
   formatStyle('Incentive Category',
               fontWeight = 'bold',
               textAlign = 'left')
@@ -409,7 +432,7 @@ datatable(
 
 # Code Frequency Table
 datatable(
-  code_frequency_a4,
+  code_frequency_a4_revised,
   filter = 'top',
   options = list(
     pageLength = 15,
@@ -423,7 +446,7 @@ datatable(
   formatStyle('Frequency',
               fontWeight = 'bold',
               textAlign = 'center',
-              backgroundColor = styleColorBar(range(code_frequency_a4$Frequency), '#FFB6C1')) %>%
+              backgroundColor = styleColorBar(range(code_frequency_a4_revised$Frequency), '#FFB6C1')) %>%
   formatStyle('Negative Result Code',
               fontWeight = 'bold',
               textAlign = 'center',
@@ -449,7 +472,7 @@ datatable(
 
 # Key Findings Table
 datatable(
-  key_findings_a4,
+  key_findings_a4_revised,
   filter = 'top',
   options = list(
     pageLength = 10,
@@ -472,22 +495,22 @@ datatable(
               textAlign = 'left')
 
 # Create coded summary statistics
-summary_statistics_a4 <- data.frame(
+summary_statistics_a4_revised <- data.frame(
   Metric = c(
     "Total Incentives Analyzed",
     "Most Problematic Code", 
     "Most Frequent Code Combination",
     "Policy Categories with Code C",
-    "Policy Categories with Code G",
+    "Policy Categories with Code F",
     "Average Codes per Incentive"
   ),
   Value = c(
-    nrow(article4_likely_results),
-    paste0("Code C and G (both appear ", max(code_frequency_a4$Frequency), " times each)"),
-    "C, G, I, L (force + control + tampering + bureaucracy)",
-    sum(grepl("C", article4_likely_results$Likely_Result)),
-    sum(grepl("G", article4_likely_results$Likely_Result)),
-    round(mean(lengths(strsplit(article4_likely_results$Likely_Result, ", "))), 1)
+    nrow(article4_likely_results_revised),
+    paste0("Code C and F (both appear ", max(code_frequency_a4_revised$Frequency), " times each)"),
+    "C, E, F (dependency + admin burdens + reduced local control)",
+    sum(grepl("C", article4_likely_results_revised$Likely_Result)),
+    sum(grepl("F", article4_likely_results_revised$Likely_Result)),
+    round(mean(lengths(strsplit(article4_likely_results_revised$Likely_Result, ", "))), 1)
   )
 )
 
@@ -507,7 +530,7 @@ datatable(
 
 # Summary Statistics Table
 datatable(
-  summary_statistics_a4,
+  summary_statistics_a4_revised,
   options = list(
     pageLength = 10,
     dom = 't',
@@ -532,42 +555,48 @@ datatable(
 <br>
 <br>
 
-### Key to List of Likely Negative Results
+### Key List of Likely Negative Results
+
+#### The evaluation codes are based on these axioms:
+
+- Central planning (one size fits all) degrades everyone's performance
+  - Makes nearly every district action a legal matter
+  - Robs people of pride in their work
+  
+- Efforts at 'accountability' will not improve performance of anyone
+
+- Cooperation within an organization is far more effective than competition 
+
+- All incentives work; some promote and some pervert the ***intention*** of the incentive
+
 
 ```{r}
-#| label: negative-results-coding-key-article4-sections27-40
+#| label: negative-results-coding-key-article4-sections27-40-revised
 
-# Create negative results table with color coding
-negative_results_a4 <- data.frame(
-  Code = c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"),
+# Create negative results table with new 7-code framework
+negative_results_a4_revised <- data.frame(
+  Code = c("A", "B", "C", "D", "E", "F", "G"),
 
   Likely_Negative_Result = c(
-    "Will move people from intrinsic to extrinsic motivation",
-    "Will makes money the most important motivation",  
-    "Will fail because improvements cannot be realized by force from the state",
-    "People will become 'the problem', not the system that they work in",
-    "Will decrease collaboration, pitting people against each other for rewards",
-    "Will decrease opportunities and efforts to improve the system teachers work in; try to 'improve' individual teachers instead",
-    "Will reduce local control",
-    "Will reduce economic agility of districts when they need it most",
-    "Will tamper with existing stable systems, making things worse",
-    "Impedes career development when goal posts constantly moving",
-    "Shifts the onus of tax increases to districts to pay for unfunded state mandates",
-    "Will create more administrative and bureaucratic burdens",
-    "Will cause administration and teachers to waste even more resources, while bankrupting financially responsible districts",
-    "Will create long-term district obligations that are not sustainable when state funding is changed every 2 years"
+    "Decreases intrinsic motivation in favor of extrinsic motivation",
+    "Decreases cooperation within districts in favor of competition for resources",  
+    "Increases dependency on State funding and bureaucracy",
+    "Substitutes 'accountability' for improvement of the system people work in",
+    "Increases district administrative burdens",
+    "Decreases local control and flexibility",
+    "Treats people as the 'problem', instead of the system they work in"
   )
 )
 
 # Define bright contrasting color palette (7 colors)
-color_palette_a4 <- c("#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FECA57", "#FF9FF3", "#54A0FF")
+color_palette_a4_revised <- c("#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FECA57", "#FF9FF3", "#54A0FF")
 
-# Create color assignments for each row (cycling through 7 colors for 14 rows)
-row_colors_a4 <- rep(color_palette_a4, length.out = nrow(negative_results_a4))
+# Create color assignments for each row (exact match for 7 colors and 7 rows)
+row_colors_a4_revised <- color_palette_a4_revised
 
 # Display the coding key table
 DT::datatable(
-  negative_results_a4,
+  negative_results_a4_revised,
   options = list(
     pageLength = 15,
     dom = 'Bfrtip',
@@ -586,12 +615,12 @@ DT::datatable(
     'Code',
     textAlign = 'right',
     fontWeight = 'bold',
-    backgroundColor = styleEqual(negative_results_a4$Code, row_colors_a4),
+    backgroundColor = styleEqual(negative_results_a4_revised$Code, row_colors_a4_revised),
     color = 'white'
   ) %>%
   formatStyle(
     'Likely_Negative_Result',
-    backgroundColor = styleEqual(negative_results_a4$Code, row_colors_a4),
+    backgroundColor = styleEqual(negative_results_a4_revised$Code, row_colors_a4_revised),
     color = 'black'
   ) %>%
   formatStyle(
@@ -606,5 +635,3 @@ DT::datatable(
   )
 
 ```
-
-

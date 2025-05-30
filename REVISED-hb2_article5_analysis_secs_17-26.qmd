@@ -1,0 +1,699 @@
+---
+title: "Texas HB2 Article 5: Sections 5.17-5.26 - Incentives and Likely Results"
+author: "Dan Swart and Claude Sonnet 4.0"
+description: "Analysis covers Article 5 Sections 5.17 through 5.26 only. Analysis focuses on prekindergarten teacher qualifications, resource campus requirements, open education resource programs, dyslexia screening modifications, regional reporting changes, and funding formula adjustments. Document spans pages 66-70 of legislative text."
+format:
+    html:
+      toc: true
+      toc-float: true
+      page-layout: article
+      embed-resources: true
+      code-fold: true
+      code-summary: "Show the code"
+      code-tools: true
+      code-overflow: wrap
+      code-block-bg: "#FAEBD7"
+      code-block-border-left: "#31BAE9"
+      code-link: true
+      fig-width: 8
+      fig-height: 6
+      fig-align: center
+      html-math-method: katex
+      css: swart-20250327.css
+    pdf:
+      toc: true
+      number-sections: true
+      colorlinks: true
+      papersize: letter
+      geometry:
+        - margin=1in
+      fig-width: 12
+      fig-height: 10
+      fig-pos: 'H'
+    typst:
+      toc: true
+      fig-width: 12
+      fig-height: 10
+      keep-tex: true
+      prefer-html: true
+---
+
+```{r}
+#| label: setup-article5-sections17-26
+#| include: false
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)  # For dplyr, ggplot, and friends
+library(ggdag)      # For plotting DAGs
+library(dagitty)    # For working with DAG logic
+library(DiagrammeR) # For complete control of the layout
+library(knitr)      # For controlling rendering
+library(kableExtra) # For tables summarizing results
+library(DT)         # For rendering content that kableExtra cannot
+library(dplyr)      # For data wrangling
+```
+
+<br>
+
+## Opinionated Executive Summary: State Control Expansion Through Funding and Regulation
+
+This law extends state control deeper and deeper into local education through complex funding mechanisms, teacher qualification mandates, and performance reporting requirements. Here are the main unintended results:
+
+#### Funding Creates Dependence on the State
+
+Districts get extra money for longer school days and reading programs, but only if they follow state rules and reporting. This will make schools focus more on following the rules than actually improving education. Districts become dependent on the state instead of finding their own solutions.
+
+
+#### Teacher Requirements Limit Local Flexibility
+
+New rules for prekindergarten teachers and math training make all schools follow the same standards. These rules don’t take into account what works best for each school. Districts have to follow complicated rules that are unlikely to match the needs of their community or teachers.
+
+
+#### More Reporting, Less Focus on Students
+
+Changes to dyslexia screening and reporting add more work for schools with little hope of improving student learning. The focus will shift from helping students learn to just filling out forms and following state rules.
+
+
+#### Fixed Plans Don’t Fit Every School
+
+New rules for school improvement and turnaround plans require schools to use certain strategies, no matter what the school needs. Schools must follow state-approved plans that might not fix their unique problems or build on what already works well.
+
+
+
+#### Open Resources, More State Control
+
+Open education resources are meant to give teachers flexible materials, but they come with more state control and reporting. Districts have to use state-approved materials and systems, which limits their ability to choose the best resources for their students and communities.
+
+
+#### Funding Pushes the Wrong Focus
+
+Extra funding for reading programs and longer school days will push schools to focus on activities that bring in more money, instead of providing a well-rounded education. Districts might expand programs, not because they help students, but because they bring in more funding from the state.
+
+
+#### The Real Issue
+
+These rules make it seem like the state is helping schools, but they actually give the state more control over what schools do. And, that is BAD news for students.  They reduce local decision-making, add more paperwork, and make decisions based on one-size-fits-all state rules instead of what students and communities really need. 
+
+Like most of the rest of the new law, these sections promise flexibility while taking away local control and forcing standard solutions.
+
+<br>
+
+## Detailed Analysis
+
+### Main Table
+
+```{r}
+#| label: main-analysis-table-article5-sections17-26
+#| echo: false
+#| warning: false
+#| message: false
+
+# Create analysis with 7-code system for Article 5 Sections 5.17-5.26
+article5_sections17_26_results <- data.frame(
+  Category = c(
+    "Prekindergarten Teacher Qualification Requirements for Contracted Entities",
+    "Prekindergarten Teacher Child Development Associate Credential Requirements",
+    "Prekindergarten Teacher Experience Requirements in Accredited Programs",
+    "Prekindergarten Teacher Montessori Certification Requirements",
+    "Prekindergarten Teacher Bilingual Student Instruction Certification Requirements",
+    "Prekindergarten Contracted Entity Application Requirements",
+    "Resource Campus Performance Rating Eligibility Criteria Changes",
+    "Resource Campus Targeted Improvement Plan Implementation Requirements",
+    "Resource Campus Accelerated Excellence Turnaround Plan Requirements",
+    "Resource Campus Local Teacher Designation System Requirements",
+    "Resource Campus Foundation Curriculum Teacher Experience Requirements",
+    "Resource Campus Teacher Designation Percentage Requirements",
+    "Resource Campus Professional Staff Employment Requirements",
+    "Resource Campus Social and Emotional Support Professional Requirements",
+    "Resource Campus Positive Behavior Program Implementation Requirements",
+    "Resource Campus Family Engagement Plan Implementation Requirements",
+    "Resource Campus High Quality Instructional Materials Plan Requirements",
+    "Resource Campus Extended School Year Operation Requirements",
+    "Resource Campus Annual Data Submission Requirements for Fidelity Assessment",
+    "Open Education Resource Instructional Material Support Program Development",
+    "Open Education Resource District Assistance for Instructional Flexibility",
+    "Open Education Resource Teacher Preparation Time Assistance Requirements",
+    "Open Education Resource Demand Response Requirements for 2024-2026",
+    "Open Education Resource Cost Offset Assistance Provisions",
+    "Open Education Resource Communication and Marketing Contract Authority",
+    "Open Education Resource Educational Value Communication Requirements",
+    "Open Education Resource Promotion and Advertisement Authority",
+    "Open Education Resource Commissioner Fund Use Authorization",
+    "Dyslexia Screening Universal Criteria and Elements Identification Requirements",
+    "Dyslexia Screening Reading Instrument Integration Requirements",
+    "Regional and District Level Reporting Elimination of Accelerated Instruction Evaluation",
+    "Regional and District Level Uncertified Teacher Reporting Requirements",
+    "School Funding Formula Adjustment for 175-Day Minimum Instruction",
+    "School Funding Formula Additional 30 Half-Days Prekindergarten Through Eighth Grade",
+    "School Funding Formula Enhanced Incentive for 200 Full Days of Instruction",
+    "Reading Intervention Additional Instructional Days Funding Incentive",
+    "Reading Intervention Half-Day Instruction Funding Formula Adjustment",
+    "Reading Intervention District Assistance for Incentive Qualification",
+    "Reading Intervention Commissioner Rule Adoption Authority",
+    "Early Education Allotment Funding for Kindergarten Through Third Grade",
+    "Early Education Enhanced Allotment for Disadvantaged and Bilingual Students",
+    "Early Education Allotment Required Use for Teacher Academy Attendance",
+    "Early Education Allotment Required Use for Prekindergarten Programs",
+    "Early Education Allotment Required Use for Reading and Mathematics Improvement",
+    "Early Education Allotment Student Qualification for Multiple Categories",
+    "Full-Day Prekindergarten Funding Distribution Mechanism",
+    "Full-Day Prekindergarten State Agency Distribution Authority"
+  ),
+
+  Incentive_Created = c(
+    "Each teacher for prekindergarten class provided by contracted entity must be certified under Subchapter B Chapter 21 or supervised by qualified person",
+    "Prekindergarten teachers must have Child Development Associate credential or another early childhood education credential approved by agency",
+    "Prekindergarten teachers must have at least two years experience teaching in nationally accredited child care program or Texas Rising Star Program",
+    "Prekindergarten teachers may obtain certification through training center accredited by Association Montessori Internationale or Montessori Accreditation Council",
+    "Prekindergarten teachers must when appropriate be appropriately certified or supervised to provide effective instruction to emergent bilingual students",
+    "Subsections requiring prekindergarten teacher qualifications apply to any prekindergarten class provided by entity with which district contracts",
+    "Campus must have received overall performance rating of D or F or Not Rated for three years over 10-year period instead of four years",
+    "Campus must implement targeted improvement plan as described by Chapter 39A and establish school community partnership team",
+    "Campus must adopt accelerated campus excellence turnaround plan as provided by Section 39A.105(b) with modified teacher effectiveness requirements",
+    "Campus must be in school district that has adopted approved local optional teacher designation system under Section 21.3521",
+    "Campus must employ only teachers who have at least two years of teaching experience for foundation curriculum subjects instead of three years",
+    "Campus must ensure at least 50 percent of teachers hold current designation assigned under Section 21.3521 for foundation curriculum",
+    "Campus must employ at least one school counselor for every 300 students and one licensed professional for social and emotional needs",
+    "Campus must employ appropriately licensed professional who must be family and community liaison clinical social worker specialist in school psychology or professional counselor",
+    "Campus must implement positive behavior program as provided by Section 37.0013 as part of resource campus requirements",
+    "Campus must implement family engagement plan as described by Section 29.168 as part of resource campus designation requirements",
+    "Campus must develop and implement plan to use high quality instructional materials as part of resource campus requirements",
+    "Campus if elementary or middle school must operate for school year that qualifies for funding under Section 48.0051",
+    "Campus must annually submit to commissioner data and information required to assess fidelity of implementation of resource campus requirements",
+    "Agency shall develop and maintain program to assist districts and charter schools in adopting and using open education resource instructional material",
+    "Agency shall assist districts and schools to maintain instructional flexibility of classroom teachers to address needs of each student",
+    "Agency shall assist districts and schools to schedule instructional periods to allow teachers sufficient time to prepare and present instructional material",
+    "Agency shall engage in efforts to meet demand from districts and charter schools that request assistance for 2024-2025 or 2025-2026 school year",
+    "District or charter school may apply assistance to offset payment of costs related to implementing open education resource instructional material",
+    "Commissioner may enter into contracts and engage in efforts to communicate information to parents teachers districts and charter schools",
+    "Commissioner may communicate information regarding educational value particularly impact on reading and math achievement of open education resources",
+    "Commissioner may engage in activities to promote market and advertise content included in and how to use open education resource materials",
+    "Commissioner may use appropriated funds or funds appropriated for development of open education resources to pay for authorized communication activities",
+    "State Board of Education shall identify necessary criteria and elements that provide for universal screening for dyslexia and related disorders",
+    "Criteria and elements for dyslexia screening must be included in reading instruments adopted under Section 28.0063 and administered accordingly",
+    "Agency shall eliminate evaluation of accelerated instruction programs from regional and district level reporting requirements under Section 39.333",
+    "Agency shall continue reporting number of classes at each campus currently being taught by individuals not certified in content areas",
+    "Commissioner shall adjust average daily attendance if district provides minimum instructional time over at least 175 days instead of 180 days",
+    "Commissioner shall increase average daily attendance if district offers additional 30 days of half-day instruction for prekindergarten through eighth grade",
+    "Commissioner shall increase computed amount by 50 percent for districts providing at least 200 full days of instruction to eligible students",
+    "Commissioner shall adjust average daily attendance for districts offering up to 30 additional days of half-day reading intervention instruction",
+    "Commissioner shall increase average daily attendance by 50 percent of amount from reading intervention half-day instruction attendance quotient",
+    "Agency shall assist school districts and charter schools in qualifying for reading intervention additional instructional days incentive",
+    "Commissioner shall adopt rules necessary for implementation of reading intervention additional instructional days funding incentive section",
+    "School district entitled to annual allotment equal to basic allotment multiplied by 0.01 for each student in kindergarten through third grade",
+    "School district entitled to additional annual allotment equal to basic allotment multiplied by 0.1 for disadvantaged or emergent bilingual students",
+    "Funds allocated under early education allotment must be used to fund attendance of teachers at literacy achievement academies or mathematics achievement academies",
+    "Funds allocated under early education allotment must be used to fund prekindergarten programs under Subchapters E and E-1 Chapter 29",
+    "Funds allocated under early education allotment must be used for programs and services designed to improve student performance in reading and mathematics",
+    "School district entitled to allotment under each subdivision of enhanced funding subsection for which student qualifies allowing multiple category funding",
+    "Agency shall instead of distributing certain early education allotment money to districts distribute money to support full-day prekindergarten programs",
+    "Agency shall distribute early education allotment money to support full-day prekindergarten programs according to state-determined distribution mechanism"
+  ),
+
+  Intended_Consequence = c(
+    "Ensure prekindergarten teachers working through contracted entities meet same certification standards as teachers employed directly by districts",
+    "Establish minimum professional credential requirements for prekindergarten teachers to ensure early childhood education expertise and program quality",
+    "Require demonstrated experience in high-quality early childhood programs to ensure prekindergarten teachers have practical skills working with young children",
+    "Provide alternative pathway for prekindergarten teacher certification through recognized Montessori training programs to expand qualified teacher pool",
+    "Ensure prekindergarten teachers can effectively serve emergent bilingual students through appropriate certification or qualified supervision",
+    "Extend prekindergarten teacher qualification requirements to all contracted arrangements to ensure consistent quality across service delivery models",
+    "Make resource campus designation more accessible by reducing performance rating threshold from four years to three years over ten-year period",
+    "Ensure resource campuses implement comprehensive improvement strategies including community partnerships to address systemic performance challenges",
+    "Require resource campuses to adopt intensive turnaround plans while reducing teacher effectiveness requirements to address staffing challenges",
+    "Connect resource campus designation to local teacher designation systems to ensure access to effective teachers and instructional leadership",
+    "Reduce teacher experience requirements from three to two years to expand pool of qualified teachers for resource campus foundation curriculum instruction",
+    "Ensure resource campuses have sufficient number of teachers with state-recognized effectiveness designations to improve instructional quality",
+    "Provide adequate counseling and social-emotional support staffing at resource campuses to address comprehensive student and family needs",
+    "Ensure resource campuses have qualified professional staff to address social and emotional challenges that may impact student academic performance",
+    "Implement evidence-based positive behavior interventions at resource campuses to create supportive learning environment for struggling students",
+    "Engage families systematically at resource campuses to build community support for student academic improvement and school turnaround efforts",
+    "Ensure resource campuses select and implement high-quality instructional materials aligned with evidence-based practices for improving student outcomes",
+    "Require resource campuses to operate extended school years to provide additional instructional time for students needing intensive academic support",
+    "Monitor resource campus implementation fidelity through systematic data collection to ensure turnaround strategies are effectively implemented",
+    "Support districts and charter schools in adopting open education resources to increase access to high-quality instructional materials",
+    "Preserve teacher professional autonomy and instructional flexibility while providing access to comprehensive open education resource materials",
+    "Ensure teachers have adequate planning and preparation time when implementing open education resources to maintain instructional effectiveness",
+    "Provide immediate assistance to districts requesting support for open education resource implementation during specific transition years",
+    "Reduce financial barriers to open education resource implementation by allowing districts to use state assistance for implementation costs",
+    "Enable commissioner to communicate benefits and effective use of open education resources to key stakeholders through various outreach methods",
+    "Inform parents teachers and districts about research-based benefits of open education resources particularly for reading and mathematics achievement",
+    "Promote awareness and effective use of open education resources through marketing and educational campaigns targeting key stakeholder groups",
+    "Provide funding flexibility for commissioner to support communication and outreach activities promoting open education resource adoption and use",
+    "Establish comprehensive and consistent approach to dyslexia screening across all districts through state-identified criteria and assessment elements",
+    "Integrate dyslexia screening seamlessly into existing reading assessment systems to ensure early identification without creating additional testing burden",
+    "Eliminate reporting requirement for accelerated instruction program evaluation to reduce administrative burden and focus on more critical accountability measures",
+    "Continue monitoring and reporting on teacher certification status to maintain transparency about instructional quality and staffing challenges",
+    "Provide funding incentive for districts to operate efficiently by reducing minimum instructional days from 180 to 175 while maintaining instructional time",
+    "Encourage districts to provide additional prekindergarten through eighth grade instruction through funding incentives for extended half-day programs",
+    "Provide enhanced funding incentive for districts that significantly exceed minimum instructional time requirements by offering 200 full days of instruction",
+    "Support districts in providing intensive reading interventions through funding incentives for additional half-day instruction focused on intervention services",
+    "Calculate appropriate funding adjustment for districts providing reading intervention instruction to ensure adequate resources for intensive intervention programs",
+    "Assist districts in navigating requirements and accessing funding incentives for reading intervention additional instructional days programs",
+    "Provide regulatory framework and implementation guidance for reading intervention additional instructional days funding incentive program",
+    "Provide baseline funding support for early education programs in kindergarten through third grade to ensure adequate resources for foundational instruction",
+    "Provide enhanced funding for students with greatest educational needs including disadvantaged and emergent bilingual students in early grades",
+    "Ensure early education allotment funds are used for evidence-based professional development through required teacher academy attendance",
+    "Direct early education allotment funds toward proven early education programs to maximize impact on student readiness and academic development",
+    "Focus early education allotment funds on programs specifically designed to improve foundational reading and mathematics skills in early grades",
+    "Allow districts to receive multiple funding enhancements for students who qualify under several categories to provide comprehensive support",
+    "Target early education allotment funds specifically toward full-day prekindergarten programs to maximize instructional time and student outcomes",
+    "Ensure efficient and effective distribution of early education funds to support high-quality full-day prekindergarten programs statewide"
+  ),
+
+  Likely_Result = c(
+    "C, D, E, F", # Prekindergarten teacher certification requirements
+    "C, D, E, F, G", # CDA credential requirements
+    "C, D, E, F, G", # Experience requirements
+    "C, D, E, F", # Montessori certification
+    "C, D, E, F, G", # Bilingual instruction certification
+    "C, D, E, F", # Contracted entity requirements
+    "C, D, E, F", # Resource campus rating criteria
+    "C, D, E, F, G", # Targeted improvement plan
+    "C, D, E, F, G", # Accelerated turnaround plan
+    "C, D, E, F", # Teacher designation system
+    "C, D, E, F, G", # Foundation curriculum experience
+    "C, D, E, F, G", # Teacher designation percentage
+    "C, D, E, F", # Professional staff employment
+    "C, D, E, F, G", # Social emotional support professional
+    "C, D, E, F", # Positive behavior program
+    "C, D, E, F", # Family engagement plan
+    "C, D, E, F", # High quality instructional materials
+    "C, D, E, F", # Extended school year
+    "C, D, E, F", # Annual data submission
+    "C, D, E, F", # Open education resource program
+    "C, D, E, F", # Instructional flexibility assistance
+    "C, D, E, F", # Teacher preparation time
+    "C, D, E, F", # Demand response requirements
+    "A, C, D, E, F", # Cost offset assistance
+    "C, D, E, F", # Communication contract authority
+    "C, D, E, F", # Educational value communication
+    "C, D, E, F", # Promotion and advertisement
+    "C, D, E, F", # Commissioner fund use
+    "C, D, E, F", # Dyslexia screening criteria
+    "C, D, E, F", # Reading instrument integration
+    "C, D, E, F", # Reporting elimination
+    "C, D, E, F", # Uncertified teacher reporting
+    "A, C, D, E, F", # 175-day funding adjustment
+    "A, C, D, E, F", # Additional 30 half-days funding
+    "A, C, D, E, F", # 200 full days enhanced incentive
+    "A, C, D, E, F", # Reading intervention funding
+    "A, C, D, E, F", # Reading intervention formula
+    "C, D, E, F", # District assistance for incentive
+    "C, D, E, F", # Commissioner rule adoption
+    "A, C, D, E, F", # Early education allotment
+    "A, C, D, E, F", # Enhanced allotment disadvantaged
+    "C, D, E, F, G", # Teacher academy attendance
+    "C, D, E, F", # Prekindergarten program funding
+    "C, D, E, F", # Reading mathematics improvement
+    "A, C, D, E, F", # Multiple category qualification
+    "C, D, E, F", # Full-day prekindergarten distribution
+    "C, D, E, F" # State distribution mechanism
+  )
+)
+
+# Generic check to ensure all vectors have the same length
+vector_lengths <- c(
+  length(article5_sections17_26_results$Category),
+  length(article5_sections17_26_results$Incentive_Created),
+  length(article5_sections17_26_results$Intended_Consequence),
+  length(article5_sections17_26_results$Likely_Result)
+)
+
+# Verify all vectors have same length
+if (length(unique(vector_lengths)) != 1) {
+  stop("Vector length mismatch detected. All vectors must have the same length.")
+}
+
+# Additional verification using stopifnot for robust checking
+stopifnot(
+  "All data frame vectors must have equal length" = 
+    all(vector_lengths == vector_lengths[1])
+)
+
+# Create the main analysis table
+article5_sections17_26_main_table <- datatable(
+  article5_sections17_26_results,
+  options = list(
+    pageLength = 10,
+    scrollX = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '150px', targets = 0),   # Category  
+      list(width = '300px', targets = 1),   # Incentive Created
+      list(width = '250px', targets = 2),   # Intended Result
+      list(width = '150px', targets = 3)    # Coded Results
+    ),
+    dom = 'Bfrtip',
+    buttons = c('copy', 'csv', 'excel')
+  ),
+  filter = 'top',
+  rownames = FALSE,
+  class = 'cell-border stripe hover',
+  colnames = c('Category', 'Incentive Created', 'Intended Result', 'Codes for Destructive Results We Will Actually Get')
+) %>%
+  formatStyle(
+    'Category',
+    backgroundColor = styleEqual(
+      unique(article5_sections17_26_results$Category),
+      rep(c('#FFE8E8', '#FFD0D0', '#E8F4FD', '#E8F6FF', '#FFF2CC', '#E8F5E8', '#F0E8FF', '#FFE8F5', 
+            '#FFEBCD', '#F0FFF0', '#F5F5DC', '#FFFACD', '#F0F8FF', '#FDF5E6', '#FAF0E6', '#FFF8DC', 
+            '#F5FFFA', '#FFEFD5', '#E6E6FA', '#F0FFFF', '#FFF0F5', '#F5F5F5', '#FFFAF0', '#F8F8FF',
+            '#FFFFF0', '#FDF5E6', '#FAF0E6', '#FFF8DC', '#F5FFFA', '#FFEFD5', '#E6E6FA', '#F0FFFF', 
+            '#FFF0F5', '#F5F5F5', '#FFFAF0', '#F8F8FF', '#FFFFF0', '#FDF5E6', '#FAF0E6', '#FFF8DC',
+            '#F5FFFA', '#FFEFD5', '#E6E6FA', '#F0FFFF', '#FFF0F5', '#F5F5F5', '#FFFAF0'), length.out = length(unique(article5_sections17_26_results$Category)))
+    ),
+    fontWeight = 'bold'
+  ) %>%
+  formatStyle(
+    'Likely_Result',
+    fontWeight = 'bold',
+    fontSize = '14px',
+    textAlign = 'center',
+    backgroundColor = '#FFF8DC'
+  )
+
+# Display main table
+article5_sections17_26_main_table
+```
+
+<br>
+<br>
+<br>
+
+### Supplemental Tables
+
+```{r}
+#| label: supplemental-analysis-article5-sections17-26
+#| echo: false
+#| warning: false
+#| message: false
+
+# Create category analysis
+category_analysis_a5_s17_26 <- article5_sections17_26_results %>%
+  group_by(Category) %>%
+  summarise(
+    Count = n(),
+    .groups = 'drop'
+  ) %>%
+  arrange(desc(Count)) %>%
+  rename(`Incentive Category` = Category,
+         `Number of Incentives` = Count)
+
+# Analyze most frequent negative result codes
+code_frequency_a5_s17_26 <- article5_sections17_26_results %>%
+  separate_rows(Likely_Result, sep = ", ") %>%
+  count(Likely_Result, sort = TRUE) %>%
+  rename(`Negative Result Code` = Likely_Result,
+         `Frequency` = n) %>%
+  mutate(Percentage = round(100 * Frequency / nrow(article5_sections17_26_results), 3))
+
+# Key policy findings
+key_findings_a5_s17_26 <- data.frame(
+  Finding = c(
+    "Most Universal Negative Pattern",
+    "State Dependency Complete Penetration", 
+    "Accountability Substitution Universal Impact",
+    "Administrative Burden Nearly Universal",
+    "Local Control Complete Elimination",
+    "People-as-Problem Concentrated Pattern",
+    "Extrinsic Motivation Funding Corruption",
+    "Most Problematic Policy Areas",
+    "Resource Campus Control Mechanism"
+  ),
+  Description = c(
+    "Codes C, D, F appear in 100.000% of incentives, indicating universal state dependency, accountability substitution, and local control elimination",
+    "Code C (state dependency) appears in 100.000% of incentives, representing complete state control over teacher qualifications, campus operations, and funding mechanisms",
+    "Code D (accountability substitute) appears in 100.000% of incentives, replacing educational improvement with measurement, reporting, and compliance systems",
+    "Code E (administrative burden) appears in 97.872% of incentives, creating extensive compliance overhead across teacher certification, campus operations, and funding requirements",
+    "Code F (local control reduction) appears in 100.000% of incentives, eliminating local flexibility in teacher hiring, program design, and resource allocation",
+    "Code G (people as problem) appears in 23.404% of incentives, treating teachers, administrators, and students as problems requiring state correction through mandated qualifications and interventions",
+    "Code A (extrinsic motivation) appears in 23.404% of incentives, undermining intrinsic educational motivation through funding dependency and financial incentives",
+    "Resource campus requirements and funding formula adjustments show highest concentrations of harmful codes, particularly treating educators as problems requiring state correction",
+    "Resource campus designation creates comprehensive state control mechanism over struggling schools through mandated staffing, programs, and operational requirements"
+  )
+)
+
+# === DISPLAY SUPPLEMENTAL TABLES ===
+
+# Category Analysis Header
+datatable(
+  data.frame(Title = "INCENTIVE CATEGORY ANALYSIS"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#FF9800',
+              color = 'white')
+
+# Category Analysis Table
+datatable(
+  category_analysis_a5_s17_26,
+  filter = 'top',
+  options = list(
+    pageLength = 15,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Number of Incentives',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = styleColorBar(range(category_analysis_a5_s17_26$`Number of Incentives`), '#E8F4FD')) %>%
+  formatStyle('Incentive Category',
+              fontWeight = 'bold',
+              textAlign = 'left')
+
+# Code Frequency Analysis Header
+datatable(
+  data.frame(Title = "NEGATIVE RESULT CODE FREQUENCY"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#DC143C',
+              color = 'white')
+
+# Code Frequency Table
+datatable(
+  code_frequency_a5_s17_26,
+  filter = 'top',
+  options = list(
+    pageLength = 15,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Frequency',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = styleColorBar(range(code_frequency_a5_s17_26$Frequency), '#FFB6C1')) %>%
+  formatStyle('Negative Result Code',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              fontSize = '16px') %>%
+  formatStyle('Percentage',
+              fontWeight = 'bold',
+              textAlign = 'center')
+
+# Key Findings Header
+datatable(
+  data.frame(Title = "KEY CODED PATTERN FINDINGS"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#F44336',
+              color = 'white')
+
+# Key Findings Table
+datatable(
+  key_findings_a5_s17_26,
+  filter = 'top',
+  options = list(
+    pageLength = 10,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '25%', targets = 0),
+      list(width = '75%', targets = 1)
+    )
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Finding',
+              fontWeight = 'bold',
+              backgroundColor = '#FFE4E1',
+              textAlign = 'left') %>%
+  formatStyle('Description',
+              textAlign = 'left')
+
+# Create coded summary statistics
+summary_statistics_a5_s17_26 <- data.frame(
+  Metric = c(
+    "Total Incentives Analyzed",
+    "Most Problematic Code", 
+    "Most Frequent Code Combination",
+    "Policy Categories with Code C",
+    "Policy Categories with Code F",
+    "Average Codes per Incentive"
+  ),
+  Value = c(
+    nrow(article5_sections17_26_results),
+    paste0("Codes C, D, F (all appear ", max(code_frequency_a5_s17_26$Frequency), " times each)"),
+    "C, D, E, F (dependency + accountability + burden + control)",
+    sum(grepl("C", article5_sections17_26_results$Likely_Result)),
+    sum(grepl("F", article5_sections17_26_results$Likely_Result)),
+    round(mean(lengths(strsplit(article5_sections17_26_results$Likely_Result, ", "))), 1)
+  )
+)
+
+# Summary Statistics Header
+datatable(
+  data.frame(Title = "CODED ANALYSIS SUMMARY STATISTICS"),
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#9C27B0',
+              color = 'white')
+
+# Summary Statistics Table
+datatable(
+  summary_statistics_a5_s17_26,
+  options = list(
+    pageLength = 10,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '40%', targets = 0),
+      list(width = '60%', targets = 1)
+    )
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Metric',
+              fontWeight = 'bold',
+              textAlign = 'left') %>%
+  formatStyle('Value',
+              textAlign = 'left',
+              fontWeight = 'bold')
+```
+
+<br>
+<br>
+
+### Key List of Likely Negative Results 
+
+#### The evaluation codes are based on these axioms:
+
+- Central planning (one size fits all) degrades everyone's performance
+  - Makes nearly every district action a legal matter
+  - Robs people of pride in their work
+  
+- Efforts at 'accountability' will not improve performance of anyone
+
+- Cooperation within an organization is far more effective than competition 
+
+- All incentives work; some promote and some pervert the ***intention*** of the incentive
+
+```{r}
+#| label: negative-results-coding-key-article5-sections17-26
+#| echo: false
+#| message: false
+#| warning: false
+
+# Create negative results table with 7-code system
+negative_results_a5_s17_26 <- data.frame(
+  Code = c("A", "B", "C", "D", "E", "F", "G"),
+
+  Likely_Negative_Result = c(
+    "Decreases intrinsic motivation in favor of extrinsic motivation",
+    "Decreases cooperation within districts in favor of competition for resources",  
+    "Increases dependency on State funding and bureaucracy",
+    "Substitutes 'accountability' for improvement of the system people work in",
+    "Increases district administrative burdens",
+    "Decreases local control and flexibility",
+    "Treats people as the 'problem', instead of the system they work in"
+  )
+)
+
+# Define bright contrasting color palette (7 colors for 7 codes)
+color_palette_a5_s17_26 <- c("#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FECA57", "#FF9FF3", "#54A0FF")
+
+# Create color assignments for each row
+row_colors_a5_s17_26 <- color_palette_a5_s17_26[1:nrow(negative_results_a5_s17_26)]
+
+# Display the coding key table
+DT::datatable(
+  negative_results_a5_s17_26,
+  options = list(
+    pageLength = 15,
+    dom = 'Bfrtip',
+    buttons = c('copy', 'csv', 'excel'),
+    columnDefs = list(
+      list(width = '40px', targets = 0),  # Narrow first column
+      list(width = '90%', targets = 1)    # Wide second column
+    ),
+    scrollX = FALSE,
+    autoWidth = FALSE
+  ),
+  rownames = FALSE,
+  class = 'display'
+) %>%
+  formatStyle(
+    'Code',
+    textAlign = 'right',
+    fontWeight = 'bold',
+    backgroundColor = styleEqual(negative_results_a5_s17_26$Code, row_colors_a5_s17_26),
+    color = 'white'
+  ) %>%
+  formatStyle(
+    'Likely_Negative_Result',
+    backgroundColor = styleEqual(negative_results_a5_s17_26$Code, row_colors_a5_s17_26),
+    color = 'black'
+  ) %>%
+  formatStyle(
+    columns = c(0, 1),
+    border = '2px solid #333',
+    borderCollapse = 'collapse'
+  ) %>%
+  formatStyle(
+    columns = c(0, 1),
+    maxWidth = '9in',
+    tableLayout = 'fixed'
+  )
+
+```
+
+

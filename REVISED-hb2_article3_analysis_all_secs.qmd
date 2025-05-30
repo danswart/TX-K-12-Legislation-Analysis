@@ -59,7 +59,7 @@ library(dplyr)      # For data wrangling
 <br>
 
 
-## Opinionated Executive Summary: Good Intentions Won't Work
+## Opinionated Executive Summary: Good Intentions, Unintended Results
 
 The policies in HB2 Article 3, which focus on teacher jobs and classroom management, might seem like good ideas, but they can actually make things worse. These policies are called "teacher protections" and "student safety measures," but they are likely to cause more problems than they solve.
 
@@ -610,7 +610,7 @@ datatable(
 <br>
 <br>
 
-### Key List of Likely Negative Results (Revised 7-Code Framework)
+### Key List of Likely Negative Results
 
 #### The evaluation codes are based on these axioms:
 

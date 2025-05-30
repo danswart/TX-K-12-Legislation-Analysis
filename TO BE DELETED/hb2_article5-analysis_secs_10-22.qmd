@@ -1,0 +1,625 @@
+---
+title: "Texas HB2 Article 5: Early Literacy and Assessment Mandates"
+author: "Dan Swart and Claude Sonnet 4.0"
+format:
+    html:
+      toc: true
+      toc-float: true
+      page-layout: article
+      embed-resources: true
+      code-fold: true
+      code-summary: "Show the code"
+      code-tools: true
+      code-overflow: wrap
+      code-block-bg: "#FAEBD7"
+      code-block-border-left: "#31BAE9"
+      code-link: true
+      fig-width: 8
+      fig-height: 6
+      fig-align: center
+      html-math-method: katex
+      css: swart-20250327.css
+    pdf:
+      toc: true
+      number-sections: true
+      colorlinks: true
+      papersize: letter
+      geometry:
+        - margin=1in
+      fig-width: 12
+      fig-height: 10
+      fig-pos: 'H'
+    typst:
+      toc: true
+      fig-width: 12
+      fig-height: 10
+      keep-tex: true
+      prefer-html: true
+---
+
+
+```{r}
+#| label: setup
+#| include: false
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)  # For dplyr, ggplot, and friends
+library(ggdag)      # For plotting DAGs
+library(dagitty)    # For working with DAG logic
+library(DiagrammeR) # For complete control of the layout
+library(knitr)      # For controlling rendering
+library(kableExtra) # For tables summarizing results
+library(DT)         # For rendering content that kableExtra cannot
+library(dplyr)      # For data wrangling
+```
+
+### Main Table
+
+```{r}
+#| label: main-analysis-table-coded
+
+# Create analysis with coded negative results based on the coding table
+enhanced_likely_results <- data.frame(
+  Category = c(
+    "Kindergarten Reading Assessment",
+    "Kindergarten Reading Assessment", 
+    "Kindergarten Reading Assessment",
+    "Early Literacy and Numeracy Instruments",
+    "Early Literacy and Numeracy Instruments",
+    "Early Literacy and Numeracy Instruments",
+    "Early Literacy and Numeracy Instruments",
+    "Early Literacy and Numeracy Instruments",
+    "Early Literacy Intervention",
+    "Early Literacy Intervention",
+    "Early Literacy Intervention",
+    "Early Literacy Intervention",
+    "Adaptive Vocabulary Pilot Program",
+    "Mathematics Training Requirements",
+    "Mathematics Training Requirements",
+    "First-Third Grade Supplementary Supports",
+    "First-Third Grade Supplementary Supports",
+    "First-Third Grade Supplementary Supports",
+    "Prekindergarten Eligibility Expansion",
+    "Prekindergarten Eligibility Expansion",
+    "Prekindergarten Partnership Requirements",
+    "Prekindergarten Partnership Requirements",
+    "Prekindergarten Tuition Restrictions",
+    "Early Education Reporting Requirements",
+    "Dyslexia Screening Integration"
+  ),
+
+  Incentive_Created = c(
+    "Commissioner adopts list of reading instruments for kindergarten assessment",
+    "Alternative reading instruments limited to maximum of two options",
+    "60-day administration deadline with performance standards for kindergarten readiness",
+    "Comprehensive literacy and numeracy instruments for K-3 with multiple annual administrations",
+    "Reading instruments must include dyslexia screening elements for K-1 students",
+    "Districts must generate progress reports in English, Spanish, and other languages",
+    "Instruments must assess third-grade assessment readiness and monitor targeted skills",
+    "Agency provides free instruments to districts with negotiated pricing lists",
+    "Mandatory reading interventions for at-risk students after two consecutive poor assessments",
+    "Interventions must continue until student improves or reaches fourth grade",
+    "Students cannot be removed from core curriculum or recess during interventions",
+    "Agency must approve automated/computerized intervention products",
+    "Pilot program to assess vocabulary development in K-3 students",
+    "All K-8 math teachers, principals, and coaches must attend mathematics achievement academy by 2030-31",
+    "New employees must complete academy within first year of placement",
+    "Grant program for parents to purchase tutoring for struggling readers",
+    "Online account system for parents to access tutoring grants",
+    "Classroom teachers with current designations can become approved tutoring providers",
+    "Prekindergarten eligibility expanded to include children of classroom teachers",
+    "Districts must solicit community partnerships before constructing new facilities",
+    "Partnership intermediaries designated to facilitate public-private prekindergarten arrangements",
+    "Private providers must receive at least 85% of per-pupil funding in partnerships",
+    "Districts can only charge tuition if no qualified private providers are available",
+    "Annual reporting requirements expanded to include detailed assessment data and prekindergarten tracking",
+    "Dyslexia screening criteria integrated into reading instruments with universal screening mandates"
+  ),
+
+  Intended_Consequence = c(
+    "Standardized kindergarten assessment creates consistent baseline measurement across districts",
+    "Limited alternative options ensure quality control while providing some flexibility",
+    "Early identification of reading difficulties allows for timely intervention",
+    "Multiple assessment points throughout year provide comprehensive progress monitoring",
+    "Early dyslexia identification prevents reading difficulties from compounding",
+    "Multilingual reporting ensures all parents understand their child's progress",
+    "Assessment alignment creates coherent progression from K-3 to state testing",
+    "Free instruments reduce financial barriers to assessment implementation",
+    "Intensive interventions help struggling readers before academic gaps widen",
+    "Sustained support ensures interventions continue until effectiveness is achieved",
+    "Protection of core instruction time maintains educational breadth",
+    "Technology-enhanced interventions provide scalable support options",
+    "Vocabulary assessment fills gap in early literacy evaluation",
+    "Professional development improves mathematics instruction quality across all elementary grades",
+    "Ongoing training ensures all staff receive necessary preparation",
+    "Parent-directed tutoring provides additional support outside school hours",
+    "Streamlined access reduces barriers to supplemental educational support",
+    "Qualified teacher-tutors provide high-quality intervention services",
+    "Expanded eligibility supports children of education professionals",
+    "Community partnerships leverage existing high-quality early childhood programs",
+    "Structured partnerships ensure successful collaboration between sectors",
+    "Adequate funding maintains quality in public-private partnerships",
+    "Market-based approach encourages private sector participation",
+    "Comprehensive data collection enables policy evaluation and improvement",
+    "Integrated screening creates efficient, comprehensive early intervention system"
+  ),
+
+  Likely_Result = c(
+    "A, B, D, F, L", # Kindergarten assessment: intrinsic→extrinsic, money focus, people as problem, individual focus, bureaucracy
+    "G, I, L", # Alternative instruments: reduced local control, system tampering, bureaucracy
+    "A, B, D, F, L", # 60-day deadline: intrinsic→extrinsic, money focus, people as problem, individual focus, bureaucracy
+    "A, B, D, F, I, L", # Comprehensive K-3 instruments: intrinsic→extrinsic, money focus, people as problem, individual focus, system tampering, bureaucracy
+    "A, B, D, F, L", # Dyslexia screening: intrinsic→extrinsic, money focus, people as problem, individual focus, bureaucracy
+    "F, L, M", # Multilingual reporting: individual focus, bureaucracy, resource waste
+    "A, B, D, F, I, L", # Assessment alignment: intrinsic→extrinsic, money focus, people as problem, individual focus, system tampering, bureaucracy
+    "K, L, N", # Free instruments: tax burden, bureaucracy, unsustainable obligations
+    "A, B, D, F, G, I, L", # Mandatory interventions: intrinsic→extrinsic, money focus, people as problem, individual focus, reduced local control, system tampering, bureaucracy
+    "A, B, D, F, G, I, J, L", # Sustained interventions: intrinsic→extrinsic, money focus, people as problem, individual focus, reduced local control, system tampering, career problems, bureaucracy
+    "G, I, L", # Core instruction protection: reduced local control, system tampering, bureaucracy
+    "A, B, F, I, L", # Technology interventions: intrinsic→extrinsic, money focus, individual focus, system tampering, bureaucracy
+    "A, B, F, L", # Vocabulary pilot: intrinsic→extrinsic, money focus, individual focus, bureaucracy
+    "A, B, F, K, L, N", # Math training requirements: intrinsic→extrinsic, money focus, individual focus, tax burden, bureaucracy, unsustainable obligations
+    "A, B, F, K, L, N", # New employee training: intrinsic→extrinsic, money focus, individual focus, tax burden, bureaucracy, unsustainable obligations
+    "A, B, F, G, L", # Parent tutoring grants: intrinsic→extrinsic, money focus, individual focus, reduced local control, bureaucracy
+    "A, B, F, L, M", # Online grant system: intrinsic→extrinsic, money focus, individual focus, bureaucracy, resource waste
+    "A, B, E, F", # Teacher-tutors: intrinsic→extrinsic, money focus, decreased collaboration, individual focus
+    "A, B", # Prekindergarten expansion: intrinsic→extrinsic, money focus
+    "G, I, L", # Partnership requirements: reduced local control, system tampering, bureaucracy
+    "G, L", # Partnership intermediaries: reduced local control, bureaucracy
+    "K, L, N", # Funding requirements: tax burden, bureaucracy, unsustainable obligations
+    "G, I, L", # Tuition restrictions: reduced local control, system tampering, bureaucracy
+    "L, M", # Reporting requirements: bureaucracy, resource waste
+    "A, B, D, F, G, I, L" # Dyslexia integration: intrinsic→extrinsic, money focus, people as problem, individual focus, reduced local control, system tampering, bureaucracy
+  )
+)
+
+# Validate data frame consistency
+cat("Data frame validation:\n")
+cat("Number of categories:", length(enhanced_likely_results$Category), "\n")
+cat("Number of incentives:", length(enhanced_likely_results$Incentive_Created), "\n")
+cat("Number of intended consequences:", length(enhanced_likely_results$Intended_Consequence), "\n")
+cat("Number of likely results:", length(enhanced_likely_results$Likely_Result), "\n")
+
+# Check for equal lengths
+if(length(unique(c(length(enhanced_likely_results$Category), 
+                   length(enhanced_likely_results$Incentive_Created),
+                   length(enhanced_likely_results$Intended_Consequence),
+                   length(enhanced_likely_results$Likely_Result)))) == 1) {
+  cat("✓ All vectors have equal length\n")
+} else {
+  cat("✗ Vector lengths are inconsistent\n")
+}
+
+# Create the main analysis table with coded results
+enhanced_main_table <- datatable(
+  enhanced_likely_results,
+  options = list(
+    pageLength = 10,
+    scrollX = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '150px', targets = 0),   # Category
+      list(width = '300px', targets = 1),   # Incentive Created
+      list(width = '250px', targets = 2),   # Intended Result
+      list(width = '150px', targets = 3)    # Coded Results
+    ),
+    dom = 'Bfrtip',
+    buttons = c('copy', 'csv', 'excel')
+  ),
+  filter = 'top',
+  rownames = FALSE,
+  class = 'cell-border stripe hover',
+  colnames = c('Category', 'Incentive Created', 'Intended Result', 'Codes for Destructive Results We Will Actually Get')
+) %>%
+  formatStyle(
+    'Category',
+    backgroundColor = styleEqual(
+      c("Kindergarten Reading Assessment", "Early Literacy and Numeracy Instruments", 
+        "Early Literacy Intervention", "Adaptive Vocabulary Pilot Program", 
+        "Mathematics Training Requirements", "First-Third Grade Supplementary Supports",
+        "Prekindergarten Eligibility Expansion", "Prekindergarten Partnership Requirements", 
+        "Prekindergarten Tuition Restrictions", "Early Education Reporting Requirements",
+        "Dyslexia Screening Integration"),
+      c('#E8F4FD', '#FFF2CC', '#E8F5E8', '#F0E8FF', '#FFE8E8', '#FFD0D0',
+        '#E0F0FF', '#F5F5DC', '#FFE0B2', '#E8E8E8', '#F0F8FF')
+    ),
+    fontWeight = 'bold'
+  ) %>%
+  formatStyle(
+    'Likely_Result',
+    fontWeight = 'bold',
+    fontSize = '14px',
+    textAlign = 'center',
+    backgroundColor = '#FFF8DC'
+  )
+
+# Display enhanced main table
+enhanced_main_table
+```
+
+<br>
+<br>
+<br>
+
+### Supplemental Tables
+
+```{r}
+#| label: supplemental-analysis-coded
+
+# Create category analysis
+category_analysis <- enhanced_likely_results %>%
+  group_by(Category) %>%
+  summarise(
+    Count = n(),
+    .groups = 'drop'
+  ) %>%
+  arrange(desc(Count)) %>%
+  rename(`Incentive Category` = Category,
+         `Number of Incentives` = Count)
+
+# Analyze most frequent negative result codes
+code_frequency <- enhanced_likely_results %>%
+  separate_rows(Likely_Result, sep = ", ") %>%
+  count(Likely_Result, sort = TRUE) %>%
+  rename(`Negative Result Code` = Likely_Result,
+         `Frequency` = n) %>%
+  mutate(Percentage = round(100 * Frequency / nrow(enhanced_likely_results), 1))
+
+# Key policy findings focused on coded patterns
+key_findings <- data.frame(
+  Finding = c(
+    "Most Common Negative Pattern",
+    "Assessment Overload Concern", 
+    "Local Control Reduction",
+    "Individual vs System Focus",
+    "Financial Burden Pattern",
+    "Most Problematic Policy Areas"
+  ),
+  Description = c(
+    "Code B (money as primary motivation) and Code L (bureaucratic burdens) appear most frequently across all policies",
+    "Code A (intrinsic to extrinsic motivation) dominates assessment-related mandates, shifting focus from learning to testing",
+    "Code G (reduced local control) appears consistently across partnership requirements and assessment mandates",
+    "Code F (focus on individual teachers vs system improvement) pervades most instructional requirements",
+    "Code K (tax burden shifts) and Code N (unsustainable obligations) cluster around training and support mandates",
+    "Early Literacy and Numeracy Instruments and Early Literacy Intervention show the highest concentration of negative codes"
+  )
+)
+
+# === DISPLAY SUPPLEMENTAL TABLES ===
+
+# Category Analysis Header
+datatable(
+  data.frame(Title = "INCENTIVE CATEGORY ANALYSIS"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#FF9800',
+              color = 'white')
+
+# Category Analysis Table
+datatable(
+  category_analysis,
+  filter = 'top',
+  options = list(
+    pageLength = 10,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Number of Incentives',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = styleColorBar(range(category_analysis$`Number of Incentives`), '#E8F4FD')) %>%
+  formatStyle('Incentive Category',
+              fontWeight = 'bold',
+              textAlign = 'left')
+
+# Code Frequency Analysis Header
+datatable(
+  data.frame(Title = "NEGATIVE RESULT CODE FREQUENCY"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#DC143C',
+              color = 'white')
+
+# Code Frequency Table
+datatable(
+  code_frequency,
+  filter = 'top',
+  options = list(
+    pageLength = 15,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Frequency',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = styleColorBar(range(code_frequency$Frequency), '#FFB6C1')) %>%
+  formatStyle('Negative Result Code',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              fontSize = '16px') %>%
+  formatStyle('Percentage',
+              fontWeight = 'bold',
+              textAlign = 'center')
+
+# Key Findings Header
+datatable(
+  data.frame(Title = "KEY CODED PATTERN FINDINGS"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#F44336',
+              color = 'white')
+
+# Key Findings Table
+datatable(
+  key_findings,
+  filter = 'top',
+  options = list(
+    pageLength = 10,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '25%', targets = 0),
+      list(width = '75%', targets = 1)
+    )
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Finding',
+              fontWeight = 'bold',
+              backgroundColor = '#FFE4E1',
+              textAlign = 'left') %>%
+  formatStyle('Description',
+              textAlign = 'left')
+
+# Create coded summary statistics
+summary_statistics <- data.frame(
+  Metric = c(
+    "Total Incentives Analyzed",
+    "Most Problematic Code",
+    "Most Frequent Code Combination",
+    "Policy Categories with Code A",
+    "Policy Categories with Code B", 
+    "Average Codes per Incentive"
+  ),
+  Value = c(
+    nrow(enhanced_likely_results),
+    paste0("Code ", code_frequency$`Negative Result Code`[1], " (appears ", code_frequency$Frequency[1], " times)"),
+    "A, B, L (motivation shift + money focus + bureaucracy)",
+    sum(grepl("A", enhanced_likely_results$Likely_Result)),
+    sum(grepl("B", enhanced_likely_results$Likely_Result)),
+    round(mean(lengths(strsplit(enhanced_likely_results$Likely_Result, ", "))), 1)
+  )
+)
+
+# Summary Statistics Header
+datatable(
+  data.frame(Title = "CODED ANALYSIS SUMMARY STATISTICS"),
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#9C27B0',
+              color = 'white')
+
+# Summary Statistics Table
+datatable(
+  summary_statistics,
+  options = list(
+    pageLength = 10,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '40%', targets = 0),
+      list(width = '60%', targets = 1)
+    )
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Metric',
+              fontWeight = 'bold',
+              textAlign = 'left') %>%
+  formatStyle('Value',
+              textAlign = 'left',
+              fontWeight = 'bold')
+```
+
+<br>
+<br>
+
+### Key to List of Likely Negative Results
+
+```{r}
+#| label: negative-results-coding-key
+
+# Create negative results table with color coding
+negative_results <- data.frame(
+  Code = c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"),
+
+  Likely_Negative_Result = c(
+    "Will move people from intrinsic to extrinsic motivation",
+    "Will makes money the most important motivation",
+    "Will fail because improvements cannot be realized by force from the state",
+    "People will become 'the problem', not the system that they work in",
+    "Will decrease collaboration, pitting people against each other for rewards",
+    "Will decrease opportunities and efforts to improve the system teachers work in; try to 'improve' individual teachers instead",
+    "Will reduce local control",
+    "Will reduce economic agility of districts when they need it most",
+    "Will tamper with existing stable systems, making things worse",
+    "Impedes career development when goal posts constantly moving",
+    "Shifts the onus of tax increases to districts to pay for unfunded state mandates",
+    "Will create more administrative and bureaucratic burdens",
+    "Will cause administration and teachers to waste even more resources, while bankrupting financially responsible districts",
+    "Will create long-term district obligations that are not sustainable when state funding is changed every 2 years"
+  )
+)
+
+# Define bright contrasting color palette (7 colors)
+color_palette <- c("#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FECA57", "#FF9FF3", "#54A0FF")
+
+# Create color assignments for each row (cycling through 7 colors for 14 rows)
+row_colors <- rep(color_palette, length.out = nrow(negative_results))
+
+# Display the coding key table
+DT::datatable(
+  negative_results,
+  options = list(
+    pageLength = 15,
+    dom = 'Bfrtip',
+    buttons = c('copy', 'csv', 'excel'),
+    columnDefs = list(
+      list(width = '40px', targets = 0),  # Narrow first column
+      list(width = '90%', targets = 1)    # Wide second column
+    ),
+    scrollX = FALSE,
+    autoWidth = FALSE
+  ),
+  rownames = FALSE,
+  class = 'display'
+) %>%
+  formatStyle(
+    'Code',
+    textAlign = 'right',
+    fontWeight = 'bold',
+    backgroundColor = styleEqual(negative_results$Code, row_colors),
+    color = 'white'
+  ) %>%
+  formatStyle(
+    'Likely_Negative_Result',
+    backgroundColor = styleEqual(negative_results$Code, row_colors),
+    color = 'black'
+  ) %>%
+  formatStyle(
+    columns = c(0, 1),
+    border = '2px solid #333',
+    borderCollapse = 'collapse'
+  ) %>%
+  formatStyle(
+    columns = c(0, 1),
+    maxWidth = '9in',
+    tableLayout = 'fixed'
+  )
+```
+
+<br>
+<br>
+
+### Interesting Ironies and Counter-Intuitive Implications
+
+```{r}
+#| label: ironic-implications
+
+# Create analysis of counter-intuitive outcomes
+ironic_findings <- data.frame(
+  Ironic_Outcome = c(
+    "Reading Enhancement Creates Reading Aversion",
+    "Professional Development Reduces Professional Autonomy", 
+    "Parent Support Systems Undermine Parent Confidence",
+    "Quality Partnerships Destroy Quality Programs",
+    "Free Resources Create Financial Burden",
+    "Early Intervention Delays Real Learning",
+    "Multilingual Reporting Creates Communication Barriers",
+    "Teacher Empowerment Disempowers Teachers"
+  ),
+  
+  Legislative_Intent = c(
+    "Multiple reading assessments and interventions designed to improve literacy outcomes",
+    "Mandatory mathematics training academies to enhance instructional quality",
+    "Parent tutoring grants and online systems to provide additional educational support",
+    "Partnership requirements to leverage community expertise in prekindergarten",
+    "State-provided assessment instruments and intervention products at no cost to districts",
+    "Comprehensive K-3 literacy screening to identify and address reading difficulties early",
+    "Required progress reports in multiple languages to ensure parent understanding",
+    "Teacher designation systems and tutoring opportunities to recognize and utilize educator expertise"
+  ),
+  
+  Likely_Reality = c(
+    "Constant testing and deficit-focused interventions teach children that reading is a problem to be solved rather than joy to be experienced",
+    "Standardized training programs reduce teachers to script-followers, eliminating the professional judgment that makes great instruction possible",
+    "Complex grant systems and automated tutoring products signal to parents that they cannot help their own children learn",
+    "Bureaucratic partnership requirements will drive high-quality community providers away from working with schools",
+    "Free instruments create hidden costs through training, administration, data management, and compliance that bankrupt districts",
+    "Removing struggling readers from core instruction and recess for remediation ensures they fall further behind academically and socially",
+    "Bureaucratic reporting requirements in multiple languages consume resources that could fund actual bilingual teachers and programs",
+    "Teacher designation systems transform collaborative professionals into competing individual contractors while requiring them to follow standardized scripts"
+  )
+)
+
+# Display ironic implications table
+datatable(
+  ironic_findings,
+  options = list(
+    pageLength = 10,
+    scrollX = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '20%', targets = 0),   # Ironic Outcome
+      list(width = '40%', targets = 1),   # Legislative Intent  
+      list(width = '40%', targets = 2)    # Likely Reality
+    ),
+    dom = 'Bfrtip',
+    buttons = c('copy', 'csv', 'excel')
+  ),
+  filter = 'top',
+  rownames = FALSE,
+  class = 'cell-border stripe hover',
+  colnames = c('Ironic Outcome', 'What Legislators Think Will Happen', 'What Will Actually Happen')
+) %>%
+  formatStyle(
+    'Ironic_Outcome',
+    fontWeight = 'bold',
+    backgroundColor = '#FFE4E1',
+    textAlign = 'left'
+  ) %>%
+  formatStyle(
+    'Legislative_Intent',
+    backgroundColor = '#E8F5E8',
+    textAlign = 'left'
+  ) %>%
+  formatStyle(
+    'Likely_Reality', 
+    backgroundColor = '#FFE8E8',
+    textAlign = 'left',
+    fontWeight = 'bold'
+  )
+```
+
+

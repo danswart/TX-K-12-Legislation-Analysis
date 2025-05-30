@@ -1,5 +1,5 @@
 ---
-title: "Texas HB2 Article 2: Educator Preparation and Teacher Rights - Re-Analysis with 7-Code Framework"
+title: "Texas HB2 Article 2: Educator Preparation and Teacher Rights"
 author: "Dan Swart and Claude Sonnet 4.0"
 description: "Re-analysis of Article 2 (Educator Preparation and Teacher Rights) using updated 7-code evaluation framework. Analysis covers Sections 2.01 through 2.24, focusing on educator preparation programs, certification requirements, and partnership programs. Document spans pages 6-19 of legislative text."
 format:

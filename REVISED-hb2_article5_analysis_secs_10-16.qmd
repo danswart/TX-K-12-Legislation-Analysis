@@ -1,0 +1,699 @@
+---
+title: "Texas HB2 Article 5: Early Childhood Education (Sections 5.10-5.17) - Incentives and Likely Results"
+author: "Dan Swart and Claude Sonnet 4.0"
+description: "Analysis covers Article 5 (Early Childhood Education) Sections 5.10 through 5.17 only. Analysis focuses on early literacy and numeracy instruments, reading intervention programs, mathematics training requirements, supplementary supports programs, prekindergarten expansions, and early education reporting requirements. Document spans pages 59-66 of legislative text."
+format:
+    html:
+      toc: true
+      toc-float: true
+      page-layout: article
+      embed-resources: true
+      code-fold: true
+      code-summary: "Show the code"
+      code-tools: true
+      code-overflow: wrap
+      code-block-bg: "#FAEBD7"
+      code-block-border-left: "#31BAE9"
+      code-link: true
+      fig-width: 8
+      fig-height: 6
+      fig-align: center
+      html-math-method: katex
+      css: swart-20250327.css
+    pdf:
+      toc: true
+      number-sections: true
+      colorlinks: true
+      papersize: letter
+      geometry:
+        - margin=1in
+      fig-width: 12
+      fig-height: 10
+      fig-pos: 'H'
+    typst:
+      toc: true
+      fig-width: 12
+      fig-height: 10
+      keep-tex: true
+      prefer-html: true
+---
+
+```{r}
+#| label: setup-article5-sections10-17-updated
+#| include: false
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)  # For dplyr, ggplot, and friends
+library(ggdag)      # For plotting DAGs
+library(dagitty)    # For working with DAG logic
+library(DiagrammeR) # For complete control of the layout
+library(knitr)      # For controlling rendering
+library(kableExtra) # For tables summarizing results
+library(DT)         # For rendering content that kableExtra cannot
+library(dplyr)      # For data wrangling
+```
+
+<br>
+
+## Opinionated Executive Summary: Good Ideas, Unintended Results
+
+This law creates a huge system of testing and training that takes control away from teachers, parents, and local schools. Here are the main problems:
+
+
+
+#### Testing Is No Substitute for an Effective Education Process
+
+Young kids from kindergarten through third grade now have to take reading and math tests three times each year. The state says this helps find students who need extra help, but really, it’s about controlling what happens in classrooms. Teachers already know which kids need help without the state telling them when to assess it.
+
+Standardized testing is an attempt to build in quality by inspection.  General Motors, Ford, Chevrolet, and the federal government are prime failures of this notion.
+
+
+#### Teachers Lose Control of Their Methods
+
+All teachers who teach math from kindergarten through eighth grade must now take state-required training classes. This assumes teachers' teaching methods aren't good enough. Teachers who have been successful for years are forced to follow the state's way of teaching, even if their own methods work better.
+
+
+#### The Illusion of Choice
+
+Students are placed in special reading programs that they "must attend unless exempted." This sounds like parents have a choice, but in reality, almost all students are put into the same programs. Parents and teachers lose the power to choose what each child really needs.
+
+
+#### The Grant Money Trap
+
+The state offers parents money to pay for tutoring for students who are struggling. This sounds helpful, but it actually makes families rely on state funding instead of fixing the problems in their homes and local schools. Schools will now have to accept any level of quality proferred by state-sponsored tutors.
+
+
+#### More Rules for Prekindergarten
+
+The law adds new rules about who can offer prekindergarten classes and how they must work with outside companies. This makes it much harder for local schools to run their own programs. Schools have to follow state rules even when working with private companies.
+
+
+#### The "Free" Testing Problem
+
+The state provides "free" reading and math tests to schools, but these tests cost schools more in the long run. Schools must spend money on teacher training, reporting, and following new rules. Schools may think they are saving money, but they end up spending much more.
+
+
+#### The Core Issue
+
+These rules make it seem like education is improving, but they actually hurt students by taking away the freedom and local choices that help meaningful learning happen. The state now controls nearly every decision that teachers, parents, and local schools used to make together. This destroys the teamwork and creativity that make schools successful.
+
+In the end, early childhood education is being changed from a system that was controlled by local parents and professionals into a state-managed, rules-focused system. This change is likely to make education far less effective while increasing costs and complexity.
+
+<br>
+
+## Detailed Analysis
+
+### Main Table
+
+```{r}
+#| label: main-analysis-table-article5-sections10-17-updated
+#| echo: false
+#| warning: false
+#| message: false
+
+# Create analysis with new 7-code system for Article 5 Sections 5.10-5.17
+article5_sections10_17_results_updated <- data.frame(
+  Category = c(
+    "Early Literacy and Numeracy Instrument Requirements",
+    "Reading and Mathematics Instrument Scientific Research Requirements",
+    "Reading and Mathematics Instrument Administration Schedule Requirements",
+    "Reading and Mathematics Instrument Progress Monitoring Requirements",
+    "Reading and Mathematics Instrument Risk Assessment Requirements",
+    "Reading and Mathematics Instrument Dyslexia Screening Requirements",
+    "Reading and Mathematics Instrument Parent Reporting Requirements",
+    "Reading and Mathematics Instrument Update Requirements",
+    "Reading and Mathematics Instrument Approval Process Requirements", 
+    "Reading and Mathematics Instrument Administration Requirements",
+    "Reading and Mathematics Instrument Alignment Requirements",
+    "Reading and Mathematics Instrument Interim Assessment Substitution",
+    "Reading and Mathematics Instrument District Administration Requirements",
+    "Reading and Mathematics Instrument Superintendent Reporting Requirements",
+    "Reading and Mathematics Instrument Agency Price Negotiation",
+    "Reading and Mathematics Instrument Parent Opt-Out Provisions",
+    "Early Literacy Intervention Student Risk Determination",
+    "Early Literacy Intervention Targeted Instruction Requirements",
+    "Early Literacy Intervention Frequency and Duration Requirements",
+    "Early Literacy Intervention Instructional Materials Requirements",
+    "Early Literacy Intervention Staff Training Requirements",
+    "Early Literacy Intervention Continuity Requirements",
+    "Early Literacy Intervention Duration Limits",
+    "Early Literacy Intervention Curriculum Protection Requirements",
+    "Early Literacy Intervention Agency Product Approval",
+    "Early Literacy Intervention Free Product Provision",
+    "Early Literacy Intervention Parent Opt-Out Provisions",
+    "Early Literacy Intervention Parent Notice Requirements",
+    "Adaptive Vocabulary Assessment Pilot Program Development",
+    "Mathematics Training for Kindergarten Through Eighth Grade Requirements",
+    "Mathematics Training Academy Attendance Requirements for New Staff",
+    "Mathematics Training Agency Assistance Requirements",
+    "Mathematics Training Implementation Monitoring Requirements",
+    "First Through Third Grade Supplementary Supports Grant Program",
+    "Supplementary Supports Grant Online Account System",
+    "Supplementary Supports Grant Teacher Approval Requirements",
+    "Supplementary Supports Grant Parent Notification Requirements",
+    "Dyslexia Student Talking Book Program Notification Requirements",
+    "Prekindergarten Eligibility Teacher Child Requirements",
+    "Prekindergarten Partnership Requirements Before Construction",
+    "Prekindergarten Partnership Intermediary Designation Requirements",
+    "Prekindergarten Partnership Municipal Ordinance Requirements",
+    "Prekindergarten Partnership Funding Requirements",
+    "Prekindergarten Tuition Program Official Determination Requirements",
+    "Early Education District and Campus Level Reporting Requirements"
+  ),
+
+  Incentive_Created = c(
+    "Commissioner shall adopt list of reading and mathematics instruments for measuring foundational literacy and numeracy skills in kindergarten through grade three",
+    "Reading and mathematics instruments must be based on scientific research concerning foundational literacy skills and foundational numeracy skills in mathematics",
+    "Instruments must be capable of being administered at beginning middle and end of school year and designed to assess student performance",
+    "Instruments must be capable of monitoring student progress to identify specific foundational skills in need of targeted instruction",
+    "Instruments must assess whether student skills indicate risk of not achieving satisfactory performance on third grade reading or mathematics assessment",
+    "Reading instruments for kindergarten and first grade must include applicable elements to serve as required screenings for dyslexia and related disorders",
+    "Reading instruments must allow districts to generate clear progress reports in English Spanish or other languages spoken by parents",
+    "Commissioner must update list of instruments not less than once every four years and ensure list includes multiple instruments",
+    "Commissioner must develop process for districts to submit instruments for approval and make evaluation criteria publicly available",
+    "Districts must administer instruments for kindergarten at middle and end of year and first through third grade at beginning middle and end",
+    "Commissioner must align and determine comparability of instruments with kindergarten reading instruments and third grade assessment instruments",
+    "Commissioner may substitute interim assessment instruments that provide same intended outcomes as instruments adopted under this section",
+    "Districts must administer reading and mathematics instruments in accordance with requirements and recommendations established by commissioner",
+    "Superintendent must report instrument results to commissioner and board at public meeting and to parents within specified timeframes",
+    "Agency must establish list of instruments for which agency has negotiated price and districts not required to use competitive bidding",
+    "Student parent or guardian may submit written request to opt student out of instrument administration and district may not encourage opt-out requests",
+    "Districts must provide reading interventions to students whose results on two consecutive reading instruments indicate risk of not achieving foundational literacy",
+    "Reading interventions must include targeted instruction in foundational literacy skills identified as areas needing targeted instruction by reading instrument",
+    "Students must receive interventions during period and at frequency sufficient to address areas identified as needing targeted instruction",
+    "Reading interventions must include effective instructional materials designed for reading intervention and meet additional commissioner requirements",
+    "Reading interventions must be provided by person with training in reading interventions and applicable instructional materials under school district oversight",
+    "Reading interventions must to extent possible be provided by one person for entirety of student reading intervention period",
+    "Districts must continue providing reading intervention until student no longer at risk or student begins fourth grade",
+    "Districts may not remove students from foundation curriculum enrichment curriculum recess or physical activity except under same circumstances for non-intervention students",
+    "Agency must approve one or more products using automated computerized or augmented methods for providing reading interventions with evidence of effectiveness",
+    "Agency must ensure at least one approved product is available to school districts at no or reduced cost subject to appropriation",
+    "Student parent or guardian may submit written request to opt student out of all or part of reading intervention requirements",
+    "Districts must provide to parent or guardian of student receiving reading interventions the notice required under Section 26.0081(d)",
+    "Agency must develop and implement adaptive vocabulary assessment pilot program to assess vocabulary development in kindergarten through third grade",
+    "School districts and charter schools must ensure mathematics teachers kindergarten through eighth grade attend mathematics achievement academy by 2030-2031",
+    "Teachers and principals initially employed in described grade levels for 2030-2031 or subsequent years must attend academy by end of first year",
+    "Agency must provide assistance to districts and charter schools in complying with mathematics training requirements under this section",
+    "Agency must monitor implementation and periodically report to legislature on implementation and effectiveness in improving educational outcomes",
+    "Commissioner must establish and administer grant program providing grants for parents to purchase tutoring services for struggling students",
+    "Agency must maintain online account system assigning each eligible student account for parent to access grant and implement with ease of use",
+    "Agency must approve classroom teachers with current designation who submit names to offer tutoring services designed to improve student reading proficiency",
+    "Districts and charter schools must provide notice to parents of student eligibility for grant under this section in form and manner established by agency",
+    "Districts must notify parents of students identified with dyslexia or related disorder of Talking Book Program and other available audio book services",
+    "Prekindergarten eligibility expanded to include children of classroom teachers employed at public schools in district offering prekindergarten class",
+    "Districts and charter schools must solicit and consider partnership proposals from community-based child-care providers before constructing repurposing or leasing facilities",
+    "Commissioner must designate at least four entities as prekindergarten partnership intermediaries to develop partnerships between districts and private providers",
+    "Facilities providing prekindergarten classes through district-private partnerships must comply with municipal ordinances applicable to private prekindergarten programs",
+    "Partnerships between districts and private providers must provide for provider to receive funding not less than 85 percent of district funding per student",
+    "Districts may offer prekindergarten on tuition basis only after receiving official determination that no qualified private providers are available",
+    "Agency must produce annual district and campus-level reports on early education containing specified information and make available on agency website"
+  ),
+
+  Intended_Consequence = c(
+    "Establish consistent statewide approach to measuring foundational literacy and numeracy skills across early elementary grades",
+    "Ensure reading and mathematics assessments are grounded in evidence-based practices for measuring foundational skills development",
+    "Provide systematic assessment schedule that captures student progress at key points throughout school year for instructional planning",
+    "Enable districts to identify specific skill deficits and provide targeted interventions based on individual student assessment results",
+    "Identify students at risk of not meeting grade-level expectations to provide early intervention before academic failure occurs",
+    "Integrate dyslexia screening into regular reading assessment to ensure early identification of students with reading difficulties",
+    "Ensure parents receive clear and understandable information about student reading progress in language they can comprehend",
+    "Maintain current and effective assessment instruments that reflect advances in educational research and assessment technology",
+    "Provide pathway for districts to use locally-selected assessment instruments while maintaining state oversight and quality standards",
+    "Ensure consistent and comprehensive assessment of student foundational skills development throughout early elementary grades",
+    "Create coherent assessment system that connects early literacy assessment with later grade-level academic performance measures",
+    "Provide flexibility for commissioner to streamline assessment requirements when interim assessments serve same purposes as required instruments",
+    "Ensure consistent and effective implementation of assessment instruments across all districts through standardized administration procedures",
+    "Ensure transparency in assessment results and accountability for student progress through systematic reporting to stakeholders",
+    "Reduce financial barriers for districts to access high-quality assessment instruments through state-negotiated pricing arrangements",
+    "Respect parental rights while discouraging districts from undermining assessment program through inappropriate encouragement of opt-outs",
+    "Ensure students identified through assessment as struggling with foundational literacy receive appropriate intensive intervention support",
+    "Provide targeted instruction that directly addresses specific literacy skill deficits identified through assessment for maximum effectiveness",
+    "Ensure intervention intensity and duration are sufficient to address identified literacy deficits and improve student foundational skills",
+    "Ensure intervention programs use high-quality materials specifically designed for addressing foundational literacy skill deficits",
+    "Ensure interventions are provided by qualified personnel with appropriate training in evidence-based literacy intervention methods",
+    "Provide consistency in intervention delivery to maximize effectiveness and build strong teacher-student relationships",
+    "Establish clear endpoint for intervention services while ensuring students receive support for appropriate duration",
+    "Protect student access to comprehensive education while ensuring intervention students receive necessary intensive support",
+    "Provide districts access to innovative technology-based intervention solutions that can supplement traditional intervention methods",
+    "Ensure districts have access to effective intervention tools regardless of local budget constraints or purchasing power",
+    "Respect parental rights regarding intervention services while maintaining district responsibility for student academic support",
+    "Ensure parents of intervention students receive required notifications about student academic status and intervention services",
+    "Develop innovative assessment approaches for vocabulary development to enhance understanding of early literacy skill development",
+    "Ensure all mathematics teachers receive training in evidence-based instructional practices to improve mathematics instruction quality",
+    "Ensure new mathematics teachers and principals receive appropriate training to maintain instructional quality as staff changes occur",
+    "Support districts and charter schools in implementing mathematics training requirements to ensure successful compliance",
+    "Ensure mathematics training requirements actually improve teaching practices and student outcomes through systematic monitoring and evaluation",
+    "Provide direct support to parents of struggling students through grants for tutoring services to supplement school-based interventions",
+    "Streamline access to tutoring grants through user-friendly online system that ensures appropriate use of grant funds",
+    "Expand pool of available tutoring providers while ensuring quality through teacher certification requirements",
+    "Ensure parents are aware of tutoring grant opportunities so eligible students can access additional academic support",
+    "Connect dyslexic students and families with additional resources and support services beyond school-based interventions",
+    "Expand prekindergarten access for children of educators to support teacher retention and provide educational benefits",
+    "Encourage partnerships between districts and private prekindergarten providers to maximize use of community resources before public investment",
+    "Facilitate effective partnerships between public and private prekindergarten providers through designated intermediary organizations",
+    "Ensure prekindergarten programs operating through public-private partnerships meet appropriate health safety and program quality standards",
+    "Ensure private prekindergarten partners receive fair compensation while maintaining cost-effectiveness for public funding",
+    "Prevent districts from offering tuition-based prekindergarten when community providers could serve families through partnerships",
+    "Provide comprehensive information about early education programs and outcomes to support public accountability and program improvement"
+  ),
+
+  Likely_Result = c(
+    "C, D, E, F", # Early literacy instruments: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Scientific research requirements: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Administration schedule: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F, G", # Progress monitoring: state dependency, accountability substitute, admin burden, reduced local control, people as problem
+    "C, D, E, F, G", # Risk assessment: state dependency, accountability substitute, admin burden, reduced local control, people as problem
+    "C, D, E, F, G", # Dyslexia screening: state dependency, accountability substitute, admin burden, reduced local control, people as problem
+    "C, D, E, F", # Parent reporting: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Update requirements: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Approval process: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Administration requirements: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Alignment requirements: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Interim assessment substitution: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # District administration: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Superintendent reporting: state dependency, accountability substitute, admin burden, reduced local control
+    "A, C, D, E, F", # Agency price negotiation: extrinsic motivation (free resources), state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, F, G", # Parent opt-out: state dependency, accountability substitute, reduced local control, people as problem
+    "C, D, F, G", # Student risk determination: state dependency, accountability substitute, reduced local control, people as problem
+    "C, D, E, F, G", # Targeted instruction: state dependency, accountability substitute, admin burden, reduced local control, people as problem
+    "C, D, E, F, G", # Frequency and duration: state dependency, accountability substitute, admin burden, reduced local control, people as problem
+    "C, D, E, F", # Instructional materials: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F, G", # Staff training: state dependency, accountability substitute, admin burden, reduced local control, people as problem
+    "C, D, E, F, G", # Continuity requirements: state dependency, accountability substitute, admin burden, reduced local control, people as problem
+    "C, D, F, G", # Duration limits: state dependency, accountability substitute, reduced local control, people as problem
+    "C, D, E, F", # Curriculum protection: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Agency product approval: state dependency, accountability substitute, admin burden, reduced local control
+    "A, C, D, E, F", # Free product provision: extrinsic motivation (free resources), state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, F, G", # Parent opt-out provisions: state dependency, accountability substitute, reduced local control, people as problem
+    "C, D, E, F", # Parent notice requirements: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Adaptive vocabulary pilot: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F, G", # Mathematics training K-8: state dependency, accountability substitute, admin burden, reduced local control, people as problem
+    "C, D, E, F, G", # New staff academy requirements: state dependency, accountability substitute, admin burden, reduced local control, people as problem
+    "C, D, E, F", # Agency assistance: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Implementation monitoring: state dependency, accountability substitute, admin burden, reduced local control
+    "A, C, D, E, F", # Supplementary supports grants: extrinsic motivation (grant dependency), state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Online account system: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F, G", # Teacher approval requirements: state dependency, accountability substitute, admin burden, reduced local control, people as problem
+    "C, D, E, F", # Parent notification: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Talking book notification: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # PreK teacher child eligibility: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Partnership requirements: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Partnership intermediaries: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Municipal ordinances: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Partnership funding: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F", # Tuition determination: state dependency, accountability substitute, admin burden, reduced local control
+    "C, D, E, F" # Early education reporting: state dependency, accountability substitute, admin burden, reduced local control
+  )
+)
+
+# Generic check to ensure all vectors have the same length
+vector_lengths <- c(
+  length(article5_sections10_17_results_updated$Category),
+  length(article5_sections10_17_results_updated$Incentive_Created),
+  length(article5_sections10_17_results_updated$Intended_Consequence),
+  length(article5_sections10_17_results_updated$Likely_Result)
+)
+
+# Verify all vectors have same length
+if (length(unique(vector_lengths)) != 1) {
+  stop("Vector length mismatch detected. All vectors must have the same length.")
+}
+
+# Additional verification using stopifnot for robust checking
+stopifnot(
+  "All data frame vectors must have equal length" = 
+    all(vector_lengths == vector_lengths[1])
+)
+
+# Create the main analysis table with new coded results
+article5_sections10_17_main_table_updated <- datatable(
+  article5_sections10_17_results_updated,
+  options = list(
+    pageLength = 10,
+    scrollX = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '150px', targets = 0),   # Category  
+      list(width = '300px', targets = 1),   # Incentive Created
+      list(width = '250px', targets = 2),   # Intended Result
+      list(width = '150px', targets = 3)    # Coded Results
+    ),
+    dom = 'Bfrtip',
+    buttons = c('copy', 'csv', 'excel')
+  ),
+  filter = 'top',
+  rownames = FALSE,
+  class = 'cell-border stripe hover',
+  colnames = c('Category', 'Incentive Created', 'Intended Result', 'Codes for Destructive Results We Will Actually Get')
+) %>%
+  formatStyle(
+    'Category',
+    backgroundColor = styleEqual(
+      unique(article5_sections10_17_results_updated$Category),
+      rep(c('#FFE8E8', '#FFD0D0', '#E8F4FD', '#E8F6FF', '#FFF2CC', '#E8F5E8', '#F0E8FF', '#FFE8F5', 
+            '#FFEBCD', '#F0FFF0', '#F5F5DC', '#FFFACD', '#F0F8FF', '#FDF5E6', '#FAF0E6', '#FFF8DC', 
+            '#F5FFFA', '#FFEFD5', '#E6E6FA', '#F0FFFF', '#FFF0F5', '#F5F5F5', '#FFFAF0', '#F8F8FF',
+            '#FFFFF0', '#FDF5E6', '#FAF0E6', '#FFF8DC', '#F5FFFA', '#FFEFD5', '#E6E6FA', '#F0FFFF', 
+            '#FFF0F5', '#F5F5F5', '#FFFAF0', '#F8F8FF', '#FFFFF0', '#FDF5E6', '#FAF0E6', '#FFF8DC',
+            '#F5FFFA', '#FFEFD5', '#E6E6FA', '#F0FFFF', '#FFF0F5'), length.out = length(unique(article5_sections10_17_results_updated$Category)))
+    ),
+    fontWeight = 'bold'
+  ) %>%
+  formatStyle(
+    'Likely_Result',
+    fontWeight = 'bold',
+    fontSize = '14px',
+    textAlign = 'center',
+    backgroundColor = '#FFF8DC'
+  )
+
+# Display article 5 sections 10-17 main table
+article5_sections10_17_main_table_updated
+```
+
+<br>
+<br>
+<br>
+
+### Supplemental Tables
+
+```{r}
+#| label: supplemental-analysis-article5-sections10-17-updated
+#| echo: false
+#| warning: false
+#| message: false
+
+# Create category analysis
+category_analysis_a5_s10_17_updated <- article5_sections10_17_results_updated %>%
+  group_by(Category) %>%
+  summarise(
+    Count = n(),
+    .groups = 'drop'
+  ) %>%
+  arrange(desc(Count)) %>%
+  rename(`Incentive Category` = Category,
+         `Number of Incentives` = Count)
+
+# Analyze most frequent negative result codes with new 7-code system
+code_frequency_a5_s10_17_updated <- article5_sections10_17_results_updated %>%
+  separate_rows(Likely_Result, sep = ", ") %>%
+  count(Likely_Result, sort = TRUE) %>%
+  rename(`Negative Result Code` = Likely_Result,
+         `Frequency` = n) %>%
+  mutate(Percentage = round(100 * Frequency / nrow(article5_sections10_17_results_updated), 3))
+
+# Key policy findings focused on new coded patterns
+key_findings_a5_s10_17_updated <- data.frame(
+  Finding = c(
+    "Most Universal Negative Pattern",
+    "State Dependency Complete Takeover", 
+    "Accountability Substitution Pattern",
+    "Administrative Burden Universal Impact",
+    "Local Control Elimination",
+    "People-as-Problem Systematic Pattern",
+    "Extrinsic Motivation Corruption Pattern",
+    "Most Problematic Policy Areas",
+    "Assessment and Intervention System Control"
+  ),
+  Description = c(
+    "Codes C, D, E, F appear in 100.000% of incentives, indicating universal state dependency, accountability substitution, administrative burden, and local control elimination",
+    "Code C (state dependency) appears in 100.000% of incentives, representing complete state control over early childhood assessment, intervention, and teacher training",
+    "Code D (accountability substitute) appears in 100.000% of incentives, replacing educational improvement with comprehensive measurement and compliance systems",
+    "Code E (administrative burden) appears in 97.778% of incentives, creating massive compliance overhead across assessment, intervention, and training requirements",
+    "Code F (local control reduction) appears in 100.000% of incentives, eliminating local flexibility in assessment choices, intervention methods, and professional development",
+    "Code G (people as problem) appears in 46.667% of incentives, systematically treating teachers, students, and parents as problems requiring state correction",
+    "Code A (extrinsic motivation) appears in 8.889% of incentives, undermining professional dedication through grant dependency and free resource provision",
+    "Mathematics training requirements and reading intervention programs show highest concentrations of harmful codes, particularly treating educators and students as problems",
+    "Combined assessment and intervention system creates comprehensive state control over early childhood education decision-making at all levels"
+  )
+)
+
+# === DISPLAY SUPPLEMENTAL TABLES ===
+
+# Category Analysis Header
+datatable(
+  data.frame(Title = "INCENTIVE CATEGORY ANALYSIS"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#FF9800',
+              color = 'white')
+
+# Category Analysis Table
+datatable(
+  category_analysis_a5_s10_17_updated,
+  filter = 'top',
+  options = list(
+    pageLength = 15,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Number of Incentives',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = styleColorBar(range(category_analysis_a5_s10_17_updated$`Number of Incentives`), '#E8F4FD')) %>%
+  formatStyle('Incentive Category',
+              fontWeight = 'bold',
+              textAlign = 'left')
+
+# Code Frequency Analysis Header
+datatable(
+  data.frame(Title = "NEGATIVE RESULT CODE FREQUENCY"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#DC143C',
+              color = 'white')
+
+# Code Frequency Table
+datatable(
+  code_frequency_a5_s10_17_updated,
+  filter = 'top',
+  options = list(
+    pageLength = 15,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Frequency',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = styleColorBar(range(code_frequency_a5_s10_17_updated$Frequency), '#FFB6C1')) %>%
+  formatStyle('Negative Result Code',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              fontSize = '16px') %>%
+  formatStyle('Percentage',
+              fontWeight = 'bold',
+              textAlign = 'center')
+
+# Key Findings Header
+datatable(
+  data.frame(Title = "KEY CODED PATTERN FINDINGS"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#F44336',
+              color = 'white')
+
+# Key Findings Table
+datatable(
+  key_findings_a5_s10_17_updated,
+  filter = 'top',
+  options = list(
+    pageLength = 10,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '25%', targets = 0),
+      list(width = '75%', targets = 1)
+    )
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Finding',
+              fontWeight = 'bold',
+              backgroundColor = '#FFE4E1',
+              textAlign = 'left') %>%
+  formatStyle('Description',
+              textAlign = 'left')
+
+# Create coded summary statistics with new 7-code system
+summary_statistics_a5_s10_17_updated <- data.frame(
+  Metric = c(
+    "Total Incentives Analyzed",
+    "Most Problematic Code", 
+    "Most Frequent Code Combination",
+    "Policy Categories with Code C",
+    "Policy Categories with Code F",
+    "Average Codes per Incentive"
+  ),
+  Value = c(
+    nrow(article5_sections10_17_results_updated),
+    paste0("Codes C, D, F (all appear ", max(code_frequency_a5_s10_17_updated$Frequency), " times each)"),
+    "C, D, E, F (dependency + accountability + burden + control)",
+    sum(grepl("C", article5_sections10_17_results_updated$Likely_Result)),
+    sum(grepl("F", article5_sections10_17_results_updated$Likely_Result)),
+    round(mean(lengths(strsplit(article5_sections10_17_results_updated$Likely_Result, ", "))), 1)
+  )
+)
+
+# Summary Statistics Header
+datatable(
+  data.frame(Title = "CODED ANALYSIS SUMMARY STATISTICS"),
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#9C27B0',
+              color = 'white')
+
+# Summary Statistics Table
+datatable(
+  summary_statistics_a5_s10_17_updated,
+  options = list(
+    pageLength = 10,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '40%', targets = 0),
+      list(width = '60%', targets = 1)
+    )
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Metric',
+              fontWeight = 'bold',
+              textAlign = 'left') %>%
+  formatStyle('Value',
+              textAlign = 'left',
+              fontWeight = 'bold')
+```
+
+<br>
+<br>
+
+### Key List of Likely Negative Results 
+
+#### The evaluation codes are based on these axioms:
+
+- Central planning (one size fits all) degrades everyone's performance
+  - Makes nearly every district action a legal matter
+  - Robs people of pride in their work
+  
+- Efforts at 'accountability' will not improve performance of anyone
+
+- Cooperation within an organization is far more effective than competition 
+
+- All incentives work; some promote and some pervert the ***intention*** of the incentive
+
+
+
+```{r}
+#| label: negative-results-coding-key-article5-sections10-17-updated
+#| echo: false
+#| message: false
+#| warning: false
+
+# Create negative results table with new 7-code system
+negative_results_a5_s10_17_updated <- data.frame(
+  Code = c("A", "B", "C", "D", "E", "F", "G"),
+
+  Likely_Negative_Result = c(
+    "Decreases intrinsic motivation in favor of extrinsic motivation",
+    "Decreases cooperation within districts in favor of competition for resources",  
+    "Increases dependency on State funding and bureaucracy",
+    "Substitutes 'accountability' for improvement of the system people work in",
+    "Increases district administrative burdens",
+    "Decreases local control and flexibility",
+    "Treats people as the 'problem', instead of the system they work in"
+  )
+)
+
+# Define bright contrasting color palette (7 colors for 7 codes)
+color_palette_a5_s10_17_updated <- c("#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FECA57", "#FF9FF3", "#54A0FF")
+
+# Create color assignments for each row
+row_colors_a5_s10_17_updated <- color_palette_a5_s10_17_updated[1:nrow(negative_results_a5_s10_17_updated)]
+
+# Display the coding key table
+DT::datatable(
+  negative_results_a5_s10_17_updated,
+  options = list(
+    pageLength = 15,
+    dom = 'Bfrtip',
+    buttons = c('copy', 'csv', 'excel'),
+    columnDefs = list(
+      list(width = '40px', targets = 0),  # Narrow first column
+      list(width = '90%', targets = 1)    # Wide second column
+    ),
+    scrollX = FALSE,
+    autoWidth = FALSE
+  ),
+  rownames = FALSE,
+  class = 'display'
+) %>%
+  formatStyle(
+    'Code',
+    textAlign = 'right',
+    fontWeight = 'bold',
+    backgroundColor = styleEqual(negative_results_a5_s10_17_updated$Code, row_colors_a5_s10_17_updated),
+    color = 'white'
+  ) %>%
+  formatStyle(
+    'Likely_Negative_Result',
+    backgroundColor = styleEqual(negative_results_a5_s10_17_updated$Code, row_colors_a5_s10_17_updated),
+    color = 'black'
+  ) %>%
+  formatStyle(
+    columns = c(0, 1),
+    border = '2px solid #333',
+    borderCollapse = 'collapse'
+  ) %>%
+  formatStyle(
+    columns = c(0, 1),
+    maxWidth = '9in',
+    tableLayout = 'fixed'
+  )
+
+```
+
+
+
+
+

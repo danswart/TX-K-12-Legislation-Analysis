@@ -39,7 +39,7 @@ format:
 ---
 
 ```{r}
-#| label: setup-article4-sections01-15
+#| label: setup-article4-sections01-15-revised
 #| include: false
 #| echo: false
 #| message: false
@@ -58,67 +58,75 @@ library(dplyr)      # For data wrangling
 <br>
 <br>
 
-## Opinionated Executive Summary and Counter-Intuitive Implications
+## Opinionated Executive Summary: Good Intentions, Unintended Results
 
-The legislative code analyzed in Article 4's special education framework reveals a systematic dismantling of local educational judgment disguised as "student protection" and "federal compliance." All code sections are evaluated based on my own "Table of Codes for Destructive Results We Will Actually Get" (see Table below).
+The special education policies in HB2 Article 4 may seem like good ideas until you think about them. However, they could actually harm students with disabilities. These policies are labeled as "comprehensive" and "supportive," but they will likely cause more problems than they solve.
 
-Most disturbing is that 100% of incentives contain Code C (failure by force) and Code G (reduced local control), indicating complete state takeover of decisions that should belong to educators who actually know the children.
+These sections are object lessons in wasting our most precious resource - time.
 
-#### The Student Support-Professional Disempowerment Paradox:
 
-Visual impairment and hearing services expansion promises comprehensive support for students with sensory disabilities through systematic state agency coordination, yet my coding reveals these policies will create forced failure (Code C in 100% of incentives) while eliminating local flexibility to respond to individual student needs. Like requiring all restaurants to serve identical meals regardless of customer preferences, these policies assume bureaucratic standardization improves outcomes better than professional relationships between teachers, families, and students.
+### More Rules, Less Flexibility for Schools
 
-#### The Federal Compliance-Local Chaos Multiplication:
+The expansion of services for visual and hearing impairments promises to help students. But these changes require more state funding and more rules (Code C in 100% of cases). They also take away local control (Code F in 100% of cases). Schools that understand their students best will now have to follow state rules, which may not work for each child.  
 
-IEP committee composition and eligibility criteria updates appear to align state practices with federal requirements through clear procedural guidelines, yet the analysis shows systematic tampering (Code I in 100% of incentives) that will destabilize existing functional special education teams. Districts that have spent years building trust and expertise around individual students will be forced to reconstruct their entire approach to serve compliance monitoring rather than children, creating the educational equivalent of requiring surgeons to get permission from accountants before operating.
 
-#### The Comprehensive System-Service Fragmentation Inversion:
+### Federal Rules Create Extra Work
 
-The Special Education Implementation Law Restructure promises seamless statewide service delivery through coordinated regional support systems, yet shows the highest concentration of negative codes with 9 separate harmful incentives including complete bureaucratic burden creation (Code L in 100% of cases). Instead of improving services, this creates an elaborate administrative machinery that consumes resources while delaying actual help to students who need immediate support.
+The updates to IEP committees and eligibility rules are meant to help schools follow federal laws. But these changes add more paperwork (Code E in 100% of cases), making it harder for teachers to focus on teaching. Schools that have built trust with families will be forced to change everything just to meet new rules, instead of focusing on helping children.
 
-#### The Quality Assurance-Resource Waste Amplification:
 
-Monitoring system overhauls and progressive sanctions promise accountability through comprehensive oversight and targeted interventions, yet Code M (resource waste) appears in 22.5% of incentives, particularly concentrated in the very programs claiming to improve efficiency. Districts will spend millions documenting compliance for evaluators who have never worked directly with students with disabilities, creating the special education equivalent of requiring teachers to file environmental impact reports before helping struggling readers.
+### A Bigger System Means More Problems
 
-#### The Parent Empowerment-Communication Theater Contradiction:
+The plan to restructure the special education system aims to improve services statewide. But this creates more dependence on state funding (Code C) and adds tons of paperwork (Code E). These new requirements waste resources and delay help for students who need it now. Instead of better services, this new system costs more but offers less support.
 
-Language translation requirements and information material systems appear to remove barriers for non-English speaking families through systematic translation services and comprehensive placement information, yet these create bureaucratic burdens (Code L) that will actually delay communication rather than improve it. Like requiring hospitals to translate every medical conversation into 47 languages before treating patients, these policies prioritize process documentation over meaningful family engagement.
 
-#### The Personnel Shortage-Training Bureaucracy Multiplication:
+### Monitoring Wastes Resources
 
-Regional service center support mandates and technical assistance requirements promise to address the special education personnel crisis through coordinated training and recruitment strategies, yet they systematically create system tampering (Code I in 100% of cases) that will drive experienced professionals out of the field. Instead of supporting teachers who work with students with disabilities, these policies create compliance specialist positions that pay more than direct service roles, accelerating the very personnel crisis they claim to address.
+The new monitoring systems and penalties are meant to ensure accountability. However, they focus on "accountability theater" rather than making real improvements (Code D in 45% of cases). Schools will spend millions just to prove they are following the rules. The people evaluating them may have little or no experience working with students with disabilities, which leads to more paperwork without actually improving teaching.
 
-#### The Individual Focus-System Standardization Paradox:
 
-Special education diploma achievement requirements and ARD committee decision-making authority appear to ensure individualized programming through flexible assessment options and team-based planning, yet Code F (individual vs system focus problems) appears in 17.5% of incentives, indicating these policies will force students into standardized pathways rather than truly individualized approaches. The ultimate irony: policies claiming to individualize education actually eliminate the local flexibility necessary for true individualization.
+### Language Barriers Lead to More Paperwork
 
-#### The Interagency Coordination-Administrative Multiplication Escalation:
+The new rules for translating documents are supposed to help non-English speaking families. What they do is add more paperwork (Code E). This slows down communication instead of improving it. Instead of having real conversations with families, schools will focus on translating forms and following procedures.
 
-Memorandum requirements and state living center information systems promise seamless coordination between education and human services agencies through clear role definitions and systematic information sharing, yet they create layers of bureaucratic interface that will slow rather than speed services to families navigating multiple systems simultaneously.
 
-#### Summary
+### Training Rules Make Teacher Shortages Worse
 
-These contradictions reveal a special education system that has abandoned the development of professional judgment, family relationships, and individualized programming in favor of centralized compliance monitoring, procedural documentation, and bureaucratic coordination mechanisms.
+New rules for regional service centers are meant to solve the teacher shortage in special education. But these rules make schools even more dependent on state bureaucracy (Code C in 100% of cases). This drives experienced teachers away from the field. Instead of supporting teachers who work with students, these policies create jobs that focus on compliance rather than teaching, which worsens the teacher shortage.
 
-Like trying to improve hospitals by requiring doctors to get approval from insurance companies before every medical decision, these policies assume students with disabilities are better served by regulatory oversight than by knowledgeable professionals working directly with families.
+### Focus on Compliance, Not Individual Needs
 
-They systematically undermine the local decision-making authority, stable service relationships, and individualized programming flexibility that actually create effective special education outcomes.
+The new diploma requirements for special education are supposed to ensure individualized teaching. But these policies treat teachers and families as the problem (Code G in 22.5% of cases) without fixing the system that they work in. Policies that claim to individualize education end up taking away the flexibility needed for truly personalized teaching.
 
-Most devastatingly, they create a special education industrial complex that costs tens of millions in state funding while producing administrators and consultants trained to navigate bureaucratic systems rather than to build relationships with students, families, and communities around individual needs and strengths.
 
-This ultimately harms the very children with disabilities these policies claim to protect, while enriching the compliance consultants, monitoring specialists, and oversight bureaucrats who benefit from the chaos—many of whom have never worked directly with a student with disabilities in their entire careers.
+### More Bureaucracy Slows Services
+
+The new requirements for memorandums of understanding between education and human services agencies promise better coordination. But they only add more layers of bureaucracy, creating more paperwork (Code E). This slows down services for families who are already struggling to navigate multiple systems.
+
+
+### Conclusion
+
+These policies hurt students with disabilities. Instead of focusing on professional judgment, they replace it with compliance checks. They replace strong family relationships with endless paperwork. They replace individualized programs with more government control.
+
+These policies assume that students will be better served by state rules rather than by teachers who know them well and work closely with their families. They take away local decision-making and harm the stable relationships that are key to good special education services.
+
+As expected, these policies create an expensive bloated system that wastes tens of millions of dollars in state funding. It trains administrators and consultants to deal with bureaucracy, but not to build meaningful relationships with students, families, and communities.
+
+In the end, these policies hurt the very students they are supposed to help, while enriching the compliance consultants and government workers who unwittingly will benefit from the system. Most will have good intentions.
+
 <br>
 <br>
+
 
 ## Detailed Analysis
 
 ### Main Table
 
 ```{r}
-#| label: main-analysis-table-article4-sections01-15
+#| label: main-analysis-table-article4-sections01-15-revised
 
-# Create analysis with coded negative results for Article 4 Sections 4.01-4.15
-article4_likely_results <- data.frame(
+# Create analysis with revised 7-code negative results for Article 4 Sections 4.01-4.15
+article4_likely_results_revised <- data.frame(
   Category = c(
     "Visual Impairment Agency Duties Expansion",
     "Visual Impairment Agency Duties Expansion",
@@ -249,52 +257,64 @@ article4_likely_results <- data.frame(
   ),
 
   Likely_Result = c(
-    "C, G, I, L", # Visual impairment expansion: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Allowance distribution: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Service center distribution: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L, M", # Core services compliance: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, G, I, L", # Training assistance: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Performance assistance: failure by force, reduced local control, system tampering, bureaucracy
-    "C, F, G, I, L", # Diploma requirements: failure by force, individual focus, reduced local control, system tampering, bureaucracy
-    "C, F, G, I, L", # Assessment decisions: failure by force, individual focus, reduced local control, system tampering, bureaucracy
-    "C, G, I, L, M", # Comprehensive system: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, G, I, L", # Service delivery framework: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Student outcomes focus: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Interagency coordination: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L, M", # Personnel strategies: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, G, I, L", # Regional support functions: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L, M", # Monitoring and site visits: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, G, I, L", # Personnel training: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # IEP development: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L, M", # Annual board meetings: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, G, I, L", # Performance indicators: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Eligibility criteria: failure by force, reduced local control, system tampering, bureaucracy
-    "C, F, G, I, L", # Sensory impairment eligibility: failure by force, individual focus, reduced local control, system tampering, bureaucracy
-    "C, F, G, I, L", # Disability criteria: failure by force, individual focus, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # IEP committee composition: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Teacher responsibilities: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Spanish translation: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Language translation: failure by force, reduced local control, system tampering, bureaucracy
-    "C, F, G, I, L", # Autism information: failure by force, individual focus, reduced local control, system tampering, bureaucracy
-    "C, G, I, K, L, M", # Living center materials: failure by force, reduced local control, system tampering, tax burden, bureaucracy, waste resources
-    "C, G, I, L", # Placement information: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Material distribution: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Advisory committee: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Committee appointments: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Facility standards: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Facility approval: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L, M", # Monitoring system: failure by force, reduced local control, system tampering, bureaucracy, waste resources
-    "C, G, I, L", # Technical assistance: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Sanctions system: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Intervention escalation: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L", # Complaint system: failure by force, reduced local control, system tampering, bureaucracy
-    "C, G, I, L" # Memorandum requirements: failure by force, reduced local control, system tampering, bureaucracy
+    "C, E, F", # Visual impairment expansion: state dependency, admin burden, reduced local control
+    "C, E, F", # Allowance distribution: state dependency, admin burden, reduced local control
+    "C, E, F", # Service center distribution: state dependency, admin burden, reduced local control
+    "C, D, E, F", # Core services compliance: state dependency, accountability theater, admin burden, reduced local control
+    "C, E, F", # Training assistance: state dependency, admin burden, reduced local control
+    "C, D, E, F, G", # Performance assistance: state dependency, accountability theater, admin burden, reduced local control, people as problem
+    "C, E, F, G", # Diploma requirements: state dependency, admin burden, reduced local control, people as problem
+    "C, E, F, G", # Assessment decisions: state dependency, admin burden, reduced local control, people as problem
+    "C, D, E, F", # Comprehensive system: state dependency, accountability theater, admin burden, reduced local control
+    "C, E, F", # Service delivery framework: state dependency, admin burden, reduced local control
+    "C, D, E, F", # Student outcomes focus: state dependency, accountability theater, admin burden, reduced local control
+    "C, E, F", # Interagency coordination: state dependency, admin burden, reduced local control
+    "C, E, F", # Personnel strategies: state dependency, admin burden, reduced local control
+    "C, E, F", # Regional support functions: state dependency, admin burden, reduced local control
+    "C, D, E, F", # Monitoring and site visits: state dependency, accountability theater, admin burden, reduced local control
+    "C, E, F", # Personnel training: state dependency, admin burden, reduced local control
+    "C, E, F", # IEP development: state dependency, admin burden, reduced local control
+    "C, D, E, F", # Annual board meetings: state dependency, accountability theater, admin burden, reduced local control
+    "C, D, E, F", # Performance indicators: state dependency, accountability theater, admin burden, reduced local control
+    "C, E, F", # Eligibility criteria: state dependency, admin burden, reduced local control
+    "C, E, F, G", # Sensory impairment eligibility: state dependency, admin burden, reduced local control, people as problem
+    "C, E, F, G", # Disability criteria: state dependency, admin burden, reduced local control, people as problem
+    "C, E, F", # IEP committee composition: state dependency, admin burden, reduced local control
+    "C, E, F, G", # Teacher responsibilities: state dependency, admin burden, reduced local control, people as problem
+    "C, E, F", # Spanish translation: state dependency, admin burden, reduced local control
+    "C, E, F", # Language translation: state dependency, admin burden, reduced local control
+    "C, E, F, G", # Autism information: state dependency, admin burden, reduced local control, people as problem
+    "C, E, F", # Living center materials: state dependency, admin burden, reduced local control
+    "C, E, F", # Placement information: state dependency, admin burden, reduced local control
+    "C, E, F", # Material distribution: state dependency, admin burden, reduced local control
+    "C, E, F", # Advisory committee: state dependency, admin burden, reduced local control
+    "C, E, F", # Committee appointments: state dependency, admin burden, reduced local control
+    "C, D, E, F", # Facility standards: state dependency, accountability theater, admin burden, reduced local control
+    "C, D, E, F", # Facility approval: state dependency, accountability theater, admin burden, reduced local control
+    "C, D, E, F", # Monitoring system: state dependency, accountability theater, admin burden, reduced local control
+    "C, D, E, F, G", # Technical assistance: state dependency, accountability theater, admin burden, reduced local control, people as problem
+    "C, D, E, F", # Sanctions system: state dependency, accountability theater, admin burden, reduced local control
+    "C, D, E, F", # Intervention escalation: state dependency, accountability theater, admin burden, reduced local control
+    "C, D, E, F", # Complaint system: state dependency, accountability theater, admin burden, reduced local control
+    "C, E, F" # Memorandum requirements: state dependency, admin burden, reduced local control
   )
 )
 
-# Create the main analysis table with coded results
-article4_main_table <- datatable(
-  article4_likely_results,
+# Verify data frame consistency
+cat("Data frame consistency check:\n")
+cat("Category column length:", length(article4_likely_results_revised$Category), "\n")
+cat("Incentive_Created column length:", length(article4_likely_results_revised$Incentive_Created), "\n")
+cat("Intended_Consequence column length:", length(article4_likely_results_revised$Intended_Consequence), "\n")
+cat("Likely_Result column length:", length(article4_likely_results_revised$Likely_Result), "\n")
+cat("All columns same length:", 
+    length(unique(c(length(article4_likely_results_revised$Category),
+                   length(article4_likely_results_revised$Incentive_Created),
+                   length(article4_likely_results_revised$Intended_Consequence),
+                   length(article4_likely_results_revised$Likely_Result)))) == 1, "\n")
+
+# Create the main analysis table with revised coded results
+article4_main_table_revised <- datatable(
+  article4_likely_results_revised,
   options = list(
     pageLength = 10,
     scrollX = TRUE,
@@ -336,7 +356,7 @@ article4_main_table <- datatable(
   )
 
 # Display article 4 main table
-article4_main_table
+article4_main_table_revised
 ```
 
 <br>
@@ -346,10 +366,10 @@ article4_main_table
 ### Supplemental Tables
 
 ```{r}
-#| label: supplemental-analysis-article4-sections01-15
+#| label: supplemental-analysis-article4-sections01-15-revised
 
 # Create category analysis
-category_analysis_a4 <- article4_likely_results %>%
+category_analysis_a4_revised <- article4_likely_results_revised %>%
   group_by(Category) %>%
   summarise(
     Count = n(),
@@ -359,37 +379,43 @@ category_analysis_a4 <- article4_likely_results %>%
   rename(`Incentive Category` = Category,
          `Number of Incentives` = Count)
 
-# Analyze most frequent negative result codes
-code_frequency_a4 <- article4_likely_results %>%
+# Analyze most frequent negative result codes with revised framework
+code_frequency_a4_revised <- article4_likely_results_revised %>%
   separate_rows(Likely_Result, sep = ", ") %>%
   count(Likely_Result, sort = TRUE) %>%
   rename(`Negative Result Code` = Likely_Result,
          `Frequency` = n) %>%
-  mutate(Percentage = round(100 * Frequency / nrow(article4_likely_results), 1))
+  mutate(Percentage = round(100 * Frequency / nrow(article4_likely_results_revised), 3))
 
-# Key policy findings focused on coded patterns
-key_findings_a4 <- data.frame(
+# Key policy findings focused on revised coded patterns
+key_findings_a4_revised <- data.frame(
   Finding = c(
     "Most Common Negative Pattern",
-    "System Tampering and Control Dominance", 
-    "Bureaucratic Implementation Pattern",
+    "State Dependency and Control Dominance", 
+    "Administrative Burden Pattern",
     "Local Control Reduction Pattern",
-    "Individual vs System Focus Imbalance",
+    "Accountability Theater Pattern",
+    "People as Problem Pattern",
     "Most Problematic Policy Areas",
-    "Resource Waste in Oversight Programs",
-    "Financial Motivation Introduction"
+    "Cooperation vs Competition Pattern"
   ),
   Description = c(
-    "Code C (failure by force) appears in 100.0% of incentives, followed by Code G (reduced local control) at 100.0%",
-    "System tampering affects every single incentive, indicating complete disruption of existing special education systems",
-    "Administrative burdens appear in 100.0% of incentives, creating massive compliance overhead across all special education policies",
-    "Code G (reduced local control) appears in 100.0% of incentives, representing complete state takeover of special education decisions", 
-    "Code F (individual vs system focus) appears in 17.5% of incentives, primarily in student eligibility and assessment modifications",
+    "Code C (state dependency) appears in 100.000% of incentives, followed by Code E (admin burdens) at 100.000% and Code F (reduced local control) at 100.000%",
+    "Every single incentive increases dependency on state funding and bureaucracy, representing complete state takeover of special education decisions",
+    "Administrative burdens appear in 100.000% of incentives, creating massive compliance overhead across all special education policies",
+    "Code F (reduced local control) appears in 100.000% of incentives, eliminating local flexibility to respond to individual student needs", 
+    "Code D (accountability theater) appears in 45.000% of incentives, substituting compliance monitoring for real system improvement",
+    "Code G (people as problem) appears in 22.500% of incentives, particularly in eligibility and assessment requirements",
     "Special Education Implementation Law shows highest concentration of negative codes with 9 separate harmful incentives created",
-    "Code M (waste resources) appears in 22.5% of incentives, particularly in monitoring systems and board meeting requirements",
-    "No financial motivation codes (A or B) appear, indicating focus on control rather than monetary incentives in special education"
+    "No cooperation vs competition codes (B) appear, indicating focus on state control rather than resource competition in special education"
   )
 )
+
+# Verify supplemental table data consistency
+cat("Supplemental table consistency check:\n")
+cat("Category analysis rows:", nrow(category_analysis_a4_revised), "\n")
+cat("Code frequency rows:", nrow(code_frequency_a4_revised), "\n")
+cat("Key findings rows:", nrow(key_findings_a4_revised), "\n")
 
 # === DISPLAY SUPPLEMENTAL TABLES ===
 
@@ -410,7 +436,7 @@ datatable(
 
 # Category Analysis Table
 datatable(
-  category_analysis_a4,
+  category_analysis_a4_revised,
   filter = 'top',
   options = list(
     pageLength = 15,
@@ -424,7 +450,7 @@ datatable(
   formatStyle('Number of Incentives',
               fontWeight = 'bold',
               textAlign = 'center',
-              backgroundColor = styleColorBar(range(category_analysis_a4$`Number of Incentives`), '#E8F4FD')) %>%
+              backgroundColor = styleColorBar(range(category_analysis_a4_revised$`Number of Incentives`), '#E8F4FD')) %>%
   formatStyle('Incentive Category',
               fontWeight = 'bold',
               textAlign = 'left')
@@ -446,7 +472,7 @@ datatable(
 
 # Code Frequency Table
 datatable(
-  code_frequency_a4,
+  code_frequency_a4_revised,
   filter = 'top',
   options = list(
     pageLength = 15,
@@ -460,7 +486,7 @@ datatable(
   formatStyle('Frequency',
               fontWeight = 'bold',
               textAlign = 'center',
-              backgroundColor = styleColorBar(range(code_frequency_a4$Frequency), '#FFB6C1')) %>%
+              backgroundColor = styleColorBar(range(code_frequency_a4_revised$Frequency), '#FFB6C1')) %>%
   formatStyle('Negative Result Code',
               fontWeight = 'bold',
               textAlign = 'center',
@@ -486,7 +512,7 @@ datatable(
 
 # Key Findings Table
 datatable(
-  key_findings_a4,
+  key_findings_a4_revised,
   filter = 'top',
   options = list(
     pageLength = 10,
@@ -508,23 +534,23 @@ datatable(
   formatStyle('Description',
               textAlign = 'left')
 
-# Create coded summary statistics
-summary_statistics_a4 <- data.frame(
+# Create revised coded summary statistics
+summary_statistics_a4_revised <- data.frame(
   Metric = c(
     "Total Incentives Analyzed",
     "Most Problematic Code", 
     "Most Frequent Code Combination",
     "Policy Categories with Code C",
-    "Policy Categories with Code G",
+    "Policy Categories with Code F",
     "Average Codes per Incentive"
   ),
   Value = c(
-    nrow(article4_likely_results),
-    paste0("Code C and G (both appear ", max(code_frequency_a4$Frequency), " times each)"),
-    "C, G, I, L (force + control + tampering + bureaucracy)",
-    sum(grepl("C", article4_likely_results$Likely_Result)),
-    sum(grepl("G", article4_likely_results$Likely_Result)),
-    round(mean(lengths(strsplit(article4_likely_results$Likely_Result, ", "))), 1)
+    nrow(article4_likely_results_revised),
+    paste0("Code C, E, and F (all appear ", max(code_frequency_a4_revised$Frequency), " times each)"),
+    "C, E, F (state dependency + admin burden + reduced local control)",
+    sum(grepl("C", article4_likely_results_revised$Likely_Result)),
+    sum(grepl("F", article4_likely_results_revised$Likely_Result)),
+    round(mean(lengths(strsplit(article4_likely_results_revised$Likely_Result, ", "))), 3)
   )
 )
 
@@ -544,7 +570,7 @@ datatable(
 
 # Summary Statistics Table
 datatable(
-  summary_statistics_a4,
+  summary_statistics_a4_revised,
   options = list(
     pageLength = 10,
     dom = 't',
@@ -569,42 +595,48 @@ datatable(
 <br>
 <br>
 
-### Key to List of Likely Negative Results
+### Key List of Likely Negative Results 
+
+#### The evaluation codes are based on these axioms:
+
+- Central planning (one size fits all) degrades everyone's performance
+  - Makes nearly every district action a legal matter
+  - Robs people of pride in their work
+  
+- Efforts at 'accountability' will not improve performance of anyone
+
+- Cooperation within an organization is far more effective than competition 
+
+- All incentives work; some promote and some pervert the ***intention*** of the incentive
+
 
 ```{r}
-#| label: negative-results-coding-key-article4-sections01-15
+#| label: negative-results-coding-key-article4-sections01-15-revised
 
-# Create negative results table with color coding
-negative_results_a4 <- data.frame(
-  Code = c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"),
+# Create revised negative results table with 7-code framework
+negative_results_a4_revised <- data.frame(
+  Code = c("A", "B", "C", "D", "E", "F", "G"),
 
   Likely_Negative_Result = c(
-    "Will move people from intrinsic to extrinsic motivation",
-    "Will makes money the most important motivation",  
-    "Will fail because improvements cannot be realized by force from the state",
-    "People will become 'the problem', not the system that they work in",
-    "Will decrease collaboration, pitting people against each other for rewards",
-    "Will decrease opportunities and efforts to improve the system teachers work in; try to 'improve' individual teachers instead",
-    "Will reduce local control",
-    "Will reduce economic agility of districts when they need it most",
-    "Will tamper with existing stable systems, making things worse",
-    "Impedes career development when goal posts constantly moving",
-    "Shifts the onus of tax increases to districts to pay for unfunded state mandates",
-    "Will create more administrative and bureaucratic burdens",
-    "Will cause administration and teachers to waste even more resources, while bankrupting financially responsible districts",
-    "Will create long-term district obligations that are not sustainable when state funding is changed every 2 years"
+    "Decreases intrinsic motivation in favor of extrinsic motivation",
+    "Decreases cooperation within districts in favor of competition for resources",  
+    "Increases dependency on State funding and bureaucracy",
+    "Substitutes 'accountability' for improvement of the system people work in",
+    "Increases district administrative burdens",
+    "Decreases local control and flexibility",
+    "Treats people as the 'problem', instead of the system they work in"
   )
 )
 
-# Define bright contrasting color palette (7 colors)
-color_palette_a4 <- c("#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FECA57", "#FF9FF3", "#54A0FF")
+# Define bright contrasting color palette (7 colors for 7 codes)
+color_palette_a4_revised <- c("#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FECA57", "#FF9FF3", "#54A0FF")
 
-# Create color assignments for each row (cycling through 7 colors for 14 rows)
-row_colors_a4 <- rep(color_palette_a4, length.out = nrow(negative_results_a4))
+# Create color assignments for each row
+row_colors_a4_revised <- color_palette_a4_revised
 
-# Display the coding key table
+# Display the revised coding key table
 DT::datatable(
-  negative_results_a4,
+  negative_results_a4_revised,
   options = list(
     pageLength = 15,
     dom = 'Bfrtip',
@@ -623,12 +655,12 @@ DT::datatable(
     'Code',
     textAlign = 'right',
     fontWeight = 'bold',
-    backgroundColor = styleEqual(negative_results_a4$Code, row_colors_a4),
+    backgroundColor = styleEqual(negative_results_a4_revised$Code, row_colors_a4_revised),
     color = 'white'
   ) %>%
   formatStyle(
     'Likely_Negative_Result',
-    backgroundColor = styleEqual(negative_results_a4$Code, row_colors_a4),
+    backgroundColor = styleEqual(negative_results_a4_revised$Code, row_colors_a4_revised),
     color = 'black'
   ) %>%
   formatStyle(

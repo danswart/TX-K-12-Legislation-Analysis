@@ -89,11 +89,12 @@ Here is the new DAG conceptual code:
 ## FIRST PROMPT - TEMPLATE CODE FOR ANALYZING LEGISLATION:
 
 
-I am transmitting to you a fully operational TEMPLATE for building out tables based on your analysis of the legislative code sections that will come to you in the next prompt.  Use this a template for building out the tables for a new Quarto document based on the sections of legislation I will transmit in the next prompt.
+I am transmitting to you a fully operational TEMPLATE for building out tables based on your upcoming analysis of the legislative code sections that will come to you in the next prompt.  Use this a template for building out the tables for a new Quarto document based on the sections of legislation I will transmit in the next prompt.
 
 
 
 I'm uploading this fully functional code to you BEFORE uploading the legislative code sections to be analyzed. 
+
 Here's the TEMPLATE to keep in your memory as you process the legislative code sections that follow:  
 
 DO NOTHING UNTIL YOU RECEIVE MY NEXT PROMPT
@@ -105,9 +106,9 @@ DO NOTHING UNTIL YOU RECEIVE MY NEXT PROMPT
 
 THERE ARE A LOT OF INSTRUCTIONS HERE SO READ THEM CAREFULLY
 
-ANALYZE ONLY Article 5 (Sections 5.01 - 5.09). 
-STOP ANALYSIS AT Article 5, Section 5.10. 
-EXCLUDE Section 5.10 and all subsequent content.
+ANALYZE ONLY Article 6 (Sections 6.12 - 6.31). 
+STOP ANALYSIS AT Article 7, Section 7.01. 
+EXCLUDE Section 7.01 and all subsequent content.
 Document this scope in the YAML description field.
 
 
@@ -125,7 +126,7 @@ ADD SECTION AT THE END NAMED "INTERESTING..." AND INCLUDE IN THAT SECTION (IN A 
 
 
 1. ALWAYS use the DT() package, not the kable/kableExtra packages.
-2. IF YOU PAUSE, ALWAYS "CONTINUE FROM ENDPOINT"
+2. WHEN YOU PAUSE, ALWAYS "CONTINUE FROM ENDPOINT"
 3. Check the current ending point of the artifact
 4. Add only new content from that exact point forward
 5. Never repeat any existing sections, code chunks, or YAML headers
@@ -142,6 +143,8 @@ ADD SECTION AT THE END NAMED "INTERESTING..." AND INCLUDE IN THAT SECTION (IN A 
 
 DO NOT REPEAT CONTENT IN THE ARTIFACT!
 
+THERE IS NO SUMMARIZATION AT THE END.  IT IS AT THE BEGINNING.
+
 Watch out for unexpected string constants
 
 put in code to verify that there's a match in the number of rows between the different columns in the data frame. Make the code a generic check so the same code will work with all future jobs no matter how many rows are generated.  Ensure all pertinent vectors have exactly the same length.
@@ -153,7 +156,12 @@ Here is the pdf file with the legislative code for analysis.
 
 
 
-# PROMPT TO CREATE EXECUTIVE SUMMARIES FOR EARLIER FILES
+
+
+
+
+
+# EXECUTIVE SUMMARIES FOR EARLIER FILES
 
 ## FIRST PROMPT:
 
@@ -187,13 +195,13 @@ I will be cutting and pasting this new code into my existing Quarto documents.
 
 # REVISING OLD CODE WITH NEW EVALUATION CODES
 
-## FIRST PROMPT
+## FIRST PROMPT - UPDATE SECTIONS COVERED
 
 
 
 Here's the complete analysis code I created for
 
-Article 3 
+Article 5, Secs 17-29
 
 with my old 14-code system.
 
@@ -218,11 +226,7 @@ DON'T DO ANYTHING UNTIL YOU GET MY NEXT PROMPT
 ## SECOND PROMPT
 
 
-THERE ARE A LOT OF RULES HERE SO READ CAREFULLY!
-
-Using my new 7-code framework:
-
-(Codes for Evaluation (down to 7 from 14))
+THERE ARE A LOT OF INSTRUCTIONS HERE SO READ CAREFULLY!
 
 A. Decreases intrinsic motivation in favor of extrinsic motivation
 B. Decreases cooperation within districts in favor of competition for resources
@@ -274,53 +278,6 @@ Watch out for unexpected string constants
 
 Include code to verify that there's a match in the number of rows between the different columns in the data frames so the Tables will come out right. Make that code a generic check so the same checking code will work with all future jobs no matter how many rows are generated.  Ensure all pertinent vectors have exactly the same length.
 
-Make you 'Opinionated Executive Summary' using the tone of this example.  KEEP IT AT 9TH GRADE LEVEL.
-
-
-
-## Executive Summary: Good Intentions Will Not Produce Desired Results
-
-The policies in HB2 Article 2, which focus on teacher preparation and certification, might seem like good ideas, but they can actually hurt teaching. These policies are called "innovative" and "supportive," but they are likely to cause more problems.  
-
-### Districts Trade 'Innovation' for Less Control and More State Power
-
-Innovation districts are meant to give local schools more freedom by allowing them to skip some teacher certification rules. But in reality, these policies will take away local control (Code F in 48% of cases) and make schools more dependent on the state (Code C in 67% of cases). Schools shouldn’t need permission from the state to make real changes.
-
-### Teacher Shortage 'Fix' That Makes Things Worse
-
-Policies that let schools hire uncertified teachers and offer $1,000 payments may seem like a fix for teacher shortages. But they treat teachers as the problem, instead of fixing the real issue: the strict rules the state imposes that create false shortages (Code G in 43% of cases). The state causes shortages by making schools follow unnecessary rules and then offers small payments to solve the problem.
-
-### Advanced Certification: More Money, Less Real Improvement
-
-Policies that offer more pay ($3,000-$6,000 extra) for teachers with advanced certifications promise to improve student achievement. But they encourage teachers to collect certifications for the money, not to fix the system they work in (Code A in 67% of cases). This makes teaching about earning money, instead of helping students.
-
-### Partnership Programs Can Waste Resources
-
-Teacher preparation programs give large amounts of money ($10,000-$24,000 per candidate) to create partnerships between universities and schools. But these programs waste resources and create problems, like increasing state control (Code C), adding more paperwork (Code E in 71% of cases), and taking away local control (Code F). Instead of improving education, the state spends millions on partnerships that fall apart when the funding ends.
-
-### Mentorship: Turning Help Into Competition
-
-Mentorship programs give teachers $1,000 for helping new teachers, but they create competition for limited resources (Code B in 24% of cases). Instead of encouraging teamwork, these policies turn mentoring into a way to make extra money. There are already systems that encourage teachers to work together.
-
-### The Quality of Preparation and Accountability Problem
-
-Policies that require "research-based instructional materials" and "evidence-based strategies" for teacher preparation sound good, but they mostly focus on making schools follow rules instead of improving education (Code D in 52% of cases). These policies replace real change with "accountability theater." Words like "research-based" and "evidence-based" sound important, but they don’t really lead to better teaching.
-
-### Local Talent Equals More State Control Over Teachers
-
-"Grow Your Own" programs, which help local districts support high school students and employees who want to become teachers, sound good. But they limit local control (Code F) because the state tells districts exactly how to run these programs. Instead of being a community effort, these programs become another example of following state rules.
-
-### Achievement Academy Turns Learning Into a Checklist
-
-Achievement academy payments ($500-$1,000) are meant to support professional development, but they turn teaching into a system of rewards (Code A). Eventually, teachers will attend workshops for money, not because they want to learn. These programs feel more like getting credit hours than real opportunities for growth.
-
-### Conclusion
-
-These policies hurt the development of dedicated teachers. Instead of building on teachers’ passion for teaching, they create a system where teachers focus on collecting certifications and earning rewards. They weaken teamwork between teachers and harm local communities.
-
-In the end, these policies don’t help students. They create a costly system that trains teachers to work within a broken system, rather than encouraging creative thinking and real teaching. The only people who benefit are the trainers and consultants.
-
-
-
+The text of the 'Opinionated Executive Summary' must be KEPT AT FLEISCH-KINKADE 9TH GRADE LEVEL.
 
 
