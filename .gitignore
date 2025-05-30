@@ -5,7 +5,6 @@
 .DS_Store
 .quarto
 *.html
-*.pdf
 *_files/
 .quarto/
 _site/

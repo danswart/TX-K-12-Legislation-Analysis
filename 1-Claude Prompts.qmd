@@ -106,9 +106,9 @@ DO NOTHING UNTIL YOU RECEIVE MY NEXT PROMPT
 
 THERE ARE A LOT OF INSTRUCTIONS HERE SO READ THEM CAREFULLY
 
-ANALYZE ONLY Article 6 (Sections 6.12 - 6.31). 
-STOP ANALYSIS AT Article 7, Section 7.01. 
-EXCLUDE Section 7.01 and all subsequent content.
+ANALYZE ONLY Article 7 (Sections 7.01 - 7.19). 
+STOP ANALYSIS AT Article 8, Section 8.01. 
+EXCLUDE Section 8.01 and all subsequent content.
 Document this scope in the YAML description field.
 
 

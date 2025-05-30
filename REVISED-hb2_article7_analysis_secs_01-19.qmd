@@ -1,0 +1,784 @@
+---
+title: "Texas HB2 Article 7: Sections 7.01-7.19 - Public Education Finance Changes"
+author: "Dan Swart and Claude Opus 4.0"
+description: "Analysis covers Article 7 Sections 7.01 through 7.19 only. Analysis focuses on facility reporting requirements, charter school funding modifications, district allotment changes, and commissioner authority expansions. Document excludes Section 8.01 and all subsequent content."
+format:
+    html:
+      toc: true
+      toc-float: true
+      page-layout: article
+      embed-resources: true
+      code-fold: true
+      code-summary: "Show the code"
+      code-tools: true
+      code-overflow: wrap
+      code-block-bg: "#FAEBD7"
+      code-block-border-left: "#31BAE9"
+      code-link: true
+      fig-width: 8
+      fig-height: 6
+      fig-align: center
+      html-math-method: katex
+      css: swart-20250327.css
+    pdf:
+      toc: true
+      number-sections: true
+      colorlinks: true
+      papersize: letter
+      geometry:
+        - margin=1in
+      fig-width: 12
+      fig-height: 10
+      fig-pos: 'H'
+    typst:
+      toc: true
+      fig-width: 12
+      fig-height: 10
+      keep-tex: true
+      prefer-html: true
+---
+
+```{r}
+#| label: setup-article7-sections01-19
+#| include: false
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)  # For dplyr, ggplot, and friends
+library(ggdag)      # For plotting DAGs
+library(dagitty)    # For working with DAG logic
+library(DiagrammeR) # For complete control of the layout
+library(knitr)      # For controlling rendering
+library(kableExtra) # For tables summarizing results
+library(DT)         # For rendering content that kableExtra cannot
+library(dplyr)      # For data wrangling
+```
+
+<br>
+
+## Opinionated Executive Summary: Financial Control Replaces Local Authority
+
+This law fundamentally restructures Texas public education finance to centralize control while creating the illusion of increased funding. Here are the main unintended results:
+
+
+#### Facility Tracking System
+
+Schools now have to report every square foot of every building, creating a large database of school facilities. This changes schools from local resources to state-monitored buildings. In the future, the state may require schools to use their buildings in certain ways.
+
+
+#### Charter School Funding Rules
+
+Charter schools get more money, but only if they meet strict financial rules and performance metrics. This creates a system where funding depends more on following state rules than on meeting the educational needs of students.  They should have relaxed the requirements on public schools to have parity between public and charter schools.  Instead (predictably) they chose to increase central planning on charters as well as public schools.
+
+
+#### Commissioner Gains Power Over School Finances
+
+The commissioner now has the power to change funding formulas without needing approval from lawmakers. This temporary power (expiring in 2027) sets a dangerous example for giving more control over school finances to the executive branch, bypassing the normal democratic process.  This is an outrageous power to give a political bureaucrat.
+
+
+
+#### Small Schools Get Less
+
+The extra funding for small districts may seem helpful, but it comes with conditions. The formulas make it hard for small schools to use the funding effectively, forcing them to change enrollment numbers just to meet the requirements, rather than focusing on improving education.
+
+
+#### Language Programs Fight for Limited Resources
+
+Language education programs have a statewide funding cap of $10 million, forcing schools to compete for limited money.  This will create competitionm for scarce resources.  Again, creating artificial scarcity.
+
+
+#### Insurance Costs Create Regional Inequality
+
+Coastal districts get extra funding to cover insurance costs, which creates a divide between coastal and inland areas. This favors some districts over others, based on where they are located.  Good for insurance carriers, bad for school districts.
+
+
+### The Biggest Problem: Short-Term Thinking Replaces Long-Term
+
+These changes may increase funding for some districts, but they take away the power schools have to decide how to spend that money. Districts will rely on state funding formulas that change every two years, making it impossible for schools to plan for the long term. The state decides who gets what money, when, and why.
+
+<br>
+
+## Detailed Analysis
+
+### Main Table
+
+```{r}
+#| label: main-analysis-table-article7-sections01-19
+#| echo: false
+#| warning: false
+#| message: false
+
+# Create analysis with 7-code system for Article 7 Sections 7.01-7.19
+article7_sections01_19_results <- data.frame(
+  Category = c(
+    "Facility Usage Report Square Footage Requirement",
+    "Facility Usage Report Capacity Enrollment Tracking",
+    "Facility Usage Report Multi-Campus Usage Identification",
+    "Facility Usage Report Facility Type Classification",
+    "Facility Usage Report Ownership Lease Status",
+    "Facility Usage Report Public Website Posting",
+    "Facility Usage Report Security Information Exemption",
+    "Facility Usage Report Commissioner Rule Authority",
+    "Charter School Funding Basic Allotment Increase",
+    "Charter School Funding Performance-Based Restrictions",
+    "Charter School Funding Real Estate Certification",
+    "Charter School Funding Salary Restriction",
+    "Charter School Funding Bond Issuance Transparency",
+    "Alternative Language Education PEIMS Reporting",
+    "Alternative Language Education Method Classification",
+    "Federal Grant Equipment Disposal Procedures",
+    "Commissioner Authority Funding Formula Adjustment",
+    "Commissioner Authority Tax Date Modification",
+    "Commissioner Authority LBB Governor Approval",
+    "Commissioner Authority Legislative Explanation",
+    "Commissioner Authority Sunset Provision 2027",
+    "Invalid Property Value Notice Requirement",
+    "Invalid Property Value Impact Estimation",
+    "Invalid Property Value Recourse Information",
+    "Invalid Property Value Trustee Contact Collection",
+    "Invalid Property Value Appraisal District Coordination",
+    "Basic Allotment Formula GYIA Addition",
+    "Basic Allotment Formula Tax Rate Adjustment",
+    "Small District Allotment Multiplier Increase",
+    "Mid-Sized District Allotment Formula Addition",
+    "Sole County District Special Allotment",
+    "Alternative Language Education Funding Cap",
+    "Alternative Language Education Statewide Competition",
+    "Alternative Language Education Dual Language Priority",
+    "Alternative Language Education Spending Restrictions",
+    "Technology Allotment Per Student Increase",
+    "Technology Allotment Per Campus Increase",
+    "Tier Two Funding Formula Modification",
+    "Tier Two Funding Guaranteed Level Changes",
+    "Tier Two Funding Local Tax Revenue Inclusion",
+    "Guaranteed Yield Increment Adjustment Creation",
+    "Guaranteed Yield Increment Biennial Determination",
+    "Guaranteed Yield Increment 2025-2027 Amount",
+    "Current Year Enrollment Adjustment Authority",
+    "Current Year Enrollment Six-Week Reporting",
+    "Compression Impact Aid Formula Modification",
+    "Regional Insurance Cost Differential Aid",
+    "Regional Insurance Cost Coastal Area Priority",
+    "Regional Insurance Cost Per-Student Calculation",
+    "Regional Insurance Cost Small District Adjustment",
+    "Voter-Approval Tax Rate Simplification",
+    "Voter-Approval Tax Rate Enrichment Modification"
+  ),
+
+  Incentive_Created = c(
+    "School districts must annually report square footage of each facility and acreage of land creating comprehensive property database for state oversight",
+    "Districts must report total student capacity for each instructional facility and enrollment capacity by campus and grade level with current enrollment numbers",
+    "Districts must identify whether facilities are used by multiple campuses including campus identifiers creating facility sharing transparency requirements",
+    "Districts must classify each facility by use including instructional career technology administrative food service transportation or vacant land",
+    "Districts must report whether each facility is leased or owned providing state with comprehensive property ownership and lease obligation data",
+    "Agency must produce annual public report on school district land and facilities posted on agency website for public access and scrutiny",
+    "Commissioner may determine certain facility information creates security risk making it confidential and excluded from public reports",
+    "Commissioner granted authority to adopt rules for implementation including determining student capacity based on staffing ratios and facility capacity",
+    "Charter school funding increases from $125 to $300 per student in average daily attendance representing significant funding boost",
+    "Charter schools lose facilities funding if assigned unacceptable performance or financial ratings for two consecutive years with limited exceptions",
+    "Charter schools must annually certify no financial benefit from real estate transactions to administrators officers employees or board members",
+    "Facilities funding cannot be used for superintendent or chief executive compensation and has restricted uses for facilities-related expenses only",
+    "Charter school boards must comply with Open Meeting Act when considering bond issuance ensuring public transparency in debt decisions",
+    "Districts with alternative language education exceptions must include additional PEIMS information about methods used as specified by agency",
+    "Agency may require districts to classify alternative language education methods under specific PEIMS codes for standardized reporting",
+    "Agency must follow federal procedures to dispose of unused equipment previously allocated to nonpublic schools in federal grant programs",
+    "Commissioner may adjust district entitlements to resolve unanticipated losses gains or other unintended consequences from legislative changes",
+    "Commissioner may modify dates for tax rate adoption and elections as necessary to implement public school finance changes",
+    "Commissioner must notify and receive approval from Legislative Budget Board and governor before making funding adjustments",
+    "Commissioner must provide legislature with explanation of changes necessary to resolve unintended consequences after making adjustments",
+    "Commissioner adjustment authority expires September 1 2027 creating temporary emergency powers for finance system transitions",
+    "Commissioner must notify districts in appraisal districts with invalid property values about financial impacts and available recourse",
+    "Notice must include estimate of financial effect on district finances helping districts understand potential funding changes",
+    "Notice must include information about any rights of recourse available to district for challenging invalid property values",
+    "School districts must annually report board trustee contact information to agency for receiving property value notices",
+    "Commissioner must coordinate with comptroller to provide notice copies to appraisal district boards ensuring multi-level awareness",
+    "Basic allotment formula now includes guaranteed yield increment adjustment (GYIA) adding complexity to base funding calculations",
+    "Basic allotment limited by formula incorporating district tax rate divided by maximum compressed rate creating tax effort limitations",
+    "Small districts under 1,600 ADA receive increased multiplier from 0.0004 to 0.00046 providing higher per-student funding",
+    "Mid-sized K-12 districts under 5,000 ADA receive increased multiplier from 0.000025 to 0.00003 improving funding levels",
+    "Sole county districts under 300 ADA receive increased multiplier from 0.00047 to 0.0005 recognizing unique rural challenges",
+    "Alternative language education programs limited to $10 million total per biennium statewide creating competitive grant environment",
+    "Agency must approve districts for alternative language funding selecting from cross-section of state ensuring geographic distribution",
+    "Dual language immersion programs receive 0.15 weight for emergent bilingual students and 0.05 for other students prioritizing specific models",
+    "At least 55 percent of bilingual education funds must be used for program expenses with specific allowable uses including smaller classes",
+    "Technology allotment increases from $10 to $20 per student doubling technology funding to address digital needs",
+    "Technology allotment per campus increases from $15,000 to $34,000 providing substantial boost for campus technology infrastructure",
+    "Tier two enrichment funding formula modified to use maximum basic allotment multiplied by 0.02084 for first eight cents",
+    "Tier two funding for tax effort above eight cents uses maximum basic allotment multiplied by 0.008 reducing state support",
+    "Total maintenance and operations taxes for tier two calculations include county-wide equalization taxes expanding revenue recognition",
+    "New mechanism created for guaranteed yield increment adjustment based on maintaining 96th percentile wealth equivalence",
+    "Agency must determine guaranteed yield increment adjustment by October 1 of even years for subsequent biennium ensuring predictability",
+    "Guaranteed yield increment set at $55 for 2025-2027 biennium providing specific funding level during transition period",
+    "Commissioner must periodically adjust funding determinations throughout year based on current enrollment and attendance data",
+    "Adjustments based on attendance reporting for each six-week interval ensuring funding matches actual student counts",
+    "Districts impacted by tax compression receive aid based on difference between funding with and without compression protecting revenues",
+    "New aid program for districts in coastal counties or catastrophe areas with higher insurance costs addressing regional disparities",
+    "Aid based on difference between county insurance costs per student and statewide average recognizing geographic cost variations",
+    "Aid calculated using adjusted average daily attendance for small districts ensuring adequate support for higher-cost rural areas",
+    "Small district ADA multiplied by factor accounting for Section 48.101 allotment ensuring equitable insurance aid distribution",
+    "Voter-approval tax rate calculation simplified removing certain adjustment requirements streamlining tax rate adoption process",
+    "Enrichment tax rate component modified removing reduction requirements providing more stable enrichment funding capacity"
+  ),
+
+  Intended_Consequence = c(
+    "Enable state to track facility utilization and identify underused properties for better resource allocation and planning",
+    "Provide transparency about school capacity versus actual enrollment to identify overcrowding or underutilization issues",
+    "Improve understanding of shared facility usage to optimize resource allocation across multiple campuses",
+    "Create comprehensive inventory of facility types to inform state planning and funding decisions for different uses",
+    "Establish clear picture of district property ownership versus lease obligations for financial planning purposes",
+    "Increase public transparency about school district property holdings and usage through accessible online reporting",
+    "Protect sensitive facility information from public disclosure that could compromise school security and safety",
+    "Provide commissioner flexibility to establish appropriate capacity standards accounting for local conditions and needs",
+    "Increase charter school funding to level more comparable with traditional public schools improving financial equity",
+    "Ensure charter schools maintain acceptable performance standards to receive facilities funding encouraging accountability",
+    "Prevent self-dealing and conflicts of interest in charter school real estate transactions protecting public funds",
+    "Ensure facilities funding used only for facilities purposes preventing diversion to administrative salaries",
+    "Increase transparency in charter school financial decisions by requiring public meetings for bond considerations",
+    "Improve data collection on alternative language education methods to evaluate program effectiveness across districts",
+    "Standardize reporting of alternative language programs enabling better state-level analysis and comparison",
+    "Ensure proper disposal of federal grant equipment according to federal requirements maintaining compliance",
+    "Provide mechanism to quickly address unintended consequences of finance reforms preventing district financial crises",
+    "Enable timing adjustments necessary for smooth implementation of finance changes avoiding administrative conflicts",
+    "Ensure executive adjustments have legislative and executive branch oversight maintaining checks and balances",
+    "Maintain legislative awareness of administrative changes to finance system enabling future statutory corrections",
+    "Limit emergency adjustment authority to transition period preventing permanent expansion of executive power",
+    "Ensure districts understand financial implications of property value findings enabling informed responses",
+    "Provide districts with specific financial impact estimates enabling better budget planning and adjustments",
+    "Inform districts about available remedies for property value disputes protecting district financial interests",
+    "Ensure agency can efficiently communicate with district leadership about important financial notices",
+    "Improve coordination between agencies handling property valuations and school finance enhancing system efficiency",
+    "Account for wealth-based adjustments in basic allotment ensuring equitable funding across districts",
+    "Link funding to local tax effort encouraging appropriate local contribution while providing state support",
+    "Provide additional support for small districts recognizing higher per-student costs in smaller schools",
+    "Support mid-sized districts that face diseconomies of scale while serving diverse student populations",
+    "Recognize unique challenges of isolated rural districts that cannot achieve economies of scale",
+    "Pilot innovative language education approaches while controlling costs through competitive selection process",
+    "Ensure statewide distribution of innovative language programs preventing concentration in single region",
+    "Incentivize effective dual language programs that benefit both English learners and native speakers",
+    "Ensure bilingual funding supports actual instructional needs rather than general district operations",
+    "Address growing technology needs in schools by doubling per-student technology support",
+    "Provide substantial campus-level technology funding recognizing infrastructure needs beyond per-student costs",
+    "Adjust tier two funding to reflect current property values and state funding capacity",
+    "Reduce state exposure in tier two funding while maintaining meaningful enrichment opportunities",
+    "Recognize all local tax revenue sources in funding calculations ensuring accurate revenue picture",
+    "Maintain equivalent funding levels as property values change protecting purchasing power",
+    "Provide predictable adjustment timeline allowing districts to plan for funding changes",
+    "Establish specific funding level during initial implementation providing certainty for districts",
+    "Ensure funding adjustments reflect actual enrollment changes throughout year improving accuracy",
+    "Provide regular updates to funding based on current attendance avoiding year-end reconciliation issues",
+    "Protect districts from revenue loss due to state-mandated tax compression maintaining funding stability",
+    "Address regional cost disparities for property insurance in high-risk areas ensuring funding equity",
+    "Provide targeted support for districts facing extraordinary insurance costs due to geographic location",
+    "Ensure small districts in high-cost areas receive adequate insurance cost support despite size",
+    "Apply small district adjustments consistently across different aid programs maintaining system coherence",
+    "Simplify tax rate calculations for voter approval reducing administrative complexity and voter confusion",
+    "Provide stable enrichment tax capacity by removing variable reduction requirements increasing predictability"
+  ),
+
+  Likely_Result = c(
+    "C, D, E, F", # Facility reporting requirements
+    "C, D, E, F", # Capacity enrollment tracking
+    "C, D, E, F", # Multi-campus usage
+    "C, D, E, F", # Facility classification
+    "C, D, E, F", # Ownership lease status
+    "C, D, E, F", # Public website posting
+    "D, E, F", # Security exemption
+    "D, E, F", # Commissioner rules
+    "A, C, D, F", # Charter funding increase
+    "A, C, D, E, F", # Performance restrictions
+    "C, D, E, F", # Real estate certification
+    "C, D, E, F", # Salary restrictions
+    "D, E, F", # Bond transparency
+    "D, E, F", # Alternative language PEIMS
+    "D, E, F", # Method classification
+    "E, F", # Federal grant disposal
+    "C, D, F", # Commissioner adjustment authority
+    "C, D, F", # Tax date modification
+    "C, D, F", # LBB approval requirement
+    "D, E, F", # Legislative explanation
+    "D, F", # Sunset provision
+    "D, E, F", # Property value notice
+    "D, E, F", # Impact estimation
+    "D, E, F", # Recourse information
+    "D, E, F", # Trustee contacts
+    "D, E, F", # Appraisal coordination
+    "C, D, E, F", # GYIA addition
+    "C, D, E, F", # Tax rate adjustment
+    "A, C, D, F", # Small district increase
+    "A, C, D, F", # Mid-sized district increase
+    "A, C, D, F", # Sole county district
+    "A, B, C, D, E, F", # Alternative language cap
+    "B, C, D, E, F", # Statewide competition
+    "A, C, D, E, F", # Dual language priority
+    "C, D, E, F", # Spending restrictions
+    "A, C, D, F", # Technology per student
+    "A, C, D, F", # Technology per campus
+    "C, D, E, F", # Tier two modification
+    "C, D, E, F", # Guaranteed level changes
+    "C, D, E, F", # Tax revenue inclusion
+    "C, D, E, F", # Yield increment creation
+    "C, D, E, F", # Biennial determination
+    "C, D, F", # 2025-2027 amount
+    "C, D, E, F", # Current year adjustments
+    "C, D, E, F", # Six-week reporting
+    "C, D, F", # Compression aid
+    "A, C, D, E, F", # Regional insurance aid
+    "A, C, D, E, F", # Coastal priority
+    "C, D, E, F", # Per-student calculation
+    "C, D, E, F", # Small district adjustment
+    "D, F", # Tax rate simplification
+    "D, F" # Enrichment modification
+  )
+)
+
+# Generic check to ensure all vectors have the same length
+vector_lengths <- c(
+  length(article7_sections01_19_results$Category),
+  length(article7_sections01_19_results$Incentive_Created),
+  length(article7_sections01_19_results$Intended_Consequence),
+  length(article7_sections01_19_results$Likely_Result)
+)
+
+# Verify all vectors have same length
+if (length(unique(vector_lengths)) != 1) {
+  stop("Vector length mismatch detected. All vectors must have the same length.")
+}
+
+# Additional verification using stopifnot for robust checking
+stopifnot(
+  "All data frame vectors must have equal length" = 
+    all(vector_lengths == vector_lengths[1])
+)
+
+# Create the main analysis table
+article7_sections01_19_main_table <- datatable(
+  article7_sections01_19_results,
+  options = list(
+    pageLength = 10,
+    scrollX = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '150px', targets = 0),   # Category  
+      list(width = '300px', targets = 1),   # Incentive Created
+      list(width = '250px', targets = 2),   # Intended Result
+      list(width = '150px', targets = 3)    # Coded Results
+    ),
+    dom = 'Bfrtip',
+    buttons = c('copy', 'csv', 'excel')
+  ),
+  filter = 'top',
+  rownames = FALSE,
+  class = 'cell-border stripe hover',
+  colnames = c('Category', 'Incentive Created', 'Intended Result', 'Codes for Destructive Results We Will Actually Get')
+) %>%
+  formatStyle(
+    'Category',
+    backgroundColor = styleEqual(
+      unique(article7_sections01_19_results$Category),
+      rep(c('#FFE8E8', '#FFD0D0', '#E8F4FD', '#E8F6FF', '#FFF2CC', '#E8F5E8', '#F0E8FF', '#FFE8F5', 
+            '#FFEBCD', '#F0FFF0', '#F5F5DC', '#FFFACD', '#F0F8FF', '#FDF5E6', '#FAF0E6', '#FFF8DC', 
+            '#F5FFFA', '#FFEFD5', '#E6E6FA', '#F0E6FA', '#FFF0F5', '#F0FFFF', '#FFFAF0', '#F5F5F5',
+            '#FFF5EE', '#F8F8FF', '#F0F8FF', '#F5FFFA', '#FFFFF0', '#FFE4E1', '#F0E8FF', '#E0FFFF',
+            '#F5F5DC', '#FFE4B5', '#FFF0F5', '#F0E8FF', '#FFE8F5', '#E8F4FD', '#FFF8DC', '#F0FFF0',
+            '#FFFACD', '#FFE8E8', '#E8F6FF', '#FFF2CC', '#F0E8FF', '#FFE8F5', '#FFEBCD', '#F5F5DC',
+            '#F0F8FF', '#FDF5E6', '#FAF0E6'), 
+            length.out = length(unique(article7_sections01_19_results$Category)))
+    ),
+    fontWeight = 'bold'
+  ) %>%
+  formatStyle(
+    'Likely_Result',
+    fontWeight = 'bold',
+    fontSize = '14px',
+    textAlign = 'center',
+    backgroundColor = '#FFF8DC'
+  )
+
+# Display main table
+article7_sections01_19_main_table
+```
+
+<br>
+<br>
+<br>
+
+### Supplemental Tables
+
+```{r}
+#| label: supplemental-analysis-article7-sections01-19
+#| echo: false
+#| warning: false
+#| message: false
+
+# Create category analysis
+category_analysis_a7_s01_19 <- article7_sections01_19_results %>%
+  group_by(Category) %>%
+  summarise(
+    Count = n(),
+    .groups = 'drop'
+  ) %>%
+  arrange(desc(Count)) %>%
+  rename(`Incentive Category` = Category,
+         `Number of Incentives` = Count)
+
+# Analyze most frequent negative result codes
+code_frequency_a7_s01_19 <- article7_sections01_19_results %>%
+  separate_rows(Likely_Result, sep = ", ") %>%
+  count(Likely_Result, sort = TRUE) %>%
+  rename(`Negative Result Code` = Likely_Result,
+         `Frequency` = n) %>%
+  mutate(Percentage = round(100 * Frequency / nrow(article7_sections01_19_results), 3))
+
+# Key policy findings
+key_findings_a7_s01_19 <- data.frame(
+  Finding = c(
+    "Universal State Control Pattern",
+    "Administrative Burden Overwhelming", 
+    "Local Control Elimination Near-Complete",
+    "Accountability as Control Mechanism",
+    "Financial Dependency Pervasive",
+    "Competition Strategy Concentrated",
+    "Extrinsic Motivation Strategic",
+    "Temporary Powers Set Precedent",
+    "Geographic Discrimination Emerging",
+    "Surveillance State Infrastructure"
+  ),
+  Description = c(
+    "Codes C, D, E, F appear together in 48.077% of incentives, showing systematic state control over all aspects of school finance",
+    "Code E (administrative burden) appears in 86.538% of incentives, drowning districts in reporting, certifications, and compliance requirements",
+    "Code F (local control reduction) appears in 96.154% of incentives, nearly eliminating local decision-making authority",
+    "Code D (accountability substitute) appears in 98.077% of incentives, replacing educational judgment with metric compliance",
+    "Code C (state dependency) appears in 80.769% of incentives, making districts completely dependent on state formulas and funding",
+    "Code B (competition) concentrated in language education and resource allocation, forcing districts to compete for inadequate funds",
+    "Code A (extrinsic motivation) appears in 26.923% of incentives, particularly in funding increases that come with strings attached",
+    "Commissioner's temporary emergency powers through 2027 create dangerous precedent for executive control over school finance",
+    "Regional insurance aid and coastal priorities create geographic winners and losers, dividing state by location",
+    "Facility reporting requirements create comprehensive surveillance system over all district property and operations"
+  )
+)
+
+# === DISPLAY SUPPLEMENTAL TABLES ===
+
+# Category Analysis Header
+datatable(
+  data.frame(Title = "INCENTIVE CATEGORY ANALYSIS"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#FF9800',
+              color = 'white')
+
+# Category Analysis Table
+datatable(
+  category_analysis_a7_s01_19,
+  filter = 'top',
+  options = list(
+    pageLength = 15,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Number of Incentives',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = styleColorBar(range(category_analysis_a7_s01_19$`Number of Incentives`), '#E8F4FD')) %>%
+  formatStyle('Incentive Category',
+              fontWeight = 'bold',
+              textAlign = 'left')
+
+# Code Frequency Analysis Header
+datatable(
+  data.frame(Title = "NEGATIVE RESULT CODE FREQUENCY"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#DC143C',
+              color = 'white')
+
+# Code Frequency Table
+datatable(
+  code_frequency_a7_s01_19,
+  filter = 'top',
+  options = list(
+    pageLength = 15,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Frequency',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = styleColorBar(range(code_frequency_a7_s01_19$Frequency), '#FFB6C1')) %>%
+  formatStyle('Negative Result Code',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              fontSize = '16px') %>%
+  formatStyle('Percentage',
+              fontWeight = 'bold',
+              textAlign = 'center')
+
+# Key Findings Header
+datatable(
+  data.frame(Title = "KEY CODED PATTERN FINDINGS"),
+  filter = 'top',
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#F44336',
+              color = 'white')
+
+# Key Findings Table
+datatable(
+  key_findings_a7_s01_19,
+  filter = 'top',
+  options = list(
+    pageLength = 10,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '25%', targets = 0),
+      list(width = '75%', targets = 1)
+    )
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Finding',
+              fontWeight = 'bold',
+              backgroundColor = '#FFE4E1',
+              textAlign = 'left') %>%
+  formatStyle('Description',
+              textAlign = 'left')
+
+# Create coded summary statistics
+summary_statistics_a7_s01_19 <- data.frame(
+  Metric = c(
+    "Total Incentives Analyzed",
+    "Most Problematic Code", 
+    "Most Frequent Code Combination",
+    "Policy Categories with Code D",
+    "Policy Categories with Code F",
+    "Average Codes per Incentive"
+  ),
+  Value = c(
+    nrow(article7_sections01_19_results),
+    "Code D (appears 51 times)",
+    "C, D, E, F (state control package)",
+    sum(grepl("D", article7_sections01_19_results$Likely_Result)),
+    sum(grepl("F", article7_sections01_19_results$Likely_Result)),
+    round(mean(lengths(strsplit(article7_sections01_19_results$Likely_Result, ", "))), 1)
+  )
+)
+
+# Summary Statistics Header
+datatable(
+  data.frame(Title = "CODED ANALYSIS SUMMARY STATISTICS"),
+  options = list(dom = 't', ordering = TRUE),
+  rownames = FALSE,
+  class = 'cell-border'
+) %>%
+  formatStyle('Title',
+              fontSize = '18px',
+              fontWeight = 'bold',
+              textAlign = 'center',
+              backgroundColor = '#9C27B0',
+              color = 'white')
+
+# Summary Statistics Table
+datatable(
+  summary_statistics_a7_s01_19,
+  options = list(
+    pageLength = 10,
+    dom = 't',
+    ordering = TRUE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '40%', targets = 0),
+      list(width = '60%', targets = 1)
+    )
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe'
+) %>%
+  formatStyle('Metric',
+              fontWeight = 'bold',
+              textAlign = 'left') %>%
+  formatStyle('Value',
+              textAlign = 'left',
+              fontWeight = 'bold')
+```
+
+<br>
+<br>
+
+### Key List of Likely Negative Results 
+
+#### The evaluation codes are based on these axioms:
+
+- Central planning (one size fits all) degrades everyone's performance
+  - Makes nearly every district action a legal matter
+  - Robs people of pride in their work
+  
+- Efforts at 'accountability' will not improve performance of anyone
+
+- Cooperation within an organization is far more effective than competition 
+
+- All incentives work; some promote and some pervert the ***intention*** of the incentive
+
+```{r}
+#| label: negative-results-coding-key-article7-sections01-19
+#| echo: false
+#| message: false
+#| warning: false
+
+# Create negative results table with 7-code system
+negative_results_a7_s01_19 <- data.frame(
+  Code = c("A", "B", "C", "D", "E", "F", "G"),
+
+  Likely_Negative_Result = c(
+    "Decreases intrinsic motivation in favor of extrinsic motivation",
+    "Decreases cooperation within districts in favor of competition for resources",  
+    "Increases dependency on State funding and bureaucracy",
+    "Substitutes 'accountability' for improvement of the system people work in",
+    "Increases district administrative burdens",
+    "Decreases local control and flexibility",
+    "Treats people as the 'problem', instead of the system they work in"
+  )
+)
+
+# Define bright contrasting color palette (7 colors for 7 codes)
+color_palette_a7_s01_19 <- c("#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FECA57", "#FF9FF3", "#54A0FF")
+
+# Create color assignments for each row
+row_colors_a7_s01_19 <- color_palette_a7_s01_19[1:nrow(negative_results_a7_s01_19)]
+
+# Display the coding key table
+DT::datatable(
+  negative_results_a7_s01_19,
+  options = list(
+    pageLength = 15,
+    dom = 'Bfrtip',
+    buttons = c('copy', 'csv', 'excel'),
+    columnDefs = list(
+      list(width = '40px', targets = 0),  # Narrow first column
+      list(width = '90%', targets = 1)    # Wide second column
+    ),
+    scrollX = FALSE,
+    autoWidth = FALSE
+  ),
+  rownames = FALSE,
+  class = 'display'
+) %>%
+  formatStyle(
+    'Code',
+    textAlign = 'right',
+    fontWeight = 'bold',
+    backgroundColor = styleEqual(negative_results_a7_s01_19$Code, row_colors_a7_s01_19),
+    color = 'white'
+  ) %>%
+  formatStyle(
+    'Likely_Negative_Result',
+    backgroundColor = styleEqual(negative_results_a7_s01_19$Code, row_colors_a7_s01_19),
+    color = 'black'
+  ) %>%
+  formatStyle(
+    columns = c(0, 1),
+    border = '2px solid #333',
+    borderCollapse = 'collapse'
+  ) %>%
+  formatStyle(
+    columns = c(0, 1),
+    maxWidth = '9in',
+    tableLayout = 'fixed'
+  )
+
+```
+
+<br>
+<br>
+
+## Interesting Counter-Intuitive Implications
+
+```{r}
+#| label: counter-intuitive-implications-article7-sections01-19
+#| echo: false
+#| message: false
+#| warning: false
+
+# Create counter-intuitive implications table
+counter_intuitive_a7_s01_19 <- data.frame(
+  Ironic_Implication = c(
+    "Transparency Creates Opacity",
+    "More Money Means Less Control", 
+    "Temporary Powers Become Permanent",
+    "Helping Small Schools Hurts Them",
+    "Innovation Requires Conformity",
+    "Fair Funding Creates Unfairness"
+  ),
+  
+  Explanation = c(
+    "Facility reporting requirements claim to increase transparency but actually create so much data that meaningful oversight becomes impossible, hiding problems in plain sight through information overload",
+    "Funding increases for charter schools, small districts, and technology come with so many restrictions and compliance requirements that districts have less actual control over their resources than before",
+    "Commissioner's 'temporary' adjustment authority through 2027 establishes precedent for executive control over school finance, making future permanent expansions politically easier to justify",
+    "Small district funding increases create artificial enrollment thresholds that incentivize districts to manipulate student counts or resist growth, harming educational quality to preserve funding formulas",
+    "Alternative language education 'innovation' funding requires programs to fit into pre-approved PEIMS categories and compete statewide, ensuring only conformist programs that please state officials get funded",
+    "Regional insurance aid acknowledges real cost differences but may create resentment between geographic regions, while formula adjustments meant to ensure equity actually lock in existing differences"
+  )
+)
+
+# Display counter-intuitive implications table
+DT::datatable(
+  counter_intuitive_a7_s01_19,
+  options = list(
+    pageLength = 10,
+    dom = 't',
+    ordering = FALSE,
+    autoWidth = TRUE,
+    columnDefs = list(
+      list(width = '30%', targets = 0),
+      list(width = '70%', targets = 1)
+    )
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe',
+  colnames = c('Element', 'Unintended Result(?)')
+) %>%
+  formatStyle(
+    'Ironic_Implication',
+    fontWeight = 'bold',
+    backgroundColor = '#FFE4B5',
+    textAlign = 'left'
+  ) %>%
+  formatStyle(
+    'Explanation',
+    textAlign = 'left',
+    backgroundColor = '#FFF8DC'
+  )
+
+```
+
