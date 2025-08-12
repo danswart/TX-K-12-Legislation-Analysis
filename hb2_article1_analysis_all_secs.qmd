@@ -1,5 +1,5 @@
 ---
-title: "Texas HB2: Teacher Compensation and Education Reforms - Incentives and Likely Results"
+title: "Texas HB2 Article 1: Teacher Compensation and Education Reforms"
 author: "Dan Swart and Claude Sonnet 4.0"
 description: "Analysis covers Article 1 (Teacher Compensation) only - Sections 1.01 through 1.11. Analysis stops before Section 2.01 (Article 2).  Document spans pages 1-6 of legislative text."
 format:
